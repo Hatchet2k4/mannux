@@ -1,0 +1,30 @@
+(ika-sprite 
+	(version 1.1)
+	(information 
+		(title Untitled)
+		(meta 
+		)
+	)
+	(header 
+		(depth 32)
+	)
+	(scripts 
+	)
+	(frames 
+		(count 2)
+		(dimensions 
+			(width 16)
+			(height 16)
+		)
+		(hotspot 
+			(x 0)
+			(y 0)
+			(width 16)
+			(height 16)
+		)
+		(data 
+			(format zlib)
+			eJz6//8/w/9RPIpH8SgeglhCUu8/JfpnzF3wnxIzqKGfEjNA+mB4IPRT6v6BDn9K089QxwAAAAD//w==
+		)
+	)
+)

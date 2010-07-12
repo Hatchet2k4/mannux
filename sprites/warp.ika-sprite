@@ -1,0 +1,94 @@
+(ika-sprite 
+	(version 1.0)
+	(information 
+		(title Untitled)
+		(meta 
+		)
+	)
+	(header 
+		(depth 32)
+	)
+	(scripts 
+		(script 
+			(label script0)
+			
+		)
+		(script 
+			(label script1)
+			
+		)
+		(script 
+			(label script2)
+			
+		)
+		(script 
+			(label script3)
+			
+		)
+		(script 
+			(label script4)
+			
+		)
+		(script 
+			(label script5)
+			
+		)
+		(script 
+			(label script6)
+			
+		)
+		(script 
+			(label script7)
+			
+		)
+		(script 
+			(label script8)
+			
+		)
+		(script 
+			(label script9)
+			
+		)
+		(script 
+			(label script10)
+			
+		)
+		(script 
+			(label script11)
+			
+		)
+		(script 
+			(label script12)
+			
+		)
+		(script 
+			(label script13)
+			
+		)
+		(script 
+			(label script14)
+			
+		)
+		(script 
+			(label script15)
+			
+		)
+	)
+	(frames 
+		(count 1)
+		(dimensions 
+			(width 4)
+			(height 64)
+		)
+		(hotspot 
+			(x 0)
+			(y 0)
+			(width 4)
+			(height 64)
+		)
+		(data 
+			(format zlib)
+			eJz6z/T///9RPIpH8YjEAAAAAP//
+		)
+	)
+)

@@ -1,0 +1,30 @@
+(ika-sprite 
+	(version 1.1)
+	(information 
+		(title Untitled)
+		(meta 
+		)
+	)
+	(header 
+		(depth 32)
+	)
+	(scripts 
+	)
+	(frames 
+		(count 6)
+		(dimensions 
+			(width 32)
+			(height 32)
+		)
+		(hotspot 
+			(x 0)
+			(y 0)
+			(width 32)
+			(height 32)
+		)
+		(data 
+			(format zlib)
+			eJzsmNFtIzEMRK8Hl+IGrjEjlaSQ9HANpBcDe9kEyvEGMySlpdYJog8ittbio8gRpc22bb+2ZcuWLVuWt/vz9mlns1+u23/8/ftZ7Ntl+zQbx/55Hztz3WfGsPu17MaznzG+mWtHPubiDD7GYmOo1mTz7cXRns/SAWOhHmfpT9V/9poV33LP6oOod7snz+yBy5YtW7Zs2bJlZ5t6F2l3wJn3QPaege8iM95B7Dtn9C5S/W4ccaN4jrCj9x2mhUq+51dpoZLfq7eZ9bc59/I+438SVoOKrzR6lK98sv9/zOgDSvfYEzxNHMm7qjGrM4uhuu7e/wLYeVBV+54eWKX7iK1qX3UGMv/4fxfWhyvYqAHUPu6D2We/jecs1rJly36OvVxf3/rKa/ezSn4zZKnxStt978ZY++f788e4jWlGDJiHxm5m48S5VTE0VovD8m18M/VheYyPuajmI5eZzcURPdi6e7lnfPu55WOUH603ioXx25i1bA5G+Y1ha4O/nxEDasL7jVcLVQ+1H73vKk89fcDTfONl1+2xsf9l911mDs6t4OI8Nbfn/Mr6wfPqSN6jvsfWzfheDJneFK07Y2oPZLSnNJ+JJbtHPHamD2f3HdOoioGxbZ1VPqPehL7bc7xbqXuP148zY16N2f5X985IE4p/5E7Ss24vnio202hWA6P3ENQD9gm2zzyt9fQ+xbb5Yf2PnSlZPq5J9Ux83nO+eLnHfR/1S1zrKNuuKbuOGff9Sn/fxV6uf95Njdvn+Fs1dzQG9H1//mfqNxV8y7Nrtfz2zP5tVrV+xsrajBh64qnKP2N5sbVx9KUYnvZUrdFYXM23fZbReRRDxliOcM/a30R7kPFvlw/DMRUP05S39syaMQYWk8plVBP2W8VvTPXd84d8b09FMShT8zGOKFcsz8ja/Xj8TA1YHqJ127lYB29dPf3XW69l2xg8fqb3YQzeulkOVM2jvh+Zx45i8PqOygHmP+KqGKL9l+k3qt5MfywHXh9g+WF197Tg6d/69nowfmc+WRw9fLveSI+RP6vJDB9jyOyH6EyKuNGZO8rG/qDii7Qf7UNWN9afvJxHfT/LV/dC5Ec9JeIrtr3TqLsp4/fWIcNnPjN3zgyfPWdaYPzsWZPRAfI9jUQ5iNaX0aQ3NrquI3a7PL0xn8p84Xccm8nf/exmmS0Gxmjj6lkUe4bfxnDc40cxe7lk8yJ+Nq7mK4oB5yp/Kq4oJ9kcWB8jfPSlcsL41qxflnulV8bP7inGZxw1Zk2xWRxeruz8DB81p2rLdObFoOJXfOU/0l6kmd5+qfgeN6PZjDGGqjmal9NevtKHZXn80RhQtz21r1i/2jO9/KoYshqt5Ee9n8UwwsY+hTrz/FTVnunN6z/qnDjCx7nYg3v7p1qjx1e9rj2r2EcqDtRRL6PFF/X5zFnTu1Yvdu8c9u492Zp6WkRfdm3RvSuTA8XGs4HFE51jmRz0+In46vkI28tLlIPePcf6lK0B6i3ij+xxVivLZ3pln4+elyw3Xi+Ixr+q3S6/321kTu+8LD/yP4NvfWX5s/OpfEXjPXMydWC/HWGP1Cs7L8phhVZG9fUI7lc0Wwdbl7NyFOljVhwZxsw4MnsDazMjB721Ocse0SNY7h/Nn8nKxjF7nWfzs4wzavAVzsKfdB4+ar14xh7xMfLbo70lM0f5P9pXs3Nm8L157IzuiWGE7/maeWdQOcQ1VvGyGixk/gUAAP//
+		)
+	)
+)

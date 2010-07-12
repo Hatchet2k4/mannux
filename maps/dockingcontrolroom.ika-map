@@ -1,0 +1,222 @@
+(ika-map 
+	(version 1.1)
+	(information 
+		(title )
+		(meta 
+                        (name Docking Control Room)
+                        (color Blue)
+			(mapx 12)
+			(mapy 5)
+		)
+	)
+	(header 
+		(dimensions 
+			(width 320)
+			(height 240)
+		)
+		(tileset Mannux.vsp)
+	)
+	(waypoints 
+	)
+	(zones 
+		(zone 
+			(label toBay1)
+			(script toBay1)
+		)
+		(zone 
+			(label toDock1)
+			(script toDock1)
+		)
+	)
+	(layers 
+		(layer 
+			(label Background)
+			(type tile)
+			(dimensions 
+				(width 20)
+				(height 15)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJxiYBgF1AI2QLyDCYEZcahjhGKYGmSMDNygaq4RMA8kt5MJ1e6bUBoZBEDVXgfiXVjkkc07AsRnoGp2I5mPDKKw2I3LvzuYsGNkkIJkPzHhhw0jgzwc+kfB0AUAAAAA//8=
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJxiYBgFxAIAAAAA//8=
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label Background2)
+			(type tile)
+			(dimensions 
+				(width 20)
+				(height 15)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJxiYBgF1ASMUBzFxMBQxYRbXSpQLh2qJhqPOphZKXjUwEAhE8Lsahz2g8yLAIrHAHEaDjNzgOJ5SHK41MHMqwDKFzBB9OECIDW5UDUFaOajmwfDo2AUoAMAAAAA//8=
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJxiYBgFxAIAAAAA//8=
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label Walls)
+			(type tile)
+			(dimensions 
+				(width 20)
+				(height 15)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJys08lKA0EQxvHq93KLu8Zd1CRqjPu+7+Ddh9DH0EQUNAE9KDo5Oc/jv7Gb6RSDB3XgR00P39QEUmVEJELdiQJp5zBXT8na+o4ybnAb1Boq6vyGO7y6c9lVn7H5GFU84imoz3hJOX/g071bdf105sKIXOPc1b/eX8JezWhFGzJoRwc60YUmlWlReX+5dtKDPvQjiwEMYgjD6FaZXpXX/UaDZxOYxBRyyGNEZcZUXvebxiyKmEMJ81jAIgoqM6Pyut8yVrGGdWxgE1vYxpLKrKj8lfmWQwG7PNvHAQ5xhGOc4BQ70pjZU/maM06vPM5M8o3f3NuZtPMZ7oefSb0v4TzbfMX9ljjIRJLMuZ/xWBpn3lf77B4PkuyF30mfsf+D3uu0Pf9p/8N3zD/7AgAA//8=
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJxiYKAEMGIDFJlIpK1EOYba9gIAAAD//w==
+			)
+			(entities 
+			)
+			(zones 
+				(zone 
+					(label toDock1)
+					(x 304)
+					(y 64)
+					(width 16)
+					(height 96)
+				)
+				(zone 
+					(label toBay1)
+					(x 0)
+					(y 80)
+					(width 16)
+					(height 64)
+				)
+			)
+		)
+		(layer 
+			(label Doors)
+			(type tile)
+			(dimensions 
+				(width 20)
+				(height 15)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJxiYBgFgwmEMTIwhDNSz7wEoFmJVDQvC2hWNhXNKwGaVUpF80bB8AYAAAAA//8=
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJxiYBgFxAIAAAAA//8=
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label Foreground)
+			(type tile)
+			(dimensions 
+				(width 20)
+				(height 15)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJxiYBgFo4B0kMzIwJDCSD3zcoFm5QFxEpXMjACaEwXEOVR0YyQVzRoF5AEAAAAA//8=
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJxiYBgFxAIAAAAA//8=
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+	)
+)

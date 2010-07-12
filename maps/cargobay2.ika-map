@@ -1,0 +1,252 @@
+(ika-map 
+	(version 1.1)
+	(information 
+		(title )
+		(meta 
+                        (name Cargo Bay)
+                        (color Blue)
+			(mapx 4)
+			(mapy 5)
+		)
+	)
+	(header 
+		(dimensions 
+			(width 1280)
+			(height 480)
+		)
+		(tileset Mannux.vsp)
+	)
+	(waypoints 
+	)
+	(zones 
+		(zone 
+			(label Default Zone)
+			(script )
+		)
+		(zone 
+			(label Destructible)
+			(script )
+		)
+		(zone 
+			(label toBay1lower)
+			(script toBay1lower)
+		)
+		(zone 
+			(label toBay1upper)
+			(script toBay1upper)
+		)
+		(zone 
+			(label toSave1)
+			(script toSave1)
+		)
+		(zone 
+			(label toSecretDuct1)
+			(script toSecretDuct1)
+		)
+	)
+	(layers 
+		(layer 
+			(label Background 1)
+			(type tile)
+			(dimensions 
+				(width 14)
+				(height 12)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 500)
+				(muly 500)
+				(divx 1000)
+				(divy 1000)
+			)
+			(wrap 
+				(x true)
+				(y true)
+			)
+			(data 
+				(format zlib)
+				eJyUzsVOQ0EAhtGBW4IWK9oiO7zv/w5Q3B2Ku0uLngS67yxO7p3JN8mfTYWQI1ulSlvPVxLCNDMUmGWOeRZYZIllPpO/N4Eazp0vuOSKa2645Y57HvjmhyZvmnn0/8QzL7zyxjslynzQoG2ki25W3K2yxjobbLLFNjvs0qnNMMRwxM4B7SBjjEfsHNGOkqKOPXf7HHBIkSOOOeGUM2q1Ca20Rexs0abpoz9iZ4+2lynyETsntJO00/H/rUal/QUAAP//
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJxiYBgaAAAAAP//
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label Background 2)
+			(type tile)
+			(dimensions 
+				(width 100)
+				(height 100)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzs2UtLG1EYxvGY2doWKlSFCo1utEasliomFRWbXlRc9LZqa1eRuorox9Mum1S/VJ+DI54OzsSJcz35/+Bh4mVx5jwMnHdSqQBI0nk1/G81r1KZVma87NaThsuIeyyCrtb3W+kpZ9Wbn4OZVw91ZcG7+d1FyP8WNeYe//j32Ct4L0bU8/FKPawoqzwfmYnqY0M9bCpb9JGZsD7eq4MPyo6yq+wFOvlbjU6RuNDHR+3/J+Wz8kX5WuJnxIU+vmn/vys/lAPlJ31kIqyPtvb/0O/gl65HJe6jTML66Gj/j/0OTnQ9jdGHK3NLVrq3nM2TPPPbc0svZCbA7aLOu4NyZW7JQxp9uDK35CHpPvrNLYgWt4+ouc+cK12aW/Jw3+fDPtubz2ZuWbQ6KPPckoek+2hb+99kbokt6T46gf2PM7cMIo3zSJ6S7iPMrHqZS6Eb+vjfXftYVhcv6aOvrPp4rS7Wh7SPEeWh1vlIGVMe+xlVHgTWf9/3JZchn4N5qy7eWd/7DhPTx4TueVJ56mdKeaKMO7YXd3k+8n7fbvqY1hpmlKbS8K/PlJrjfVw/h7Yi9FHXGhaUlrLvX5+bd68O92Hm0BfKUsH6iDJX4LUNwu5jTT00vKs51FbkPlxj97GtHt4oLfrITRnOu8OEPgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgv38AAAD//w==
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label Walls)
+			(type tile)
+			(dimensions 
+				(width 80)
+				(height 30)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzMWsdy1EAQXclQ5JwzXCjCgXQinUj/uZZhBTfL3IgXoOACtrmQoYpwIHOh4EKL1cNPb2dGsuQyO1XPk1oz0lOrp7vXUafTiRzI7M9lwxXDRcMlw4ThqqFnSA2JYYzqtKi7htGijWsz6aPm67HuDZpPaa1uIYP70DqXGXdAx7Fnl+5rTPbsFfv61sOzurjLkdJ9/Yg7nUnDY8JUUU875iYdY49lrI7MlGM+dK0PkxVrVfW/x30u+Z1Dt3z8ZST/0K5vU9aPdDobRqrl7nv2ud5y/7blSzzDF74D6FZI/8YKHW7L307jblcFf4tsfrFhiUPuzhDwB75S0cP50L+/xXiJAhyusbm1hnUOmf+tf18ddmC6qEP6B52dC/6WGi/LAvxts7nthh1DyF+o1Dk/mL+b1r5luO16Jo+OjZtsln8DAR5CMi7+Dtk+hw1HatjVJvJ1S4i/bvGNf675/kM69qDGGj4ZF3/HbZ8Thn2G/Z49MXfKcLqQPzlP/DW1f75zYK75O2PrnzUcNRzzcIK584YLhfy5edQ/+Jaz4c93DrThD/7PO5t/ZngpdY4XMg68kP5z6WPsWaDP0PEQf70G/PnOgTb8wf95FPfv51JU9scQX4wWNmdcfAyNgRB7uOIVjCWOdbiPduj7bcJfqdB5UuLGc864+OPzCvyN0tnGdkY5ha8LXzahcY1N0c8KuZ7MYy2W69bk70lL/tgmhvzkf/wV1yFmgf+c8wd+sqjsY4Effj6e13HUHPNCP/nby6jOonKsnVXwdyUajD+C/osU2C22iSX7WPAEOdQ4xxGzXCf+kL/QnAb4QV/nNV+huqqxbU9kVL4q/k2J57r+ixbYLbaJ3AZPkEOtOsr8sb5AV1gv0HfZPL6W5ZH7GaO1OM+zl+K3RPYL8dc2fmOfGN8mj6nP7NJX5u9pPKhnzAtso0/3+NtTO8r6lkl/lK7p0bVJgD/Oi9XhryrHUuf8dekr88dxPJ8RifT1WdmWqy6yPK+dOPjGOrg2dH7w91Hn/KjKsVTxh3jCZV/B39e4nMfjPOB0PJi/05yf5vamPWvxtZqzzOvv8eB5lDraeIdB/ZMzoCl/iCfy+EDjDfSXW73CsCFu3q5bQvf7SOwhuFQ/sk7+Rc+AJvejMuDrp/Q3Wr1pDtp1Suh+NZ/K3znbBVf+RUvprPT4xVX3ozI+/dtt9R5Pm/MrPpk9c8TfW9I/fPeu3wimivFvgbVC/lxe/rUD3Oo9+/g7YPVBTxv28yTlW3zydUpd/WtbQv5cXtDG3I24j7xwOy/X4nKNAv72Wb3fsCsebLP9RL7FJX8v7sczd+OZ/RVVMmz/mhQ8zyurX3vwJh6++TcenYK+cgnpH+fz2/CX55Nc+aBhxfuK5/1l878bctKEv9wO6O/O7KPyGaW/n457/HvNB+h4T/bTPAqfezoXOgdHTP8WGBZW2GgtyD+G3tsn2ZfjKfyfgut/CzRXwb6+5jJ8Y2k06CP4xjWHojyG+FthvK00rDKsngWHrtwZ7g1zH4lDVz5uIir73wm1cxOLnFpKdSbyOoZ+IuOudiL769o+P2zjyAw2GTYbthi2zoI/fY+c7+L6Y2HrOE/+Ie7HgBejcC7sf4LzIHkeid//O8e3prl7/b1Afwdw2Q9Xblv7Kj/M/OEeNQ+X+8FsTznXxc/Lsa7aqD8AAAD//w==
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJy0lFESgCAIRPH+l+6jRBJLlkU/mqaR14slRQ6txq6Z5/igT5TnX53iKTDKm76a5blyrexXmjeJcctAkkYYD53CAC/rJyOTlx7Fs/r3DcwzCqu+VPgV8jpUSJ4/eYp54z+MT5/y4LlYOp3lpYHNNsXwnlApv/6olhfIcJmmVu+NAZvcnt+9cxwszx5NYAYb3kePf3ihjDA/V38BAAD//w==
+			)
+			(entities 
+			)
+			(zones 
+				(zone 
+					(label toBay1upper)
+					(x 1264)
+					(y 80)
+					(width 16)
+					(height 64)
+				)
+				(zone 
+					(label toBay1lower)
+					(x 1264)
+					(y 384)
+					(width 16)
+					(height 64)
+				)
+				(zone 
+					(label toSave1)
+					(x 0)
+					(y 352)
+					(width 16)
+					(height 64)
+				)
+				(zone 
+					(label toSecretDuct1)
+					(x 960)
+					(y 464)
+					(width 48)
+					(height 16)
+				)
+			)
+		)
+		(layer 
+			(label Doors)
+			(type tile)
+			(dimensions 
+				(width 80)
+				(height 30)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzs2LEOglAQRcF9fCNKB9qBdqD/buk2xlYeicQ4k2y/OeWNAAC+pS0Rh7L3F7+rz3aDftXGbDfpV23Odot+AAAAwAeOJaKzI1Q7ZbuzftUu2e6q32qv/f6Wd9dvNfv9Nvb7bf51v38072N/TwAAAP//
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJzszTEBAAAMAiDtX3opvAYFSAAA/mg7Pw4AAP//
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label Foreground)
+			(type tile)
+			(dimensions 
+				(width 80)
+				(height 30)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzs0zESQEAMBdAN91RQaCg0CmfmDk6gwmaY95pMup8/k1IAAKhliFLWqD/7yL78GXPkzOkn/QEAZOva7ARwbYtnd6Ce0f/dsugPqOxoshN8297o8K5df7zgBAAA//8=
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJzswTEBAAAAwqD1T20JT6AAAHgaAAAA//8=
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+	)
+)

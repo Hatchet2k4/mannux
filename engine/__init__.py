@@ -1,0 +1,555 @@
+#!/usr/bin/env python
+
+import config
+config.init()
+
+import ika
+import automap
+import controls
+import parser
+import video
+import fonts
+
+from entity import Entity
+from window import Window
+
+from camera import Camera
+from sounds import sound
+from field import Field
+
+class Message(object):
+    def __init__(self, text, duration):
+        self.text = text
+        self.duration = duration
+
+class Engine(object):
+
+    def __init__(self):
+        self.music = None
+        ika.SetCaption('%s - Mannux' % ika.GetCaption())
+        video.clear()
+        print >> fonts.big.center(), 'Loading . . .'
+        ika.Video.ShowPage()
+        self.window = Window()
+        self.seconds = 0
+        self.minutes = 0
+        self.hours = 0
+        self.ticks = 0
+        self.time = ''
+        self.flags = {'notloaded': 'yep'}
+        self.curmap = ''
+        # Not loading a map at this time.
+        self.loading = False
+        # Temporary Things, erased on each mapswitch.
+        self.background_things = []
+        self.foreground_things = []
+        # Permanent Things, never erased (not currently used.)
+        self.permanent_things = []
+        self.fields = []
+
+        self.entities = []
+        self.add_list = []
+        self.kill_list = []
+        self.messages = []
+
+        try:
+            ika.Map.Switch('amap.ika-map')
+        except ImportError:
+            # Probably should do something here.
+            pass
+        self.automap = automap.AutoMap()
+        self.automap.load_automap()
+        #self.meta = ika.Map.GetMetaData()
+        # DO NOT PUT RUN HERE
+        # If run is put here, the engine object is never returned.
+
+    def initialize(self):
+        self.player = Tabby(0, 0)
+        self.hud = Hud()
+        self.pause = Pause()
+        self.title = TitleScreen()
+        self.camera = Camera(self.player.sprite)
+        self.cameratarget = self.player
+        self.entities.append(self.player)
+
+    def newgame(self):
+        self.load('%s/default.save' % config.save_path)
+
+    def loadgame(self, f='%s/savegame.save' % config.save_path):
+        try:
+            #sf = file(f)
+            #close(f)
+            self.load(f)
+        except:
+            self.newgame()
+
+
+    def Run(self):
+        self.title.show()
+        self.hud.resize()
+        self.automap.update_room()
+        time = ika.GetTime()
+        done = False
+        self.music = ika.Music('%s/00_-_zaril_-_close_to_the_core.xm' %
+                               config.music_path)
+        self.music.loop = True
+        self.music.Play()
+        while not done:
+            t = ika.GetTime()
+            while t > time:
+                # Uncomment for slow motion.
+                #ika.Delay(2)
+                self.tick()
+                time += 1
+            time = ika.GetTime()
+            self.update_time()
+            self.camera.update()
+            self.draw()
+            print >> fonts.one(0, 40), 'FPS:', ika.GetFrameRate()
+
+            #for i, e in enumerate(self.entities):
+            #    print >> fonts.one(0, 50 + 10*i), 'sprite', e.sprite
+
+            ika.Input.Update()
+            if controls.pause.Pressed():
+                self.pause.menu()
+                ika.Input.Unpress()
+                # Make sure the engine doesn't have to play 'catchup'.
+                time = ika.GetTime()
+            if False:  #controls.confirm.Pressed():
+                #self.text('This is a textbox.')
+                ika.Input.Unpress()
+                time = ika.GetTime()
+                c = ika.Video.GrabCanvas(0, 0, ika.Video.xres, ika.Video.yres)
+                c2 = ika.Image(c)
+                c2.Blit(0, 0)
+                c.Save('blah1.png')
+            ika.Video.ShowPage()
+
+    def draw(self):
+        for thing in self.background_things:
+            thing.draw()
+        #if self.background:
+        #    ika.Video.Blit(self.background, 0, 0)
+        for i in range(ika.Map.layercount):
+            ika.Map.Render(i)
+            for ent in self.entities:
+                if ent.layer == i and ent.visible:
+                    ent.draw()
+        #video.clear(ika.RGB(0, 255, 0))
+        #ika.Map.Render()
+        for thing in self.foreground_things:
+            try:
+                thing.draw()
+            except AttributeError:
+                # This is retarded.
+                pass
+        self.hud.draw()
+
+        x = 10
+        y = 230
+        for m in self.messages:
+            print >> fonts.one(x, y), m.text
+            y -= 10
+
+
+        #font.Print(0, 80, self.meta['testing'])
+        #font.Print(240, 0, 'xwin: %s' % ika.Map.xwin)
+        #font.Print(240, 10, 'ywin: %s' % ika.Map.ywin)
+        #font.Print(240, 30, 'vx: %s' % self.player.vx)
+        #font.Print(240, 40, 'floor: %s' % self.player.floor)
+        #font.Print(10, 60, 'x: %s' % self.player.x)
+        #font.Print(10, 70, 'y: %s' % self.player.y)
+        #font.Print(10, 80, 'slope: %s' % self.player.in_slope)
+        #font.Print(10, 90, 'floor: %s' % self.player.floor)
+        #font.Print(10, 100, 'jumps: %s' % self.player.jump_count)
+        #font.Print(10, 70, 'vy: %s' % self.player.vy)
+        #font.Print(10, 80,  self.player.msg)
+        #font.Print(10, 80, str(ika.Input.joysticks[0].axes[0].Position()))
+        #font.Print(10, 80, str(len(entities)))
+        #x = int(self.player.x + self.player.sprite.hotwidth / 2 +
+        #        self.player.vx)
+        #y = int(self.player.y + self.player.sprite.hotheight - 1 +
+        #        self.player.vy)
+        #tx = x / 16
+        #ty = y / 16
+        #ika.Video.DrawPixel(x - ika.Map.xwin, y - ika.Map.ywin,
+        #                    color.white)
+        #ika.Video.DrawRect(tx * 16 - ika.Map.xwin, ty * 16 - ika.Map.ywin,
+        #                   tx * 16 + 16 - ika.Map.xwin,
+        #                   ty * 16 + 16 - ika.Map.ywin,
+        #                   ika.RGB(255, 0, 0, 128), True)
+        #font.Print(240, 40, str(self.player.right_wall))
+
+    def tick(self):
+        for thing in self.background_things:
+            try:
+                thing.update()
+            except AttributeError:
+                pass
+        for thing in self.foreground_things:
+            try:
+                thing.update()
+            except AttributeError:
+                pass
+
+        for entity in self.add_list:
+            self.entities.append(entity)
+        self.add_list = []
+
+        for entity in self.entities:
+            if entity.active:
+                entity.update()
+
+        for entity in self.kill_list:
+            self.entities.remove(entity)
+        self.kill_list = []
+
+        for f in self.fields:
+            if f.test(self.player) and not f.runnable:
+                f.fire()
+
+        mlist = []
+        for m in self.messages:
+            m.duration -= 1
+            if m.duration <= 0:
+                mlist.append(m)
+        for m in mlist:
+            self.messages.remove(m)
+
+        self.ticks += 1
+
+
+
+    def map_switch(self, x, y, m, direction=0, fadeout=True, fadein=True,
+                   scroll=False):
+        # Save the current map.
+        self.curmap = m
+        m = 'maps/%s' % m
+        if fadeout:
+            self.FadeOut(16)
+        video.clear()
+        # Destroy entities.
+        for e in self.entities[:]:
+            if e is not self.player:
+                e._destroy()
+        self.background_things = []
+        self.foreground_things = []
+        self.player.x = x
+        self.player.y = y
+        ika.Map.Switch(m)
+        self.automap.update_room()
+        self.camera.update()
+        self.player.layer = ika.Map.FindLayerByName('Walls')
+        self.player.sprite.layer = self.player.layer
+        moduleName = m[:m.rfind('.')].replace('/', '.')
+        mapModule = __import__(moduleName, globals(), locals(), [''])
+        self.readZones(mapModule)
+        video.clear()
+        if fadein:
+            self.FadeIn(16)
+
+    def GameOver(self):
+        t = ika.GetTime()
+        while True:
+            self.draw()
+            a = min(100, ika.GetTime() - t)
+            if a == 100:
+                print >> fonts.big.center(), 'G A M E  O V E R'
+            video.clear(ika.RGB(10, 10, 10, a))
+            ika.Video.ShowPage()
+            ika.Input.Update()
+            if controls.confirm.Pressed() or \
+               controls.cancel.Pressed():
+                break
+        t = ika.GetTime()
+        while True:
+            self.draw()
+            a = min(255, ika.GetTime() - t + 100)
+            video.clear(ika.RGB(10, 10, 10, a))
+            ika.Video.ShowPage()
+            ika.Input.Update()
+            if a == 255:
+                break
+        ika.Exit('')
+
+    def update_time(self):
+        while self.ticks >= 100:
+            self.ticks -= 100
+            self.seconds += 1
+        while self.seconds >= 60:
+            self.seconds -= 60
+            self.minutes += 1
+        while self.minutes >= 60:
+            self.minutes -= 60
+            self.hours += 1
+        self.time = '%03d:%03d:%03d' % (self.hours, self.minutes, self.seconds)
+
+    def text(self, txt):
+        done = 0
+        state = 0
+        h = 0
+        arrow = ika.Image('%s/arrow.png' % config.image_path)
+        lines = wrap(txt, 360, fonts.big)
+        scrolling = 1
+        scroll = [0] * len(lines)
+        current = 0
+        offset = 0
+        t = ika.GetTime()
+        while not done:
+            ika.Map.Render()
+            while t == ika.GetTime():
+                pass
+            for i in range(ika.GetTime() - t):
+                for entity in self.entities:
+                    entity.update()
+                if state == 0:
+                    h += 2
+                if state == 1 and scrolling == 1:
+                    scroll[current + offset] += 1
+                if state == 2:
+                    h -= 2
+            t = ika.GetTime()
+            if state == 0:
+                if h >= 40:
+                    h = 40
+                    state = 1
+                    self.window.resize(h * 8, h, 0)
+                else:
+                    self.window.resize(h * 8, h, 0)
+                    self.window.draw(168 - h * 4, 200 - h / 2, 0)
+            if state == 1:
+                self.window.draw(8, 180, 0)
+                for i in range(len(lines[offset:])):
+                    print >> fonts.big(20, 190 + 12 * i), lines[i + offset][:scroll[i + offset]]
+                    if scroll[current + offset] >= \
+                       len(lines[current + offset]):
+                        if current + offset < len(lines) - 1:
+                            current += 1
+                        else:
+                            scrolling = 0
+                    if current == 7:
+                        scrolling = 0
+                        # Put blinking arrow or whatever here.
+                        if ika.GetTime() % 50 < 40:
+                            ika.Video.Blit(arrow, 192,
+                                           280 + ika.GetTime() % 50 / 10)
+            if state == 2:
+                if h <= 0:
+                    done = True
+                else:
+                    self.window.resize(h * 8, h, 0)
+                    self.window.draw(168 - h * 4, 200 - h / 2, 0)
+            print >> fonts.one(0, 0), 'lines:', '%s'
+            ika.Video.ShowPage()
+            ika.Input.Update()
+            if ika.Input.keyboard['RETURN'].Pressed() and state == 1 and \
+               scrolling == 0:
+                ika.Input.Unpress()
+                if current + offset < len(lines) - 1:
+                    scrolling = 1
+                    offset += 7
+                    current = 0
+                else:
+                    state = 2
+
+    def addField(self, field):
+        assert field not in self.fields
+        self.fields.append(field)
+
+    def destroyField(self, field):
+        self.fields.remove(field)
+
+    def readZones(self, mapModule):
+        """Read all the zones on the map, and create fields."""
+        self.fields = []
+        for layer in range(ika.Map.layercount):
+            zones = ika.Map.GetZones(layer)
+            for x, y, w, h, script in zones:
+                self.addField(Field((x, y, w, h), layer,
+                              mapModule.__dict__[script], str(script)))
+
+    def FadeOut(self, time=50):
+        video.fade_out(time, draw=self.draw, draw_after=self.hud.draw)
+
+    def FadeIn(self, time=50):
+        video.fade_in(time, draw=self.draw, draw_after=self.hud.draw)
+
+    def SavePrompt(self, heal=True):
+        if heal:
+            self.player.dhp = self.player.maxhp
+            self.player.dmp = self.player.maxmp
+        selected = 0
+        while not controls.confirm.Pressed():
+            self.draw()
+            Window(150, 0).draw(52, 60)
+            print >> fonts.one(68, 80), 'Do you want to save?'
+
+            x = 100
+            y = 98
+            for i, option in enumerate(['Yes', 'No']):
+                f = [fonts.five, fonts.three][i == selected]
+                print >> f(x, y), option
+                x += 100
+
+
+
+
+
+            self.hud.draw()
+            #ika.Video.DrawRect(80 + 110 * selected, 92, 120 + 110 * selected,
+            #                   108, ika.RGB(128, 192, 128))
+            ika.Video.ShowPage()
+            ika.Input.Update()
+            if controls.left.Pressed():
+                sound.play('Menu')
+                selected -= 1
+                if selected < 0:
+                    selected = 1
+            if controls.right.Pressed():
+                sound.play('Menu')
+                selected += 1
+                if selected > 1:
+                    selected = 0
+        if selected == 0:
+            self.Save()
+
+    #saving incomplete, does not save map data
+    def Save(self, filename='%s/savegame.save' % config.save_path):
+        flagnode = parser.Node('flags')
+        for key, value in self.flags.iteritems():
+           flagnode.append(parser.Node(key).append(value))
+           
+           
+        #mapnode = parser.Node('amap')
+        #for n in self.automap.amap:
+        #    mapnode.append(n)
+        
+        foo = (parser.Node('mannux-save')
+               .append(parser.Node('version').append(1))
+               .append(parser.Node('map').append(self.curmap))
+               .append(parser.Node('hp').append(self.player.maxhp)) #always save with full health
+               .append(parser.Node('maxhp').append(self.player.maxhp))
+               .append(parser.Node('mp').append(self.player.maxmp))
+               .append(parser.Node('maxmp').append(self.player.maxmp))
+               .append(flagnode)                            
+               .append(parser.Node('amap1').append(str(self.automap.amap)))
+                                       
+               
+               )                              
+               
+               
+        print >> open(filename, 'wt'), foo
+        
+                
+
+        self.messages.append(Message("Game saved", 300))
+
+    #for some reason misses some flags..
+    def load(self, filename='%s/default.save' % config.save_path):
+        self.loading = True
+        d = parser.load(filename)
+        self.curmap = d['mannux-save'].get('map')
+        self.player.hp = int(d['mannux-save'].get('hp'))
+        self.player.maxhp = int(d['mannux-save'].get('maxhp'))
+        self.player.mp = int(d['mannux-save'].get('mp'))
+        self.player.maxmp = int(d['mannux-save'].get('maxmp'))        
+        self.flags = d['mannux-save']['flags'].todict()
+        
+        a = d['mannux-save'].get('amap1')
+        
+        
+        print 'testing: ' 
+        print d['mannux-save'].get('map')
+        print d['mannux-save'].get('amap1')
+        
+        #print a
+        
+        
+        #if 'amap1' in d['mannux-save']:
+        #    print 'yes!'
+        #    a = d['mannux-save']['amap1']
+        #    b = ''
+        #    for c in a:
+        #        b+=str(c)
+        #    print "Load test:"
+        #
+        #    test = eval(b)
+        #    self.automap.amap = test
+        #else:
+        #    print 'wtf!'
+            
+        
+        
+        #b = d['mannux-save']['amap']
+
+        #self.automap.amap = [] 
+        #i=0                        
+        #for y in range(50): #need to change so it's not just 50x50...
+        #    for x in range(50):                    
+                #self.automap.amap.append(a[i])
+        
+        #for i in a:      
+        #    ika.Log('i: '+str(i))
+        #        i+=1
+
+            
+            #for i in d['mannux-save']['amap']:
+            #    self.automap.amap.append(i)
+        
+        
+        self.hud.resize()
+        
+        
+        
+        #print self.curmap
+        self.map_switch(0, 0, self.curmap, fadeout=False)
+        self.loading = False
+
+    def AddEntity(self, ent):
+        self.add_list.append(ent)
+
+    def RemoveEntity(self, ent):
+        self.kill_list.append(ent)
+
+
+def wrap(text, width, font):
+    start = 0
+    end = 1
+    lastspace = 0
+    lines = []
+    while end < len(text):
+        if text[end] in (' ', '-'):
+            lastspace = end + 1
+        if text[end] == '\n':
+            lines.append(text[start:end])
+            start = end
+        if font.string_width(text[start:end]) >= width:
+            lines.append(text[start:lastspace])
+            start = lastspace
+        end += 1
+    lines.append(text[start:end])
+    return lines
+
+
+def detect_in_y_coordinates(entity):
+    for e in engine.entities:
+        if entity is not e:
+            if entity.y + entity.sprite.hotheight > e.y and \
+               entity.y < e.y + e.sprite.hotheight:
+                return e
+    return None
+
+
+engine = Engine()
+
+#needs engine initialized to import the rest
+from tabby import Tabby
+from pause import Pause
+from title import TitleScreen
+from hud import Hud
+
+engine.initialize()
+
+# KEEP engine.Run() HERE.
+engine.Run()

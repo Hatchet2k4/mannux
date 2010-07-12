@@ -1,0 +1,244 @@
+(ika-map 
+	(version 1.1)
+	(information 
+		(title )
+		(meta 
+                        (name Cargo Bay)
+                        (color Blue)
+			(mapx 8)
+			(mapy 5)
+		)
+	)
+	(header 
+		(dimensions 
+			(width 1280)
+			(height 480)
+		)
+		(tileset Mannux.vsp)
+	)
+	(waypoints 
+	)
+	(zones 
+		(zone 
+			(label toAirlock1)
+			(script toAirlock1)
+		)
+		(zone 
+			(label toBay2lower)
+			(script toBay2lower)
+		)
+		(zone 
+			(label toBay2upper)
+			(script toBay2upper)
+		)
+		(zone 
+			(label toDockControl)
+			(script toDockControl)
+		)
+	)
+	(layers 
+		(layer 
+			(label Background 1)
+			(type tile)
+			(dimensions 
+				(width 14)
+				(height 12)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 500)
+				(muly 500)
+				(divx 1000)
+				(divy 1000)
+			)
+			(wrap 
+				(x true)
+				(y true)
+			)
+			(data 
+				(format zlib)
+				eJyUzsVOQ0EAhtGBW4IWK9oiO7zv/w5Q3B2Ku0uLngS67yxO7p3JN8mfTYWQI1ulSlvPVxLCNDMUmGWOeRZYZIllPpO/N4Eazp0vuOSKa2645Y57HvjmhyZvmnn0/8QzL7zyxjslynzQoG2ki25W3K2yxjobbLLFNjvs0qnNMMRwxM4B7SBjjEfsHNGOkqKOPXf7HHBIkSOOOeGUM2q1Ca20Rexs0abpoz9iZ4+2lynyETsntJO00/H/rUal/QUAAP//
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJxiYBgaAAAAAP//
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label Background 2)
+			(type tile)
+			(dimensions 
+				(width 80)
+				(height 30)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzsl81qwkAUhWPnZdz1B1SqFiv+terKaleVdtWiK0VfybfQF/Cpeha5GEOIM0xaT8L94DIQ7siZL3PBBIGiKEp2HG/O17z9ftGpmCCoomrm2knySQvenlFt9efMC5y9ooaoEWqsDp2YwNcbaoqaod7VnxMf8DUPnX1i/VJ/TnzD10/obIF1qf6cWMHXOnS2wbrNsb+D/v/ygtkfczaBOSNzNoE5I3M2gTkjczaBOSNzNoE5I3M2gTkjczaBOaNttl3pb3Okof78UH9+uPi7w3fq/T9+qzK/W8ElYx3uGgX318T5ni6cMdrjkrGLPb2C++vjfIPYGW/N+exFe5hnJItsNvcpqT+679GcZk+el1P8NT3vWFIGG+K9WfhLuk82/dF9HXOaPXn+kOKv7+kvKYMN8d498WwoivALAAD//w==
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJzswTEBAAAAwqD1T20JT6AAAHgaAAAA//8=
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label Walls)
+			(type tile)
+			(dimensions 
+				(width 80)
+				(height 30)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzsWjl3EzEQtmVuyAXkBsLZkAQqoAQ6roqroqCioKLgF0EMcXg03tCFq4E8aOLEaUjiNMGQhhhSAQ2fXnbweCztajd2DvC8fE/aWe1o5ltpVlI8kkwkngFZH0PAiK/LAE+Ap0xHJek9AH+h0LbS7Lm0sJFmttMWXdr3L8v0vM79Nj2bYXVuiyBjzQr7Q8nqOEaBF8z+sNBRLKST9zKO/HnJSl485oPJFwLXeQZ9JsA33sb03ob960fAY4MfGWFHvm/u07JKJKaB56hPqhXo67xfTquy/oeqfNcu/PF3v8zsTYdg0lIP0uUN96YMbXWsYf3z5/Msfv4+NCaga3dETpXfSZT5S33qvt4D74BXBvSnEokBYDBlvr9auNi3+TYOfFYr8WSS5XfyHQiTMf/5HOOf7HiipDrXc/60vLT0eQZxnQXOpcJ9qpfYfNNSYuMyjs2cqs7Zegyb8i3Vo/B3HrxdAC5uUP5Wa5PPX56zTd8BU/4P4u8SOLsMXAGuAtfWicN68sfHL/++hOV7mStMPl4HXzeAm8At4PY/yF8ryjb/W7IHaIpQbwZaAvi7A762AzuAncDdDc7fPNoVgDkGfT2vyve+iHh7UPb69Q6UnRHqXSi7A/i7B77agL3APuB+BP4470E6F7HxV/R5mfW5kWsyl/l2HOUJv34Y5ZEI9aMojwXw9wBx9gIHgIPAQ0Pcr/HcG+CteJ7zHqRzERt/OVW5vqc18ISlvcnmKZSngT7gJNAfoT4ADIZ8f13kI3u26M8RznuQjotJx30rsjmpy6+qcu9A38ZPIbHwd170xy/NcV43XVPfPB/YxlAc/vSYWDTEuShyEenIP2onx04W1x4wCiyp6n0bX1MM+eUC2n1QK/uCoDW5Xj/PqMr1s+1cgO7x/SKtX4L2H2EYZ75KfzyLL1nWv/R5wRA3xbqkqp+hcxZuI2z8caH1C+XHKVWdNydFmzxr67LXiSIl0Z/c9+ZV8F47yJ+S8F+Xcv/rOea//1X4vKT9K/FGubDBn7vofEG8US5s8OcuOify8yc9Fr81+HMWPX+JNzq3bow/d9Hjj3hLr+P4G9uk72xGlXmryfcDa/tkjH1+Pc441kJyhu/Hwipi2QXudtfhnCTu3r/ews8/a7Gm3Y/42usQY9y9f72Fr9dd5Cfa/QJ+W9ofQnx9EWP8y3nA3Od7/80sKfi/BdgKbBOxxJ1jxLlp7nObtnotZK3yQxPsNwMtQKvoK+4co/Fnmvvcpq3umjNM7Ui3FvmhA7Y7gS6gG+gRfcWdYzT+THOf27TVXXOGqR3papEf+HndrKo8p6O6PNebEyU/7yuI+wWmnxew2Xe9NvXNfTD1aepXQj5ns1MQ5zD89zR8bUi/DzH9rof0pt+G8P/9ms7d6P/r8iyI98fP7bLiee7DesXxBwAA//8=
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJzslOEOgCAIhLv3f+k2mwmKFwzd/NH9sIzji0y5rtMFIRJyqSSJ/J4XLa2UsJDXfWGWN/BX86z13aAA2VWLjpaZlYAa8fKe65wnRre65a3YVhIMI/kllkH5wL0enqKAmAO8937hJvt55/MyTcXP4+db8AZjimc2HW3A1OkSLN78/H2+h/NasD3fyxvaRVK82rhuAAAA//8=
+			)
+			(entities 
+			)
+			(zones 
+				(zone 
+					(label toAirlock1)
+					(x 1264)
+					(y 384)
+					(width 16)
+					(height 64)
+				)
+				(zone 
+					(label toBay2lower)
+					(x 0)
+					(y 384)
+					(width 16)
+					(height 64)
+				)
+				(zone 
+					(label toBay2upper)
+					(x 0)
+					(y 80)
+					(width 16)
+					(height 64)
+				)
+				(zone 
+					(label toDockControl)
+					(x 1264)
+					(y 80)
+					(width 16)
+					(height 64)
+				)
+			)
+		)
+		(layer 
+			(label Doors)
+			(type tile)
+			(dimensions 
+				(width 80)
+				(height 30)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzs2DkOwlAQRMHvO4LJAEdmidju7z6CvycApCqp89ELpzUA6DcOrR2Gb1/xf3Zpts/O2aRft2OanbJbdtev2yXNrtk7++jX7ZlmL91WmXUqeegHAAAAFPjfb+N/X+N/X+N/X+N/zy9YAAAA//8=
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJxiYBgFo2AgAeNAO2AUjIJRMApGwSigOgAAAAD//w==
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label Foreground)
+			(type tile)
+			(dimensions 
+				(width 80)
+				(height 30)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzs2DEKgDAMBdB6VQVdFHTxal7PDnUQFEFQS30Pyl/b0GRICEAplurrG7znT28FztVxFszxtAfZmhOX+lSj8SBH9eOmJvXhlk/pCv2jQ7XPp0yF1g8AAAAAclbqXvMt9prkbAUAAP//
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJzswTEBAAAAwqD1T20JT6AAAHgaAAAA//8=
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+	)
+)
