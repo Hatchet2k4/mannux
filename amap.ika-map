@@ -1,0 +1,162 @@
+(ika-map 
+	(version 1.1)
+	(information 
+		(title )
+		(meta 
+			(meta )
+		)
+	)
+	(header 
+		(dimensions 
+			(width 2000)
+			(height 2000)
+		)
+		(tileset automap.vsp)
+	)
+	(waypoints 
+	)
+	(zones 
+	)
+	(layers 
+		(layer 
+			(label Automap)
+			(type tile)
+			(dimensions 
+				(width 50)
+				(height 50)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzsmk1rwkAQhqcRK/iBNGoFtTG9FoQW9OLFgz/D//8vcugM7uB0G5J+xCQb3gdeyMzsZmd2Z3NKRkQZhUtmFDpN1fDGWrBiVuR8D6y+sUNgbZ6HrISVOvux9mz+zkeOT+qZsl5YzxWsoecrmrNmnr0yvp/0xJMbHxn74L03Mu+QNbb/rEHW2NB1X3RvfHvlfK+ebeNHuvV/4uIjs86Fbvuv81IXq6qvem5tyeO9YNwlZ17s5qy/Dy+cK2hdo5zYvZAeWNLXPtI6ZA9OJfPz6qgb23vaR9pDWsfZ88VefE/V3OU2UNZ7obCj65npXZSzGjea0e/Q70jZHQqFrvTVpOkEKmLQdAIAAAAAAAAAAAAAAAAAAAAtpyv/LYX+D5bm/wkAAP//
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJzswQENAAAAwqD3T20ON6AAAHgzAAAA//8=
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label New Layer)
+			(type tile)
+			(dimensions 
+				(width 100)
+				(height 100)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzswTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbAAAA//8=
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label New Layer 2)
+			(type tile)
+			(dimensions 
+				(width 100)
+				(height 100)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzswTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbAAAA//8=
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+		(layer 
+			(label New Layer 3)
+			(type tile)
+			(dimensions 
+				(width 100)
+				(height 100)
+			)
+			(position 
+				(x 0)
+				(y 0)
+			)
+			(parallax 
+				(mulx 1)
+				(muly 1)
+				(divx 1)
+				(divy 1)
+			)
+			(wrap 
+				(x false)
+				(y false)
+			)
+			(data 
+				(format zlib)
+				eJzswTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbAAAA//8=
+			)
+			(obstructions 
+				(style tile)
+				(format zlib)
+				eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//
+			)
+			(entities 
+			)
+			(zones 
+			)
+		)
+	)
+)
