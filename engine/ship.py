@@ -64,6 +64,10 @@ class ShipLanding(object):
                                   config.image_path)
         self.chair = ika.Image('%s/ship/ship_chair.png' % config.image_path)
         self.lgear = ika.Image('%s/ship/ship_lgear1.png' % config.image_path)
+        
+        self.ljet = rip_tiles('%s/ship/jet_left.png' %
+                                     config.image_path, 16, 16, 3, 3)
+        
         self.x = x
         self.y = y
         self.geary = 0
@@ -79,6 +83,9 @@ class ShipLanding(object):
         self.ship.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)
         self.lgear.Blit(self.x - ika.Map.xwin,
                         self.y - ika.Map.ywin + self.geary)
+        self.ljet[0].Blit(self.x - ika.Map.xwin + 32,
+                        self.y - ika.Map.ywin + 94)
+                        
 
     def update(self):
         pass
@@ -113,17 +120,22 @@ class ShipLanded(object):
                                   config.image_path)
         self.chair = ika.Image('%s/ship/ship_chair.png' % config.image_path)
         self.lgear = ika.Image('%s/ship/ship_lgear1.png' % config.image_path)
+        
+        
         self.x = x
         self.y = y
 
-    def draw(self):
-        self.interior.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)
-        self.chair.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)
+    def draw(self):            
         self.landinggear.Blit(self.x - ika.Map.xwin + 62,
                               self.y - ika.Map.ywin + 88)
         self.landinggear.Blit(self.x - ika.Map.xwin + 183,
                               self.y - ika.Map.ywin + 88)
+
         self.ship.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)
+        self.interior.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)
+        self.chair.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)
+
+
         self.lgear.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin + 50)
 
     def update(self):

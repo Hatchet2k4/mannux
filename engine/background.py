@@ -5,7 +5,6 @@ import color
 
 
 class Background(object):
-
     def __init__(self, background, xoffset=0, yoffset=0, parallax=True,
                  xparallax=1, yparallax=1, wrap=False):
         super(Background, self).__init__()
@@ -52,11 +51,11 @@ class GlowBG(Background):
     def update(self):
         self.time += 1
         if self.time <= self.duration / 2:
-            self.color = ika.RGB(200 - self.time, 200 - self.time / 2, 255,
+            self.color = ika.RGB(200 - self.time, 235 - self.time / 2, 255,
                                  160 - self.time)
         elif self.time < self.duration:
             self.color = ika.RGB(150 + self.time - 50,
-                                 175 + (self.time - 50) / 2, 255,
+                                 210 + (self.time - 50) / 2, 255,
                                  110 + self.time - 50)
         else:
             self.time = 0

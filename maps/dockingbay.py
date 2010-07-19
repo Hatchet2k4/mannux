@@ -28,6 +28,7 @@ def landing_animation():
     time = ika.GetTime()
     starttime = time
     sh = Ship()
+    
     elapsed = 0
     while not done:
         t = ika.GetTime()
@@ -90,14 +91,17 @@ def landing_animation():
                 bg.remove(sh)
                 sh = ShipLanding(344, 207)
                 bg.append(sh)
-            if elapsed > 1000 and elapsed < 1250:
-                sh.geary += 0.2
-                sh.y += 0.112
-                if elapsed in [1030, 1060, 1090, 1120, 1150, 1180, 1210]:
+                
+                
+                
+            if elapsed > 1000 and elapsed < 1500:
+                sh.geary += 0.1
+                sh.y += 0.056
+                if elapsed in [1060, 1120, 1180, 1240, 1300, 1360, 1420]:
                     sh.gearframe -= 1
-            if elapsed == 1300:
-                fg.append(FadeOut(300))
             if elapsed == 1600:
+                fg.append(FadeOut(300))
+            if elapsed == 1900:
                 done = True
 
             for thing in bg:
