@@ -1,162 +1,152 @@
 (ika-map 
-	(version 1.1)
+	(version '1.2')
 	(information 
-		(title )
+		(title '')
 		(meta 
-			(meta )
+			(meta '')
 		)
 	)
 	(header 
 		(dimensions 
-			(width 2000)
-			(height 2000)
+			(width '2000')
+			(height '2000')
 		)
-		(tileset automap.vsp)
+		(tileset 'automap.vsp')
 	)
-	(waypoints 
-	)
-	(zones 
-	)
+	(waypoints )
+	(zones )
 	(layers 
 		(layer 
-			(label Automap)
-			(type tile)
+			(label 'Automap')
+			(type 'tile')
 			(dimensions 
-				(width 50)
-				(height 50)
+				(width '50')
+				(height '50')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJzsmk1rwkAQhqcRK/iBNGoFtTG9FoQW9OLFgz/D//8vcugM7uB0G5J+xCQb3gdeyMzsZmd2Z3NKRkQZhUtmFDpN1fDGWrBiVuR8D6y+sUNgbZ6HrISVOvux9mz+zkeOT+qZsl5YzxWsoecrmrNmnr0yvp/0xJMbHxn74L03Mu+QNbb/rEHW2NB1X3RvfHvlfK+ebeNHuvV/4uIjs86Fbvuv81IXq6qvem5tyeO9YNwlZ17s5qy/Dy+cK2hdo5zYvZAeWNLXPtI6ZA9OJfPz6qgb23vaR9pDWsfZ88VefE/V3OU2UNZ7obCj65npXZSzGjea0e/Q70jZHQqFrvTVpOkEKmLQdAIAAAAAAAAAAAAAAAAAAAAtpyv/LYX+D5bm/wkAAP//
+				(format 'zlib')
+				'eJzsmsFOwzAMhr1uA2kDIQps0galHJmYBBJcuHDYY+z936KH2WqsmRC1g24tqf5P+qXZiRM7cXZqQUQFxUthFDtd1bBi3bFSVuJ8A9bY2DGwNL8nrIyVO/us9Wz+zlvAJ/VcsR5Ys4brv7BuqLxf0W3AXhjfIT1x7eYnxv7w1k3MGrLHY8M6ZI97Ks9Fz8a3F8735Nl2/JP2/Z+58anZZ0v789e43I0dq6+Gbm/J47Vi3jYQl7qY5c/plbGC1jUNjJ0K6YE5fe8jrUPO4KsmPlRH29je0z7SHtI6Np4v9cbfqflbboPnUf2cut6LhTWVd6ZvUe7qotOMfof+j9S9oVjoS19ddp3AkTjvOgEAAAAAAAAAAAAAAAAAAIB/Tl++W4r9GyzNfwcAAP//'
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJzswQENAAAAwqD3T20ON6AAAHgzAAAA//8=
+				(style 'tile')
+				(format 'zlib')
+				'eJzswQENAAAAwqD3T20ON6AAAHgzAAAA//8='
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 		(layer 
-			(label New Layer)
-			(type tile)
+			(label 'New Layer')
+			(type 'tile')
 			(dimensions 
-				(width 100)
-				(height 100)
+				(width '100')
+				(height '100')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJzswTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbAAAA//8=
+				(format 'zlib')
+				'eJzs07ENACAMBLFQUrP/rogh0AdkT3DNVQG8Z6YDoLHzx0hHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADXrXQAAAAAAAAAAAAAAAAAAHxsAwAA//8='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//
+				(style 'tile')
+				(format 'zlib')
+				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 		(layer 
-			(label New Layer 2)
-			(type tile)
+			(label 'New Layer 2')
+			(type 'tile')
 			(dimensions 
-				(width 100)
-				(height 100)
+				(width '100')
+				(height '100')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJzswTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbAAAA//8=
+				(format 'zlib')
+				'eJzswTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbAAAA//8='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//
+				(style 'tile')
+				(format 'zlib')
+				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 		(layer 
-			(label New Layer 3)
-			(type tile)
+			(label 'New Layer 3')
+			(type 'tile')
 			(dimensions 
-				(width 100)
-				(height 100)
+				(width '100')
+				(height '100')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJzswTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbAAAA//8=
+				(format 'zlib')
+				'eJzswTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbAAAA//8='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//
+				(style 'tile')
+				(format 'zlib')
+				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 	)
 )
