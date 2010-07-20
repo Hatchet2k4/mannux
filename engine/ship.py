@@ -67,11 +67,15 @@ class ShipLanding(object):
         
         self.ljet = rip_tiles('%s/ship/jet_left.png' %
                                      config.image_path, 16, 16, 3, 3)
-        
+        self.rjet = rip_tiles('%s/ship/jet_right.png' %
+                                     config.image_path, 16, 16, 3, 3)        
         self.x = x
         self.y = y
         self.geary = 0
         self.gearframe = 7
+        self.time=0
+        self.jetframe=0
+        self.jets=True
 
     def draw(self):
         self.interior.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)
@@ -83,12 +87,19 @@ class ShipLanding(object):
         self.ship.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)
         self.lgear.Blit(self.x - ika.Map.xwin,
                         self.y - ika.Map.ywin + self.geary)
-        self.ljet[0].Blit(self.x - ika.Map.xwin + 32,
+        if self.jets==True:
+            self.ljet[self.jetframe].Blit(self.x - ika.Map.xwin + 32,
                         self.y - ika.Map.ywin + 94)
-                        
+            self.rjet[self.jetframe].Blit(self.x - ika.Map.xwin + 220,
+                        self.y - ika.Map.ywin + 94)                        
 
-    def update(self):
-        pass
+    def update(self): #could be better coded but I'm lazy :P
+        self.time+=1
+        if self.time>=5:
+            self.time=0
+            self.jetframe+=1
+            if self.jetframe==3:
+                self.jetframe=0
 
 class Doors(object):
 

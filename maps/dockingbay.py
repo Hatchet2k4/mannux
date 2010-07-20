@@ -16,7 +16,7 @@ from engine.const import Dir
 
 
 def landing_animation():
-    xwin = 240
+    xwin = 232
     ywin = 100
     bg = [Background(ika.Image('images/bg_planetstars1.png'), 364, 128 + 56),
           Background(ika.Image('images/bg_planetstars2.png'), 364, 128 + 56),
@@ -33,14 +33,14 @@ def landing_animation():
     while not done:
         t = ika.GetTime()
         while t > time:
-            if ika.Input.keyboard['SPACE'].Position():
-                ika.Delay(1)
+            #if ika.Input.keyboard['SPACE'].Position():
+            #    ika.Delay(1)
             time += 1
             elapsed += 1
             if ika.Input.keyboard['ESCAPE'].Pressed():
                 done = True
             if elapsed < 300:
-                xwin += 0.25
+                xwin += 0.30
                 ywin += 0.15
             if elapsed == 200:
                 # Insert the ship between the two star layers.
@@ -94,14 +94,16 @@ def landing_animation():
                 
                 
                 
-            if elapsed > 1000 and elapsed < 1500:
-                sh.geary += 0.1
-                sh.y += 0.056
-                if elapsed in [1060, 1120, 1180, 1240, 1300, 1360, 1420]:
+            if elapsed > 1000 and elapsed < 1250:
+                sh.geary += 0.2
+                sh.y += 0.112
+                if elapsed in [1030, 1060, 1090, 1120, 1150, 1180, 1210]:
                     sh.gearframe -= 1
-            if elapsed == 1600:
+            if elapsed == 1260:                    
+                sh.jets=False
+            if elapsed == 1300:
                 fg.append(FadeOut(300))
-            if elapsed == 1900:
+            if elapsed == 1800:
                 done = True
 
             for thing in bg:
