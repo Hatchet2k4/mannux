@@ -36,7 +36,7 @@ class Engine(object):
         self.hours = 0
         self.ticks = 0
         self.time = ''
-        self.flags = {'notloaded': 'yep'}
+        self.flags = {'notloaded': 'yep', 'shiplanded': False}
         self.curmap = ''
         # Not loading a map at this time.
         self.loading = False
@@ -62,6 +62,14 @@ class Engine(object):
         #self.meta = ika.Map.GetMetaData()
         # DO NOT PUT RUN HERE
         # If run is put here, the engine object is never returned.
+
+    def GetFlag(self, key):        
+        return self.flags.get(key, False)
+    
+    def SetFlag(self, key, value):
+        self.flags[key] = value
+    
+    
 
     def initialize(self):
         self.player = Tabby(0, 0)

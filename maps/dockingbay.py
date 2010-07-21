@@ -139,14 +139,14 @@ def landing_animation():
             time = ika.GetTime()
 
 
-landed = False
 
 
 def AutoExec():
-    global landed
-    if not landed:
+    if not e.GetFlag('shiplanded'):
         landing_animation()
-        landed = True
+        e.SetFlag('shiplanded', True)
+        
+        
     e.camera.reset_borders()
     e.background_things.append(Background(ika.Image('images/bg_planetstars2.png'),
                                           364, 128 + 56))
@@ -158,6 +158,9 @@ def AutoExec():
     e.foreground_things.append(Background(ika.Image('images/elevator.png'),
                                           336, 384))
     e.foreground_things.append(Fog())
+    
+    
+    
     #e.foreground_things.append(Fog(-0.2, 0.1))
     #if not landed:
     #    landed = True
@@ -168,8 +171,8 @@ def AutoExec():
                          'door_right'))
     e.AddEntity(Door(57 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
                          'door_left', locked=True))
-    e.AddEntity(Zombie(40 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
-    e.AddEntity(Zombie(30 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
+    #e.AddEntity(Zombie(40 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
+    #e.AddEntity(Zombie(30 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     e.AddEntity(DockWindow(9 * ika.Map.tilewidth, 4 * ika.Map.tileheight))
     e.AddEntity(Turret(9 * ika.Map.tilewidth, 15 * ika.Map.tileheight,
                            Dir.LEFT))
@@ -181,3 +184,7 @@ def AutoExec():
 toDockControl = engine.mapscript.Warp(17, 7, 'dockingcontrolroom.ika-map', Dir.LEFT)
 toAirlock1 = engine.mapscript.Warp(17, 10, 'airlock1.ika-map', Dir.LEFT)
 secretArea = engine.mapscript.LayerFader('Secret Overlay', 255, 0, 50)
+
+
+
+
