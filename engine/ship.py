@@ -171,10 +171,9 @@ class ShipLanded(object):
             self.timeleft -=1
         elif self.chairanimation == 1:
             self.chairanimation = 3
-        elif self.chairanimation == 2
+        elif self.chairanimation == 2:
             self.chairanimation = 0
-        
-        
+                
         if self.chairanimation == 1:                
             #if self.timeleft / 5
             pass
