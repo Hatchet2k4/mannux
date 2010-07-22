@@ -102,8 +102,17 @@ def landing_animation():
             if elapsed == 1260:                    
                 sh.jets=False
             if elapsed == 1300:
+            
+                bg.remove(sh)
+                sh = ShipLanded(344, 234, state=2, tabin=True)
+                bg.append(sh)            
+            
+                
+                
+            if elapsed == 1800:    
                 fg.append(FadeOut(300))
-            if elapsed == 1800:
+            
+            if elapsed == 2100:
                 done = True
 
             for thing in bg:
@@ -166,7 +175,7 @@ def AutoExec():
     #    landed = True
     #    e.foreground_things.append(FadeIn())
     if e.loading:
-        e.player.position = (14 * ika.Map.tilewidth, 21 * ika.Map.tileheight)
+        e.player.position = (25 * ika.Map.tilewidth, 21 * ika.Map.tileheight)
     e.AddEntity(Door(2 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
                          'door_right'))
     e.AddEntity(Door(57 * ika.Map.tilewidth, 24 * ika.Map.tileheight,

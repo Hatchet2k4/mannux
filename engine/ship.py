@@ -114,20 +114,15 @@ class ShipLanding(object):
 
 class ShipLanded(object):
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, state=0, tabin=False):
         super(ShipLanded, self).__init__()
         self.ship = ika.Image('%s/ship/ship_hull.png' % config.image_path)
         self.landinggear = rip_tiles('%s/ship/ship_lgear2.png' %
-                                     config.image_path, 27, 41, 8, 8)[0]
+                                     config.image_path, 27, 41, 8, 8)[0] #[0] just need the first image
         self.interior = ika.Image('%s/ship/ship_interior.png' %
                                   config.image_path)
         self.chair = ika.Image('%s/ship/ship_chair.png' % config.image_path)
-        self.lgear = ika.Image('%s/ship/ship_lgear1.png' % config.image_path)
-        
-        self.rjet = rip_tiles('%s/ship/jet_right.png' %
-                                     config.image_path, 16, 16, 3, 3)        
-                                     
-                                     
+        self.lgear = ika.Image('%s/ship/ship_lgear1.png' % config.image_path)                               
         self.tabby = rip_tiles('%s/ship/tab_shiplanding.png' %    
                                     config.image_path, 48, 64, 4, 4)               
         self.x = x
@@ -136,12 +131,21 @@ class ShipLanded(object):
 
         self.chairx = 112
         self.chairy = 42
-        #difference to bottom, 42 pixels   
+        #difference to bottom, 44 pixels   
         
         self.time = 0
-        self.chairanimation = 0 #0=stationary, 1=going down, 2=going up, 3=on ground, empty
+        
+        self.tabin = tabin #is she in the ship or not?
+        #0=not moving, no tabby, 1=going up, 2=going down, 3=tabby animation 
+        self.state = state 
+        
         self.chairstart = 0
         self.timeleft = 0
+        
+        if state == 1:
+            self.ChairUp()
+        elif state == 2:
+            self.ChairDown()
 
     def draw(self):            
         self.landinggear.Blit(self.x - ika.Map.xwin + 62,
@@ -151,38 +155,57 @@ class ShipLanded(object):
 
         
         self.interior.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)        
-        #self.chair.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)
+        self.chair.Blit(self.x - ika.Map.xwin, 
+                        self.y - ika.Map.ywin + self.chairy - 42)
 
-        self.tabby[self.tabframe].Blit(self.x - ika.Map.xwin + self.chairx, 
-                                       self.y - ika.Map.ywin + self.chairy)
+        if self.tabin: 
+            self.tabby[self.tabframe].Blit(self.x - ika.Map.xwin + self.chairx, 
+                                           self.y - ika.Map.ywin + self.chairy)
 
         self.ship.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)
 
         self.lgear.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin + 50)
         
+    def ChairUp(self):
+        self.time = self.chairstart = ika.GetTime()
+        self.state = 1
+        self.timeleft = 220
+
     def ChairDown(self):
         self.time = self.chairstart = ika.GetTime()
-        self.chairanimation = 1
-        self.timeleft = 210
+        self.state = 2
+        self.timeleft = 220
 
     def update(self):
         
         if self.timeleft > 0:
             self.timeleft -= 1
         else:
-          if self.chairanimation == 1:
-            self.chairanimation = 3
-          if self.chairanimation == 2:
-            self.chairanimation = 0
+          if self.state == 1: #finished going up
+            self.state = 0
+
                 
-        if self.chairanimation == 1: #going down               
-            if self.timeleft % 5 == 0
-            self.chairy+=1            
-        elif self.chairanimation == 2: #going up               
-            if self.timeleft % 5 == 0
-            self.chairy+=1
             
+          elif self.state == 2: #finished going down
             
+             if self.tabin==True: #finished going down, animate tabby leaving
+                 self.state = 3                
+                 self.timeleft = 99
+             else:
+                 self.state = 0
+          elif self.state == 3: #finished tabby animation
+            self.state = 0
+            #self.tabin=False
+                
+        if self.state == 1: #going up               
+            if self.timeleft % 5 == 0:
+             self.chairy-=1            
+        elif self.state == 2: #going down               
+            if self.timeleft % 5 == 0:
+             self.chairy+=1
+        elif self.state == 3:     
+            if self.timeleft % 25 == 0 and self.tabframe<3:
+                self.tabframe+=1
         
         
         
