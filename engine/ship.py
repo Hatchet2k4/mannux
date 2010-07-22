@@ -168,15 +168,21 @@ class ShipLanded(object):
     def update(self):
         
         if self.timeleft > 0:
-            self.timeleft -=1
-        elif self.chairanimation == 1:
+            self.timeleft -= 1
+        else:
+          if self.chairanimation == 1:
             self.chairanimation = 3
-        elif self.chairanimation == 2:
+          if self.chairanimation == 2:
             self.chairanimation = 0
                 
-        if self.chairanimation == 1:                
-            #if self.timeleft / 5
-            pass
+        if self.chairanimation == 1: #going down               
+            if self.timeleft % 5 == 0
+            self.chairy+=1            
+        elif self.chairanimation == 2: #going up               
+            if self.timeleft % 5 == 0
+            self.chairy+=1
+            
+            
         
         
         
