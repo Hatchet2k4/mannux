@@ -189,10 +189,12 @@ def AutoExec():
     #                       Dir.LEFT))
     secretArea.activated = False
 
+    #ika.Map.SetLayerTint(1, ika.RGB(255,100, 100, 127))
 
+#map scripts
 toDockControl = engine.mapscript.Warp(17, 7, 'dockingcontrolroom.ika-map', Dir.LEFT)
 toAirlock1 = engine.mapscript.Warp(17, 10, 'airlock1.ika-map', Dir.LEFT)
-secretArea = engine.mapscript.LayerFader('Secret Overlay', 255, 0, 50)
+secretArea = engine.mapscript.LayerFader('Secret Overlay', 255, 0, 25)
 
 
 

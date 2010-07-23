@@ -52,6 +52,12 @@ class Engine(object):
         self.kill_list = []
         self.messages = []
 
+        # Current secret layer.
+        self.cur_secret = None
+        # List of secret layers in map.
+        self.secret_layers = []
+
+
         try:
             ika.Map.Switch('amap.ika-map')
         except ImportError:
@@ -68,7 +74,16 @@ class Engine(object):
     
     def SetFlag(self, key, value):
         self.flags[key] = value
-    
+
+    def GetSecretLayers(self):
+        """Creates a listing for all secret layers."""
+        layers = []
+        for l in range(ika.Map.layercount):
+            #complex line for grabbing all layers that start with the word secret :)
+            if ika.Map.GetLayerProperties(l)[0][:6].lower() == "secret":
+                layers.append([l, 0, 255])
+        self.secret_layers = layers
+        self.cur_secret = None    
     
 
     def initialize(self):
@@ -124,7 +139,8 @@ class Engine(object):
                 ika.Input.Unpress()
                 # Make sure the engine doesn't have to play 'catchup'.
                 time = ika.GetTime()
-            if False:  #controls.confirm.Pressed():
+            #screenshot key
+            if False:  #controls.confirm.Pressed(): 
                 #self.text('This is a textbox.')
                 ika.Input.Unpress()
                 time = ika.GetTime()
@@ -189,6 +205,7 @@ class Engine(object):
         #                   ika.RGB(255, 0, 0, 128), True)
         #font.Print(240, 40, str(self.player.right_wall))
 
+    #main engine processing
     def tick(self):
         for thing in self.background_things:
             try:
@@ -253,6 +270,9 @@ class Engine(object):
         moduleName = m[:m.rfind('.')].replace('/', '.')
         mapModule = __import__(moduleName, globals(), locals(), [''])
         self.readZones(mapModule)
+        
+        self.GetSecretLayers()
+        
         video.clear()
         if fadein:
             self.FadeIn(16)

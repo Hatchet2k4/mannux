@@ -12,23 +12,28 @@ def Warp(x, y, map, direction=0, fadein=True, fadeout=True, scroll=False):
 
 class LayerFader(object):
 
-    def __init__(self, name, start_alpha, end_alpha, length):
+    def __init__(self, layername, start_alpha, end_alpha, length=50):
         super(LayerFader, self).__init__()
-        self.name = name
+        self.layername = layername
         self.start_alpha = start_alpha
         self.end_alpha = end_alpha
         self.length = length
         self.activated = False
 
     def __call__(self):
+        #ika.Log("Layer "+self.layername+" script triggered!")
         if not self.activated:
-            self.activated = True
-            engine.foreground_things.append(FaderThing(self.name,
+            self.activated = True       
+            ika.Log("Layer "+self.layername+" activated!")
+            engine.foreground_things.append(FaderThing(self.layername,
                                                        self.start_alpha,
                                                        self.end_alpha,
                                                        ika.GetTime(),
                                                        ika.GetTime() +
                                                        self.length))
+
+            ika.Log(str(engine.foreground_things))
+
 
 
 class FaderThing(object):
@@ -46,9 +51,12 @@ class FaderThing(object):
         if position > 1:
             position = 1
         current = self.start + ((self.end - self.start) * position)
-        ika.Map.SetLayerTintColour(self.layer, ika.RGB(255, 255, 255, current))
+        
+        #ika.Log("wtf update! "+str(current) + "layer :"+ str(self.layer))
+        
+        ika.Map.SetLayerTint(self.layer, ika.RGB(255, 255, 255, current))
         if position >= 1:
-            engine.foreground_things.remove(self)
+            engine.foreground_things.remove(self) #may need to have an engine call for this
 
 
 def Save():
