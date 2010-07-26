@@ -1,0 +1,179 @@
+(ika-map 
+	(version '1.2')
+	(information 
+		(title '')
+		(meta 
+			(color 'Blue')
+			(mapx '12')
+			(mapy '6')
+			(name 'Airlock')
+		)
+	)
+	(header 
+		(dimensions 
+			(width '320')
+			(height '240')
+		)
+		(tileset 'Mannux.vsp')
+	)
+	(waypoints )
+	(zones 
+		(zone 
+			(label 'toBay1')
+			(script 'toDock1')
+		)
+		(zone 
+			(label 'toDock1')
+			(script 'toDock2')
+		)
+	)
+	(layers 
+		(layer 
+			(label 'Background')
+			(type 'tile')
+			(dimensions 
+				(width '20')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzszksKgzAUheGQsc8Waq0TrXbio7o2q1todRHu1V8aQSQ6LsUDH5dcyOEKceTI/2WQQliwUeOFBi0MmJq9A1d+/+r6rvBxQqXm5AJv8T6reUOw03dHjDc+6NAjRKTZJ3js9OUoFnfMt6TIVvvJE+VG369mBAAA//8='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'Walls')
+			(type 'tile')
+			(dimensions 
+				(width '20')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzsktsKgzAQRJPP7rfYz7CmF6hpbaEXfbFefsdZOgtLoC/VRwOHxNnJbJD1zjm/8jc1COAITjyHRGt+aHq22gBysAMFuYARdNwL49HcJsnXXfLOoASR6N0rs6LxaH6d9NHe8pYX2PM7mLs9s6R+AG/6I99h+7TgAzb4iduFkKx1zVuZXxaZkxu4u+8syFykWmVqqj/oexqP1CYAAAD//w=='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBjcgBELGCg7AAAAAP//'
+			)
+			(entities )
+			(zones 
+				(zone 
+					(label 'toBay1')
+					(x '0')
+					(y '144')
+					(width '16')
+					(height '64')
+				)
+				(zone 
+					(label 'toDock1')
+					(x '304')
+					(y '144')
+					(width '16')
+					(height '64')
+				)
+			)
+		)
+		(layer 
+			(label 'Doors')
+			(type 'tile')
+			(dimensions 
+				(width '20')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJxiYBgFo2D4gDBGBoZwRsrNCQGaEQrECUCcSAXz4oBmxANxFhBnU8G8DKAZmUBcAsSlVDCvCGhGMRXMoTUAAAAA//8='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'Foreground')
+			(type 'tile')
+			(dimensions 
+				(width '20')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJxiYKAfKGOiTJ4aoApoRzUTKu1Egr3OUPWMDBAMArFMEAwDyUjyuDDI3iggTgHiVCT3YAMw+TA0c6OgelLQ7CcWwNyN7v5RMHJAGhXjPR9oVgEQ5wBxHhZzy5gQeYaQOblAXI6U3sugZgIAAAD//w=='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
+			)
+			(entities )
+			(zones )
+		)
+	)
+)

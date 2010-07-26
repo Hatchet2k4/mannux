@@ -248,7 +248,7 @@ class Engine(object):
 
     def map_switch(self, x, y, m, direction=0, fadeout=True, fadein=True,
                    scroll=False):
-        # Save the current map.
+        # Update the current map.
         self.curmap = m
         m = 'maps/%s' % m
         if fadeout:
@@ -267,6 +267,8 @@ class Engine(object):
         self.camera.update()
         self.player.layer = ika.Map.FindLayerByName('Walls')
         self.player.sprite.layer = self.player.layer
+        
+        
         moduleName = m[:m.rfind('.')].replace('/', '.')
         mapModule = __import__(moduleName, globals(), locals(), [''])
         self.readZones(mapModule)

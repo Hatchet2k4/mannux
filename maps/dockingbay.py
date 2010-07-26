@@ -179,7 +179,7 @@ def AutoExec():
     e.AddEntity(Door(2 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
                          'door_right'))
     e.AddEntity(Door(57 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
-                         'door_left', locked=True))
+                         'door_left', locked=False))
     #e.AddEntity(Zombie(40 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     #e.AddEntity(Zombie(30 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     e.AddEntity(DockWindow(9 * ika.Map.tilewidth, 4 * ika.Map.tileheight))
@@ -194,6 +194,7 @@ def AutoExec():
 #map scripts
 toDockControl = engine.mapscript.Warp(17, 7, 'dockingcontrolroom.ika-map', Dir.LEFT)
 toAirlock1 = engine.mapscript.Warp(17, 10, 'airlock1.ika-map', Dir.LEFT)
+toAirlock2 = engine.mapscript.Warp(1, 10, 'airlock2.ika-map', Dir.RIGHT)
 secretArea = engine.mapscript.LayerFader('Secret Overlay', 255, 0, 25)
 
 
