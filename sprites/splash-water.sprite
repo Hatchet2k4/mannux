@@ -1,0 +1,64 @@
+(sprite
+    (metadata
+        (sheet  splash-water)
+        (w      34          )
+        (h      33          )
+    )
+
+    (states
+        (state
+            (id splash)
+            (layers
+                (layer
+                    (frame splash_1)
+                )
+            )
+        )
+    )
+
+    (frames
+        (frame
+            (id         splash_1)
+            (next_frame splash_2)
+            (image      0)
+            (delay      5)
+        )
+        (frame
+            (id         splash_2)
+            (next_frame splash_3)
+            (image      1)
+            (delay      5)
+        )
+        (frame
+            (id         splash_3)
+            (next_frame splash_4)
+            (image      2)
+            (delay      5)
+        )
+        (frame
+            (id         splash_4)
+            (next_frame splash_5)
+            (image      3)
+            (delay      5)
+        )
+        (frame
+            (id         splash_4)
+            (next_frame splash_5)
+            (image      4)
+            (delay      5)
+        )
+        (frame
+            (id         splash_5)
+            (next_frame splash_6)
+            (image      5)
+            (delay      5)
+        )
+        (frame
+            (id         splash_6)
+            (next_frame splash_6)
+            (image      6)
+            (delay      255)
+        )
+
+    )
+)

@@ -1,0 +1,144 @@
+(sprite
+    (metadata
+        (sheet savelight)
+        (w     30)
+        (h     22)
+    )
+
+    (states
+        (state
+            (id glow_raise)
+            (layers
+                (layer
+                    (frame    glowup_1)
+                )
+            )
+        )
+        (state
+            (id glow)
+            (layers
+                (layer
+                    (frame    glow_1)
+                )
+            )
+        )
+        (state
+            (id glow_down)
+            (layers
+                (layer
+                    (frame    glowdown_1)
+                )
+            )
+        )        
+
+    )
+
+    (frames
+        (--glow raise--)
+        (frame
+            (id         glowup_1)
+            (next_frame glowup_2)
+            (image      0)
+            (delay      8)
+        )
+        (frame
+            (id         glowup_2)
+            (next_frame glowup_3)
+            (image      1)
+            (delay      8)
+        )
+        (frame
+            (id         glowup_3)
+            (next_frame glowup_4)
+            (image      2)
+            (delay      8)
+        )
+        (frame
+            (id         glowup_4)
+            (next_frame glowup_5)
+            (image      3)
+            (delay      8)
+        )
+        (frame
+            (id         glowup_5)
+            (next_frame glow_1)
+            (image      4)
+            (delay      8)
+        )
+  
+        (--glow loop--)
+        (frame
+            (id         glow_1)
+            (next_frame glow_2)
+            (image      6)
+            (delay      8)
+        )
+        (frame
+            (id         glow_2)
+            (next_frame glow_3)
+            (image      7)
+            (delay      8)
+        )        
+        (frame
+            (id         glow_3)
+            (next_frame glow_4)
+            (image      8)
+            (delay      8)
+        )
+        (frame
+            (id         glow_4)
+            (next_frame glow_5)
+            (image      9)
+            (delay      8)
+        )
+        (frame
+            (id         glow_5)
+            (next_frame glow_6)
+            (image      10)
+            (delay      8)
+        )
+        (frame
+            (id         glow_6)
+            (next_frame glow_1)
+            (image      11)
+            (delay      8)
+        )
+
+        
+        (--glow die--)
+        (frame
+            (id         glowdown_1)
+            (next_frame glowdown_2)
+            (image      4)
+            (delay      8)
+        )
+        (frame
+            (id         glowdown_2)
+            (next_frame glowdown_3)
+            (image      3)
+            (delay      8)
+        )
+        (frame
+            (id         glowdown_3)
+            (next_frame glowdown_4)
+            (image      2)
+            (delay      8)
+        )
+        (frame
+            (id         glowdown_4)
+            (next_frame glowdown_5)
+            (image      1)
+            (delay      8)
+        )
+        (frame
+            (id         glowdown_5)
+            (next_frame glowdown_6)
+            (image      0)
+            (delay      8)
+        )
+        (frame
+            (id         glowdown_6)
+            (image      0)
+        )
+    )
+)

@@ -1,0 +1,158 @@
+(sprite
+    (metadata
+        (sheet saveflash)
+        (w     32)
+        (h     48)
+    )
+
+    (states
+        (state 
+            (id flash)
+            (layers
+                (layer
+                    (frame    flash_0)
+                )
+            )
+        )
+    )
+   
+
+    
+    (frames      
+        (--flash--)
+        (-- there has GOT to be a better way to do a sequence like this.. --)
+        (frame
+            (id         flash_0)
+            (next_frame flash_1)
+            (image      0)
+            (delay      6)
+        )
+        (frame
+            (id         flash_1)
+            (next_frame flash_2)
+            (image      1)
+            (delay      6)
+        )
+        (frame
+            (id         flash_2)
+            (next_frame flash_3)
+            (image      2)
+            (delay      6)
+        )
+        (frame
+            (id         flash_3)
+            (next_frame flash_4)
+            (image      3)
+            (delay      6)
+        )
+        (frame
+            (id         flash_4)
+            (next_frame flash_5)
+            (image      4)
+            (delay      6)
+        )
+        (frame
+            (id         flash_5)
+            (next_frame flash_6)
+            (image      5)
+            (delay      6)
+        )
+        (frame
+            (id         flash_6)
+            (next_frame flash_7)
+            (image      6)
+            (delay      6)
+        )
+        (frame
+            (id         flash_7)
+            (next_frame flash_8)
+            (image      7)
+            (delay      6)
+        )
+        (frame
+            (id         flash_8)
+            (next_frame flash_9)
+            (image      8)
+            (delay      6)
+        )        
+        (frame
+            (id         flash_9)
+            (next_frame flash_10)
+            (image      9)
+            (delay      6)
+        )        
+        (frame
+            (id         flash_10)
+            (next_frame flash_11)
+            (image      10)
+            (delay      6)
+        )        
+        (frame
+            (id         flash_11)
+            (next_frame flash_12)
+            (image      11)
+            (delay      6)
+        )        
+        (frame
+            (id         flash_12)
+            (next_frame flash_13)
+            (image      12)
+            (delay      6)
+        )        
+        (frame
+            (id         flash_13)
+            (next_frame flash_14)
+            (image      13)
+            (delay      6)
+        )        
+        
+        (frame
+            (id         flash_14)
+            (next_frame flash_15)
+            (image      14)
+            (delay      6)
+        )
+        (frame
+            (id         flash_15)
+            (next_frame flash_16)
+            (image      15)
+            (delay      6)
+        )        
+        (frame
+            (id         flash_16)
+            (next_frame flash_17)
+            (image      16)
+            (delay      6)
+        )        
+        (frame
+            (id         flash_17)
+            (next_frame flash_18)
+            (image      17)
+            (delay      6)
+        )        
+        (frame
+            (id         flash_18)
+            (next_frame flash_19)
+            (image      18)
+            (delay      6)
+        )        
+        (frame
+            (id         flash_19)
+            (next_frame flash_20)
+            (image      19)
+            (delay      6)
+        )           
+        (frame
+            (id         flash_20)
+            (next_frame flash_21)
+            (image      20)
+            (delay      6)
+        )           
+
+        (frame
+            (id         flash_21)
+            (image      0)
+        )
+        
+    )
+)
