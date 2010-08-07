@@ -26,6 +26,8 @@ class Entity(object):
         self.touchable = False
         self.destroy = False
         self.active = True
+        
+        
         # Hack so that ika can detect entity collisions for us.
         #ika.Map.entities[id(self.sprite)] = self.sprite
 

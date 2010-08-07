@@ -17,6 +17,10 @@ from camera import Camera
 from sounds import sound
 from field import Field
 
+
+from splash import Splash #should move later...
+
+
 class Message(object):
     def __init__(self, text, duration):
         self.text = text
@@ -92,11 +96,11 @@ class Engine(object):
             elif lname in ("Lava", "Acid", "Water"): #add more later, possibly..                                
                 #get the layer height and scroll through it to find where it starts
                 #terrain layers 
-                for i in range(ika.Map.GetLayerProperties(l)[2]): 
-                    if ika.Map.GetTile(0, i, l): #find where the layer actually begins... may need to change later
-                        t_layers.append([lname, l, i * 16])
-                        print "Terrain Detected. Type: " + lname
-                        break
+                #for i in range(ika.Map.GetLayerProperties(l)[2]): 
+                #    if ika.Map.GetTile(0, i, l): #find where the layer actually begins... may need to change later
+                t_layers.append( ( lname, l ) ) #name, layer #
+                print "Terrain Detected. Type: " + lname + "  "+str(l)
+                #break
                 
            
             
@@ -121,11 +125,8 @@ class Engine(object):
          #           self.cur_terrain = (name, tlayer, ty * 16)
          #       else:
          #   self.cur_terrain = None
+                
         
-        
-        
-    
-
     def initialize(self):
         self.player = Tabby(0, 0)
         self.hud = Hud()
@@ -247,6 +248,8 @@ class Engine(object):
 
     #main engine processing
     def tick(self):
+        self.UpdateTerrain()
+    
         for thing in self.background_things:
             try:
                 thing.update()
@@ -359,19 +362,38 @@ class Engine(object):
 
     def UpdateTerrain(self):
         """Updates terrain layer."""
-        if self.cur_terrain:
-            name, layer, h = self.cur_terrain
-            #Because of the way corey has the lava/acid layers setup, we have to detect them like this.
-            #If we want more complex terrain layers, we'll need to 'fill in' the terrain layers in the maps.
-            if ika.Map.GetObs(0, int(self.player.y + 31) / 16, layer):
+        for l in self.terrain_layers:
+            name, layer = l
+            
+            #going in
+            if ika.Map.GetTile(int(self.player.x+1) / 16, int(self.player.y + 31) / 16, layer):
+                
+            
                 if self.player.cur_terrain == None:
-                    self.AddEntity(Splash(self.player.x, self.player.y, name.lower()))
+                    self.AddEntity(Splash(int(self.player.x - 12), int(self.player.y), name.lower(), layer))
                 self.player.cur_terrain = name
-                globals()[name + "Terrain"](self, self.player)
-            else:
+                #globals()[name + "Terrain"](self, self.player)
+            else: #jumping out
                 if self.player.cur_terrain: #should include regular entities too...
-                    self.AddEntity(Splash(self.player.x+self.player.vx, self.player.y, name.lower()))
+                    self.AddEntity(Splash(int(self.player.x - 12), int(self.player.y), name.lower(), layer))
                 self.player.cur_terrain = None
+   
+    #def UpdateTerrain(self):
+    #    
+    #    if self.cur_terrain:
+    #        name, l = self.cur_terrain
+    #                    
+    #        #jumping out
+    #        if ika.Map.GetTile(0, int(self.player.y + 31) / 16, layer):
+    #            if self.player.cur_terrain == None:
+    #                self.AddEntity(Splash(self.player.x, self.player.y, name.lower(), layer=l ))
+    #            self.player.cur_terrain = name
+    #            
+    #            #globals()[name + "Terrain"](self, self.player)
+    #        else: #going in
+    #            if self.player.cur_terrain: #should include regular entities too...
+    #                self.AddEntity(Splash(self.player.x+self.player.vx, self.player.y, name.lower()))
+    #            self.player.cur_terrain = None                    
 
 
     def text(self, txt):

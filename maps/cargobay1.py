@@ -8,6 +8,7 @@ from engine.door import Door
 from engine.fog import Fog
 from engine.turret import Turret
 
+from engine.splash import Splash
 
 def AutoExec():
     e.camera.reset_borders()
@@ -21,6 +22,8 @@ def AutoExec():
     e.AddEntity(Door(2 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
                          'door_right'))
     e.AddEntity(Turret(52 * ika.Map.tilewidth, 15 * ika.Map.tileheight))
+
+    #e.AddEntity(Splash(74 * ika.Map.tilewidth, 20 * ika.Map.tileheight, "water"))
 
 
 toDockControl = engine.mapscript.Warp(1, 6, 'dockingcontrolroom.ika-map', Dir.LEFT)

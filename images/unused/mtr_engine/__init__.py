@@ -503,7 +503,7 @@ class GameEngine(process.Process):
                 name = e.name[3:p]
                 num = int(e.name[p + 1:])
             else:
-                name = e.name[3:]
+                name = e.name[3:] 
 
             if type == "EN":
                 #Load enemy.

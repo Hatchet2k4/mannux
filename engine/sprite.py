@@ -1,7 +1,7 @@
 import ika
 import riptiles
 import rotateblit
-import sparser
+#import sparser
 
 #This dict holds ALL the loaded images for sprites.
 sprite_images = dict()
