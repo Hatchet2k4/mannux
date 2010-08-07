@@ -52,11 +52,12 @@ class Engine(object):
         self.kill_list = []
         self.messages = []
 
-        # Current secret layer.
+        # Current layer.
         self.cur_secret = None
-        # List of secret layers in map.
+        self.cur_terrain = None #for splash/water effects, mostly
+        # List of layers in map.
         self.secret_layers = []
-
+        self.terrain_layers = []
 
         try:
             ika.Map.Switch('amap.ika-map')
@@ -75,15 +76,54 @@ class Engine(object):
     def SetFlag(self, key, value):
         self.flags[key] = value
 
-    def GetSecretLayers(self):
-        """Creates a listing for all secret layers."""
-        layers = []
-        for l in range(ika.Map.layercount):
+    def GetLayers(self):
+        """Creates a listing for all secret/terrain layers."""
+        s_layers = [] #secret
+        t_layers = [] #terrain
+        lname = ''
+        
+        
+        
+        for l in range(ika.Map.layercount):            
             #complex line for grabbing all layers that start with the word secret :)
-            if ika.Map.GetLayerProperties(l)[0][:6].lower() == "secret":
-                layers.append([l, 0, 255])
-        self.secret_layers = layers
-        self.cur_secret = None    
+            lname = ika.Map.GetLayerName(l)
+            if lname[:6].lower() == "secret":            
+                s_layers.append([l, 0, 255]) 
+            elif lname in ("Lava", "Acid", "Water"): #add more later, possibly..                                
+                #get the layer height and scroll through it to find where it starts
+                #terrain layers 
+                for i in range(ika.Map.GetLayerProperties(l)[2]): 
+                    if ika.Map.GetTile(0, i, l): #find where the layer actually begins... may need to change later
+                        t_layers.append([lname, l, i * 16])
+                        print "Terrain Detected. Type: " + lname
+                        break
+                
+           
+            
+            
+                
+        self.secret_layers = s_layers
+        self.terrain_layers = t_layers
+        self.cur_secret = None
+        self.cur_terrain = None
+        
+        
+         #       #Grab terrain layer.
+         #      tlayer = ika.Map.layercount - 1
+         #       name = ika.Map.GetLayerName(tlayer)
+         #       #Check the last layer's name to see if it's a terrain type.
+         #       if name in ("Lava", "Acid", "Water") or name[:4] == "Wind":
+         #           print "Terrain Detected. Type: " + name
+         #           for i in range(ika.Map.GetLayerProperties(tlayer)[2]):
+         #               if ika.Map.GetObs(0, i, tlayer):
+         #                   ty = i
+         #                   break
+         #           self.cur_terrain = (name, tlayer, ty * 16)
+         #       else:
+         #   self.cur_terrain = None
+        
+        
+        
     
 
     def initialize(self):
@@ -273,7 +313,9 @@ class Engine(object):
         mapModule = __import__(moduleName, globals(), locals(), [''])
         self.readZones(mapModule)
         
-        self.GetSecretLayers()
+        self.GetLayers()
+             
+        
         
         video.clear()
         if fadein:
@@ -314,6 +356,23 @@ class Engine(object):
             self.minutes -= 60
             self.hours += 1
         self.time = '%03d:%03d:%03d' % (self.hours, self.minutes, self.seconds)
+
+    def UpdateTerrain(self):
+        """Updates terrain layer."""
+        if self.cur_terrain:
+            name, layer, h = self.cur_terrain
+            #Because of the way corey has the lava/acid layers setup, we have to detect them like this.
+            #If we want more complex terrain layers, we'll need to 'fill in' the terrain layers in the maps.
+            if ika.Map.GetObs(0, int(self.player.y + 31) / 16, layer):
+                if self.player.cur_terrain == None:
+                    self.AddEntity(Splash(self.player.x, self.player.y, name.lower()))
+                self.player.cur_terrain = name
+                globals()[name + "Terrain"](self, self.player)
+            else:
+                if self.player.cur_terrain: #should include regular entities too...
+                    self.AddEntity(Splash(self.player.x+self.player.vx, self.player.y, name.lower()))
+                self.player.cur_terrain = None
+
 
     def text(self, txt):
         done = 0

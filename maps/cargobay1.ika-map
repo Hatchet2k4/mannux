@@ -220,12 +220,45 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzs2LEKgCAUhWEbfNECWwps6dFqq61eKwcbwiKJsrj9H8hZ9aB3UCkAUvTZ2ztI509nBXAsd7OgdcvspGFOnKp8R3YnLf3hosK/wzWfUgq9o3W2zac0QvsDAAAAAAAydFqpXoeJOIPratRhIs7kupp1mHeQ+q+ZCv+a+LIFAAD//w=='
+				'eJzs2DEKgDAMheF28KIKdVGoi1fzEF7KDnUQIoLQqs//g/DWNrQZ4hwAFYt/+gT1/OmuAM61aRbMqYKRgTlxacg9ikZG+oebuvwP9yylF32joz9mKZNo/wAAAAAAgIa1sQv4OtW9Zi3sNfFmGwAAAP//'
 			)
 			(obstructions 
 				(style 'tile')
 				(format 'zlib')
 				'eJzswTEBAAAAwqD1T20JT6AAAHgaAAAA//8='
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'Water')
+			(type 'tile')
+			(dimensions 
+				(width '6')
+				(height '3')
+			)
+			(position 
+				(x '784')
+				(y '384')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzaxsrAsB2It6HR+4B4Pxb6GBAfx0IDAAAA//8='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYEAHAAAAAP//'
 			)
 			(entities )
 			(zones )

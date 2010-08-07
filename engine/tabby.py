@@ -89,6 +89,8 @@ class Tabby(Entity):
         self.phantom = False
         self.fired = False
 
+        self.cur_terrain = None
+
     def HasAbility(self, name):
         if name in self.abilities:
             return self.abilities[name]
