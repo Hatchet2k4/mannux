@@ -1,0 +1,28 @@
+(ika-sprite 
+	(version '1.1')
+	(information 
+		(title 'Untitled')
+		(meta )
+	)
+	(header 
+		(depth '32')
+	)
+	(scripts )
+	(frames 
+		(count '7')
+		(dimensions 
+			(width '34')
+			(height '33')
+		)
+		(hotspot 
+			(x '0')
+			(y '0')
+			(width '16')
+			(height '16')
+		)
+		(data 
+			(format 'zlib')
+			'eJzsnAFugzAMRXf/e/RAPVEmplEZ10kI2MGlb9IT3Qz4O2YpdmlKKT8FAAAANOWgzVXD8/ms+WrZXFn8PB4P01/L5jkOq49lK/wV6X+1iZ+rr6Er+ar4//O+K3a177cydQxmzVUfCmMDAAAAMJdy0n6KtR5Za9rafj27p57W/bq0R9ZSHR0z+g4vP7U4Vd8hNCeqv2HaLHvEWCxx67HX/ZkZ1+vqU4/HpHqzSJ+1vE3QUfNZKhpCNKl5bGrMEbmL8JUB6/82q9YoKjk3Y589lyQlu74wEs5n2fRkHCOAryT551s9bW/2oHiGdURo6MybU+oYq5YbsXvqaOW6Z/fMScNPz356DAw/lq+e3TUntZhrdu/rxfBTRuxeGrQfGWfP7kTNx0ZHxe6uRfuUdiN+95zo/OzRGsXonHBV3+Gqe/Wr85MB+g630xdGwpo6mx4AsCkn7dN1eM53xvPAGcajp2OPThcdCfoOpeVnreGs+yXP++ZWbbsQVcdpfzv8zPg8XebE9NXKi6cO5efNV6329UTX85XcRNbXm2u0EfNmvIL6H5vzW30W3XOIyI08t6Zmn9mHkc9eWPaoMdE+V5sV/1WfD9B3uA76DrfTFwZ9BwAAuDMj73NO98yHzpHw/Tgk/hvFGR5L6/mUmTkLOE4fr7ejxw4fr+tnudaI2A7rOFP7y7p+4DmXl/91X33c6Lymv+PTe9al1iNR67gcuTbe1oPRv8v9rfVjZC8toieSte8wc56l73A7fWEkfP/PpgcAAAAgDHpjcDOK8zmOnO/s8X/I9WbU2jNF7mP4KnuObflV5zTXe1HPubz+Jrf67+q15zMqXufJfF1+JAnn7mx6AAAAAAAA4Iuxvjtovd67T8uWfC2xQ9B3AAAA+Cx+AQAA//8='
+		)
+	)
+)
