@@ -48,7 +48,11 @@ class Tabby(Entity):
         super(Tabby, self).__init__(ika.Entity(x, y, 1,
                                                '%s/tabitha_pistol.ika-sprite' %
                                                config.sprite_path))
-        # Constants.
+        # Constants.               
+        
+        
+        
+        
         self.ground_friction = 0.10
         self.air_friction = 0.1
         self.ground_accel = self.ground_friction * 2
@@ -57,10 +61,14 @@ class Tabby(Entity):
         self.max_vy = 8.0
         self.gravity = 0.1
         self.jump_speed = 5
+        
         self.abilities = {'sexy': True, 'wall-jump': True, 'double-jump': True}
+
+
         self.fire_delay = 0
         self.firing_rate = 8
-        self.direction = Dir.LEFT
+        self.direction = Dir.LEFT                              
+        
         self.hp = 120
         self.maxhp = 120
         self.mp = 100
@@ -1055,6 +1063,30 @@ class Tabby(Entity):
 
     def update(self):
         self.msg = ''
+        
+        #check current terrain to set appropriate terrain speeds, mostly just water.
+        if self.cur_terrain:
+            self.ground_friction = 0.15
+            self.air_friction = 0.20
+            self.ground_accel = 0.20
+            self.air_accel = 0.032
+            self.max_vx = 1.5
+            self.max_vy = 6.0
+            self.gravity = 0.05
+            self.jump_speed = 3.2
+                          
+        else: #defaults
+            self.ground_friction = 0.10
+            self.air_friction = 0.10
+            self.ground_accel = self.ground_friction * 2
+            self.air_accel = 0.0625
+            self.max_vx = 2.0
+            self.max_vy = 8.0
+            self.gravity = 0.1
+            self.jump_speed = 5
+        
+        
+        
         ### hack hack hack ###
         if self.hurt_count > 0:
             # Flash.

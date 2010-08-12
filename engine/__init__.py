@@ -372,6 +372,8 @@ class Engine(object):
                 if self.player.cur_terrain == None:
                     self.AddEntity(Splash(int(self.player.x - 12), int(self.player.y), name.lower(), layer))
                 self.player.cur_terrain = name
+                
+                
                 #globals()[name + "Terrain"](self, self.player)
             else: #jumping out
                 if self.player.cur_terrain: #should include regular entities too...

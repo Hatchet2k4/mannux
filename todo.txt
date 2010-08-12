@@ -2,14 +2,14 @@
 -add multiple save slots
 -update save system to save automap data
 -update tabby's animation system
--update ship landing animation
+-update ship landing animation (mostly done)
 -make ship a save point; animate going back into ship
 -update docking bay, make interactive computer
 -make new maps for the rest of the automapped area
--make secret area overlay fade out
+-make secret area overlay fade out (half done)
 -add computer room for additional background story
 -make movable platforms
--make elevators
+-make elevators 
 -maybe ladders? (would require new animation)
 -movable/pushable blocks
 -finish the rest of the menu. 
@@ -17,6 +17,7 @@
 -eventually make more enemies and an area boss
 -add an ability button, add abilities
 -add sword swinging!
+-add water effects (done!)
 
 
 
