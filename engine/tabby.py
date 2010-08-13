@@ -11,7 +11,7 @@ from bullet import Bullet
 from anim import make_anim
 from sounds import sound
 from const import Dir
-
+import fonts
 
 slopeTiles = {Dir.LEFT:  [347, 623, 746, 885, 876],  # /
               Dir.RIGHT: [346, 622, 749, 889, 878]}  # \
@@ -62,7 +62,7 @@ class Tabby(Entity):
         self.gravity = 0.1
         self.jump_speed = 5
         
-        self.abilities = {'sexy': True, 'wall-jump': True, 'double-jump': True}
+        self.abilities = {'sexy': True, 'wall-jump': True, 'double-jump': False}
 
 
         self.fire_delay = 0
@@ -91,13 +91,29 @@ class Tabby(Entity):
         self.in_slope = False
         self.state = self.StandState
         self.msg = ''
+        self.msgtime = 0
+        
         self.checkslopes = True
         self.was_in_slope = False
         self.lastpos = (0, 0)
         self.phantom = False
         self.fired = False
 
-        self.cur_terrain = None
+        self.cur_terrain = None        
+        
+        self.cur_platform = None
+        #extra platform speeds
+        self.pvx = 0
+        self.pvy = 0
+        
+        #self.testimg = ika.Image("sprites/platform.png")
+        
+    def draw(self):
+        #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin), "x:", str(self.x)
+        pass
+        #self.testimg.Blit(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin)
+        
+        
 
     def HasAbility(self, name):
         if name in self.abilities:
@@ -223,6 +239,7 @@ class Tabby(Entity):
                     self.Animate(('stand', self.direction))
             if not self.floor:
                 self.state = self.FallState
+                self.jump_count = 1
             else:
                 self.vx = vecmath.decrease_magnitude(self.vx,
                                                      self.ground_friction)
@@ -386,8 +403,7 @@ class Tabby(Entity):
         self.checkslopes = True
         while True:
             if controls.jump.Pressed() and not self.ceiling and \
-               self.jump_count < self.max_jumps and \
-               self.HasAbility('double-jump'):
+               self.jump_count < self.max_jumps and self.HasAbility('double-jump'):
                 if self.jump_count == 0:
                     # Fell off something, so you lose a jump.
                     self.jump_count += 2
@@ -1052,7 +1068,7 @@ class Tabby(Entity):
             self.x = tilex * ika.Map.tilewidth - self.width
             self.vx = min(0, self.vx)
         for entity in self.detect_collision():
-            if entity is not None and entity.touchable:
+            if entity is not None and not entity.destroy and entity.touchable:
                 entity.touch(self)
 
     def RunnableZone(self):
@@ -1062,7 +1078,9 @@ class Tabby(Entity):
                 return f
 
     def update(self):
-        self.msg = ''
+        if self.msg: 
+            pass #do stuff :P
+            #self.msg = ''
         
         #check current terrain to set appropriate terrain speeds, mostly just water.
         if self.cur_terrain:
@@ -1085,7 +1103,12 @@ class Tabby(Entity):
             self.gravity = 0.1
             self.jump_speed = 5
         
-        
+        touching = self.detect_collision()
+        if self.cur_platform and self.cur_platform not in touching:
+            #not touching a platform anymore
+            self.pvx=0
+            self.pvy=0
+            self.cur_platform=None
         
         ### hack hack hack ###
         if self.hurt_count > 0:
@@ -1144,8 +1167,8 @@ class Tabby(Entity):
             self.CheckObstructions()
         self.vx = vecmath.clamp(self.vx, -self.max_vx, self.max_vx)
         self.vy = vecmath.clamp(self.vy, -self.max_vy, self.max_vy)
-        self.x += self.vx
-        self.y += self.vy
+        self.x += self.vx + self.pvx
+        self.y += self.vy + self.pvy
         self.sprite.x = int(self.x)
         self.sprite.y = int(self.y)
         self.state__()
