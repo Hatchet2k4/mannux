@@ -125,6 +125,8 @@ class ShipLanded(object):
         self.lgear = ika.Image('%s/ship/ship_lgear1.png' % config.image_path)                               
         self.tabby = rip_tiles('%s/ship/tab_shiplanding.png' %    
                                     config.image_path, 48, 64, 4, 4)               
+        self.elevator = ika.Image('%s/ship/ship_elevator.png' % config.image_path)                               
+                                        
         self.x = x
         self.y = y
         self.tabframe = 0
@@ -154,7 +156,9 @@ class ShipLanded(object):
                               self.y - ika.Map.ywin + 88)
 
         
-        self.interior.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)        
+        self.elevator.Blit(self.x - ika.Map.xwin + self.chairx, 
+                        self.y - ika.Map.ywin + self.chairy - 16)        
+        self.interior.Blit(self.x - ika.Map.xwin, self.y - ika.Map.ywin)                                       
         self.chair.Blit(self.x - ika.Map.xwin, 
                         self.y - ika.Map.ywin + self.chairy - 42)
 
