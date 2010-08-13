@@ -13,6 +13,8 @@ from engine.dockwindow import DockWindow
 from engine.turret import Turret
 #from globalvars import font
 from engine.const import Dir
+from engine.platform import Platform
+from engine.box import Box
 
 
 def landing_animation():
@@ -187,6 +189,11 @@ def AutoExec():
                            Dir.LEFT))
     #entities.append(Turret(9 * ika.Map.tilewidth, 12 * ika.Map.tileheight,
     #                       Dir.LEFT))
+
+    e.AddEntity(Platform(20 * ika.Map.tilewidth, 20 * ika.Map.tileheight))
+    e.AddEntity(Box(14 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
+    
+    
     secretArea.activated = False
 
     #ika.Map.SetLayerTint(1, ika.RGB(255,100, 100, 127))

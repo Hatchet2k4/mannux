@@ -18,7 +18,7 @@
 -add an ability button, add abilities
 -add sword swinging!
 -add water effects (done!)
-
+-try to change camera borders for non-rect rooms.
 
 
 
