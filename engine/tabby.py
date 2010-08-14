@@ -249,7 +249,7 @@ class Tabby(Entity):
                 fired = True
                 if controls.up.Position() > controls.deadzone:
                     if self.direction == Dir.RIGHT:
-                        self.Fire(Dir.UP, offx=5 - 2, offy=-8)
+                        self.Fire(Dir.UP, offx=3, offy=-8)
                     else:
                         self.Fire(Dir.UP, offx=5, offy=-8)
                 elif controls.aim_up.Position():
@@ -492,7 +492,7 @@ class Tabby(Entity):
                         elif controls.left.Position() > controls.deadzone:
                             self.Fire(Dir.UPLEFT, offx=-10, offy=-2)
                         elif self.direction == Dir.RIGHT:
-                            self.Fire(Dir.UP, offx=9 + -2, offy=-10)
+                            self.Fire(Dir.UP, offx=9 - 6, offy=-10)
                         else:
                             self.Fire(Dir.UP, offx=9, offy=-10)
                     elif controls.down.Position() > controls.deadzone:
@@ -611,7 +611,7 @@ class Tabby(Entity):
                     elif controls.left.Position() > controls.deadzone:
                         self.Fire(Dir.UPLEFT, offx=-10, offy=-2)
                     elif self.direction == Dir.RIGHT:
-                        self.Fire(Dir.UP, offx=9 - 2, offy=-10)
+                        self.Fire(Dir.UP, offx=9 - 6, offy=-10)
                     else:
                         self.Fire(Dir.UP, offx=9 + 0, offy=-10)
                 elif controls.down.Position() > controls.deadzone:

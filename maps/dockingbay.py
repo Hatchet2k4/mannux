@@ -127,7 +127,7 @@ def landing_animation():
         ika.Map.ywin = int(ywin)
         for thing in bg:
             thing.draw()
-        ika.Map.Render(*range(ika.Map.layercount))
+        ika.Map.Render()
         for thing in fg:
             thing.draw()
         #font.Print(0, 0, str(elapsed / 100.0))
