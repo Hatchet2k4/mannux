@@ -4,9 +4,9 @@
 		(title '')
 		(meta 
 			(color 'Blue')
-			(mapx '12')
+			(mapx '20')
 			(mapy '6')
-			(name 'Airlock 1')
+			(name 'Airlock 3')
 		)
 	)
 	(header 
@@ -19,15 +19,48 @@
 	(waypoints )
 	(zones 
 		(zone 
-			(label 'toBay1')
-			(script 'toBay1')
+			(label 'toBay3')
+			(script 'toBay3')
 		)
 		(zone 
-			(label 'toDock1')
-			(script 'toDock1')
+			(label 'toDock2')
+			(script 'toDock2')
 		)
 	)
 	(layers 
+		(layer 
+			(label 'Space')
+			(type 'tile')
+			(dimensions 
+				(width '20')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzsyDsSgCAQBNGtuf+BFDM/GWAmchs63mxDLbrqBTNms9n/WmS2ImFTfPt2vgMnLsW3L/MVVNyKb9/D1/CiK76/0gAAAP//'
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
+			)
+			(entities )
+			(zones )
+		)
 		(layer 
 			(label 'Background')
 			(type 'tile')
@@ -51,7 +84,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzszksKgzAUheGQsc8Waq0TrXbio7o2q1todRHu1V8aQSQ6LsUDH5dcyOEKceTI/2WQQliwUeOFBi0MmJq9A1d+/+r6rvBxQqXm5AJv8T6reUOw03dHjDc+6NAjRKTZJ3js9OUoFnfMt6TIVvvJE+VG369mBAAA//8='
+				'eJzsy8sKQFAURmEPRi4DchmQ3HMfYojXtwZOnXQeQLLqa9dfW9P+/r5XgRIVDJiwYMOBrtjln2cjJszw4CNAiAiuYpd/ni1YsSFBesuQI1bs8o+4oh0HTjRo0aHHgFqxyz/ivr0LAAD//w=='
 			)
 			(obstructions 
 				(style 'tile')
@@ -94,14 +127,14 @@
 			(entities )
 			(zones 
 				(zone 
-					(label 'toBay1')
+					(label 'toDock2')
 					(x '0')
 					(y '144')
 					(width '16')
 					(height '64')
 				)
 				(zone 
-					(label 'toDock1')
+					(label 'toBay3')
 					(x '304')
 					(y '144')
 					(width '16')
@@ -133,39 +166,6 @@
 			(data 
 				(format 'zlib')
 				'eJxiYBgFo2D4gDBGBoZwRsrNCQGaEQrECUCcSAXz4oBmxANxFhBnU8G8DKAZmUBcAsSlVDCvCGhGMRXMoTUAAAAA//8='
-			)
-			(obstructions 
-				(style 'tile')
-				(format 'zlib')
-				'eJxiYBgFxAIAAAAA//8='
-			)
-			(entities )
-			(zones )
-		)
-		(layer 
-			(label 'Foreground')
-			(type 'tile')
-			(dimensions 
-				(width '20')
-				(height '15')
-			)
-			(position 
-				(x '0')
-				(y '0')
-			)
-			(parallax 
-				(mulx '1')
-				(muly '1')
-				(divx '1')
-				(divy '1')
-			)
-			(wrap 
-				(x 'false')
-				(y 'false')
-			)
-			(data 
-				(format 'zlib')
-				'eJxiYKAfKGOiTJ5awBloTxUQV0NpJxLsdYaqZ2SA4CggOwVNfzKSPD4M05uK5B50s0AAJh+GZm4ZGj+CxPDD506Q2UkkmhcJVF+OxY1RUPdj8xs+kAoNk3Q0mlRz0EEsVH8hndIbMsijsp0VTAgzY8gwOw1Jbz4TJL5AZuYAcQEQ5zIR7+Z8qB6YXh8c6bWcgJn5UHuR0xJMLwAAAP//'
 			)
 			(obstructions 
 				(style 'tile')

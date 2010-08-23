@@ -4,9 +4,9 @@
 		(title '')
 		(meta 
 			(color 'Blue')
-			(mapx '12')
+			(mapx '16')
 			(mapy '6')
-			(name 'Airlock')
+			(name 'Airlock 2')
 		)
 	)
 	(header 

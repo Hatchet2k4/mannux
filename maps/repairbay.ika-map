@@ -1,165 +1,155 @@
 (ika-map 
-	(version 1.1)
+	(version '1.2')
 	(information 
-		(title )
+		(title '')
 		(meta 
-                        (name Repair Bay)
-                        (color Blue)
-                        (mapx 13)
-                        (mapy 8)
+			(color 'Blue')
+			(mapx '13')
+			(mapy '8')
+			(name 'Repair Bay')
 		)
 	)
 	(header 
 		(dimensions 
-			(width 960)
-			(height 480)
+			(width '960')
+			(height '480')
 		)
-		(tileset Mannux.vsp)
+		(tileset 'Mannux.vsp')
 	)
-	(waypoints 
-	)
-	(zones 
-	)
+	(waypoints )
+	(zones )
 	(layers 
 		(layer 
-			(label Background)
-			(type tile)
+			(label 'Background')
+			(type 'tile')
 			(dimensions 
-				(width 60)
-				(height 30)
+				(width '60')
+				(height '30')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJzsmOluEzEURmdGrGFvU+iSpNA1/ccjsIPY4f14s6G0IJW1UlkrlfVYsVVjvDW5ASrlSkdje0aZ78bftZ0UhXy8gBqewio8gzVYh+cwWxbFMTgAB+EQHIYjcBQasD0EXcOKTdiAl/AKXsMbeAvvil6+E3ASTsFpOANjMA5NKMt/p3+vYeb3PXyAj/AJPsMXWNH5TsIUTMMMtKANnX02vyrfHfgK3+A7/ICf6ma56+c5mIcFWIQlWIbuPp3fQer3b+X7pOI7rnpXg9t3x9xI1a/x817rN/R+nz4zHouJqkez2m37+r4xO9T8XkLvZc0VuArXNGZ+Tf863ICbmlue+o2936fPHvfFLOOdqncNEbpvj5t8b6P5juYu3IP7GpOv6T+Ah/BI81jnWwvrcr0S8kWOb0xbeVGqfncEdfm8HPJFrm8UDZ3voPuvmV8pXT4/2x6wveBrh66NUmb/VfNbC+ry+dn2QGj9c++7104ps/+a+ZXS5fOz7YHQ+ufed69qfjeF6ndDUJcb7hrn64e89Ntzpcz5eVt7REqXG6kzxnLESzZS9Wv8LKXLjdQZoxnxko3JV6p+pXS5kbOP+7zyxzOC9VsL6nIjZx9PnaNtP0v8/q0FdbmRs4/nnKO71vwOuv9uCeoK+Tl1Fk15yV6vpP2csw6H1u7Q/KbOZqnvdhjnydh+mzpnhvZf5fHjcALGrPbFwPh4YNw+b0j42feOHB32uK9+1dgkTEELzsI5aFvtVkbb/D6S2o9S74vpm4aZSL5zMK+fPQ8X+mhL16/53HYfmhZgMZJvF1a0L/ptS9evhCZfvpIxjP9z/ueQ+j9nFKMYRTx+AQAA//8=
+				(format 'zlib')
+				'eJzsmOluEzEURmdGrGFvU+iSpNA1/ccjsIPY4f14s6G0IJW1UlkrlfVYsVVjvDW5ASrlSkdje0aZ78bftZ0UhXy8gBqewio8gzVYh+cwWxbFMTgAB+EQHIYjcBQasD0EXcOKTdiAl/AKXsMbeAvvil6+E3ASTsFpOANjMA5NKMt/p3+vYeb3PXyAj/AJPsMXWNH5TsIUTMMMtKANnX02vyrfHfgK3+A7/ICf6ma56+c5mIcFWIQlWIbuPp3fQer3b+X7pOI7rnpXg9t3x9xI1a/x817rN/R+nz4zHouJqkez2m37+r4xO9T8XkLvZc0VuArXNGZ+Tf863ICbmlue+o2936fPHvfFLOOdqncNEbpvj5t8b6P5juYu3IP7GpOv6T+Ah/BI81jnWwvrcr0S8kWOb0xbeVGqfncEdfm8HPJFrm8UDZ3voPuvmV8pXT4/2x6wveBrh66NUmb/VfNbC+ry+dn2QGj9c++7104ps/+a+ZXS5fOz7YHQ+ufed69qfjeF6ndDUJcb7hrn64e89Ntzpcz5eVt7REqXG6kzxnLESzZS9Wv8LKXLjdQZoxnxko3JV6p+pXS5kbOP+7zyxzOC9VsL6nIjZx9PnaNtP0v8/q0FdbmRs4/nnKO71vwOuv9uCeoK+Tl1Fk15yV6vpP2csw6H1u7Q/KbOZqnvdhjnydh+mzpnhvZf5fHjcALGrPbFwPh4YNw+b0j42feOHB32uK9+1dgkTEELzsI5aFvtVkbb/D6S2o9S74vpm4aZSL5zMK+fPQ8X+mhL16/53HYfmhZgMZJvF1a0L/ptS9evhCZfvpIxjP9z/ueQ+j9nFKMYRTx+AQAA//8='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJxiYBgFo2AUjIJRMApGLgAAAAD//w==
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo2AUjIJRMApGLgAAAAD//w=='
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 		(layer 
-			(label Walls)
-			(type tile)
+			(label 'Walls')
+			(type 'tile')
 			(dimensions 
-				(width 60)
-				(height 30)
+				(width '60')
+				(height '30')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJzkWUtOwzAQdcoWLgJbPhIIuAdrdnABFrCFC8CqAg7BPxIk/D9NSyugEqzZsoYd85QZdTRKSyFGQtjS0zhjZ/Ke49iOHTnnopJoEDJCSrh3/lKTsEPY5WeU5WlR57gNzkcqb8ts/ppwR3j3qPeFcEw4KXhuLy7W9npH0p7nhAvCESF2+buTspTrHql6Z4Q9wrNHvc0CHsIhNnw1t33m0q1v1FU8ac8a4YnQVs+UslT5Uq5zSkic3/78yvFFQ6o4WE5in7heYvjq/ppxe8A/WnGuSgVLUW6/yk9U8vsemdObR70DUc4LcdvMrV9eVeaWqbaR7+6Q2wPxxirf4zReyeNKTN/jFXjJe/gpN7TVg+u8l5/Gs3F9j88fHrm1KH/jIZ6Oiz40GJWLo9MQ90sf3KAZYyr64LJHjn81rUSdvhyKXowx+JZD0Ys5N6T+jPUH5rZQ9GL9gfk8FL3Qmrhw9CYurPH51oU1Xsm/B/Qu0vpjoeQ65i8n6MXcK3rnSOv8P9eLfyUAev+zViTRi/X4agDf7xr/e4Q2/4aSZP4NJUl/Di2tk+aNyJ+99Mjt6hf4bRE2jd3+5rW2vvdjy/Ap8mPMkr1F2Z+WvVnrt+Wwdh98mGLOEqYI05wHJtnOKP+kKpcy7R/hNWDNPK8bX31tzw3kOlHxZH9afJnx6/KULdZo+6pM4sq9tq2wZsf+74HL9wuLuIsvNvnEdc46aoZPbK4l3zZ17ZlM3fV3XlTk021jzyvEyjkB2qPF2u8MV7k3Y672DKuIQ686ut4nAAAA//8=
+				(format 'zlib')
+				'eJzkWUtOwzAQdcoWLgJbPhIIuAdrdnABFrCFC8CqAg7BPxIk/D9NSyugEqzZsoYd85QZdTRKSyFGQtjS0zhjZ/Ke49iOHTnnopJoEDJCSrh3/lKTsEPY5WeU5WlR57gNzkcqb8ts/ppwR3j3qPeFcEw4KXhuLy7W9npH0p7nhAvCESF2+buTspTrHql6Z4Q9wrNHvc0CHsIhNnw1t33m0q1v1FU8ac8a4YnQVs+UslT5Uq5zSkic3/78yvFFQ6o4WE5in7heYvjq/ppxe8A/WnGuSgVLUW6/yk9U8vsemdObR70DUc4LcdvMrV9eVeaWqbaR7+6Q2wPxxirf4zReyeNKTN/jFXjJe/gpN7TVg+u8l5/Gs3F9j88fHrm1KH/jIZ6Oiz40GJWLo9MQ90sf3KAZYyr64LJHjn81rUSdvhyKXowx+JZD0Ys5N6T+jPUH5rZQ9GL9gfk8FL3Qmrhw9CYurPH51oU1Xsm/B/Qu0vpjoeQ65i8n6MXcK3rnSOv8P9eLfyUAev+zViTRi/X4agDf7xr/e4Q2/4aSZP4NJUl/Di2tk+aNyJ+99Mjt6hf4bRE2jd3+5rW2vvdjy/Ap8mPMkr1F2Z+WvVnrt+Wwdh98mGLOEqYI05wHJtnOKP+kKpcy7R/hNWDNPK8bX31tzw3kOlHxZH9afJnx6/KULdZo+6pM4sq9tq2wZsf+74HL9wuLuIsvNvnEdc46aoZPbK4l3zZ17ZlM3fV3XlTk021jzyvEyjkB2qPF2u8MV7k3Y672DKuIQ686ut4nAAAA//8='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJzUk1sKgDAMBDv3v7SCCqYbIQ9QO58hk2YDHUMhVPJZwcXw5DK36cy96rpIm1U5t3BXk4p9ldtI7XRiiBuEI8kV3pwh4pIyJjcr/ctN36r4bNutBu7eqqjq18q4ZXNVaPD17m+zAQAA//8=
+				(style 'tile')
+				(format 'zlib')
+				'eJzUk1sKgDAMBDv3v7SCCqYbIQ9QO58hk2YDHUMhVPJZwcXw5DK36cy96rpIm1U5t3BXk4p9ldtI7XRiiBuEI8kV3pwh4pIyJjcr/ctN36r4bNutBu7eqqjq18q4ZXNVaPD17m+zAQAA//8='
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 		(layer 
-			(label Doors)
-			(type tile)
+			(label 'Doors')
+			(type 'tile')
 			(dimensions 
-				(width 60)
-				(height 30)
+				(width '60')
+				(height '30')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJzszzcOgEAQBMG9P2IyTIbJOPg//QkEYrukyacjJEmSJEmSJH1FVyL68vaL5zU0tmxic4LegcaRbWxP0LvQuLKTXQl6Dxprgk5J/3EDAAD//w==
+				(format 'zlib')
+				'eJzszzcOgEAQBMG9P2IyTIbJOPg//QkEYrukyacjJEmSJEmSJH1FVyL68vaL5zU0tmxic4LegcaRbWxP0LvQuLKTXQl6Dxprgk5J/3EDAAD//w=='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJxiYBgFo2AUjIJRMApGLgAAAAD//w==
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo2AUjIJRMApGLgAAAAD//w=='
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 		(layer 
-			(label Foreground)
-			(type tile)
+			(label 'Foreground')
+			(type 'tile')
 			(dimensions 
-				(width 60)
-				(height 30)
+				(width '60')
+				(height '30')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJzsl00KwjAQhdscq6JewLV/2I1aulAQNyr1WioKuhB0oeCdnMGEDmpUbEdikw8e1aSEeTNJyvie5/kZ1RUeGz2RPb481YB4+ox+I1i7Lj1PmL2/Wx/nm4xeqWfMqfJO43oWI9ZgTvKkqxO+E3+QQ3w3keKsrc57cudlKvOeSA8qJt1ZoHsyFOmaMcmByiv3/v2UiPiLNTG1xGP92y/iHz/JgQleKRjbWBMTPftq/3LerSZwX6df3DcmgfXtWORZ3W22gGfZ+S0uEwvuaIpt9bXJ70jw93Mm0bPMb0v6ncFzCBoU2Dfu5ZpI+6lXfUMRULU1qcfjJJJ9o4k9HhehJT4djm/Z5rjWLse1HI5vqcKHvQQq+7ffqEA+K2Q8IPNqjo7/C0vQBbQHLeR/9TyDNqA16AQ6gI5kfkXGHNm5AgAA//8=
+				(format 'zlib')
+				'eJzsl00KwjAQhdscq6JewLV/2I1aulAQNyr1WioKuhB0oeCdnMGEDmpUbEdikw8e1aSEeTNJyvie5/kZ1RUeGz2RPb481YB4+ox+I1i7Lj1PmL2/Wx/nm4xeqWfMqfJO43oWI9ZgTvKkqxO+E3+QQ3w3keKsrc57cudlKvOeSA8qJt1ZoHsyFOmaMcmByiv3/v2UiPiLNTG1xGP92y/iHz/JgQleKRjbWBMTPftq/3LerSZwX6df3DcmgfXtWORZ3W22gGfZ+S0uEwvuaIpt9bXJ70jw93Mm0bPMb0v6ncFzCBoU2Dfu5ZpI+6lXfUMRULU1qcfjJJJ9o4k9HhehJT4djm/Z5rjWLse1HI5vqcKHvQQq+7ffqEA+K2Q8IPNqjo7/C0vQBbQHLeR/9TyDNqA16AQ6gI5kfkXGHNm5AgAA//8='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJxiYBgFo2AUjIJRMApGLgAAAAD//w==
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo2AUjIJRMApGLgAAAAD//w=='
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 	)
 )

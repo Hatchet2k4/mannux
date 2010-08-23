@@ -16,21 +16,37 @@ from engine.const import Dir
 
 
 
-#map scripts
-toDockControl = engine.mapscript.Warp(17, 7, 'dockingcontrolroom.ika-map', Dir.LEFT)
 
 
+def AutoExec():
 
-toAirlock2 = engine.mapscript.Warp(17, 10, 'airlock1.ika-map', Dir.LEFT) #must rename later...
+    e.background_things.append(Background(ika.Image('images/leftdoor1.png'),
+                                              208+154, 128+61))
+    e.background_things.append(Background(ika.Image('images/rightdoor1.png'),
+                                          208+262, 128+61))    
+    e.background_things.append(Background(ika.Image('images/bg_docking_bay.png'),
+                                          208, 128))
+    e.background_things.append(Background(ika.Image('images/cargship.png'),
+                                          380, 260))    
 
 
-toAirlock1 = engine.mapscript.Warp(17, 10, 'airlock2.ika-map', Dir.RIGHT)
+    e.foreground_things.append(Background(ika.Image('images/elevator.png'),
+                                          336, 384))
 
 
+    e.foreground_things.append(Fog())
+    
+    e.AddEntity(Door(2 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
+                         'door_right'))
+    e.AddEntity(Door(57 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
+                         'door_left', locked=False))    
+
+toAirlock2 = engine.mapscript.Warp(17, 10, 'airlock2.ika-map', Dir.LEFT) 
+
+toAirlock3 = engine.mapscript.Warp(1, 10, 'airlock3.ika-map', Dir.RIGHT)
 
 
-
-secretArea = engine.mapscript.LayerFader('Secret Overlay', 255, 0, 25)
+#secretArea = engine.mapscript.LayerFader('Secret Overlay', 255, 0, 25)
 
 
 

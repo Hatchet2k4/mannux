@@ -15,10 +15,10 @@ import fonts
 
 slopeTiles = {Dir.LEFT:  [347, 623, 746, 885, 876],  # /
               Dir.RIGHT: [346, 622, 749, 889, 878]}  # \
-halfSlopeTiles = {(Dir.LEFT,  'bottom'): [464],
-                  (Dir.LEFT,  'top'):    [465],
-                  (Dir.RIGHT, 'bottom'): [468],
-                  (Dir.RIGHT, 'top'):    [469]}
+halfSlopeTiles = {(Dir.LEFT,  'top'):    [483, 475],   # /
+                  (Dir.LEFT,  'bottom'): [482, 474],   # /
+                  (Dir.RIGHT, 'top'):    [480, 478],   # \
+                  (Dir.RIGHT, 'bottom'): [481, 479]}   # \
 ladderTiles = [701]
 
 
@@ -110,6 +110,11 @@ class Tabby(Entity):
         
     def draw(self):
         #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin), "x:", str(self.x)
+        
+        #tx = x / ika.Map.tilewidth
+        #ty = y / ika.Map.tileheight
+        #tile = ika.Map.GetTile(tx, ty, self.layer)
+        
         pass
         #self.testimg.Blit(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin)
         
@@ -975,34 +980,38 @@ class Tabby(Entity):
                 else:
                     self.y = a - b - self.sprite.hotheight - 1
             return True
-        elif tile in halfSlopeTiles[(Dir.LEFT, 'bottom')]:  # /
-            if reposition:
-                if self.vx < 0 and self.vy == 0:
-                    self.y = a - b / 2 - self.sprite.hotheight
-                else:
-                    self.y = a - b / 2 - self.sprite.hotheight - 1
-            return True
-        elif tile in halfSlopeTiles[(Dir.LEFT, 'top')]:  # /
-            if reposition:
-                if self.vx < 0 and self.vy == 0:
-                    self.y = a - b / 2 - self.sprite.hotheight - ika.Map.tileheight / 2
-                else:
-                    self.y = a - b / 2 - self.sprite.hotheight - ika.Map.tileheight / 2 - 1
-            return True
+
+
         elif tile in halfSlopeTiles[(Dir.RIGHT, 'bottom')]:  # \
             if reposition:
                 if self.vx > 0 and self.vy == 0:
-                    self.y = a + b / 2 - self.sprite.hotheight - ika.Map.tileheight + 1
+                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight + 1
                 else:
-                    self.y = a + b / 2 - self.sprite.hotheight - ika.Map.tileheight
+                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight
             return True
         elif tile in halfSlopeTiles[(Dir.RIGHT, 'top')]:  # \
             if reposition:
                 if self.vx > 0 and self.vy == 0:
-                    self.y = a + b / 2 - self.sprite.hotheight - ika.Map.tileheight / 2 + 1
+                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight / 2 + 1
                 else:
-                    self.y = a + b / 2 - self.sprite.hotheight - ika.Map.tileheight / 2
+                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight / 2 + 1
             return True
+
+        elif tile in halfSlopeTiles[(Dir.LEFT, 'bottom')]:  # /
+            if reposition:
+                if self.vx < 0 and self.vy == 0:
+                    self.y = a - (b / 2) - self.sprite.hotheight
+                else:
+                    self.y = a - (b / 2) - self.sprite.hotheight - 1
+            return True
+        elif tile in halfSlopeTiles[(Dir.LEFT, 'top')]:  # /
+            if reposition:
+                if self.vx < 0 and self.vy == 0:
+                    self.y = a - (b / 2) - self.sprite.hotheight - ika.Map.tileheight / 2 - 1
+                else:
+                    self.y = a - (b / 2) - self.sprite.hotheight - ika.Map.tileheight / 2 - 1
+            return True
+
         return False
 
     def CheckSlopes(self):

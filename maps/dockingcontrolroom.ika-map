@@ -1,222 +1,212 @@
 (ika-map 
-	(version 1.1)
+	(version '1.2')
 	(information 
-		(title )
+		(title '')
 		(meta 
-                        (name Docking Control Room)
-                        (color Blue)
-			(mapx 12)
-			(mapy 5)
+			(color 'Blue')
+			(mapx '12')
+			(mapy '5')
+			(name 'Docking Control Room')
 		)
 	)
 	(header 
 		(dimensions 
-			(width 320)
-			(height 240)
+			(width '320')
+			(height '240')
 		)
-		(tileset Mannux.vsp)
+		(tileset 'Mannux.vsp')
 	)
-	(waypoints 
-	)
+	(waypoints )
 	(zones 
 		(zone 
-			(label toBay1)
-			(script toBay1)
+			(label 'toBay1')
+			(script 'toBay1')
 		)
 		(zone 
-			(label toDock1)
-			(script toDock1)
+			(label 'toDock1')
+			(script 'toDock1')
 		)
 	)
 	(layers 
 		(layer 
-			(label Background)
-			(type tile)
+			(label 'Background')
+			(type 'tile')
 			(dimensions 
-				(width 20)
-				(height 15)
+				(width '20')
+				(height '15')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJxiYBgF1AI2QLyDCYEZcahjhGKYGmSMDNygaq4RMA8kt5MJ1e6bUBoZBEDVXgfiXVjkkc07AsRnoGp2I5mPDKKw2I3LvzuYsGNkkIJkPzHhhw0jgzwc+kfB0AUAAAAA//8=
+				(format 'zlib')
+				'eJxiYBgF1AI2QLyDCYEZcahjhGKYGmSMDNygaq4RMA8kt5MJ1e6bUBoZBEDVXgfiXVjkkc07AsRnoGp2I5mPDKKw2I3LvzuYsGNkkIJkPzHhhw0jgzwc+kfB0AUAAAAA//8='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJxiYBgFxAIAAAAA//8=
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 		(layer 
-			(label Background2)
-			(type tile)
+			(label 'Background2')
+			(type 'tile')
 			(dimensions 
-				(width 20)
-				(height 15)
+				(width '20')
+				(height '15')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJxiYBgF1ASMUBzFxMBQxYRbXSpQLh2qJhqPOphZKXjUwEAhE8Lsahz2g8yLAIrHAHEaDjNzgOJ5SHK41MHMqwDKFzBB9OECIDW5UDUFaOajmwfDo2AUoAMAAAAA//8=
+				(format 'zlib')
+				'eJxiYBgF1ASMUBzFxMBQxYRbXSpQLh2qJhqPOphZKXjUwEAhE8Lsahz2g8yLAIrHAHEaDjNzgOJ5SHK41MHMqwDKFzBB9OECIDW5UDUFaOajmwfDo2AUoAMAAAAA//8='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJxiYBgFxAIAAAAA//8=
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 		(layer 
-			(label Walls)
-			(type tile)
+			(label 'Walls')
+			(type 'tile')
 			(dimensions 
-				(width 20)
-				(height 15)
+				(width '20')
+				(height '15')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJys08lKA0EQxvHq93KLu8Zd1CRqjPu+7+Ddh9DH0EQUNAE9KDo5Oc/jv7Gb6RSDB3XgR00P39QEUmVEJELdiQJp5zBXT8na+o4ybnAb1Boq6vyGO7y6c9lVn7H5GFU84imoz3hJOX/g071bdf105sKIXOPc1b/eX8JezWhFGzJoRwc60YUmlWlReX+5dtKDPvQjiwEMYgjD6FaZXpXX/UaDZxOYxBRyyGNEZcZUXvebxiyKmEMJ81jAIgoqM6Pyut8yVrGGdWxgE1vYxpLKrKj8lfmWQwG7PNvHAQ5xhGOc4BQ70pjZU/maM06vPM5M8o3f3NuZtPMZ7oefSb0v4TzbfMX9ljjIRJLMuZ/xWBpn3lf77B4PkuyF30mfsf+D3uu0Pf9p/8N3zD/7AgAA//8=
+				(format 'zlib')
+				'eJys08dOw0AQxvH1e9F7rwKS0HvvXeLOQ8BjQIJAgkSCAwicE34e/itm5M3I4gCM9NN4V5+dHGYi51yMqogDWecwV83I+v6OIm5wG/QKSub8hju8yrkoXTM+n6CMRzwF/RkvGecPfMq7ZfmezVxEzl3jXPpfny/hqx6NaEIzWtCKNrSjzmQaTF5rUHonutGDXvShHwOS6TCZLpPXyksfDu7GMI4J5CQzZDIjJq+1KH0S05jBLOYwjwXJFExmyuS1tqUvYxVrWMcGNrElmSWTWTH5q+hbDgXscrePAxziCMc4wSl2XG1mz+QrYpRv5XEWpb/xm2c/k34+w/3QmbT7Es6zz5fkvyRBJnbpnOuMJ6525rX7u3s8uHQvdCc148fY7nXWnv+0/+E70T/7AgAA//8='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJxiYKAEMGIDFJlIpK1EOYba9gIAAAD//w==
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYKAEMGIDFJlIpK1EOYba9gIAAAD//w=='
 			)
-			(entities 
-			)
+			(entities )
 			(zones 
 				(zone 
-					(label toDock1)
-					(x 304)
-					(y 64)
-					(width 16)
-					(height 96)
+					(label 'toDock1')
+					(x '304')
+					(y '64')
+					(width '16')
+					(height '96')
 				)
 				(zone 
-					(label toBay1)
-					(x 0)
-					(y 80)
-					(width 16)
-					(height 64)
+					(label 'toBay1')
+					(x '0')
+					(y '80')
+					(width '16')
+					(height '64')
 				)
 			)
 		)
 		(layer 
-			(label Doors)
-			(type tile)
+			(label 'Doors')
+			(type 'tile')
 			(dimensions 
-				(width 20)
-				(height 15)
+				(width '20')
+				(height '15')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJxiYBgFgwmEMTIwhDNSz7wEoFmJVDQvC2hWNhXNKwGaVUpF80bB8AYAAAAA//8=
+				(format 'zlib')
+				'eJxiYBgFgwmEMTIwhDNSz7wEoFmJVDQvC2hWNhXNKwGaVUpF80bB8AYAAAAA//8='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJxiYBgFxAIAAAAA//8=
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 		(layer 
-			(label Foreground)
-			(type tile)
+			(label 'Foreground')
+			(type 'tile')
 			(dimensions 
-				(width 20)
-				(height 15)
+				(width '20')
+				(height '15')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJxiYBgFo4B0kMzIwJDCSD3zcoFm5QFxEpXMjACaEwXEOVR0YyQVzRoF5AEAAAAA//8=
+				(format 'zlib')
+				'eJxiYBgFo4B0kMzIwJDCSD3zcoFm5QFxEpXMjACaEwXEOVR0YyQVzRoF5AEAAAAA//8='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJxiYBgFxAIAAAAA//8=
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 	)
 )

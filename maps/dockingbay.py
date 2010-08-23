@@ -15,7 +15,7 @@ from engine.turret import Turret
 from engine.const import Dir
 from engine.platform import Platform
 from engine.box import Box
-
+from engine.healthup import Healthup
 
 def landing_animation():
     xwin = 232
@@ -127,7 +127,7 @@ def landing_animation():
         ika.Map.ywin = int(ywin)
         for thing in bg:
             thing.draw()
-        ika.Map.Render()
+        ika.Map.Render(*range(ika.Map.layercount))
         for thing in fg:
             thing.draw()
         #font.Print(0, 0, str(elapsed / 100.0))
@@ -153,12 +153,22 @@ def landing_animation():
 
 
 def AutoExec():
+
     if not e.GetFlag('shiplanded'):
         landing_animation()
         e.SetFlag('shiplanded', True)
+
+    if not 'DockingBayHealthUp' in e.flags:
+        e.AddEntity(Healthup(56 * ika.Map.tilewidth,
+                                 8 * ika.Map.tileheight,
+                                 flag='DockingBayHealthUp'))
         
         
     e.camera.reset_borders()
+
+    e.background_things.append(Background(ika.Image('images/bg_planetstars1.png'),
+                                          364, 128 + 56))
+    
     e.background_things.append(Background(ika.Image('images/bg_planetstars2.png'),
                                           364, 128 + 56))
     e.background_things.append(Background(ika.Image('images/bg_docking_bay.png'),
@@ -185,13 +195,13 @@ def AutoExec():
     #e.AddEntity(Zombie(40 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     #e.AddEntity(Zombie(30 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     e.AddEntity(DockWindow(9 * ika.Map.tilewidth, 4 * ika.Map.tileheight))
-    e.AddEntity(Turret(9 * ika.Map.tilewidth, 15 * ika.Map.tileheight,
-                           Dir.LEFT))
+    #e.AddEntity(Turret(9 * ika.Map.tilewidth, 15 * ika.Map.tileheight,
+    #                       Dir.LEFT))
     #entities.append(Turret(9 * ika.Map.tilewidth, 12 * ika.Map.tileheight,
     #                       Dir.LEFT))
 
     e.AddEntity(Platform(20 * ika.Map.tilewidth, 20 * ika.Map.tileheight))
-    e.AddEntity(Box(14 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
+    #e.AddEntity(Box(14 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     
     
     secretArea.activated = False
@@ -199,8 +209,8 @@ def AutoExec():
     #ika.Map.SetLayerTint(1, ika.RGB(255,100, 100, 127))
 
 #map scripts
-toDockControl = engine.mapscript.Warp(17, 7, 'dockingcontrolroom.ika-map', Dir.LEFT)
-toAirlock1 = engine.mapscript.Warp(17, 10, 'airlock1.ika-map', Dir.LEFT)
+toDockControl = engine.mapscript.Warp(18, 7, 'dockingcontrolroom.ika-map', Dir.LEFT)
+toAirlock1 = engine.mapscript.Warp(18, 10, 'airlock1.ika-map', Dir.LEFT)
 toAirlock2 = engine.mapscript.Warp(1, 10, 'airlock2.ika-map', Dir.RIGHT)
 secretArea = engine.mapscript.LayerFader('Secret Overlay', 255, 0, 25)
 

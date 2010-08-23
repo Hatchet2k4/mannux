@@ -4,9 +4,9 @@
 		(title '')
 		(meta 
 			(color 'Blue')
-			(mapx '13')
+			(mapx '17')
 			(mapy '5')
-			(name 'Docking Bay')
+			(name 'Docking Bay 2')
 		)
 	)
 	(header 
@@ -19,28 +19,20 @@
 	(waypoints )
 	(zones 
 		(zone 
+			(label '')
+			(script 'toDockControl')
+		)
+		(zone 
 			(label 'Default Zone')
 			(script '')
-		)
-		(zone 
-			(label 'leaveSecretArea')
-			(script 'leaveSecretArea')
-		)
-		(zone 
-			(label 'secretArea')
-			(script 'secretArea')
-		)
-		(zone 
-			(label 'toAirlock1')
-			(script 'toAirlock1')
 		)
 		(zone 
 			(label 'toAirlock2')
 			(script 'toAirlock2')
 		)
 		(zone 
-			(label 'toDockControl')
-			(script 'toDockControl')
+			(label 'toAirlock3')
+			(script 'toAirlock3')
 		)
 	)
 	(layers 
@@ -100,38 +92,24 @@
 			)
 			(data 
 				(format 'zlib')
-				'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'
+				'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'
 			)
 			(obstructions 
 				(style 'tile')
 				(format 'zlib')
-				'eJzklFEOwCAIQ+39L71sWRYBI7Ys/sgXEZ4VCLZWNxAW2IreD28nNCv0caw+Iwy8HPJqDJse7GGZXrlcrs0mm51Q32N6uB+hbNPLaIv4UOoO35y8DpBlw6SUD9bdM4gjZlnVNTZGsc4a35eSsbPSZ2xvFwAAAP//'
+				'eJzs1FEOABEMBFC9/6VFiNBpMOOT/urbWWo3pfsyosASMZAnvOJN7rfnFg/cTSy4Co/PiLvPMnXdHJ36WToInnaj0KY0Wp1IC1RjYVLKD9Y9J1g37JpTzyyubr5lC/uCrezsausrO1YGAAD//w=='
 			)
 			(entities )
 			(zones 
 				(zone 
-					(label 'toAirlock1')
+					(label 'toAirlock2')
 					(x '0')
 					(y '384')
 					(width '16')
 					(height '64')
 				)
 				(zone 
-					(label 'toDockControl')
-					(x '0')
-					(y '64')
-					(width '16')
-					(height '96')
-				)
-				(zone 
-					(label 'secretArea')
-					(x '818')
-					(y '80')
-					(width '111')
-					(height '97')
-				)
-				(zone 
-					(label 'toAirlock2')
+					(label 'toAirlock3')
 					(x '943')
 					(y '384')
 					(width '17')
@@ -195,45 +173,12 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzslDkOwkAMRSc5E8tV2KqwNWHroIUWSkLL0rHcEVNYcmGYyShoMpaf9IqvRIpfE2MURQ438ErktiQ24JrIbUnswC2R25I4gHsityVxAgsityVxAc9EbkviAd6J3JbEC3wSua0oiqLUi0ZqTDMNfYU7Lbi17XlvbK2IT3OsrUiZ5thbEZdmKa3Ir2ZprQjX7NI6ToyZJP+76xtTyzeH8HxkeafsP+zTugCXAXpXlm/O4PncodkVbO0HaLVxhJs6YK+iZto6qGEv0q2gOYukFaHNmce9eUStCDbnnjfH1KrwvAEAAP//'
+				'eJzs1EsOgkAQhOGGM/m4ioorfLABxMN4X9tFJSzAaSaQsbG+ZFZDMvVvECEiIiIiIiL6b5tcZJunXmG30637yL3eWiGm2WsrTGn23gqW5rW0wrfmtbXCULOl9ZaJ3LPldo2pAm9e9P4a+GbqP+zT+tDTJeh9Bt5s9L41NFuhtUjQGvLSTQc9p5ma+63nH+yF4wzNpZNW6DeXEXtrR62A5jpys6dWGvYGAAD//w=='
 			)
 			(obstructions 
 				(style 'tile')
 				(format 'zlib')
 				'eJxiYBgFo2AUjIJRMApGLgAAAAD//w=='
-			)
-			(entities )
-			(zones )
-		)
-		(layer 
-			(label 'Secret Overlay')
-			(type 'tile')
-			(dimensions 
-				(width '16')
-				(height '16')
-			)
-			(position 
-				(x '816')
-				(y '32')
-			)
-			(parallax 
-				(mulx '1000')
-				(muly '1000')
-				(divx '1000')
-				(divy '1000')
-			)
-			(wrap 
-				(x 'false')
-				(y 'false')
-			)
-			(data 
-				(format 'zlib')
-				'eJyqY2Rg2MLAwLAViM8DMSMWjA/UARXsA9L7gfgcFJ9HownpPwikr6PpRzaDkH5k96PbTYz9+NxPqv3kuB/ZfmS9xOrHFn6khD96+FHifnQ3kBL/2OKOlPAHqack/ZKT/oc6AAAAAP//'
-			)
-			(obstructions 
-				(style 'tile')
-				(format 'zlib')
-				'eJxiYBjZAAAAAP//'
 			)
 			(entities )
 			(zones )

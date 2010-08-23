@@ -307,7 +307,10 @@ class Engine(object):
         self.player.y = y
         ika.Map.Switch(m)
         self.automap.update_room()
+        self.camera.reset_borders()
         self.camera.update()
+        
+        
         self.player.layer = ika.Map.FindLayerByName('Walls')
         self.player.sprite.layer = self.player.layer
         

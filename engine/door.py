@@ -16,7 +16,7 @@ class Door(Entity):
                                               '%s/%s.ika-sprite' %
                                               (config.sprite_path, s)))
         if layer is None:
-            layer = ika.Map.FindLayerByName('Walls')
+            layer = ika.Map.FindLayerByName('Doors')
         self.anim.kill = True
         self.locked = locked
         self.layer = layer

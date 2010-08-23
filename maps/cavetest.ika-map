@@ -10,7 +10,7 @@
 			(width 320)
 			(height 720)
 		)
-		(tileset C:\Projects\Mannux\Test\Mannux\Mannux.vsp)
+		(tileset Mannux.vsp)
 	)
 	(waypoints 
 	)
