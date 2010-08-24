@@ -19,12 +19,12 @@
 	(waypoints )
 	(zones 
 		(zone 
-			(label 'toBay3')
-			(script 'toBay3')
-		)
-		(zone 
 			(label 'toDock2')
 			(script 'toDock2')
+		)
+		(zone 
+			(label 'toSupplyBay')
+			(script 'toSupplyBay')
 		)
 	)
 	(layers 
@@ -134,7 +134,7 @@
 					(height '64')
 				)
 				(zone 
-					(label 'toBay3')
+					(label 'toSupplyBay')
 					(x '304')
 					(y '144')
 					(width '16')

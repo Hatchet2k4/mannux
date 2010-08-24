@@ -1,0 +1,246 @@
+(ika-map 
+	(version '1.2')
+	(information 
+		(title '')
+		(meta 
+			(color 'Blue')
+			(mapx '21')
+			(mapy '5')
+			(name 'Supply Bay')
+		)
+	)
+	(header 
+		(dimensions 
+			(width '640')
+			(height '480')
+		)
+		(tileset 'Mannux.vsp')
+	)
+	(waypoints )
+	(zones 
+		(zone 
+			(label '')
+			(script 'toElevator1')
+		)
+		(zone 
+			(label 'Default Zone')
+			(script '')
+		)
+		(zone 
+			(label 'toAirlock3')
+			(script 'toAirlock3')
+		)
+		(zone 
+			(label '')
+			(script '')
+		)
+		(zone 
+			(label 'toDockControl2')
+			(script 'toDockControl2')
+		)
+		(zone 
+			(label 'toElevator1')
+			(script 'toElevator1')
+		)
+		(zone 
+			(label 'toSecretDuct')
+			(script 'toSecretDuct')
+		)
+	)
+	(layers 
+		(layer 
+			(label 'Background')
+			(type 'tile')
+			(dimensions 
+				(width '40')
+				(height '30')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzslktrAkEQhBd3vCXxEs0L4jNgnoImUa96jf//71jLpmEpaGaT6WYvU/DRhzkMXdR0T1FkZWVldasS9H5r2cH9AfQb9RbcgXvwAK7BEIzAjcG59Cr3fYSaFVXRFRg06gzMwQI8gUcwBhMwNTi/AJeN+3ahZk9V8+8NvFd9gRVYgmfwAl4Nztm/Q6g5UtX8+wbbqi+wB2uwAZ/gy+Cc/fsJNSeq/1VqHr2VmkdvpebRW6l5/Ks4L/Ku5J15z7+YOC/yruSdec+/mDgv7J/3/IuJ88L+ec+/mCQvvEekT+t9zP5J1eaj5IX3iPRpvY/ZP6nafOQ+2D/rfaz5p+WR+2D/rPex5p+Wx5h/3vNP+3+29c97/mn/z7b+ec8/7f/Z1j/v+af9P7PSdAYAAP//'
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo2AUjIKhAQAAAAD//w=='
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'Background 2')
+			(type 'tile')
+			(dimensions 
+				(width '40')
+				(height '30')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzs1rdOw1AUgOHra2BAaSxpLGksJCEMoQ70gTbRJtpEmwjwIDwQMALieUCiKeFHSmQRuIAl27nDPdI3WD62/zgZIoQZM2bMdHbqlhANCCmEJTvbEuL5YUQQlc6xai+GPsXerQ+fJc49E0giJZ1j1V4a/Yq9ax/6Mtwzixzy0jlW7RUwoNhz2/fI/lPrGvvnnUHOF1FCWTrHqr0hVBR7bvvq7Dea1/Qq+rwcP75fL8f0fZ0Mv4kscsij8Mdv5L99l5b7ljvu/YCbNkWaSijb38+1u/rl3Oe975u8mipNIxjFGMY9en9ezRQ905jBLOY061ukZwnLWMGqZn1r9KxjA5vY0qxvm54d7GIP+5r1HdBziCMc40SzvlN6ajjDOS4062vNM899wSve8K7oCLqvwvsahoSNLnSjR/Eeg+6boGMSIYQRQRQxTfrm6VhAHAkkkUI6gP9qZtzPBwAAAP//'
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo2AUjIKhAQAAAAD//w=='
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'Walls')
+			(type 'tile')
+			(dimensions 
+				(width '40')
+				(height '30')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzslstOFEEUhk8PC0XCAoWVio8AKC6AJfpWjgtdeAESSZB7uEPiBXSh0xkh2hM1URRMQGUrPANswb9CncxP9fTMkNAUC07y5XR1nar6u7r69BE5t3PzZx/A8hn278B7cC8QGffIs6CopQC+gK/gI/gEsugfyJTmORgEQ+SHE2JLMQJGwRj5cSfmflDUotq2pKj/EZjIlGYSTIFp8jMJsaWYBXNgnvyC7dsFe6Ae67eCNnAT3LJUYy8w/iV4Rf51ptoTLrKI2CXwhvxbO34f/gA8xPUDiXufdqFG5CKoBX1o90rc+7QG6LoMroAhtAcl7n3aVei6Bq6DabSnJO7HgnTod872P5yx7QR2Msn9+i1r7jHf9G9q56QYozlzA+TBJt1bs7E6LuvoM/ljg/rV8xzq10Fg0Xuae1btGG1HpG+N4rfoWvsjOZpPXX0F6ldfsGv+sHOGjr51IpT4/6QHPLW+F/SBb3b/voMnTn8P5VO2xxX+HQbz3n46+gJHa9Lzp2lmbw2fcf23gj59Zz70/ZHDM1ROn3nHOU/69ByXO39GW+RJn5591hda+BtsP8a/9SQ16tk3e/TL6uM8F3rSxmY0RHKox+QdznO+tamZPB7J0frPcPuM6GNNp26oBYKa9KZvwdytoI3W4Dqukl1CTF2K+jowdyfoojW4jitrdu8aQVNKGrsx7x1wl+bnOs61FTrTunfN4EaV+tKq/04KzX/639Vah2sZ7eM8buLyEq8NdYzeDyVeh+nYvF2L51+l+2au/wAAAP//'
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJzck7ESACAIQuX/f7op87wElpZcGnySkUb8ElCxuXLgptPUuLbuym3e5ww2ublt5x2Iu0cux+7t9UT6FceMLDnu9xks4RRgYflvCpMQzZZak+PjPnBqKd092rEAAAD//w=='
+			)
+			(entities )
+			(zones 
+				(zone 
+					(label 'toAirlock3')
+					(x '0')
+					(y '384')
+					(width '16')
+					(height '64')
+				)
+				(zone 
+					(label 'toElevator1')
+					(x '624')
+					(y '384')
+					(width '16')
+					(height '64')
+				)
+				(zone 
+					(label 'toDockControl2')
+					(x '0')
+					(y '128')
+					(width '16')
+					(height '64')
+				)
+				(zone 
+					(label 'toSecretDuct')
+					(x '157')
+					(y '116')
+					(width '69')
+					(height '10')
+				)
+			)
+		)
+		(layer 
+			(label 'Doors')
+			(type 'tile')
+			(dimensions 
+				(width '40')
+				(height '30')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzs1rcVgEAQxNDdHjEZcBkmw/TPNEB6DA/9ChQqAgD+qcuIPt+ueDaprRj3rWrbjPtOtV3GfQAAoD7X/2vU1Kbv/w1qGtP3/2Y1Len7f7uaDsOur7kBAAD//w=='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFlAHGgXbAKBgFIwYAAAAA//8='
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'Foreground')
+			(type 'tile')
+			(dimensions 
+				(width '40')
+				(height '30')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzs0bENwCAMRFGLmRLYPLSMljRUFDYFXIT+W+C+bDMAAACc6FEHOJo6wFHVAY6T/nslszutKhnlb6sE93a3dZFGVVs3c0eV/PM+AHEvAAAA//8='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo2AUjIKhAQAAAAD//w=='
+			)
+			(entities )
+			(zones )
+		)
+	)
+)

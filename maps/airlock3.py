@@ -20,5 +20,5 @@ def AutoExec():
     #                       9 * ika.Map.tileheight))
 
 
-toDock2 = engine.mapscript.Warp(58, 25, 'dockingbay2.ika-map', Dir.RIGHT)
-toBay3 = engine.mapscript.Warp(1, 25, 'cargobay3.ika-map', Dir.LEFT)
+toDock2 = engine.mapscript.Warp(58, 25, 'dockingbay2.ika-map')
+toSupplyBay = engine.mapscript.Warp(1, 25, 'supplybay1.ika-map')

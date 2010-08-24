@@ -31,6 +31,10 @@ def landing_animation():
     starttime = time
     sh = Ship()
     
+    
+    #print "Tile: "+str(ika.Map.GetTile(13,23, 1))
+    
+    
     elapsed = 0
     while not done:
         t = ika.GetTime()
