@@ -495,9 +495,13 @@ class Engine(object):
         if heal:
             self.player.dhp = self.player.maxhp
             self.player.dmp = self.player.maxmp
-        selected = 0
+        selected = 0      
+        
         while not controls.confirm.Pressed():
+        
+            self.player.update()
             self.draw()
+            
             Window(150, 0).draw(52, 60)
             print >> fonts.one(68, 80), 'Do you want to save?'
 
@@ -507,9 +511,6 @@ class Engine(object):
                 f = [fonts.five, fonts.three][i == selected]
                 print >> f(x, y), option
                 x += 100
-
-
-
 
 
             self.hud.draw()
@@ -527,8 +528,22 @@ class Engine(object):
                 selected += 1
                 if selected > 1:
                     selected = 0
+                    
+        #for c in controls.control_list:
+        #    c.Release()
+        
+        
         if selected == 0:
             self.Save()
+            return True
+
+        return False
+
+
+        
+
+
+
 
     #saving incomplete, does not save map data
     def Save(self, filename='%s/savegame.save' % config.save_path):

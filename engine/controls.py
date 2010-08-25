@@ -173,10 +173,16 @@ else:
     right = Button("key:RIGHT")
     attack = Button("key:X")
     jump = Button("key:Z")
-    confirm = Button("key:X")
+    confirm = attack
+    
+    #confirm = Button("key:X")
     cancel =Button("key:ESCAPE")
     aim_up = Button("key:D")
     aim_down = Button("key:C")
     pause = Button("key:ESCAPE")
+    
+    
+    
+control_list = [up, down, left, right, attack, jump, confirm, cancel, aim_up, aim_down, pause]    
 
 

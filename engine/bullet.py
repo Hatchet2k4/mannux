@@ -51,10 +51,16 @@ class Bullet(Entity):
             for dx, dy in [(-8, -8), (8, -8), (8, 8), (-8, 8)]:
                x = int(self.x + self.vx + dx + 4) / 16
                y = int(self.y + self.vy + dy + 4) / 16
-               if ika.Map.GetObs(x, y, ika.Map.FindLayerByName('Doors')):
-                  ika.Map.SetObs(x, y, ika.Map.FindLayerByName('Doors'), 0)
-                  ika.Map.SetObs(x, y, ika.Map.FindLayerByName('Walls'), 0)
-                  ika.Map.SetTile(x, y, ika.Map.FindLayerByName('Walls'), 0)
+               
+               wall_layer = ika.Map.FindLayerByName('Walls')
+               door_layer = ika.Map.FindLayerByName('Doors')
+               
+               if wall_layer and door_layer and ika.Map.GetObs(x, y, door_layer):
+                  
+                  
+                  ika.Map.SetObs(x, y, door_layer, 0) #hack right now so that obstructions on door layer = destructible block.
+                  ika.Map.SetObs(x, y, wall_layer, 0)
+                  ika.Map.SetTile(x, y, wall_layer, 0)
                   engine.AddEntity(Block(x * 16, y * 16))
             return
         self.ticks += 1

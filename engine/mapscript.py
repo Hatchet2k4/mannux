@@ -2,7 +2,8 @@
 
 import ika
 from engine import engine
-
+from riptiles import rip_tiles
+import config
 
 def Warp(x, y, map, direction=0, fadein=True, fadeout=True, scroll=False):
     return lambda: engine.map_switch(x * ika.Map.tilewidth,
@@ -59,5 +60,64 @@ class FaderThing(object):
             engine.foreground_things.remove(self) #may need to have an engine call for this
 
 
-def Save():
-    return lambda: engine.SavePrompt()
+def Save(x=0,y=0):
+    return lambda: _Save(x,y)   
+
+def _Save(x, y, reposition=True):
+
+    engine.player.state = engine.player.IdleState
+    
+    if reposition: 
+        engine.player.x = x + 9
+        engine.player.y = y
+        engine.camera.update()
+        
+    
+    saved = engine.SavePrompt()
+    if saved:
+        saveflash = rip_tiles('%s/save_flash.png' %    
+                                    config.image_path, 32, 48, 15, 15) 
+        savelight = rip_tiles('%s/savelight.png' %    
+                                    config.image_path, 30, 22, 15, 15) 
+        time = ika.GetTime()
+        ticks = 0
+        while ticks < 165:
+            t = ika.GetTime()
+            while t > time:                         
+                ticks+=1
+                time +=1
+                
+            time = ika.GetTime()                
+            engine.draw()    
+            engine.hud.draw()
+
+            saveflash[ticks/12].TintBlit(x - ika.Map.xwin, y - ika.Map.ywin, ika.RGB(255,255,255,128))
+            
+            savelight[ticks/12].TintBlit(x - ika.Map.xwin+1, y - ika.Map.ywin+26, ika.RGB(255,255,255,128))
+            
+            
+            ika.Video.ShowPage()
+            ika.Input.Update()
+        
+    
+    
+    engine.player.state = engine.player.StandState
+
+
+def ShipSave():
+    return lambda: _ShipSave()
+
+def _ShipSave():
+    saved = engine.SavePrompt()
+    #anim stuff here
+    
+    
+    
+    
+
+    
+    
+    
+
+
+

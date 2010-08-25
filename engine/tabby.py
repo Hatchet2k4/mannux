@@ -15,10 +15,10 @@ import fonts
 
 slopeTiles = {Dir.LEFT:  [347, 623, 746, 885, 876],  # /
               Dir.RIGHT: [346, 622, 749, 889, 878]}  # \
-halfSlopeTiles = {(Dir.LEFT,  'top'):    [483, 475],   # /
-                  (Dir.LEFT,  'bottom'): [482, 474],   # /
-                  (Dir.RIGHT, 'top'):    [480, 478],   # \
-                  (Dir.RIGHT, 'bottom'): [481, 479]}   # \
+halfSlopeTiles = {(Dir.LEFT,  'top'):    [465, 473],   # /
+                  (Dir.LEFT,  'bottom'): [464, 472],   # /
+                  (Dir.RIGHT, 'top'):    [468, 470],   # \
+                  (Dir.RIGHT, 'bottom'): [469, 471]}   # \
 ladderTiles = [701]
 
 
@@ -221,6 +221,10 @@ class Tabby(Entity):
         while True:
             if self.anim.kill:
                 self.Animate(('stand', self.direction))
+                
+            
+            
+            
             if controls.up.Position() == 0:
                 upPressed = False
             if self.anim.loop:
@@ -952,6 +956,19 @@ class Tabby(Entity):
             yield None
         self.state = self.StandState
         yield None
+        
+    def IdleState(self, strand = ('stand', 'face'), delay=1 ):
+        self.hurtable = False
+        self.Animate(strand, delay)
+
+        
+        self.vx = 0
+        self.vy = 0
+
+        while True:
+            yield None
+        self.state = self.StandState
+        yield None        
 
     def CheckLadderTile(self, x, y):
         tx = x / ika.Map.tilewidth
@@ -985,16 +1002,16 @@ class Tabby(Entity):
         elif tile in halfSlopeTiles[(Dir.RIGHT, 'bottom')]:  # \
             if reposition:
                 if self.vx > 0 and self.vy == 0:
-                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight + 1
+                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight + ika.Map.tileheight / 2
                 else:
-                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight
+                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight + ika.Map.tileheight / 2 - 1
             return True
         elif tile in halfSlopeTiles[(Dir.RIGHT, 'top')]:  # \
             if reposition:
                 if self.vx > 0 and self.vy == 0:
-                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight / 2 + 1
+                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight + 1
                 else:
-                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight / 2 + 1
+                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight 
             return True
 
         elif tile in halfSlopeTiles[(Dir.LEFT, 'bottom')]:  # /
@@ -1007,7 +1024,7 @@ class Tabby(Entity):
         elif tile in halfSlopeTiles[(Dir.LEFT, 'top')]:  # /
             if reposition:
                 if self.vx < 0 and self.vy == 0:
-                    self.y = a - (b / 2) - self.sprite.hotheight - ika.Map.tileheight / 2 - 1
+                    self.y = a - (b / 2) - self.sprite.hotheight - ika.Map.tileheight / 2
                 else:
                     self.y = a - (b / 2) - self.sprite.hotheight - ika.Map.tileheight / 2 - 1
             return True

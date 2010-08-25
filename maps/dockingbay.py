@@ -220,4 +220,8 @@ secretArea = engine.mapscript.LayerFader('Secret Overlay', 255, 0, 25)
 
 
 
+runSave = engine.mapscript.Save(29*16, 21*16)
+
+
+
 

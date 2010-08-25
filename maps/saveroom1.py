@@ -20,4 +20,4 @@ def AutoExec():
 
 
 toBay2 = engine.mapscript.Warp(1, 23, 'cargobay2.ika-map', Dir.RIGHT)
-runSave = engine.mapscript.Save()
+runSave = engine.mapscript.Save(6*16 + 8,8*16)

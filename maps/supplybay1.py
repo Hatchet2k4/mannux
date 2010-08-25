@@ -27,8 +27,6 @@ def AutoExec():
 
 
 toDockControl2 = engine.mapscript.Warp(1, 6, 'dockingcontrolroom2.ika-map')
-
-
 toAirlock3 = engine.mapscript.Warp(18, 10, 'airlock3.ika-map')
 toElevator1 = engine.mapscript.Warp(1, 10, 'elevator1.ika-map')
 toSecretDuct = engine.mapscript.Warp(57, 25, 'secretduct3.ika-map')

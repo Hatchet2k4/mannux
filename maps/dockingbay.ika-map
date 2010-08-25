@@ -27,6 +27,10 @@
 			(script 'leaveSecretArea')
 		)
 		(zone 
+			(label 'runSave')
+			(script 'runSave')
+		)
+		(zone 
 			(label 'secretArea')
 			(script 'secretArea')
 		)
@@ -67,7 +71,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzsmNlOwzAQRSMKPLG8sFdiKSCVtbSsZXli+/8/4lTKSGGoKRM7yAO90lEUT2VlPBnfuEUx1X/XLMw5uKbSEiw7uKbSCqzCGqzDBmzCFrRrxlPNU42n0jbswC7sQQf24QAOa8ZTzVONz0Cr+Pqezxvz7cIRHMMJnMIZnEOvRrxbjsfOo+MLsFh8fs8fWYCnli3fAVzCFVzDDdyW98Nv4neB+KAcn/Q7a3xcfd8YeDfm21SfxEr3s65vjzwvoG/MV/dJLtL9rOs75OYeHoz56j7JRbqfdX2fyfMFXo356j7JRbqfU0n3SS76Lf/NRU3tK7pPclFT+0pTfRKr1PuK7O9e/Feet65kf/fiv/K8Volfy3p58V/9vfFTiV/LennxX/29MUn6HCXr5cV/Q+fBkPT/BbJeXvx33HkwVOfRmThUXy/+aznvj8ZC9fXiv6H6hvIN1Vf6JFdp/42tb6f5R45W1X9j6+tFqerrRZb6TvU39QEAAP//'
+				'eJzsmNlOwzAQRSMKPLG8sCOxFBAFCoWyluWJ7f//iFMpI4WhQ3HsIA/0SkdRPJWV8c144hbFRP9d0zDj4JpKC7Do4JpKS7AMK7AKa7AOG7BZM55qnmo8lbZgG3ZgF9qwB/twUDOeap5qfApaxdf3fDYw3w4cwTGcQBdO4Qx6NeKdcjx2Hh2fg/ni83v+yAI8tcLy7cMlXME13MBteT/4Jn5nxPvl+LjfhcZH+fvGwHtgvk3VSax0PWt/e+R5DhdGvofGvLpOcpGuZ+3vgJt7eAj0V9dJLtL1rP19Js8XeA3MV9dJLtL1nEq6TnLRb/XfXNTUvqLrJBc1ta80VSexSr2vyP7upf/K89aV7O9e+q88b6ikX8t6eem/+nvjp5J+Levlpf/q741x0ucoWS8v/dc6D1rS/xfIennpv6POg5bPwzOx5a+X/hty3h+OWf566b+Wv1a+lr9SJ7lK999Yf9vNP3K0qv031l8vSuWvF4X4O9Hf1AcAAAD//w=='
 			)
 			(obstructions 
 				(style 'tile')
@@ -136,6 +140,13 @@
 					(y '384')
 					(width '17')
 					(height '65')
+				)
+				(zone 
+					(label 'runSave')
+					(x '464')
+					(y '336')
+					(width '32')
+					(height '48')
 				)
 			)
 		)
