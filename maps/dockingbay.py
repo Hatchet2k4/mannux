@@ -205,8 +205,12 @@ def AutoExec():
     #                       Dir.LEFT))
 
     e.AddEntity(Platform(20 * ika.Map.tilewidth, 20 * ika.Map.tileheight))
-    #e.AddEntity(Box(14 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     
+    
+    e.AddEntity(Box(14 * ika.Map.tilewidth, 15 * ika.Map.tileheight))
+    
+    
+    e.AddEntity(Box(34 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     
     secretArea.activated = False
 

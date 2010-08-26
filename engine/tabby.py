@@ -1094,8 +1094,34 @@ class Tabby(Entity):
             self.x = tilex * ika.Map.tilewidth - self.width
             self.vx = min(0, self.vx)
         for entity in self.detect_collision():
-            if entity is not None and not entity.destroy and entity.touchable:
-                entity.touch(self)
+            if entity is not None:            
+                if not entity.destroy and entity.touchable:
+                    entity.touch(self)
+                if entity.sprite.isobs:
+                    
+                    #if entity.y + entity.sprite.hotheight > self.y: #touching the bottom of the sprite
+                    #    self.ceiling = True
+                    #    self.y = entity.y + entity.sprite.hotheight
+                    #    self.vy=0
+                        
+                    #if entity.y < self.y + self.sprite.hotheight: #touching the top?
+                    #    self.floor = True
+                    #    self.y = entity.y - self.sprite.hotheight
+                    #    self.vy=0
+                        
+                        
+                    if entity.x < x + self.width: # and not (entity.x < self.x + self.sprite.hotwidth):
+                        self.left_wall = True
+                        self.x = entity.x - self.width
+                        self.vx = 0
+                        
+                    
+                    elif entity.x + entity.sprite.hotwidth > self.x : # and not (entity.x + entity.sprite.hotwidth > self.x):
+                        self.right_wall = True
+                        self.x = entity.x + entity.sprite.hotwidth + 1
+                        self.vx = 0
+                
+                
 
     def RunnableZone(self):
         """Find if there's any activatable zones near the player."""

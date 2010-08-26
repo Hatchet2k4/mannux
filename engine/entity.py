@@ -94,6 +94,9 @@ class Entity(object):
                                          x + self.sprite.hotwidth - 1)
         self.floor = self.check_h_line(x, y + self.sprite.hotheight + self.vy,
                                        x + self.sprite.hotwidth - 1)
+                                       
+                                       
+                                               
 
     def detect_collision(self):
         result = []

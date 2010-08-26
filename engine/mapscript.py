@@ -84,16 +84,16 @@ def _Save(x, y, reposition=True):
         while ticks < 165:
             t = ika.GetTime()
             while t > time:                         
-                ticks+=1
+                ticks+=0.5
                 time +=1
                 
             time = ika.GetTime()                
             engine.draw()    
             engine.hud.draw()
 
-            saveflash[ticks/12].TintBlit(x - ika.Map.xwin, y - ika.Map.ywin, ika.RGB(255,255,255,128))
+            saveflash[int(ticks/12)].TintBlit(x - ika.Map.xwin, y - ika.Map.ywin, ika.RGB(255,255,255,128))
             
-            savelight[ticks/12].TintBlit(x - ika.Map.xwin+1, y - ika.Map.ywin+26, ika.RGB(255,255,255,128))
+            savelight[int(ticks/12)].TintBlit(x - ika.Map.xwin+1, y - ika.Map.ywin+26, ika.RGB(255,255,255,128))
             
             
             ika.Video.ShowPage()
