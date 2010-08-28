@@ -39,7 +39,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzsmstOwzAQRaflUYmHCrQUKaWlLEFCAqld90MKG1aV+P9dFowVjzJYSd0k00fQPdKVMhPbGdvXXiUlopTaS6rUdizm0GF1K/Z5Zd2z7lRfN85ZjbEsuGU9siashPXJ+t6i31g9X7CmrJmPzw3ra8IP64u13tDmoyDn5tOnbE1GBnXI/joNWYMgTlQu9IR+X+YPt4eLYNxuMMZTwzmIT/qUr00YJz73HIknvt6bgu+sKF9/GXfm31n56oQyv7pz+L6h3SoSl+XK8jKvy1iBhjgPPNBfX0ms750q89g32nviHR3r5znl96to6vMWZ9mSorV9OY33G8eb7JW6HnmjbK/kLLq9urIqqiLhOdkGuUeWO6moHk3umGPzVV2uD12AEb1DFwAAAAAAAAAAAAAAAAAAAHDk/Jf/ltr+D5bU/wsAAP//'
+				'eJzsmktLxEAMx2N9gQ/Wt9D1sR5XWFBwz978Ej5AT4Lf/9aDCW1wDDPTbTutFv4/+MNksp1NJpnppQURFTReCkd98dzj2i4pclhjZQFfKI9b1inryHlW1tmMrNUnh6wL1iUrZ72wPhx/KI+pM95hXbFmlb2VNsTWfLFeWZ8UzuPeMyf5TKjck7MEcWh9RSesY2PnzpztCdefBfKQGi7NuplZ47pjDtonE/rZG2vn1dxNjS3jJ9aB538kP91/XXdW+VL11TqV/Srn8C7yO7vXvr0P9ZVvXvParQswIdID5/S7r9R2750meQyJxKh9o/2wNLY7lr7S+1UltX6gNGe5DXPy19y3t/ONsE+ZRnx98c56o/IutcRijfkWVNZKz6LUaq9tgCsSiseek1We03vkMUFcTZF4pCb2Dq27Y/5bX8k7WvpK6t+k9rE89jtFNCyxPLYHi6I7f/2eSAXyAAAAAAAAAAAAAAAAAADGxZi/vVKG+AarbzT+bwAAAP//'
 			)
 			(obstructions 
 				(style 'tile')
@@ -53,8 +53,8 @@
 			(label 'New Layer')
 			(type 'tile')
 			(dimensions 
-				(width '100')
-				(height '100')
+				(width '50')
+				(height '50')
 			)
 			(position 
 				(x '0')
@@ -72,12 +72,12 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzs0zEBADAIwDBe7vn3igwYJAr6NALgP9kdAIP5AwAAAAAAAAAAAAAAAAAAAAAAAAAAAABueN0BAAAAAAAAAAAAAAAAALBYAQAA//8='
+				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
 			)
 			(obstructions 
 				(style 'tile')
 				(format 'zlib')
-				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
+				'eJzswQENAAAAwqD3T20ON6AAAHgzAAAA//8='
 			)
 			(entities )
 			(zones )
@@ -86,8 +86,8 @@
 			(label 'New Layer 2')
 			(type 'tile')
 			(dimensions 
-				(width '100')
-				(height '100')
+				(width '50')
+				(height '50')
 			)
 			(position 
 				(x '0')
@@ -105,12 +105,12 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzswTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbAAAA//8='
+				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
 			)
 			(obstructions 
 				(style 'tile')
 				(format 'zlib')
-				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
+				'eJzswQENAAAAwqD3T20ON6AAAHgzAAAA//8='
 			)
 			(entities )
 			(zones )
@@ -119,8 +119,8 @@
 			(label 'New Layer 3')
 			(type 'tile')
 			(dimensions 
-				(width '100')
-				(height '100')
+				(width '50')
+				(height '50')
 			)
 			(position 
 				(x '0')
@@ -138,12 +138,12 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzswTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbAAAA//8='
+				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
 			)
 			(obstructions 
 				(style 'tile')
 				(format 'zlib')
-				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
+				'eJzswQENAAAAwqD3T20ON6AAAHgzAAAA//8='
 			)
 			(entities )
 			(zones )

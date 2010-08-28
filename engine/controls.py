@@ -17,6 +17,8 @@ confirm_key = 'RETURN'
 cancel_key = 'ESCAPE'
 
 
+usejoystick = True
+
 # Analog deadzone.
 deadzone = 0.5
 
@@ -151,20 +153,22 @@ class Button:
         else:
             self.Release()
 
-usejoystick = False
+
 
 if len(ika.Input.joysticks) > 0 and usejoystick == True:
     up = Button("joy:0:reverseaxes:1")
     down = Button("joy:0:axes:1")
     left = Button("joy:0:reverseaxes:0")
     right = Button("joy:0:axes:0")
-    attack = Button("joy:0:buttons:3")
-    jump = Button("joy:0:buttons:2")
-    confirm = Button("joy:0:buttons:2")
-    cancel =Button("joy:0:buttons:1")
-    aim_up = Button("joy:0:buttons:6")
-    aim_down = Button("joy:0:buttons:7")
-    pause = Button("joy:0:buttons:5")
+    attack = Button("joy:0:buttons:0")
+    jump = Button("joy:0:buttons:1")
+    ability = Button("joy:0:buttons:2")
+    
+    confirm = attack
+    cancel = jump  #should be menu
+    aim_up = Button("joy:0:buttons:4")
+    aim_down = Button("joy:0:buttons:5")
+    pause = Button("joy:0:buttons:9")
 else:
 
     up = Button("key:UP")
@@ -173,10 +177,10 @@ else:
     right = Button("key:RIGHT")
     attack = Button("key:X")
     jump = Button("key:Z")
-    confirm = attack
+    confirm = attack            
+    cancel = jump 
+    ability = Button("key:S")
     
-    #confirm = Button("key:X")
-    cancel =Button("key:ESCAPE")
     aim_up = Button("key:D")
     aim_down = Button("key:C")
     pause = Button("key:ESCAPE")

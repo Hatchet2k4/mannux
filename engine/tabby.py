@@ -1067,37 +1067,46 @@ class Tabby(Entity):
     def CheckObstructions(self):
         x = round(self.x)
         y = round(self.y + self.vy)
-        self.ceiling = self.check_h_line(x + 1, y - 1, x + self.width - 1)
-        self.floor = self.check_h_line(x + 1,y + self.height, x + self.width - 1)
+        x2 = x+self.width
+        y2 = y+self.height
+        
+        
+        self.ceiling = self.check_h_line(x + 1, y - 1, x2 - 1)
+        self.floor = self.check_h_line(x + 1,y2, x2 - 1)
         if self.floor and not self.ceiling:
             # Find the tile that the entity will be standing on,
             # and set it to be standing exactly on it:
-            tiley = int((y + self.height) / ika.Map.tileheight)
+            tiley = int(y2 / ika.Map.tileheight)
             self.y = tiley * ika.Map.tileheight - self.height
             self.vy = 0
         if self.ceiling and self.vy != 0:
             tiley = int((y - 1) / ika.Map.tileheight)
             self.y = (tiley + 1) * ika.Map.tileheight
             self.vy = 0
-        # Reset y, in case vy was modified.
+        # Reset x / y, in case vy was modified.
         x = round(self.x + self.vx)
         y = round(self.y)
-        self.left_wall = self.check_v_line(x, y + 1, y + self.height - 1)
-        self.right_wall = self.check_v_line(x + self.width, y + 1,
-                                            y + self.height - 1)
+        x2 = x+self.width
+        y2 = y+self.height
+        
+        self.left_wall = self.check_v_line(x, y + 1, y2 - 1)
+        self.right_wall = self.check_v_line(x2, y + 1,
+                                            y2 - 1)
         if self.left_wall and not self.phantom:
             tilex = int(x / ika.Map.tilewidth)
             self.x = (tilex + 1) * ika.Map.tilewidth - 1
             self.vx = max(0, self.vx)
         if self.right_wall and not self.phantom:
-            tilex = int((x + self.width) / ika.Map.tilewidth)
+            tilex = int(x2 / ika.Map.tilewidth)
             self.x = tilex * ika.Map.tilewidth - self.width
             self.vx = min(0, self.vx)
+            
         for entity in self.detect_collision():
             if entity is not None:            
                 if not entity.destroy and entity.touchable:
                     entity.touch(self)
-                if entity.sprite.isobs:
+                if entity.sprite.isobs: #is an obstruction, so obstruct!
+                
                     
                     #if entity.y + entity.sprite.hotheight > self.y: #touching the bottom of the sprite
                     #    self.ceiling = True
@@ -1109,17 +1118,41 @@ class Tabby(Entity):
                     #    self.y = entity.y - self.sprite.hotheight
                     #    self.vy=0
                         
-                        
-                    if entity.x < x + self.width: # and not (entity.x < self.x + self.sprite.hotwidth):
-                        self.left_wall = True
-                        self.x = entity.x - self.width
-                        self.vx = 0
-                        
                     
-                    elif entity.x + entity.sprite.hotwidth > self.x : # and not (entity.x + entity.sprite.hotwidth > self.x):
-                        self.right_wall = True
-                        self.x = entity.x + entity.sprite.hotwidth + 1
-                        self.vx = 0
+                    
+                    #if x + self.width > entity.x and 
+                    
+                    #(self.y + self.height > entity.y or self.y  entity.y + entity.height):
+                    #    self.left_wall = True
+                    #    self.x = entity.x - self.width
+                    #    self.vx = 0
+                    ymove = False
+                    if y <= entity.y + entity.height and y2 > entity.y + entity.height:
+                        self.ceiling = True # touching bottom  of the box
+                        self.y = entity.y + entity.height
+                        self.vy = 0
+                        ymove = True
+                    elif y2 >= entity.y and y < entity.y:
+                        self.floor = True # touching top of the box
+                        self.y = entity.y - self.height
+                        self.vy = 0
+                        ymove = True
+                    
+                    if not ymove:
+                    #inside                          outside
+                        if x <= entity.x + entity.width and x2 > entity.x + entity.width:
+                            self.left_wall = True # touching RIGHT side of the box
+                            self.x = entity.x + entity.width
+                            self.vx = 0
+                                            
+                    #inside                  outside
+                        elif x2 >= entity.x and x < entity.x: # and not (entity.x + entity.sprite.hotwidth > self.x):
+                            self.right_wall = True #touching LEFT side of the box
+                            self.x = entity.x - self.width
+                            self.vx = 0
+                    
+                    
+                        
                 
                 
 

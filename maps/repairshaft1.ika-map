@@ -1,0 +1,88 @@
+(ika-map 
+	(version '1.2')
+	(information 
+		(title '')
+		(meta 
+			(color 'Blue')
+			(mapx '7')
+			(name 'Service Elevator')
+		)
+	)
+	(header 
+		(dimensions 
+			(width '320')
+			(height '240')
+		)
+		(tileset 'Mannux.vsp')
+	)
+	(waypoints )
+	(zones )
+	(layers 
+		(layer 
+			(label 'Walls')
+			(type 'tile')
+			(dimensions 
+				(width '20')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJyE1NlOwmAQhuG/LhQxcUFIEEETxKr3fyN4qgiuCFIVq7gW9W2YiWNT9eAJJ81kZr75aTnnztHGMTro4gSnOMOW59wi5rCMJjZQxC728Mx3BziUej1coY8BrjFEiH2+L6OCeaxgFQEWsCn1jnAh9d5wjwgPeMQ4o791VOGjhjUU4OGSb29xI/O+I8YEH/iE86b9ab1t5LCDPOoyb1Lvjs9fMvY3kP6Gpr+y2Z/Om5f9FWTeV8x40/5Gsr/I9Kd56P4aMm9T5i3K/rTeLL+tVH+x9Kf5JvPq/pYkj5zkG8j+SjKvzXck++uk8gjNvBWzPz9jXptvW+aN5f40j6z7y5l563Iv6XztvUxMHk/uO9+GzFs1eej+/spX38dY6qXvT+8lMPMm9Wy+PakXSR4236x78U1/pV/y1ffWNfOG7me+mofNN/1+7f3ZPOz92Xmbsr+a9KfvI+v99v+5F/0/0Pdm7yXJ9wsAAP//'
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'Doors')
+			(type 'tile')
+			(dimensions 
+				(width '20')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJxiYBgFo2AUjIKhAQAAAAD//w=='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
+			)
+			(entities )
+			(zones )
+		)
+	)
+)

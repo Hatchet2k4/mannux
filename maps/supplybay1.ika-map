@@ -20,7 +20,7 @@
 	(zones 
 		(zone 
 			(label '')
-			(script 'toElevator1')
+			(script '')
 		)
 		(zone 
 			(label 'Default Zone')
@@ -29,10 +29,6 @@
 		(zone 
 			(label 'toAirlock3')
 			(script 'toAirlock3')
-		)
-		(zone 
-			(label '')
-			(script '')
 		)
 		(zone 
 			(label 'toDockControl2')
@@ -71,7 +67,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzslktrAkEQhBd3vCXxEs0L4jNgnoImUa96jf//71jLpmEpaGaT6WYvU/DRhzkMXdR0T1FkZWVldasS9H5r2cH9AfQb9RbcgXvwAK7BEIzAjcG59Cr3fYSaFVXRFRg06gzMwQI8gUcwBhMwNTi/AJeN+3ahZk9V8+8NvFd9gRVYgmfwAl4Nztm/Q6g5UtX8+wbbqi+wB2uwAZ/gy+Cc/fsJNSeq/1VqHr2VmkdvpebRW6l5/Ks4L/Ku5J15z7+YOC/yruSdec+/mDgv7J/3/IuJ88L+ec+/mCQvvEekT+t9zP5J1eaj5IX3iPRpvY/ZP6nafOQ+2D/rfaz5p+WR+2D/rPex5p+Wx5h/3vNP+3+29c97/mn/z7b+ec8/7f/Z1j/v+af9P7PSdAYAAP//'
+				'eJzslktrQjEQhS8ad7ZuarUK1VqF+gZtfWxb6Kr+/7/TI3HgcmDI1WRwkwMfs8gizOFkJkWRlZWVdV/Vwe+l1u9wvwONUu2CF9ADffAE2uAZdBKc1wrfp9y3cp41VdEjaJXqCLyDMZiAVzAAQ/CW4LwJHkr3HZznSFXzbwGW577AGnyAKZiBeYJz9u/beX6oav7twP7cFziCDdiCT/CV4Jz9+3OeE9VbFZtHa8Xm0VqxebRWbB6vFedF3pW8M+v5FxLnRd6VvDPr+RcS54X9s55/IXFe2D/r+ReS5IX3iPSZeh+zf1K1+Sh54T0ifabex+yfVG0+ch/sX+p9rPmn5ZH7YP9S72PNPy2PIf+s55/2/6zqn/X80/6fVf2znn/a/7Oqf9bzT/t/ZsXpHwAA//8='
 			)
 			(obstructions 
 				(style 'tile')
@@ -137,7 +133,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzslstOFEEUhk8PC0XCAoWVio8AKC6AJfpWjgtdeAESSZB7uEPiBXSh0xkh2hM1URRMQGUrPANswb9CncxP9fTMkNAUC07y5XR1nar6u7r69BE5t3PzZx/A8hn278B7cC8QGffIs6CopQC+gK/gI/gEsugfyJTmORgEQ+SHE2JLMQJGwRj5cSfmflDUotq2pKj/EZjIlGYSTIFp8jMJsaWYBXNgnvyC7dsFe6Ae67eCNnAT3LJUYy8w/iV4Rf51ptoTLrKI2CXwhvxbO34f/gA8xPUDiXufdqFG5CKoBX1o90rc+7QG6LoMroAhtAcl7n3aVei6Bq6DabSnJO7HgnTod872P5yx7QR2Msn9+i1r7jHf9G9q56QYozlzA+TBJt1bs7E6LuvoM/ljg/rV8xzq10Fg0Xuae1btGG1HpG+N4rfoWvsjOZpPXX0F6ldfsGv+sHOGjr51IpT4/6QHPLW+F/SBb3b/voMnTn8P5VO2xxX+HQbz3n46+gJHa9Lzp2lmbw2fcf23gj59Zz70/ZHDM1ROn3nHOU/69ByXO39GW+RJn5591hda+BtsP8a/9SQ16tk3e/TL6uM8F3rSxmY0RHKox+QdznO+tamZPB7J0frPcPuM6GNNp26oBYKa9KZvwdytoI3W4Dqukl1CTF2K+jowdyfoojW4jitrdu8aQVNKGrsx7x1wl+bnOs61FTrTunfN4EaV+tKq/04KzX/639Vah2sZ7eM8buLyEq8NdYzeDyVeh+nYvF2L51+l+2au/wAAAP//'
+				'eJzslk1PE1EUhs8MC0Xiwg9WKvwEWsQYZan+K+tCFhCoCSYCCkRBwcRvF9pJheg0YAIVMcGvrfobdKu8N96Tvr3ToTVhvF30JE/O3K9z397eOXNEOtYxf/YKrLSxfwFegsuByLxHJoOalgpYB2/Ba/AGFDB+I2zMFJgGM+RvpsxtxC0wC+bIzztzrgQ1Lartq9T0j4LbYWPugAWwSP5uytxG3ANLYJn8fTv2E/wCh7F/DuTBIDhtacUeYP1D8Ij847DVGy7yBHOfgmfkn9v1v+H/gBE8X5Wk92kHukQOgm5wDe2iJL1POwJdR8ExMIP2tCS9TzsBXSfBKbCI9oIk/VyQDdedu/0Nd+x7Cj/C9HF9lzX3mHf6E7VLUpujOXMHlMFH6qvYubqu4Ogz+WOHxtVzDPXbILBon+aeql2j7Vjq8yXnJrcvlvp86uqr0Lj6it3znY0ZOfq2iUiS35MJMG59EZzFmW/Y89sEQ2H9+ATlU7axJt8Og/nfthx9gaM17fdnaeZsDWt4/tJEn/7fPvR9xvP7JvrMf1zypE/v8V73z2iLPenTu8/6Igu/g0P/8G3dT416980ZfbD6OM9FnrSxGQ2x/NVj8g7nOd/a1Ewej6W+/jOcaRN9rOm/G2qBoCu78AOInQN52oPruGZ2CHN6MtR3DrHPg2Hag+u4Pc2e3XHQm5HGC4h7EVyi+FzHubZKd1rPrg/0t6gvq/pvv9D8p99drXW4ltExzuNmXlmStaGu0f6Ixty1ZbsXx69Sv4m1CwAA//8='
 			)
 			(obstructions 
 				(style 'tile')
