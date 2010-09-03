@@ -1,0 +1,57 @@
+
+#    Map                                Status (* = still need to be created/finished)
+
+1 -  dockingbay.ika-map			
+2 -  airlock1.ika-map			
+3 -  dockingcontrolroom.ika-map		
+4 -  cargobay1.ika-map
+5 -  cargobay2.ika-map
+6 -  saveroom1.ika-map
+7 -  secretduct1.ika-map
+8 -  secretduct2.ika-map
+9 -  airlock2.ika-map
+10 - dockingbay2.ika-map
+11 - airlock3.ika-map
+12 - dockingcontrolroom2.ika-map	*
+13 - supplybay1.ika-map
+14 - elevator1.ika-map
+15 - storage1.ika-map
+16 - secretduct3.ika-map
+17 -
+18 -
+19 -
+20 -
+21 - elevatorshaft1.ika-map
+22 - repairbay.ika-map
+23 -
+24 -
+25 - cave1.ika-map			*
+26 -
+27 -
+28 - airlock4.ika-map
+29 -
+30 -
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

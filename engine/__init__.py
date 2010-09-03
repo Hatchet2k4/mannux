@@ -40,7 +40,7 @@ class Engine(object):
         self.hours = 0
         self.ticks = 0
         self.time = ''
-        self.flags = {'notloaded': 'yep', 'shiplanded': False}
+        self.flags = {'notloaded': True, 'shiplanded': False}
         self.curmap = ''
         # Not loading a map at this time.
         self.loading = False
