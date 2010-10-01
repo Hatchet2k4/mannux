@@ -40,6 +40,7 @@ def AutoExec():
                          'door_right'))
     e.AddEntity(Door(57 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
                          'door_left', locked=False))    
+    e.AddEntity(Zombie(40 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
 
 toAirlock2 = engine.mapscript.Warp(17, 10, 'airlock2.ika-map', Dir.LEFT) 
 

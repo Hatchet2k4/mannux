@@ -2,7 +2,12 @@
 	(version '1.2')
 	(information 
 		(title '')
-		(meta )
+		(meta 
+			(color 'Green')
+			(mapx '9')
+			(mapy '11')
+			(name 'Caverns')
+		)
 	)
 	(header 
 		(dimensions 
@@ -12,14 +17,19 @@
 		(tileset 'Mannux.vsp')
 	)
 	(waypoints )
-	(zones )
+	(zones 
+		(zone 
+			(label 'secretArea')
+			(script 'secretArea')
+		)
+	)
 	(layers 
 		(layer 
 			(label 'Background')
 			(type 'tile')
 			(dimensions 
-				(width '20')
-				(height '45')
+				(width '4')
+				(height '4')
 			)
 			(position 
 				(x '0')
@@ -28,8 +38,8 @@
 			(parallax 
 				(mulx '1')
 				(muly '1')
-				(divx '1')
-				(divy '1')
+				(divx '4')
+				(divy '4')
 			)
 			(wrap 
 				(x 'true')
@@ -37,12 +47,12 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzszDkOgDAQwMAVT+boCOk4OhI+jP/ANkgeya3HIWKimRb6auVRaKOa8Nt5HHTSlfC7eTTq9CT8JEmSJOmvXgAAAP//'
+				'eJwMw7cNwCAAADDEyQlsKRtlozyMLfmKIdwms4+vn7/FarM7nC63BwAA//8='
 			)
 			(obstructions 
 				(style 'tile')
 				(format 'zlib')
-				'eJxiYBgFo2AUDCQAAAAA//8='
+				'eJxiYEAFAAAAAP//'
 			)
 			(entities )
 			(zones )
@@ -78,7 +88,15 @@
 				'eJzsltsOAyEIRPX/f7rJxlTlMsxo9qUpD00MHEC2CK1F0p+fHuoKGRQB90XGeWoiYx9lurF+t+NqZGyJvKbhUUFeYntQJJLt4Q0p1hearhVKd+ocC7M0aexsXSDniYyYs8PBOSvD6K8vBY7Of3axNcbSd7pmTXfRbNYcEi7HdU+ywhZnBb1hefQHWPHZsOM1Msnmy/pACzENe/vIarQt1jmLNw6vKFh0kV3le4MZqiHL3f+xslGUSe5mGw4HVsSqMeCeI7Ptu2hWhUIfD5PQol4M4SqG0866nfJdZQO20sQt1ckpW6Mt6QL2CeickN7elw8AAAD//w=='
 			)
 			(entities )
-			(zones )
+			(zones 
+				(zone 
+					(label 'secretArea')
+					(x '598')
+					(y '82')
+					(width '123')
+					(height '62')
+				)
+			)
 		)
 		(layer 
 			(label 'Foreground')
@@ -137,39 +155,6 @@
 			(data 
 				(format 'zlib')
 				'eJzs1TEKhDAQQFHN+bRdtbEQrL1/t6YTsZjCXWF8D6ZJlQ8T0jTAL7UXcz7P5FOum48zlOfud7cp0Lsk6d32ju5FvXOgNVPvWmLvd0zSW0X2uU/UG9nnTH/Sm1orvXoz0Zu7FwAAAAAAAAAAAPivLwAAAP//'
-			)
-			(obstructions 
-				(style 'tile')
-				(format 'zlib')
-				'eJzswQEBAAAAgiD/r25IQAEAAPBoAAAA//8='
-			)
-			(entities )
-			(zones )
-		)
-		(layer 
-			(label 'Grid layer')
-			(type 'tile')
-			(dimensions 
-				(width '60')
-				(height '60')
-			)
-			(position 
-				(x '0')
-				(y '0')
-			)
-			(parallax 
-				(mulx '1')
-				(muly '1')
-				(divx '1')
-				(divy '1')
-			)
-			(wrap 
-				(x 'false')
-				(y 'false')
-			)
-			(data 
-				(format 'zlib')
-				'eJzs0LEJADAMA0E32X+0rJQlRMDoBN9eoZnc7gliPB6Px+PxeDwej/fZayv9H4/H4/F4PB6Px+Nt9dpK/8fj8Xg8Ho/H4/F4W7220v/xeDwej8fj8Xg83lavrQcAAP//'
 			)
 			(obstructions 
 				(style 'tile')

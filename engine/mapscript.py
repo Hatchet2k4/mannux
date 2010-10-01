@@ -84,7 +84,7 @@ def _Save(x, y, reposition=True):
         while ticks < 165:
             t = ika.GetTime()
             while t > time:                         
-                ticks+=0.5
+                ticks+=1
                 time +=1
                 
             time = ika.GetTime()                
