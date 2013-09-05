@@ -8,8 +8,8 @@
 	)
 	(header 
 		(dimensions 
-			(width '2000')
-			(height '2000')
+			(width '400')
+			(height '300')
 		)
 		(tileset 'automap.vsp')
 	)
@@ -39,106 +39,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzsmktLxEAMx2N9gQ/Wt9D1sR5XWFBwz978Ej5AT4Lf/9aDCW1wDDPTbTutFv4/+MNksp1NJpnppQURFTReCkd98dzj2i4pclhjZQFfKI9b1inryHlW1tmMrNUnh6wL1iUrZ72wPhx/KI+pM95hXbFmlb2VNsTWfLFeWZ8UzuPeMyf5TKjck7MEcWh9RSesY2PnzpztCdefBfKQGi7NuplZ47pjDtonE/rZG2vn1dxNjS3jJ9aB538kP91/XXdW+VL11TqV/Srn8C7yO7vXvr0P9ZVvXvParQswIdID5/S7r9R2750meQyJxKh9o/2wNLY7lr7S+1UltX6gNGe5DXPy19y3t/ONsE+ZRnx98c56o/IutcRijfkWVNZKz6LUaq9tgCsSiseek1We03vkMUFcTZF4pCb2Dq27Y/5bX8k7WvpK6t+k9rE89jtFNCyxPLYHi6I7f/2eSAXyAAAAAAAAAAAAAAAAAADGxZi/vVKG+AarbzT+bwAAAP//'
-			)
-			(obstructions 
-				(style 'tile')
-				(format 'zlib')
-				'eJzswQENAAAAwqD3T20ON6AAAHgzAAAA//8='
-			)
-			(entities )
-			(zones )
-		)
-		(layer 
-			(label 'New Layer')
-			(type 'tile')
-			(dimensions 
-				(width '50')
-				(height '50')
-			)
-			(position 
-				(x '0')
-				(y '0')
-			)
-			(parallax 
-				(mulx '1')
-				(muly '1')
-				(divx '1')
-				(divy '1')
-			)
-			(wrap 
-				(x 'false')
-				(y 'false')
-			)
-			(data 
-				(format 'zlib')
-				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
-			)
-			(obstructions 
-				(style 'tile')
-				(format 'zlib')
-				'eJzswQENAAAAwqD3T20ON6AAAHgzAAAA//8='
-			)
-			(entities )
-			(zones )
-		)
-		(layer 
-			(label 'New Layer 2')
-			(type 'tile')
-			(dimensions 
-				(width '50')
-				(height '50')
-			)
-			(position 
-				(x '0')
-				(y '0')
-			)
-			(parallax 
-				(mulx '1')
-				(muly '1')
-				(divx '1')
-				(divy '1')
-			)
-			(wrap 
-				(x 'false')
-				(y 'false')
-			)
-			(data 
-				(format 'zlib')
-				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
-			)
-			(obstructions 
-				(style 'tile')
-				(format 'zlib')
-				'eJzswQENAAAAwqD3T20ON6AAAHgzAAAA//8='
-			)
-			(entities )
-			(zones )
-		)
-		(layer 
-			(label 'New Layer 3')
-			(type 'tile')
-			(dimensions 
-				(width '50')
-				(height '50')
-			)
-			(position 
-				(x '0')
-				(y '0')
-			)
-			(parallax 
-				(mulx '1')
-				(muly '1')
-				(divx '1')
-				(divy '1')
-			)
-			(wrap 
-				(x 'false')
-				(y 'false')
-			)
-			(data 
-				(format 'zlib')
-				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
+				'eJzsmstLAzEQxsf1UahKfQtbH/VYQVCwpx68CZ49+gAFQRD8/w97cIbsYAxJut1m1y58P/ggmTTpTGaSXLYgooK6S2EpNbusZ9Z3A2v7SBHDCisLjD0F7JesQ9aeNVfWWY+s1SSy7yesU1ZOJgfv1ngojqHV7rPOWKOyv5HWxdp8sV5YnxSO48Zjk3gGZPbkKIEfml/RAWvf6eeWza0JezwLxPHAmjjrZs4a5wvGoHUyoN+9cft5abuY0Zf2PWtKpm70PDyW8fWddUelD6nqatX63+vI79y99u292HoV5goa12YFH1MhNXBMf+tK+/a9EzofIXtbiI9aN1oPE6dvt6WutJ5UkutbSnOW6zAmf859ezteC48pw8hYU7yxPsjcpS4xX2NjV2RyZd8BW3UdrEjIH/ecVJmn98hdAr/mRfyRnOw49ll3zLLVlbzRr2TyP0/uY3FsL+RRu8Ti8L0ry8p/vxOpQBwAAAAAAAAAAAAAAAAAQLfo8rdXSpPfYLWF+v8DAAD//w=='
 			)
 			(obstructions 
 				(style 'tile')
