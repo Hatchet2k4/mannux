@@ -1,7 +1,7 @@
 (ika-map 
 	(version '1.2')
 	(information 
-		(title '')
+		(title 'Cargo Elevator Shaft')
 		(meta 
 			(color 'Blue')
 			(mapx '7')
@@ -41,7 +41,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJyE1NlOwmAQhuG/LhQxcUFIEEETxKr3fyN4qgiuCFIVq7gW9W2YiWNT9eAJJ81kZr75aTnnztHGMTro4gSnOMOW59wi5rCMJjZQxC728Mx3BziUej1coY8BrjFEiH2+L6OCeaxgFQEWsCn1jnAh9d5wjwgPeMQ4o791VOGjhjUU4OGSb29xI/O+I8YEH/iE86b9ab1t5LCDPOoyb1Lvjs9fMvY3kP6Gpr+y2Z/Om5f9FWTeV8x40/5Gsr/I9Kd56P4aMm9T5i3K/rTeLL+tVH+x9Kf5JvPq/pYkj5zkG8j+SjKvzXck++uk8gjNvBWzPz9jXptvW+aN5f40j6z7y5l563Iv6XztvUxMHk/uO9+GzFs1eej+/spX38dY6qXvT+8lMPMm9Wy+PakXSR4236x78U1/pV/y1ffWNfOG7me+mofNN/1+7f3ZPOz92Xmbsr+a9KfvI+v99v+5F/0/0Pdm7yXJ9wsAAP//'
+				'eJyE1NlOwmAQhuG/LhQxcUFIEEETrFXv/0bwVBFcEaQoorgW9W2ciWNT9eAJHjSTmfnmt+mcO0cLx2ijgxOc4gxbnnOLmMMyAmygiF3s4YnvDnAo9bq4Qg99XGOACPt8X0YF81jBKkIsYFPqHeFC6r3iDmPc4wGTjP7WUYWPGtZQgIdLvr0x874hxhTv+IDzvvrTetvIYQd51GXepN4tnz9n7K8v/Q1Mf2WzP503L/sryLwvmOHvIb8j2d/Y9Kd56P4aMm8g8xZlf1pvlt9mqr9Y+tN8k3l1f0uSR07yDWV/JZnX5juS/bVTeURm3orZn58xr823JfPGcn+aR9b95cy8dbkXm+8wdS9Tk8ej+863IfNWTR66v7/y1fcxkXrp+9N7Cc28ST2bb1fqjSUPm2/Wvfimv9Iv+ep765h5I/czX83D5pt+v/b+bB72/uy8geyvJv3p+8h6v71/7kX/H+h7s/eS5PsJAAD//w=='
 			)
 			(obstructions 
 				(style 'tile')

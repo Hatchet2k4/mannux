@@ -1,126 +1,117 @@
 (ika-map 
-	(version 1.1)
+	(version '1.2')
 	(information 
-		(title )
-		(meta 
-		)
+		(title 'Cave Test')
+		(meta )
 	)
 	(header 
 		(dimensions 
-			(width 320)
-			(height 720)
+			(width '320')
+			(height '720')
 		)
-		(tileset Mannux.vsp)
+		(tileset 'Mannux.vsp')
 	)
-	(waypoints 
-	)
-	(zones 
-	)
+	(waypoints )
+	(zones )
 	(layers 
 		(layer 
-			(label Background)
-			(type tile)
+			(label 'Background')
+			(type 'tile')
 			(dimensions 
-				(width 20)
-				(height 45)
+				(width '20')
+				(height '45')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJzslc0Kg0AMhMVHrnprFaWoxX/7wh3BwLLENeAeqmbhO4SMCxkmaxQGQQwS8ADRwfoFUpCBp4e6AjX4gNJDPYEZfMG41vYc1I8Fes4Pew7qpwI954c9B/VrgZ7zg+aguag/C/ScH0dqSb46UIC3QO/K0/J9DsxTOPSu/Nn3mGdg9Hv5azbuazf0kvz1xr3tWvvIXx/eK39Xf//UP/1/6P6eN3/qn+6v7u958/dP/v0AAAD//w==
+				(format 'zlib')
+				'eJzslc0Kg0AMhMVHrnprFaWoxX/7wh3BwLLENeAeqmbhO4SMCxkmaxQGQQwS8ADRwfoFUpCBp4e6AjX4gNJDPYEZfMG41vYc1I8Fes4Pew7qpwI954c9B/VrgZ7zg+aguag/C/ScH0dqSb46UIC3QO/K0/J9DsxTOPSu/Nn3mGdg9Hv5azbuazf0kvz1xr3tWvvIXx/eK39Xf//UP/1/6P6eN3/qn+6v7u958/dP/v0AAAD//w=='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJxiYBgFo2AUDCQAAAAA//8=
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo2AUDCQAAAAA//8='
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 		(layer 
-			(label Walls)
-			(type tile)
+			(label 'Walls')
+			(type 'tile')
 			(dimensions 
-				(width 20)
-				(height 45)
+				(width '20')
+				(height '45')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJzslNsKwjAMhkcezWuvPeAEz4JsU2+EuZc3YS2GGkqbFa/yQdgWkj/bkqaqZA7w6zsKvlRWQu4ZfZtMzSXGDyC/H9dcJOiS1snFPSPxWxh1qe4M7S3U4FqpkC7V9fprli/9r1zCfnXs+aLQl/rfoq+B8ervqU4N3zq1kHdH3zzje3mdfcHZTO1ZiX4Y/0Uz4zEeBfRo7m9ulr1poDNFWj3aK7Acduzc9or8ENpjV7cjB8VOlIjtZsMwDMMwpvMBAAD//w==
+				(format 'zlib')
+				'eJzslNsKwjAMhkcezWuvPeAEz4JsU2+EuZc3YS2GGkqbFa/yQdgWkj/bkqaqZA7w6zsKvlRWQu4ZfZtMzSXGDyC/H9dcJOiS1snFPSPxWxh1qe4M7S3U4FqpkC7V9fprli/9r1zCfnXs+aLQl/rfoq+B8ervqU4N3zq1kHdH3zzje3mdfcHZTO1ZiX4Y/0Uz4zEeBfRo7m9ulr1poDNFWj3aK7Acduzc9or8ENpjV7cjB8VOlIjtZsMwDMMwpvMBAAD//w=='
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJxiYBgFo2AUDCQAAAAA//8=
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo2AUDCQAAAAA//8='
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 		(layer 
-			(label New Layer 2)
-			(type tile)
+			(label 'New Layer 2')
+			(type 'tile')
 			(dimensions 
-				(width 100)
-				(height 100)
+				(width '100')
+				(height '100')
 			)
 			(position 
-				(x 0)
-				(y 0)
+				(x '0')
+				(y '0')
 			)
 			(parallax 
-				(mulx 1)
-				(muly 1)
-				(divx 1)
-				(divy 1)
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
 			)
 			(wrap 
-				(x false)
-				(y false)
+				(x 'false')
+				(y 'false')
 			)
 			(data 
-				(format zlib)
-				eJzs1cEJAEAIA0GxtLP/nqzB+4gwU8FCHokApl5uF/Cj7AYA5/hvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2NAAAAP//
+				(format 'zlib')
+				'eJzs1cEJAEAIA0GxtLP/nqzB+4gwU8FCHokApl5uF/Cj7AYA5/hvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2NAAAAP//'
 			)
 			(obstructions 
-				(style tile)
-				(format zlib)
-				eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//
+				(style 'tile')
+				(format 'zlib')
+				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
 			)
-			(entities 
-			)
-			(zones 
-			)
+			(entities )
+			(zones )
 		)
 	)
 )

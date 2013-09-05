@@ -1,7 +1,7 @@
 (ika-map 
 	(version '1.2')
 	(information 
-		(title '')
+		(title 'Repair Shaft')
 		(meta 
 			(color 'Blue')
 			(mapx '7')

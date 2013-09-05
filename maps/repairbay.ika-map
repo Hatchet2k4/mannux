@@ -1,7 +1,7 @@
 (ika-map 
 	(version '1.2')
 	(information 
-		(title '')
+		(title 'Repair Bay')
 		(meta 
 			(color 'Blue')
 			(mapx '13')
@@ -42,7 +42,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzsmOluEzEURmdGrGFvU+iSpNA1/ccjsIPY4f14s6G0IJW1UlkrlfVYsVVjvDW5ASrlSkdje0aZ78bftZ0UhXy8gBqewio8gzVYh+cwWxbFMTgAB+EQHIYjcBQasD0EXcOKTdiAl/AKXsMbeAvvil6+E3ASTsFpOANjMA5NKMt/p3+vYeb3PXyAj/AJPsMXWNH5TsIUTMMMtKANnX02vyrfHfgK3+A7/ICf6ma56+c5mIcFWIQlWIbuPp3fQer3b+X7pOI7rnpXg9t3x9xI1a/x817rN/R+nz4zHouJqkez2m37+r4xO9T8XkLvZc0VuArXNGZ+Tf863ICbmlue+o2936fPHvfFLOOdqncNEbpvj5t8b6P5juYu3IP7GpOv6T+Ah/BI81jnWwvrcr0S8kWOb0xbeVGqfncEdfm8HPJFrm8UDZ3voPuvmV8pXT4/2x6wveBrh66NUmb/VfNbC+ry+dn2QGj9c++7104ps/+a+ZXS5fOz7YHQ+ufed69qfjeF6ndDUJcb7hrn64e89Ntzpcz5eVt7REqXG6kzxnLESzZS9Wv8LKXLjdQZoxnxko3JV6p+pXS5kbOP+7zyxzOC9VsL6nIjZx9PnaNtP0v8/q0FdbmRs4/nnKO71vwOuv9uCeoK+Tl1Fk15yV6vpP2csw6H1u7Q/KbOZqnvdhjnydh+mzpnhvZf5fHjcALGrPbFwPh4YNw+b0j42feOHB32uK9+1dgkTEELzsI5aFvtVkbb/D6S2o9S74vpm4aZSL5zMK+fPQ8X+mhL16/53HYfmhZgMZJvF1a0L/ptS9evhCZfvpIxjP9z/ueQ+j9nFKMYRTx+AQAA//8='
+				'eJzsmOluEzEURmdGbA17m0KXJC1daPqPR2AHscP78WYDFCqVtRJlq1TWY8VWjfHW5KaAlCsdje0ZZb4bf9d2UhTysQ41PIGn8AzW4Dm8gLmyKI7CATgIh+AwHIExaMD2EHQNKzZhA17CK3gNb+AtvCt6+U7CCTgJp+A0jMMENKEs/57+vYaZ3y34AB/hE3yGL7Cq852CaZiBWWhBGzr/2fyqfHfgK3yD7/ADfqqb5a6fF2ARlmAZzsMKdPdpftcFP2fQ+t0vPz+u+I6r3tXg9t0xN1L1a/y81/oNvd+nz4zHYrLq0ax2276+b8wONb8X0XtJcxmuwFWNmV/TvwbX4Ybmpqd+Y+/36bPHfTHHeKfqXUOE7tvjJt9baL6tuQN34Z7G5Gv69+EBPNQ80vnWwrpcr4R8keMb01ZelKrfHUFdPi+HfJHrG0VD5zvo/mvmV0qXz8+2B2wv+Nqha6OU2X/V/NaCunx+tj0QWv/c++61U8rsv2Z+pXT5/Gx7ILT+uffdq5rfTaH63RDU5Ya7xvn6IS/99lwpc37e1h6R0uVG6oyxEvGSjVT9Gj9L6XIjdcZoRrxkY/KVql8pXW7k7OM+r/zxjGD91oK63MjZx1PnaNvPEr9/a0FdbuTs4znn6K41v4Puv+8FdYX8nDqLprxkr1fSfs5Zh0Nrd2h+U2ez1Hc7jPNkbL9NnTND+6/y+DE4DuNW+0JgfCIwbp83JPzse0eODnvcV79qbAqmoQVn4Cy0rXYro21+H0ntR6n3xfTNwGwk3wVY1M/Ow7k+2tL1az633YemJViO5NuFVe2LftvS9SuhyZevZAzj/5x/OaT+zxnFKEYRj18AAAD//w=='
 			)
 			(obstructions 
 				(style 'tile')

@@ -49,5 +49,38 @@
 			(entities )
 			(zones )
 		)
+		(layer 
+			(label 'New Layer')
+			(type 'tile')
+			(dimensions 
+				(width '50')
+				(height '50')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzswQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAAAP//'
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJzswQENAAAAwqD3T20ON6AAAHgzAAAA//8='
+			)
+			(entities )
+			(zones )
+		)
 	)
 )

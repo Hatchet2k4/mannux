@@ -1,7 +1,7 @@
 (ika-map 
 	(version '1.2')
 	(information 
-		(title '')
+		(title 'Docking Bay 2')
 		(meta 
 			(color 'Blue')
 			(mapx '17')

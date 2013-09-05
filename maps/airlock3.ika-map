@@ -1,7 +1,7 @@
 (ika-map 
 	(version '1.2')
 	(information 
-		(title '')
+		(title 'Airlock 3')
 		(meta 
 			(color 'Blue')
 			(mapx '20')
@@ -51,7 +51,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzsyDsSgCAQBNGtuf+BFDM/GWAmchs63mxDLbrqBTNms9n/WmS2ImFTfPt2vgMnLsW3L/MVVNyKb9/D1/CiK76/0gAAAP//'
+				'eJzsjCkSgDAQBJf5/4MIuEAch4PwG1qvYkUEVemqFj1izNowNPrtdL4wyizhhLPi7clsC65YFG/Pxrbjgafi7bnYbqz4KN5/4QUAAP//'
 			)
 			(obstructions 
 				(style 'tile')
