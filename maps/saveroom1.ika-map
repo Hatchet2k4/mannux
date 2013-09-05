@@ -1,7 +1,7 @@
 (ika-map 
 	(version '1.2')
 	(information 
-		(title 'Save Room 1')
+		(title '')
 		(meta 
 			(color 'Red')
 			(mapx '3')
@@ -14,7 +14,7 @@
 			(width '320')
 			(height '240')
 		)
-		(tileset 'Mannux.vsp')
+		(tileset 'mannux.vsp')
 	)
 	(waypoints )
 	(zones 

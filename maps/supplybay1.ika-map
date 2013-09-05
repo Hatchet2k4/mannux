@@ -14,7 +14,7 @@
 			(width '640')
 			(height '480')
 		)
-		(tileset 'Mannux.vsp')
+		(tileset 'mannux.vsp')
 	)
 	(waypoints )
 	(zones 
