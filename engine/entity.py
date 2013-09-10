@@ -26,7 +26,7 @@ class Entity(object):
         self.touchable = False
         self.destroy = False
         self.active = True
-        
+        self.platform = False
         
         # Hack so that ika can detect entity collisions for us.
         #ika.Map.entities[id(self.sprite)] = self.sprite
@@ -98,7 +98,7 @@ class Entity(object):
                                        
                                                
 
-    def detect_collision(self):
+    def detect_collision(self): #entity collisions
         result = []
         for entity in e.engine.entities:
             if entity is not self and entity.sprite and \

@@ -424,8 +424,10 @@ class Tabby(Entity):
             if self.ceiling:
                 self.vy = 0
                 self.y += 1
-            if self.floor:
+            if self.floor or self.cur_platform:
                 self.vy = 0
+                
+                
                 self.Animate(('jump', 'stand', self.direction), delay=6,
                              loop=False)
                 if controls.left.Position() > controls.deadzone or \
@@ -1072,13 +1074,21 @@ class Tabby(Entity):
         
         
         self.ceiling = self.check_h_line(x + 1, y - 1, x2 - 1)
-        self.floor = self.check_h_line(x + 1,y2, x2 - 1)
-        if self.floor and not self.ceiling:
-            # Find the tile that the entity will be standing on,
-            # and set it to be standing exactly on it:
-            tiley = int(y2 / ika.Map.tileheight)
-            self.y = tiley * ika.Map.tileheight - self.height
-            self.vy = 0
+        
+        if self.cur_platform: 
+            self.floor = True
+        #already on a platform, no need to check for floor
+        else:
+            self.floor = self.check_h_line(x + 1,y2, x2 - 1)
+        
+            if self.floor and not self.ceiling:
+                # Find the tile that the entity will be standing on,
+                # and set it to be standing exactly on it:
+                tiley = int(y2 / ika.Map.tileheight)
+                self.y = tiley * ika.Map.tileheight - self.height
+                self.vy = 0
+                
+                
         if self.ceiling and self.vy != 0:
             tiley = int((y - 1) / ika.Map.tileheight)
             self.y = (tiley + 1) * ika.Map.tileheight
@@ -1100,11 +1110,17 @@ class Tabby(Entity):
             tilex = int(x2 / ika.Map.tilewidth)
             self.x = tilex * ika.Map.tilewidth - self.width
             self.vx = min(0, self.vx)
-            
+
+
+
+        on_platform=False    
         for entity in self.detect_collision():
+            
             if entity is not None:            
-                if not entity.destroy and entity.touchable:
+                if not entity.destroy and entity.touchable:                    
                     entity.touch(self)
+                    
+                    
                 if entity.sprite.isobs: #is an obstruction, so obstruct!
                 
                     
@@ -1126,6 +1142,10 @@ class Tabby(Entity):
                     #    self.left_wall = True
                     #    self.x = entity.x - self.width
                     #    self.vx = 0
+                    
+                    
+                        
+                    
                     ymove = False
                     if y <= entity.y + entity.height and y2 > entity.y + entity.height:
                         self.ceiling = True # touching bottom  of the box
@@ -1137,21 +1157,27 @@ class Tabby(Entity):
                         self.y = entity.y - self.height
                         self.vy = 0
                         ymove = True
+                        if entity.platform:
+                            on_platform=True
+                            
                     
                     if not ymove:
-                    #inside                          outside
+                            #inside                          outside
                         if x <= entity.x + entity.width and x2 > entity.x + entity.width:
                             self.left_wall = True # touching RIGHT side of the box
                             self.x = entity.x + entity.width
                             self.vx = 0
                                             
-                    #inside                  outside
+                            #inside                  outside
                         elif x2 >= entity.x and x < entity.x: # and not (entity.x + entity.sprite.hotwidth > self.x):
                             self.right_wall = True #touching LEFT side of the box
                             self.x = entity.x - self.width
                             self.vx = 0
                     
-                    
+        if not on_platform:
+            self.cur_platform=False
+            self.pvx=0
+            self.pvy=0
                         
                 
                 
@@ -1162,12 +1188,19 @@ class Tabby(Entity):
             if f.test(self) and f.runnable:
                 return f
 
+    def SetPlatform(self, platform):
+        self.cur_platform=platform
+        engine.player.pvy = self.vy
+        engine.player.pvx = self.vx
+        #self.Land()
+        
+
     def update(self):
         if self.msg: 
             pass #do stuff :P
             #self.msg = ''
         
-        #check current terrain to set appropriate terrain speeds, mostly just water.
+        #check current terrain to set appropriate terrain speeds, mostly just water for now.
         if self.cur_terrain:
             self.ground_friction = 0.15
             self.air_friction = 0.20
@@ -1188,12 +1221,9 @@ class Tabby(Entity):
             self.gravity = 0.1
             self.jump_speed = 5
         
-        touching = self.detect_collision()
-        if self.cur_platform and self.cur_platform not in touching:
-            #not touching a platform anymore
-            self.pvx=0
-            self.pvy=0
-            self.cur_platform=None
+        
+        
+
         
         ### hack hack hack ###
         if self.hurt_count > 0:
@@ -1245,16 +1275,46 @@ class Tabby(Entity):
         if self.fire_delay > 0:
             self.fire_delay -= 1
         ### end hack hack hack ###
+        
+          
+        touching = self.detect_collision() #entity collisions
+        if self.cur_platform and self.cur_platform not in touching:
+            #not touching a platform anymore
+            self.pvx=0
+            self.pvy=0
+            self.cur_platform=None              
+            
         if self.checkslopes:
             if not self.CheckSlopes():
                 self.CheckObstructions()
         else:
             self.CheckObstructions()
+            
         self.vx = vecmath.clamp(self.vx, -self.max_vx, self.max_vx)
         self.vy = vecmath.clamp(self.vy, -self.max_vy, self.max_vy)
         self.x += self.vx + self.pvx
         self.y += self.vy + self.pvy
+        
+        if self.cur_platform:
+            self.y=int(self.cur_platform.y-49)
+        
         self.sprite.x = int(self.x)
         self.sprite.y = int(self.y)
         self.state__()
         self.animation()
+
+
+    def detect_collision(self): #entity collisions, Tabby specific
+        result = []
+        
+        y=self.y+self.vy+self.pvy
+        x=self.x+self.vx+self.pvx
+        
+        for entity in engine.entities:        
+            if entity is not self and entity.sprite and \
+               entity.y + entity.sprite.hotheight > y and \
+               entity.y < y + self.sprite.hotheight and \
+               entity.x + entity.sprite.hotwidth > x and \
+               entity.x < x + self.sprite.hotwidth:
+                   result.append(entity)
+        return result

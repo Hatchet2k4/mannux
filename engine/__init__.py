@@ -134,7 +134,7 @@ class Engine(object):
         self.title = TitleScreen()
         self.camera = Camera(self.player.sprite)
         self.cameratarget = self.player
-        self.entities.append(self.player)
+        self.entities.append(self.player) #player should always be the first in the list
 
     def newgame(self):
         self.load('%s/default.save' % config.save_path)
@@ -181,7 +181,7 @@ class Engine(object):
                 # Make sure the engine doesn't have to play 'catchup'.
                 time = ika.GetTime()
             #screenshot key
-            if False:  #controls.confirm.Pressed(): 
+            if False:  #controls.confirm.Pressed(): #screenshot
                 #self.text('This is a textbox.')
                 ika.Input.Unpress()
                 time = ika.GetTime()
@@ -319,10 +319,8 @@ class Engine(object):
         mapModule = __import__(moduleName, globals(), locals(), [''])
         self.readZones(mapModule)
         
-        self.GetLayers()
-             
-        
-        
+        self.GetLayers()          
+               
         video.clear()
         if fadein:
             self.FadeIn(16)
@@ -364,14 +362,12 @@ class Engine(object):
         self.time = '%03d:%03d:%03d' % (self.hours, self.minutes, self.seconds)
 
     def UpdateTerrain(self):
-        """Updates terrain layer."""
+        #Updates terrain layer. For water effects, currently
         for l in self.terrain_layers:
             name, layer = l
             
             #going in
-            if ika.Map.GetTile(int(self.player.x+1) / 16, int(self.player.y + 31) / 16, layer):
-                
-            
+            if ika.Map.GetTile(int(self.player.x+1) / 16, int(self.player.y + 31) / 16, layer):                            
                 if self.player.cur_terrain == None:
                     self.AddEntity(Splash(int(self.player.x - 12), int(self.player.y), name.lower(), layer))
                 self.player.cur_terrain = name

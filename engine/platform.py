@@ -11,7 +11,7 @@ class Platform(Entity):
         super(Platform, self).__init__(ika.Entity(int(x), int(y),
                                                 ika.Map.FindLayerByName('Walls'), 'sprites/platform.ika-sprite'
                                                 ))
-        #Entity.__init__(self, x, y, ika.Map.FindLayerByName('Doors'), sprites)
+
         
         self._vx = vx
         self._vy = vy #for storing the "original" directions
@@ -22,16 +22,18 @@ class Platform(Entity):
         
         self.ticks = 0
         self.delay = 0
-        self.delduration = delay
+        self.delduration = delay #how long to wait
         self.duration = duration #need to change to be more of a pattern eventually...
         self.touchable = True
         self.set_animation_state(0, 0, delay=5, loop=True)
+
 
         self.sprite.mapobs = False
         self.sprite.entobs = False
         self.sprite.isobs = True
         self.touching = False
         self.visible = True
+        
 
     def draw(self):
         #print >> fonts.tiny(200, 50), "x:", str(self.x)
@@ -50,12 +52,9 @@ class Platform(Entity):
 
         
         if not engine.player.cur_platform:  #just landed on it      
-            engine.player.cur_platform = self                            
-            engine.player.y = self.y - 49
-        
-        engine.player.floor = True            
-        engine.player.pvy = self.vy
-        engine.player.pvx = self.vx
+            engine.player.SetPlatform(self)
+            
+
         
     def update(self):
         super(Platform, self).update() 
