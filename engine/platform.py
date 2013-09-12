@@ -33,7 +33,7 @@ class Platform(Entity):
         self.sprite.isobs = True
         self.touching = False
         self.visible = True
-        
+        self.platform = True #is a platform!
 
     def draw(self):
         #print >> fonts.tiny(200, 50), "x:", str(self.x)
@@ -47,12 +47,13 @@ class Platform(Entity):
 
 
     def touch(self, ent):
+        pass
         #if not self.touching:
         #    self.touching = True
 
         
-        if not engine.player.cur_platform:  #just landed on it      
-            engine.player.SetPlatform(self)
+        #if not engine.player.cur_platform:  #just landed on it      
+        #    engine.player.SetPlatform(self)
             
 
         

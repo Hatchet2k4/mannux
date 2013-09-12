@@ -16,10 +16,10 @@ class Door(Entity):
                                               '%s/%s.ika-sprite' %
                                               (config.sprite_path, s)))
         if layer is None:
-            layer = ika.Map.FindLayerByName('Doors')
+            self.layer = ika.Map.FindLayerByName('Doors')
         self.anim.kill = True
         self.locked = locked
-        self.layer = layer
+        
         # Start door open.
         if abs(self.x - engine.player.x) < 72 and not locked and \
            detect_in_y_coordinates(self) is engine.player:

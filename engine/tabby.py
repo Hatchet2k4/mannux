@@ -1112,7 +1112,7 @@ class Tabby(Entity):
             self.vx = min(0, self.vx)
 
 
-
+        """
         on_platform=False    
         for entity in self.detect_collision():
             
@@ -1179,7 +1179,7 @@ class Tabby(Entity):
             self.pvx=0
             self.pvy=0
                         
-                
+        """
                 
 
     def RunnableZone(self):
@@ -1190,8 +1190,8 @@ class Tabby(Entity):
 
     def SetPlatform(self, platform):
         self.cur_platform=platform
-        engine.player.pvy = self.vy
-        engine.player.pvx = self.vx
+        self.pvy = self.vy
+        self.pvx = self.vx
         #self.Land()
         
 
@@ -1277,26 +1277,47 @@ class Tabby(Entity):
         ### end hack hack hack ###
         
           
-        touching = self.detect_collision() #entity collisions
-        if self.cur_platform and self.cur_platform not in touching:
-            #not touching a platform anymore
-            self.pvx=0
-            self.pvy=0
-            self.cur_platform=None              
+ 
+     
+            
             
         if self.checkslopes:
             if not self.CheckSlopes():
                 self.CheckObstructions()
         else:
             self.CheckObstructions()
+
+        touching = self.detect_collision() #entity collisions
+        if not self.cur_platform: 
+            for e in touching:
+                if e.platform:
+                    #need to check more that only touching from the top fo the platform... hack for now
+                    #self.SetPlatform(e)   
+                    self.cur_platform=e
+                    self.pvy = self.vy
+                    self.pvx = self.vx
+                    
+                    self.floor=True
+        elif self.cur_platform:
+            if self.cur_platform not in touching:
+                #not touching a platform anymore
+                self.pvx=0
+                self.pvy=0
+                self.cur_platform=None             
+            else:
+                self.pvy = self.cur_platform.vy
+                self.pvx = self.cur_platform.vx           
+            
             
         self.vx = vecmath.clamp(self.vx, -self.max_vx, self.max_vx)
         self.vy = vecmath.clamp(self.vy, -self.max_vy, self.max_vy)
         self.x += self.vx + self.pvx
-        self.y += self.vy + self.pvy
-        
+               
         if self.cur_platform:
-            self.y=int(self.cur_platform.y-49)
+            self.y=int(self.cur_platform.y-47)
+        else: 
+            self.y += self.vy + self.pvy
+            
         
         self.sprite.x = int(self.x)
         self.sprite.y = int(self.y)

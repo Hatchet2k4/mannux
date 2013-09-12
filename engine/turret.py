@@ -74,9 +74,9 @@ class Turret(Enemy):
                                          self.direction * 15 + 12, 8,
                                          reset=False)
             self.ticks += 1
-            if self.ticks == 15 or self.ticks == 30:
+            if self.ticks == 15 or self.ticks == 30 or self.ticks == 45: #fire in bursts of 3
                 self.fire()
-            elif self.ticks == 90:
+            elif self.ticks == 180: #Reset every 1.8 seconds. May need to adjust this...
                 self.ticks = 0
             yield None
 
