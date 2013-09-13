@@ -109,7 +109,11 @@ class Tabby(Entity):
         #self.testimg = ika.Image("sprites/platform.png")
         
     def draw(self):
-        #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin), "x:", str(self.x)
+        print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "x:", str(self.x)
+        print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+50), "vx:", str(self.vx)
+        print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+60), "pvx:", str(self.pvx)
+        print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+70), "platform:", str(self.cur_platform is not None)
+ 
         
         #tx = x / ika.Map.tilewidth
         #ty = y / ika.Map.tileheight
@@ -1192,7 +1196,7 @@ class Tabby(Entity):
         self.cur_platform=platform
         self.pvy = self.vy
         self.pvx = self.vx
-        #self.Land()
+
         
 
     def update(self):
@@ -1275,10 +1279,7 @@ class Tabby(Entity):
         if self.fire_delay > 0:
             self.fire_delay -= 1
         ### end hack hack hack ###
-        
-          
- 
-     
+
             
             
         if self.checkslopes:
@@ -1287,19 +1288,26 @@ class Tabby(Entity):
         else:
             self.CheckObstructions()
 
-        touching = self.detect_collision() #entity collisions
-        if not self.cur_platform: 
-            for e in touching:
-                if e.platform:
-                    #need to check more that only touching from the top fo the platform... hack for now
-                    #self.SetPlatform(e)   
+        results = self.detect_collision() #entity collisions
+        
+        if self.cur_platform is None: 
+            for colliding in results: #returns tuple of (entity, top, bottom, left, right for sides being touched)
+                e,top,bottom,left,right=colliding                
+                if e.platform:   # and top: #entity is a platform and touching the top                        
                     self.cur_platform=e
-                    self.pvy = self.vy
-                    self.pvx = self.vx
-                    
+                    self.pvy = e.vy
+                    self.pvx = e.vx                    
                     self.floor=True
-        elif self.cur_platform:
-            if self.cur_platform not in touching:
+                    #only one platform at a time right now, first in the list...
+        elif self.cur_platform: #currently standing on a platform
+            still_touching=False
+            for colliding in results: #returns tuple of (entity, top, bottom, left, right for sides being touched)
+                e,top,bottom,left,right=colliding 
+                if e==self.cur_platform:
+                    still_touching=True
+                    break
+                    
+            if not still_touching:
                 #not touching a platform anymore
                 self.pvx=0
                 self.pvy=0
@@ -1311,13 +1319,15 @@ class Tabby(Entity):
             
         self.vx = vecmath.clamp(self.vx, -self.max_vx, self.max_vx)
         self.vy = vecmath.clamp(self.vy, -self.max_vy, self.max_vy)
-        self.x += self.vx + self.pvx
+       
                
-        if self.cur_platform:
-            self.y=int(self.cur_platform.y-47)
-        else: 
-            self.y += self.vy + self.pvy
+        if self.cur_platform:               
+            self.y=int(self.cur_platform.y-45) #haaaack
             
+        else: 
+            self.y += self.vy
+           
+        self.x += self.vx + self.pvx    
         
         self.sprite.x = int(self.x)
         self.sprite.y = int(self.y)
@@ -1327,7 +1337,31 @@ class Tabby(Entity):
 
     def detect_collision(self): #entity collisions, Tabby specific
         result = []
+
+        y=self.y+self.vy#+self.pvy
+        x=self.x+self.vx#+self.pvx        
         
+        for entity in engine.entities:
+            top = bottom = left = right = False
+            etop = entity.y
+            ebottom = entity.y + entity.sprite.hotheight
+            eleft = entity.x
+            eright = entity.x + entity.sprite.hotwidth
+            
+            if entity is not self and entity.sprite and \
+                ebottom > y and etop < y + self.sprite.hotheight and \
+                eright > x and eleft < x + self.sprite.hotwidth: #within bounding box. Check if it's the top, bottom, left, or right side being collided with. 
+                               
+                   #need to refactor again to look at bounding rectangles
+                   if ebottom > y and ebottom < y + (self.sprite.hotheight/2): top = True #entity touching top side
+                   if etop < y + self.sprite.hotheight and top > y + (self.sprite.hotheight/2): bottom = True
+                   if eright > x and eright < x + (self.sprite.hotwidth/2): left = True
+                   if eleft < x + self.sprite.hotwidth and eleft < x + (self.sprite.hotwidth/2): right = True
+               
+                   result.append((entity, top, bottom, left, right))
+        return result        
+        
+        """        
         y=self.y+self.vy+self.pvy
         x=self.x+self.vx+self.pvx
         
@@ -1339,3 +1373,4 @@ class Tabby(Entity):
                entity.x < x + self.sprite.hotwidth:
                    result.append(entity)
         return result
+        """

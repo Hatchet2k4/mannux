@@ -22,7 +22,7 @@ class Platform(Entity):
         
         self.ticks = 0
         self.delay = 0
-        self.delduration = delay #how long to wait
+        self.delduration = delay #how long to wait after hitting the apex to change direction again. Will ned to make this more flexible...
         self.duration = duration #need to change to be more of a pattern eventually...
         self.touchable = True
         self.set_animation_state(0, 0, delay=5, loop=True)
@@ -43,7 +43,7 @@ class Platform(Entity):
         
         #print >> fonts.tiny(x, y), "vy:", str(self.vy)
         #print >> fonts.tiny(x, y+10), "ticks:", str(self.ticks)
-        #ika.Video.DrawRect(x, y, x+48, y+16, ika.RGB(255, 0, 0, 128), True)
+        ika.Video.DrawRect(x, y, x+48, y+16, ika.RGB(255, 0, 0, 128), True)
 
 
     def touch(self, ent):

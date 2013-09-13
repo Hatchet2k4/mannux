@@ -98,15 +98,26 @@ class Entity(object):
                                        
                                                
 
-    def detect_collision(self): #entity collisions
+    def detect_collision(self): #entity collisions, not currently used in default entity code
         result = []
+        
         for entity in e.engine.entities:
+            top = bottom = left = right = False
+            etop = entity.y
+            ebottom = entity.y + entity.sprite.hotheight
+            eleft = entity.x
+            eright = entity.x + entity.sprite.hotwidth
+            
             if entity is not self and entity.sprite and \
-               entity.y + entity.sprite.hotheight > self.y and \
-               entity.y < self.y + self.sprite.hotheight and \
-               entity.x + entity.sprite.hotwidth > self.x and \
-               entity.x < self.x + self.sprite.hotwidth:
-                   result.append(entity)
+                ebottom > self.y and etop < self.y + self.sprite.hotheight and \
+                eright > self.x and  eleft < self.x + self.sprite.hotwidth:
+                   #within bounding box. Check if it's the top, bottom, left, or right side being collided with. 
+                   if ebottom > self.y and ebottom < self.y + (self.sprite.hotheight/2): top = True #entity touching top side
+                   if etop < self.y + self.sprite.hotheight and top > self.y + (self.sprite.hotheight/2): bottom = True
+                   if eright > self.x and eright < self.x + (self.sprite.hotwidth/2): left = True
+                   if eleft < self.x + self.sprite.hotwidth and eleft < self.x + (self.sprite.hotheight/2): right = True
+               
+                   result.append((entity, top, bottom, left, right))
         return result
 
     def check_v_line(self, x1, y1, y2):
