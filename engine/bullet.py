@@ -37,7 +37,7 @@ class Bullet(Entity):
 			for ent in collisions[0]:  #[0] to grab the entity from the tuple
 				if ent is not None and ent != engine.player:
 					if isinstance(ent, Enemy) and ent.hurtable:
-						ent.Hurt(8)
+						ent.Hurt(8) #8 damage, make configurable later
 						engine.AddEntity(Boom(int(self.x + self.vx),
 											 int(self.y  + self.vy)))
 						self._destroy()

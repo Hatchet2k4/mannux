@@ -1,0 +1,28 @@
+(ika-sprite 
+	(version '1.1')
+	(information 
+		(title 'Untitled')
+		(meta )
+	)
+	(header 
+		(depth '32')
+	)
+	(scripts )
+	(frames 
+		(count '3')
+		(dimensions 
+			(width '22')
+			(height '22')
+		)
+		(hotspot 
+			(x '0')
+			(y '0')
+			(width '16')
+			(height '16')
+		)
+		(data 
+			(format 'zlib')
+			'eJzsld1txCAMgFmgE3QQ1A06RF9uG6SOcHtVHaB7cDXEYF8MGALSRcqDlYSD74z5+bz3xr9kOD+faaYz/36MhzgyR3MznsbXp5Yp1wgY8AoMYJn7W4yNra9V7gvjMS/kvvuPEMiO/6tZv8gIY/7H3v134MXcfsM3coGT2e3caX7AgUBmrqthOWtqjbXDeSMb3rE91RnZVsfFMZSFtU31HeESNs6dMrEt9bX1/RH6Ws6FYDVN345xsU9tX9AaIwvHsPkra5C4lu/bzHbs3IW5dXDxEZg3IWyOkXNHxyPj+fvQPUEY+vx6YgVzJXeFc66Yv451txzNadzHcvT7WJofb9P4mI+p5R8fLR/Hfo55s1UXjY+DV8jdrrmLzuRj5odJPk57SfBxWqdnP4s+Lp8d2cduN//Q1ulj8TxQvw/6ODGn+TifoXk+Ltel5OP4Pc6W1ndeXN58/TquWvuV7PiQfFz+z3YNdT7WunNjNnycu8YX+f7lc2j5OLmzw8f4uHy89zH8vMbH3JllH+/XirZLPt7FtrfLNdifj9jXpX1R83HfHeVyvtN8zPM+t4/rtVvHPm88AAAA//8='
+		)
+	)
+)

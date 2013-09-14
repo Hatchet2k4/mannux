@@ -16,6 +16,7 @@ from engine.const import Dir
 from engine.platform import Platform
 from engine.box import Box
 from engine.healthup import Healthup
+from engine.sentry import Sentry
 
 def landing_animation():
     xwin = 232
@@ -30,11 +31,11 @@ def landing_animation():
     time = ika.GetTime()
     starttime = time
     sh = Ship()
-    
-    
+
+
     #print "Tile: "+str(ika.Map.GetTile(13,23, 1))
-    
-    
+
+
     elapsed = 0
     while not done:
         t = ika.GetTime()
@@ -97,27 +98,27 @@ def landing_animation():
                 bg.remove(sh)
                 sh = ShipLanding(344, 207)
                 bg.append(sh)
-                
-                
-                
+
+
+
             if elapsed > 1000 and elapsed < 1250:
                 sh.geary += 0.2
                 sh.y += 0.112
                 if elapsed in [1030, 1060, 1090, 1120, 1150, 1180, 1210]:
                     sh.gearframe -= 1
-            if elapsed == 1260:                    
+            if elapsed == 1260:
                 sh.jets=False
             if elapsed == 1300:
-            
+
                 bg.remove(sh)
                 sh = ShipLanded(344, 234, state=2, tabin=True)
-                bg.append(sh)            
-            
-                
-                
-            if elapsed == 1800:    
+                bg.append(sh)
+
+
+
+            if elapsed == 1800:
                 fg.append(FadeOut(300))
-            
+
             if elapsed == 2100:
                 done = True
 
@@ -166,13 +167,13 @@ def AutoExec():
         e.AddEntity(Healthup(56 * ika.Map.tilewidth,
                                  8 * ika.Map.tileheight,
                                  flag='DockingBayHealthUp'))
-        
-        
+
+
     e.camera.reset_borders()
 
     e.background_things.append(Background(ika.Image('images/bg_planetstars1.png'),
                                           364, 128 + 56))
-    
+
     e.background_things.append(Background(ika.Image('images/bg_planetstars2.png'),
                                           364, 128 + 56))
     e.background_things.append(Background(ika.Image('images/bg_docking_bay.png'),
@@ -183,9 +184,9 @@ def AutoExec():
     e.foreground_things.append(Background(ika.Image('images/elevator.png'),
                                           336, 384))
     e.foreground_things.append(Fog())
-    
-    
-    
+
+
+
     #e.foreground_things.append(Fog(-0.2, 0.1))
     #if not landed:
     #    landed = True
@@ -205,13 +206,16 @@ def AutoExec():
     #                       Dir.LEFT))
 
     e.AddEntity(Platform(20 * ika.Map.tilewidth, 20 * ika.Map.tileheight))
-    
-    
+
+
     e.AddEntity(Box(14 * ika.Map.tilewidth, 15 * ika.Map.tileheight))
-    
-    
-    e.AddEntity(Box(34 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
-    
+
+
+    #e.AddEntity(Box(34 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
+
+    e.AddEntity(Sentry(35 * ika.Map.tilewidth, 17 * ika.Map.tileheight))
+
+
     secretArea.activated = False
 
     #ika.Map.SetLayerTint(1, ika.RGB(255,100, 100, 127))
