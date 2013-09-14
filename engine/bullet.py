@@ -32,18 +32,20 @@ class Bullet(Entity):
         if self.sprite is None:
             return
         self.sprite.specframe = self.anim.cur_frame
-        for ent in self.detect_collision():
-            if ent is not None and ent != engine.player:
-                if isinstance(ent, Enemy) and ent.hurtable:
-                    ent.Hurt(8)
-                    engine.AddEntity(Boom(int(self.x + self.vx),
-                                         int(self.y  + self.vy)))
-                    self._destroy()
-                elif ent.isobs:
-                    engine.AddEntity(Boom(int(self.x + self.vx),
-                                         int(self.y  + self.vy)))
-                    self._destroy()
-                return
+        collisions = self.detect_collision()
+        if len(collisions)>0:
+			for ent in collisions[0]:  #[0] to grab the entity from the tuple
+				if ent is not None and ent != engine.player:
+					if isinstance(ent, Enemy) and ent.hurtable:
+						ent.Hurt(8)
+						engine.AddEntity(Boom(int(self.x + self.vx),
+											 int(self.y  + self.vy)))
+						self._destroy()
+					elif ent.isobs:
+						engine.AddEntity(Boom(int(self.x + self.vx),
+											 int(self.y  + self.vy)))
+						self._destroy()
+					return
         if self.left_wall or self.right_wall or self.ceiling or self.floor:
             engine.AddEntity(Boom(int(self.x + self.vx),
                                  int(self.y  + self.vy)))
@@ -51,13 +53,13 @@ class Bullet(Entity):
             for dx, dy in [(-8, -8), (8, -8), (8, 8), (-8, 8)]:
                x = int(self.x + self.vx + dx + 4) / 16
                y = int(self.y + self.vy + dy + 4) / 16
-               
+
                wall_layer = ika.Map.FindLayerByName('Walls')
                door_layer = ika.Map.FindLayerByName('Doors')
-               
+
                if wall_layer and door_layer and ika.Map.GetObs(x, y, door_layer):
-                  
-                  
+
+
                   ika.Map.SetObs(x, y, door_layer, 0) #hack right now so that obstructions on door layer = destructible block.
                   ika.Map.SetObs(x, y, wall_layer, 0)
                   ika.Map.SetTile(x, y, wall_layer, 0)
