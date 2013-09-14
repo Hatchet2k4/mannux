@@ -48,11 +48,11 @@ class Tabby(Entity):
         super(Tabby, self).__init__(ika.Entity(x, y, 1,
                                                '%s/tabitha_pistol.ika-sprite' %
                                                config.sprite_path))
-        # Constants.               
-        
-        
-        
-        
+        # Constants.
+
+
+
+
         self.ground_friction = 0.10
         self.air_friction = 0.1
         self.ground_accel = self.ground_friction * 2
@@ -61,14 +61,14 @@ class Tabby(Entity):
         self.max_vy = 8.0
         self.gravity = 0.1
         self.jump_speed = 5
-        
+
         self.abilities = {'sexy': True, 'wall-jump': True, 'double-jump': False}
 
 
         self.fire_delay = 0
         self.firing_rate = 8
-        self.direction = Dir.LEFT                              
-        
+        self.direction = Dir.LEFT
+
         self.hp = 120
         self.maxhp = 120
         self.mp = 100
@@ -92,37 +92,37 @@ class Tabby(Entity):
         self.state = self.StandState
         self.msg = ''
         self.msgtime = 0
-        
+
         self.checkslopes = True
         self.was_in_slope = False
         self.lastpos = (0, 0)
         self.phantom = False
         self.fired = False
 
-        self.cur_terrain = None        
-        
+        self.cur_terrain = None
+
         self.cur_platform = None
         #extra platform speeds
         self.pvx = 0
         self.pvy = 0
-        
+
         #self.testimg = ika.Image("sprites/platform.png")
-        
+
     def draw(self):
         print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "x:", str(self.x)
         print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+50), "vx:", str(self.vx)
         print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+60), "pvx:", str(self.pvx)
         print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+70), "platform:", str(self.cur_platform is not None)
- 
-        
+
+
         #tx = x / ika.Map.tilewidth
         #ty = y / ika.Map.tileheight
         #tile = ika.Map.GetTile(tx, ty, self.layer)
-        
+
         pass
         #self.testimg.Blit(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin)
-        
-        
+
+
 
     def HasAbility(self, name):
         if name in self.abilities:
@@ -225,10 +225,10 @@ class Tabby(Entity):
         while True:
             if self.anim.kill:
                 self.Animate(('stand', self.direction))
-                
-            
-            
-            
+
+
+
+
             if controls.up.Position() == 0:
                 upPressed = False
             if self.anim.loop:
@@ -430,8 +430,8 @@ class Tabby(Entity):
                 self.y += 1
             if self.floor or self.cur_platform:
                 self.vy = 0
-                
-                
+
+
                 self.Animate(('jump', 'stand', self.direction), delay=6,
                              loop=False)
                 if controls.left.Position() > controls.deadzone or \
@@ -522,7 +522,7 @@ class Tabby(Entity):
                     elif self.direction == Dir.RIGHT:
                         self.Fire(self.direction, offx=-8 + 31, offy=10)
                     elif self.direction == Dir.LEFT:
-                        self.Fire(self.direction, offx=-8, offy=10)                        
+                        self.Fire(self.direction, offx=-8, offy=10)
             yield None
         # FALL->STAND
         self.Animate(('fall', 'stand', self.direction), loop=False)
@@ -962,19 +962,19 @@ class Tabby(Entity):
             yield None
         self.state = self.StandState
         yield None
-        
+
     def IdleState(self, strand = ('stand', 'face'), delay=1 ):
         self.hurtable = False
         self.Animate(strand, delay)
 
-        
+
         self.vx = 0
         self.vy = 0
 
         while True:
             yield None
         self.state = self.StandState
-        yield None        
+        yield None
 
     def CheckLadderTile(self, x, y):
         tx = x / ika.Map.tilewidth
@@ -1017,7 +1017,7 @@ class Tabby(Entity):
                 if self.vx > 0 and self.vy == 0:
                     self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight + 1
                 else:
-                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight 
+                    self.y = a + (b / 2) - self.sprite.hotheight - ika.Map.tileheight
             return True
 
         elif tile in halfSlopeTiles[(Dir.LEFT, 'bottom')]:  # /
@@ -1075,24 +1075,24 @@ class Tabby(Entity):
         y = round(self.y + self.vy)
         x2 = x+self.width
         y2 = y+self.height
-        
-        
+
+
         self.ceiling = self.check_h_line(x + 1, y - 1, x2 - 1)
-        
-        if self.cur_platform: 
+
+        if self.cur_platform:
             self.floor = True
         #already on a platform, no need to check for floor
         else:
             self.floor = self.check_h_line(x + 1,y2, x2 - 1)
-        
+
             if self.floor and not self.ceiling:
                 # Find the tile that the entity will be standing on,
                 # and set it to be standing exactly on it:
                 tiley = int(y2 / ika.Map.tileheight)
                 self.y = tiley * ika.Map.tileheight - self.height
                 self.vy = 0
-                
-                
+
+
         if self.ceiling and self.vy != 0:
             tiley = int((y - 1) / ika.Map.tileheight)
             self.y = (tiley + 1) * ika.Map.tileheight
@@ -1102,7 +1102,7 @@ class Tabby(Entity):
         y = round(self.y)
         x2 = x+self.width
         y2 = y+self.height
-        
+
         self.left_wall = self.check_v_line(x, y + 1, y2 - 1)
         self.right_wall = self.check_v_line(x2, y + 1,
                                             y2 - 1)
@@ -1117,39 +1117,39 @@ class Tabby(Entity):
 
 
         """
-        on_platform=False    
+        on_platform=False
         for entity in self.detect_collision():
-            
-            if entity is not None:            
-                if not entity.destroy and entity.touchable:                    
+
+            if entity is not None:
+                if not entity.destroy and entity.touchable:
                     entity.touch(self)
-                    
-                    
+
+
                 if entity.sprite.isobs: #is an obstruction, so obstruct!
-                
-                    
+
+
                     #if entity.y + entity.sprite.hotheight > self.y: #touching the bottom of the sprite
                     #    self.ceiling = True
                     #    self.y = entity.y + entity.sprite.hotheight
                     #    self.vy=0
-                        
+
                     #if entity.y < self.y + self.sprite.hotheight: #touching the top?
                     #    self.floor = True
                     #    self.y = entity.y - self.sprite.hotheight
                     #    self.vy=0
-                        
-                    
-                    
-                    #if x + self.width > entity.x and 
-                    
+
+
+
+                    #if x + self.width > entity.x and
+
                     #(self.y + self.height > entity.y or self.y  entity.y + entity.height):
                     #    self.left_wall = True
                     #    self.x = entity.x - self.width
                     #    self.vx = 0
-                    
-                    
-                        
-                    
+
+
+
+
                     ymove = False
                     if y <= entity.y + entity.height and y2 > entity.y + entity.height:
                         self.ceiling = True # touching bottom  of the box
@@ -1163,28 +1163,28 @@ class Tabby(Entity):
                         ymove = True
                         if entity.platform:
                             on_platform=True
-                            
-                    
+
+
                     if not ymove:
                             #inside                          outside
                         if x <= entity.x + entity.width and x2 > entity.x + entity.width:
                             self.left_wall = True # touching RIGHT side of the box
                             self.x = entity.x + entity.width
                             self.vx = 0
-                                            
+
                             #inside                  outside
                         elif x2 >= entity.x and x < entity.x: # and not (entity.x + entity.sprite.hotwidth > self.x):
                             self.right_wall = True #touching LEFT side of the box
                             self.x = entity.x - self.width
                             self.vx = 0
-                    
+
         if not on_platform:
             self.cur_platform=False
             self.pvx=0
             self.pvy=0
-                        
+
         """
-                
+
 
     def RunnableZone(self):
         """Find if there's any activatable zones near the player."""
@@ -1197,13 +1197,13 @@ class Tabby(Entity):
         self.pvy = self.vy
         self.pvx = self.vx
 
-        
+
 
     def update(self):
-        if self.msg: 
+        if self.msg:
             pass #do stuff :P
             #self.msg = ''
-        
+
         #check current terrain to set appropriate terrain speeds, mostly just water for now.
         if self.cur_terrain:
             self.ground_friction = 0.15
@@ -1214,7 +1214,7 @@ class Tabby(Entity):
             self.max_vy = 6.0
             self.gravity = 0.05
             self.jump_speed = 3.2
-                          
+
         else: #defaults
             self.ground_friction = 0.10
             self.air_friction = 0.10
@@ -1224,11 +1224,11 @@ class Tabby(Entity):
             self.max_vy = 8.0
             self.gravity = 0.1
             self.jump_speed = 5
-        
-        
-        
 
-        
+
+
+
+
         ### hack hack hack ###
         if self.hurt_count > 0:
             # Flash.
@@ -1280,8 +1280,8 @@ class Tabby(Entity):
             self.fire_delay -= 1
         ### end hack hack hack ###
 
-            
-            
+
+
         if self.checkslopes:
             if not self.CheckSlopes():
                 self.CheckObstructions()
@@ -1289,83 +1289,100 @@ class Tabby(Entity):
             self.CheckObstructions()
 
         results = self.detect_collision() #entity collisions
-        
-        if self.cur_platform is None: 
+
+        if self.cur_platform is None:
             for colliding in results: #returns tuple of (entity, top, bottom, left, right for sides being touched)
-                e,top,bottom,left,right=colliding                
-                if e.platform:   # and top: #entity is a platform and touching the top                        
+                e,top,bottom,left,right=colliding
+                if e.platform:   # and top: #entity is a platform and touching the top
                     self.cur_platform=e
                     self.pvy = e.vy
-                    self.pvx = e.vx                    
+                    self.pvx = e.vx
                     self.floor=True
                     #only one platform at a time right now, first in the list...
         elif self.cur_platform: #currently standing on a platform
             still_touching=False
             for colliding in results: #returns tuple of (entity, top, bottom, left, right for sides being touched)
-                e,top,bottom,left,right=colliding 
-                if e==self.cur_platform:
+                e,top,bottom,left,right=colliding
+                if e==self.cur_platform: #still touching the platform!
                     still_touching=True
                     break
-                    
+
             if not still_touching:
                 #not touching a platform anymore
                 self.pvx=0
                 self.pvy=0
-                self.cur_platform=None             
+                self.cur_platform=None
             else:
                 self.pvy = self.cur_platform.vy
-                self.pvx = self.cur_platform.vx           
-            
-            
+                self.pvx = self.cur_platform.vx
+
+		#duplicate code... must refactor later...
+        for colliding in results: #returns tuple of (entity, top, bottom, left, right for sides being touched)
+            e,top,bottom,left,right=colliding
+            if bottom: #touching bottom of an entity...
+            	self.ceiling=True
+            	self.vy=0
+
+
+
         self.vx = vecmath.clamp(self.vx, -self.max_vx, self.max_vx)
         self.vy = vecmath.clamp(self.vy, -self.max_vy, self.max_vy)
-       
-               
-        if self.cur_platform:               
-            self.y=int(self.cur_platform.y-45) #haaaack
-            
-        else: 
+
+
+        if self.cur_platform:
+            self.y=int(self.cur_platform.y-46) #haaaack
+
+        else:
             self.y += self.vy
-           
-        self.x += self.vx + self.pvx    
-        
+
+        self.x += self.vx + self.pvx
+
         self.sprite.x = int(self.x)
         self.sprite.y = int(self.y)
         self.state__()
         self.animation()
 
+    def check_rectangles(self,x1,y1,x2,y2,x3,y3,x4,y4): #top left, bottom right -> top left, bottom right
+        return (y2 > y3 and y1 < y4 and x2 > x3 and x1 < x4)
 
     def detect_collision(self): #entity collisions, Tabby specific
         result = []
 
         y=self.y+self.vy#+self.pvy
-        x=self.x+self.vx#+self.pvx        
-        
+        x=self.x+self.vx#+self.pvx
+
         for entity in engine.entities:
-            top = bottom = left = right = False
-            etop = entity.y
-            ebottom = entity.y + entity.sprite.hotheight
-            eleft = entity.x
-            eright = entity.x + entity.sprite.hotwidth
-            
-            if entity is not self and entity.sprite and \
-                ebottom > y and etop < y + self.sprite.hotheight and \
-                eright > x and eleft < x + self.sprite.hotwidth: #within bounding box. Check if it's the top, bottom, left, or right side being collided with. 
-                               
-                   #need to refactor again to look at bounding rectangles
-                   if ebottom > y and ebottom < y + (self.sprite.hotheight/2): top = True #entity touching top side
-                   if etop < y + self.sprite.hotheight and top > y + (self.sprite.hotheight/2): bottom = True
-                   if eright > x and eright < x + (self.sprite.hotwidth/2): left = True
-                   if eleft < x + self.sprite.hotwidth and eleft < x + (self.sprite.hotwidth/2): right = True
-               
-                   result.append((entity, top, bottom, left, right))
-        return result        
-        
-        """        
+        	if entity is not self and entity.sprite: #don't check itself and only if it has a sprite
+				top = bottom = left = right = False
+				etop = entity.y
+				ebottom = entity.y + entity.sprite.hotheight
+				eleft = entity.x
+				eright = entity.x + entity.sprite.hotwidth
+
+				if self.check_rectangles(eleft, etop, eright, ebottom, self.x, self.y, self.x+self.sprite.hotwidth, self.y+self.sprite.hotheight): #within bounding box. Check if it's the top, bottom, left, or right side being collided with.
+
+					#ebottom > y and etop < y + self.sprite.hotheight and \
+					#eright > x and eleft < x + self.sprite.hotwidth: #within bounding box. Check if it's the top, bottom, left, or right side being collided with.
+
+					   #need to refactor again to look at bounding rectangles
+					   if ebottom > y and ebottom < y + (self.sprite.hotheight/2): top = True #entity touching top side
+
+					   #top = self.check_rectangles()
+
+
+
+					   if etop < y + self.sprite.hotheight and top > y + (self.sprite.hotheight/2): bottom = True
+					   if eright > x and eright < x + (self.sprite.hotwidth/2): left = True
+					   if eleft < x + self.sprite.hotwidth and eleft < x + (self.sprite.hotwidth/2): right = True
+
+					   result.append((entity, top, bottom, left, right))
+        return result
+
+        """
         y=self.y+self.vy+self.pvy
         x=self.x+self.vx+self.pvx
-        
-        for entity in engine.entities:        
+
+        for entity in engine.entities:
             if entity is not self and entity.sprite and \
                entity.y + entity.sprite.hotheight > y and \
                entity.y < y + self.sprite.hotheight and \
@@ -1374,3 +1391,7 @@ class Tabby(Entity):
                    result.append(entity)
         return result
         """
+
+
+
+
