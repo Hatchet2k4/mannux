@@ -37,8 +37,11 @@ class Sentry(Enemy):
             other.Hurt(self.damage)
 
     def draw(self):
-        ika.Video.DrawTriangle((self.x+self.sprite.hotwidth/2-ika.Map.xwin, self.y+self.sprite.hotheight/2-ika.Map.ywin, ika.RGB(200,200,0,128)), (engine.player.x-ika.Map.xwin, engine.player.y-ika.Map.ywin, ika.RGB(200,200,0,32)),(engine.player.x-ika.Map.xwin, engine.player.y+engine.player.sprite.hotheight-ika.Map.ywin, ika.RGB(200,200,0,32)))
-        print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "x:", str(self.x)
+        #need if Distance and AI mode:
+        ika.Video.DrawTriangle((self.x+self.sprite.hotwidth/2-ika.Map.xwin, self.y+self.sprite.hotheight/2-ika.Map.ywin, ika.RGB(200,200,0,128)), (engine.player.x+(engine.player.sprite.hotwidth/2)-ika.Map.xwin, engine.player.y-ika.Map.ywin, ika.RGB(200,200,0,32)),(engine.player.x+(engine.player.sprite.hotwidth/2)-ika.Map.xwin, engine.player.y+engine.player.sprite.hotheight-ika.Map.ywin, ika.RGB(200,200,0,32)))
+        #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "x:", str(self.x)
+        #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+50), "y:", str(self.y)
+
     def Hurt(self, amount):
         self.hp -= amount
         if self.hp <= 0:
