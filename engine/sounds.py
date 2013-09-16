@@ -23,6 +23,9 @@ class Sounds(object):
                        'Zombie-die': ika.Sound('%s/zombie-die.ogg' %
                                                config.sound_path),
                        'Zombie-groan': ika.Sound('%s/zombie-groan.ogg' %
+                                                 config.sound_path),
+
+                       'Scan': ika.Sound('%s/XRay.mp3' %
                                                  config.sound_path)}
 
     def play(self, sound, volume=1.0):
@@ -30,5 +33,7 @@ class Sounds(object):
         sound.volume = volume
         sound.Play()
         return sound
+
+
 
 sound = Sounds()

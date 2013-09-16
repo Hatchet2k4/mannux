@@ -5,6 +5,7 @@ from entity import Entity
 from enemy import Enemy
 from sounds import sound
 import math
+import vecmath
 from boom import Boom
 import fonts
 
@@ -23,9 +24,14 @@ class Sentry(Enemy):
         self.damage = 16
         self.hp = 40
         self.state = self.float_state
-        self.ticks = 0
+        self.ticks=0
         self.floaty = 0
         self.starty = y #haaack
+        self.scanning = False
+        self.float_ticks=0
+        self.scanwidth=0
+        self.scandistance=160 #~10 tiles distance to start scanning
+
 
     def update(self):
         super(Sentry, self).update()
@@ -37,10 +43,27 @@ class Sentry(Enemy):
             other.Hurt(self.damage)
 
     def draw(self):
-        #need if Distance and AI mode:
-        ika.Video.DrawTriangle((self.x+self.sprite.hotwidth/2-ika.Map.xwin, self.y+self.sprite.hotheight/2-ika.Map.ywin, ika.RGB(200,200,0,128)), (engine.player.x+(engine.player.sprite.hotwidth/2)-ika.Map.xwin, engine.player.y-ika.Map.ywin, ika.RGB(200,200,0,32)),(engine.player.x+(engine.player.sprite.hotwidth/2)-ika.Map.xwin, engine.player.y+engine.player.sprite.hotheight-ika.Map.ywin, ika.RGB(200,200,0,32)))
-        #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "x:", str(self.x)
-        #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+50), "y:", str(self.y)
+        if self.scanning:
+            #center of scanning bot, may need to adjust based on direction
+            x1=self.x+self.sprite.hotwidth/2-ika.Map.xwin
+            y1=self.y+self.sprite.hotheight/2-ika.Map.ywin
+            c1=ika.RGB(50+self.scanwidth*3,50+self.scanwidth*3,0,28+self.scanwidth*2)
+            #towards top center of tabby
+
+            h=(engine.player.sprite.hotwidth)*(self.scanwidth/50.0)
+
+            x2=engine.player.x+(engine.player.sprite.hotwidth/2)-ika.Map.xwin
+            y2=engine.player.y+(engine.player.sprite.hotheight/2)-h-ika.Map.ywin #opens towards top
+            c2=ika.RGB(50+self.scanwidth*3,50+self.scanwidth*3,0,self.scanwidth)
+
+            #towards bottom center of tabby
+            x3=engine.player.x+(engine.player.sprite.hotwidth/2)-ika.Map.xwin
+            y3=engine.player.y+(engine.player.sprite.hotheight/2)+h-ika.Map.ywin #opens toward bottom
+            c3=ika.RGB(50+self.scanwidth*3,50+self.scanwidth*3,0,self.scanwidth)
+
+            ika.Video.DrawTriangle( (x1,y1,c1), (x2, y2, c3),(x3, y3, c3) )
+            print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "h:", str(h)
+            print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+50), "w:", str(self.scanwidth)
 
     def Hurt(self, amount):
         self.hp -= amount
@@ -50,17 +73,55 @@ class Sentry(Enemy):
             self.hurt = True
 
     def float_state(self):
-        self.ticks=0
+
         while True:
             self.ticks+=1
-            self.floaty=12*math.cos(math.radians(self.ticks))
+            self.float_ticks+=1
+            self.floaty=12*math.cos(math.radians(self.float_ticks))
             self.y=self.starty+self.floaty
 
-            if self.ticks > 360:
-                self.ticks=0
+            if self.float_ticks > 360:
+                self.float_ticks=0
+
+            if vecmath.distance(self.x+self.sprite.hotwidth/2, self.y+self.sprite.hotheight/2,
+                             engine.player.x+engine.player.sprite.hotwidth/2, engine.player.y+engine.player.sprite.hotheight/2) < self.scandistance: #within scanning range
+                self.state=self.scan_state
+
+                yield None
             yield None
 
+    def scan_state(self):
+        self.scanning=True
+        self.scanwidth=1
 
+        snd=sound.play('Scan')
+        while True:
+
+            #snd.pitchshift=0.5+self.scanwidth/100.0
+            self.ticks+=1
+            self.float_ticks+=1
+            self.floaty=12*math.cos(math.radians(self.float_ticks))
+            self.y=self.starty+self.floaty
+
+            if self.float_ticks > 360:
+                self.float_ticks=0
+
+
+            if vecmath.distance(self.x+self.sprite.hotwidth/2, self.y+self.sprite.hotheight/2,
+                             engine.player.x+engine.player.sprite.hotwidth/2, engine.player.y+engine.player.sprite.hotheight/2) > self.scandistance+16: #player moving out of scanning range, with a bit of buffer...
+
+                if self.scanwidth>0:
+                    self.scanwidth-=1
+                else: #been out of range, stop scanning
+                    self.state=self.float_state
+                    self.scanning=False
+                    yield None
+
+            else: #still within scanning range.
+                if self.scanwidth<50:
+                    self.scanwidth+=1
+
+            yield None
 
     def death_state(self):
 
