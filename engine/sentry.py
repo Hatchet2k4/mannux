@@ -8,6 +8,7 @@ import math
 import vecmath
 from boom import Boom
 import fonts
+from effects import Shield
 
 class Sentry(Enemy):
 
@@ -31,7 +32,8 @@ class Sentry(Enemy):
         self.float_ticks=0
         self.scanwidth=0
         self.scandistance=160 #~10 tiles distance to start scanning
-
+        self.shields=True
+   
 
     def update(self):
         super(Sentry, self).update()
@@ -65,15 +67,21 @@ class Sentry(Enemy):
             print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "h:", str(h)
             print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+50), "w:", str(self.scanwidth)
 
-    def Hurt(self, amount):
-        self.hp -= amount
-        if self.hp <= 0:
-            self.state = self.death_state
+
+            
+
+    def Hurt(self, bullet):    
+        if self.shields:
+              engine.AddEffect(Shield(bullet.x,bullet.y,self.sprite.layer, self))
+              #no damage, muahaha...  but will reduce shield strength later, with the right weapon...
         else:
-            self.hurt = True
+            self.hp -= bullet.damage #bad bad bad... yet I do it anyway...
+            if self.hp <= 0:
+                self.state = self.death_state
+            else:
+                self.hurt = True
 
     def float_state(self):
-
         while True:
             self.ticks+=1
             self.float_ticks+=1

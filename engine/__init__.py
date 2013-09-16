@@ -52,8 +52,13 @@ class Engine(object):
         self.fields = []
 
         self.entities = []
+        self.effects = []
         self.add_list = []
         self.kill_list = []
+        self.addeffect_list = []
+        self.killeffect_list = []
+        
+        
         self.messages = []
 
         # Current layer.
@@ -198,9 +203,15 @@ class Engine(object):
         #    ika.Video.Blit(self.background, 0, 0)
         for i in range(ika.Map.layercount):
             ika.Map.Render(i)
-            for ent in self.entities:
+            for ent in self.entities:             
                 if ent.layer == i and ent.visible:
-                    ent.draw()
+                    ent.draw() 
+                    #inefficient as it loops through each entity multiple times depending on # of layers, but works for now... 
+                    #if performance becomes an issue will refactor to multiple lists per layer.
+            for eff in self.effects:        
+                if eff.layer == i and eff.visible:
+                    eff.draw() #for special effects, may behave differntly for entities so putting them here instead.
+                    
         #video.clear(ika.RGB(0, 255, 0))
         #ika.Map.Render()
         for thing in self.foreground_things:
@@ -265,13 +276,25 @@ class Engine(object):
             self.entities.append(entity)
         self.add_list = []
 
+        for effect in self.addeffect_list:
+            self.effects.append(effect)
+        self.addeffect_list = []
+
         for entity in self.entities:
             if entity.active:
                 entity.update()
+        
+        for effect in self.effects:
+            if effect.active:
+                effect.update()
 
         for entity in self.kill_list:
             self.entities.remove(entity)
         self.kill_list = []
+
+        for effect in self.killeffect_list:
+            self.effects.remove(effect)
+        self.killeffect_list = []
 
         for f in self.fields:
             if f.test(self.player) and not f.runnable:
@@ -301,6 +324,10 @@ class Engine(object):
         for e in self.entities[:]:
             if e is not self.player:
                 e._destroy()
+                
+        for e in self.effects[:]:
+            e._destroy()                
+                
         self.background_things = []
         self.foreground_things = []
         self.player.x = x
@@ -639,6 +666,11 @@ class Engine(object):
     def RemoveEntity(self, ent):
         self.kill_list.append(ent)
 
+    def AddEffect(self, effect):
+        self.addeffect_list.append(effect)
+
+    def RemoveEffect(self, effect):
+        self.killeffect_list.append(effect)
 
 def wrap(text, width, font):
     start = 0

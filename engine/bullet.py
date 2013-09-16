@@ -26,6 +26,7 @@ class Bullet(Entity):
         self.ticks = 0
         self.temp = ika.Random(80, 280)
         sound.play('Shoot', 0.2)
+        self.damage= 8 #bullet currently does 8hp of damage
 
     def update(self):
         super(Bullet, self).update()
@@ -34,18 +35,18 @@ class Bullet(Entity):
         self.sprite.specframe = self.anim.cur_frame
         collisions = self.detect_collision()
         if len(collisions)>0:
-			for ent in collisions[0]:  #[0] to grab the entity from the tuple
-				if ent is not None and ent != engine.player:
-					if isinstance(ent, Enemy) and ent.hurtable:
-						ent.Hurt(8) #8 damage, make configurable later
-						engine.AddEntity(Boom(int(self.x + self.vx),
-											 int(self.y  + self.vy)))
-						self._destroy()
-					elif ent.isobs:
-						engine.AddEntity(Boom(int(self.x + self.vx),
-											 int(self.y  + self.vy)))
-						self._destroy()
-					return
+            for ent in collisions[0]:  #[0] to grab the entity from the tuple
+                if ent is not None and ent != engine.player:
+                    if isinstance(ent, Enemy) and ent.hurtable:
+                        ent.Hurt(self) #pass bullet entity so we can get its properties...
+                        engine.AddEntity(Boom(int(self.x + self.vx),
+                                             int(self.y  + self.vy)))
+                        self._destroy()
+                    elif ent.isobs:
+                        engine.AddEntity(Boom(int(self.x + self.vx),
+                                             int(self.y  + self.vy)))
+                        self._destroy()
+                    return
         if self.left_wall or self.right_wall or self.ceiling or self.floor:
             engine.AddEntity(Boom(int(self.x + self.vx),
                                  int(self.y  + self.vy)))
