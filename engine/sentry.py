@@ -11,7 +11,9 @@ import fonts
 from effects import Shield
 
 class Sentry(Enemy):
-
+    
+    
+    
     def __init__(self, x, y, sprite='needler.ika-sprite', framecount=3):
         super(Sentry, self).__init__(ika.Entity(x, y, ika.Map.FindLayerByName('Walls'),
                                               '%s/%s' %
@@ -33,7 +35,7 @@ class Sentry(Enemy):
         self.scanwidth=0
         self.scandistance=160 #~10 tiles distance to start scanning
         self.shields=True
-   
+        self.scansound=ika.Music('sfx/XRay.mp3')
 
     def update(self):
         super(Sentry, self).update()
@@ -102,10 +104,13 @@ class Sentry(Enemy):
         self.scanning=True
         self.scanwidth=1
 
-        snd=sound.play('Scan')
+        
+        self.scansound.loop=True
+        self.scansound.pitchshift=0.5
+        self.scansound.Play()
         while True:
 
-            #snd.pitchshift=0.5+self.scanwidth/100.0
+            self.scansound.pitchshift=0.5+(self.scanwidth/100.0)
             self.ticks+=1
             self.float_ticks+=1
             self.floaty=12*math.cos(math.radians(self.float_ticks))
@@ -123,6 +128,7 @@ class Sentry(Enemy):
                 else: #been out of range, stop scanning
                     self.state=self.float_state
                     self.scanning=False
+                    self.scansound.Pause()
                     yield None
 
             else: #still within scanning range.
