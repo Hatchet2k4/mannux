@@ -35,8 +35,9 @@ class Bullet(Entity):
         self.sprite.specframe = self.anim.cur_frame
         collisions = self.detect_collision()
         if len(collisions)>0:
-            for ent in collisions[0]:  #[0] to grab the entity from the tuple
-                if ent is not None and ent != engine.player:
+
+            for ent, top, bottom, left, right in collisions:
+                if ent is not None and ent != engine.player and ent is not self:
                     if isinstance(ent, Enemy) and ent.hurtable:
                         ent.Hurt(self) #pass bullet entity so we can get its properties...
                         engine.AddEntity(Boom(int(self.x + self.vx),

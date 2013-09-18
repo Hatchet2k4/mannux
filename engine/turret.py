@@ -19,19 +19,19 @@ class Turret(Enemy):
                                                 '%s/turret.ika-sprite' % config.sprite_path))
         self.direction = direction
         self.sprite.isobs = False
-        self.touchable = False 
+        self.touchable = False
         self.damage = 25
         self.hp = 32
         self.state = self.hide_state
         self.ticks = 0
 
-    def touch(self, other): 
+    def touch(self, other):
         if other is engine.player:
             other.Hurt(self.damage)
 
-    def Hurt(self, amount):
-        self.hp -= amount
-        if self.hp <= 0: 
+    def Hurt(self, bullet):
+        self.hp -= bullet.damage
+        if self.hp <= 0:
             self.state = self.death_state
         else:
             self.hurt = True
@@ -142,7 +142,7 @@ class Laser(Entity):
             #ent = engine.player
             for ent in engine.entities:
                 if ent.hurtable and ent not in [self, self.spawner]:
-                    for x, y in [(self.x, self.y), 
+                    for x, y in [(self.x, self.y),
                                  (self.x + self.length * math.cos(self.angle),
                                   self.y + self.length *
                                   math.sin(self.angle))]:
@@ -152,7 +152,7 @@ class Laser(Entity):
                             hitent = True
                             break
             if hitent or hitwall:
-                self.destroy = True 
+                self.destroy = True
                 engine.AddEntity(Boom(int(self.x + (self.length - 4) *
                                          math.cos(self.angle)),
                                      int(self.y + (self.length - 4) *
@@ -160,7 +160,7 @@ class Laser(Entity):
                                      'boom2.ika-sprite'))
                 yield None
             self.ticks += 1
-            if self.ticks > 250: 
+            if self.ticks > 250:
                 self.destroy = True
                 yield None
             yield None

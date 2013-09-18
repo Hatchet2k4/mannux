@@ -109,10 +109,10 @@ class Tabby(Entity):
         #self.testimg = ika.Image("sprites/platform.png")
 
     def draw(self):
-        print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "x:", str(self.x)
-        print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+50), "vx:", str(self.vx)
-        print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+60), "pvx:", str(self.pvx)
-        print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+70), "platform:", str(self.cur_platform is not None)
+        #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "x:", str(self.x)
+        #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+50), "vx:", str(self.vx)
+        #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+60), "pvx:", str(self.pvx)
+        #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+70), "platform:", str(self.cur_platform is not None)
 
 
         #tx = x / ika.Map.tilewidth
@@ -1190,7 +1190,7 @@ class Tabby(Entity):
         """Find if there's any activatable zones near the player."""
         for f in engine.fields:
             if f.test(self) and f.runnable:
-                return f
+                return f #just returns the first activatable found...
 
     def SetPlatform(self, platform):
         self.cur_platform=platform
@@ -1330,7 +1330,7 @@ class Tabby(Entity):
 
 
         if self.cur_platform:
-            self.y=int(self.cur_platform.y-46) #haaaack
+            self.y=int(self.cur_platform.y-47) #haaaack
 
         else:
             self.y += self.vy

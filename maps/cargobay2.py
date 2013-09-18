@@ -24,8 +24,8 @@ def AutoExec():
 toBay1upper = engine.mapscript.Warp(1, 6, 'cargobay1.ika-map', Dir.LEFT)
 toBay1lower = engine.mapscript.Warp(1, 25, 'cargobay1.ika-map', Dir.LEFT)
 toSave1 = engine.mapscript.Warp(17, 8, 'saveroom1.ika-map', Dir.LEFT)
-#toSecretDuct1 = engine.mapscript.Warp(20.5, 1, 'secretduct1.ika-map') #original
+toSecretDuct1 = engine.mapscript.Warp(20.5, 1, 'secretduct1.ika-map') #original
 
-toSecretDuct1 = engine.mapscript.Warp(24, 2, 'cave1.ika-map') 
+#toSecretDuct1 = engine.mapscript.Warp(24, 2, 'cave1.ika-map')
 
 

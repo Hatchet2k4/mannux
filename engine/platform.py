@@ -12,14 +12,14 @@ class Platform(Entity):
                                                 ika.Map.FindLayerByName('Walls'), 'sprites/platform.ika-sprite'
                                                 ))
 
-        
+
         self._vx = vx
         self._vy = vy #for storing the "original" directions
-        
+
         self.vx = vx
         self.vy = vy
-        
-        
+
+
         self.ticks = 0
         self.delay = 0
         self.delduration = delay #how long to wait after hitting the apex to change direction again. Will ned to make this more flexible...
@@ -36,14 +36,15 @@ class Platform(Entity):
         self.platform = True #is a platform!
 
     def draw(self):
+        pass
         #print >> fonts.tiny(200, 50), "x:", str(self.x)
-        
-        x=int(self.x)-ika.Map.xwin
-        y=int(self.y)-ika.Map.ywin
-        
+
+        #x=int(self.x)-ika.Map.xwin
+        #y=int(self.y)-ika.Map.ywin
+
         #print >> fonts.tiny(x, y), "vy:", str(self.vy)
         #print >> fonts.tiny(x, y+10), "ticks:", str(self.ticks)
-        ika.Video.DrawRect(x, y, x+48, y+16, ika.RGB(255, 0, 0, 128), True)
+        #ika.Video.DrawRect(x, y, x+48, y+16, ika.RGB(255, 0, 0, 128), True)
 
 
     def touch(self, ent):
@@ -51,14 +52,14 @@ class Platform(Entity):
         #if not self.touching:
         #    self.touching = True
 
-        
-        #if not engine.player.cur_platform:  #just landed on it      
-        #    engine.player.SetPlatform(self)
-            
 
-        
+        #if not engine.player.cur_platform:  #just landed on it
+        #    engine.player.SetPlatform(self)
+
+
+
     def update(self):
-        super(Platform, self).update() 
+        super(Platform, self).update()
 
 
         #standard back/forth motion
@@ -67,7 +68,7 @@ class Platform(Entity):
             self.vx=0
             self.vy=0
             self.delay += 1
-            if self.delay > self.delduration: 
+            if self.delay > self.delduration:
                 self._vx *= -1
                 self._vy *= -1
                 self.vx = self._vx

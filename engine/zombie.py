@@ -31,8 +31,8 @@ class Zombie(Enemy):
         if ent is engine.player and ent.hurtable:
            ent.Hurt(self.damage)
 
-    def Hurt(self, amount):
-        self.hp -= amount
+    def Hurt(self, bullet):
+        self.hp -= bullet.damage
         if self.hp <= 0:
             self.state = self.Death
             # Hack so that you can't kill the zombie again, or him hurt
