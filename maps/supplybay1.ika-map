@@ -14,7 +14,7 @@
 			(width '640')
 			(height '480')
 		)
-		(tileset 'mannux.vsp')
+		(tileset '..\\mannux.vsp')
 	)
 	(waypoints )
 	(zones 
@@ -67,7 +67,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzslktrQjEQhS8ad7ZuarUK1VqF+gZtfWxb6Kr+/7/TI3HgcmDI1WRwkwMfs8gizOFkJkWRlZWVdV/Vwe+l1u9wvwONUu2CF9ADffAE2uAZdBKc1wrfp9y3cp41VdEjaJXqCLyDMZiAVzAAQ/CW4LwJHkr3HZznSFXzbwGW577AGnyAKZiBeYJz9u/beX6oav7twP7cFziCDdiCT/CV4Jz9+3OeE9VbFZtHa8Xm0VqxebRWbB6vFedF3pW8M+v5FxLnRd6VvDPr+RcS54X9s55/IXFe2D/r+ReS5IX3iPSZeh+zf1K1+Sh54T0ifabex+yfVG0+ch/sX+p9rPmn5ZH7YP9S72PNPy2PIf+s55/2/6zqn/X80/6fVf2znn/a/7Oqf9bzT/t/ZsXpHwAA//8='
+				'eJzsldtOAkEMhicy3BlJFDwrKKjgARRBDhpRTNBFvPHw/q/i3+w0OykLyyoDN9vwpds0u50p/3SUSiyxxBJbrqXAwPjUEurXtFJVHfh1sAGyIOcgHoBXgJ9KK7+mXZ89WwfPbR34fXBgyDuIeX1rqJ1Rfk27Pnt7fX0d+FNwBsqg4iCW/eubui/Cs33geaQDvwJS9D5IO4hl/0aiPvu/WhbkwCbYAttgB+yCPZO/xvdvQF2P513bIciDAjgCx6AISuDE5LtY1wO41+N511YGFXAOLsAluAJVUDP5rlkbrVHmXVsd3IIGaII70AJt0DF5+/+V+bgm9UTSzFg6boAm1QGtOcT83VXtn98ok3qic1W0vvMIeuAJPM8h5u8WtH9+o0zqSfbvDQyBB95jxEMr9qw4bv+knmT/PsEX+AY/c4jj9o/nE/WN9kP7WpT+qA7XnTQfeT5x32hfi9If16M+llT4fJR9k/2T+pkUexH5MP3Z9Xgd0mTfZP9c6k/WDdOj3Icr/fF8ndQ/9nwe2ML2EaY/gu/bnvnP+L6l+ekJvQ2tmHIF5b8/rX/k+TzM2j/Wj33fsp74vqX5yfri9dixPV+j+sf39az9Y/3Y9y3rie9bmp/T9GfP16j+8X2d2P/sFwAA//8='
 			)
 			(obstructions 
 				(style 'tile')
