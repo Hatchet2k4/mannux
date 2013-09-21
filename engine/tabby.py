@@ -95,7 +95,11 @@ class Tabby(Entity):
 
         self.checkslopes = True
         self.was_in_slope = False
-        self.lastpos = (0, 0)
+        self.wallcounter = 0 #0 if not on a wall, >0 will be number of ticks to remember that she was touching a wall.
+        self.wallticks = 3 #number of ticks to remember that a wall had been touched, for wall jumping purposes
+
+        self.lastpos = (0, 0) #last x,y position
+
         self.phantom = False
         self.fired = False
 
@@ -120,6 +124,7 @@ class Tabby(Entity):
         #tile = ika.Map.GetTile(tx, ty, self.layer)
 
         pass
+        #ika.Video.DrawRect(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin, int(self.x)-ika.Map.xwin+self.sprite.hotwidth, int(self.y)-ika.Map.ywin+self.sprite.hotheight, ika.RGB(0,250,100,200))
         #self.testimg.Blit(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin)
 
 
@@ -653,7 +658,7 @@ class Tabby(Entity):
                 break
             yield None
         # JUMP->FALL
-        if self.vy < -1:
+        if self.vy < -1: #bit of a hack, sets vertical speed to be -1 or slower if jump button is released
             self.vy = -1
         #if not fired:
             #self.Animate(('jump', 'fall', self.direction), loop=False)

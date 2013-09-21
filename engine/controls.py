@@ -17,7 +17,7 @@ confirm_key = 'RETURN'
 cancel_key = 'ESCAPE'
 
 
-usejoystick = True
+usejoystick = False
 
 # Analog deadzone.
 deadzone = 0.5
@@ -163,7 +163,7 @@ if len(ika.Input.joysticks) > 0 and usejoystick == True:
     attack = Button("joy:0:buttons:0")
     jump = Button("joy:0:buttons:1")
     ability = Button("joy:0:buttons:2")
-    
+
     confirm = attack
     cancel = jump  #should be menu
     aim_up = Button("joy:0:buttons:4")
@@ -177,16 +177,16 @@ else:
     right = Button("key:RIGHT")
     attack = Button("key:X")
     jump = Button("key:Z")
-    confirm = attack            
-    cancel = jump 
+    confirm = attack
+    cancel = jump
     ability = Button("key:S")
-    
+
     aim_up = Button("key:D")
     aim_down = Button("key:C")
     pause = Button("key:ESCAPE")
-    
-    
-    
-control_list = [up, down, left, right, attack, jump, confirm, cancel, aim_up, aim_down, pause]    
+
+
+
+control_list = [up, down, left, right, attack, jump, confirm, cancel, aim_up, aim_down, pause]
 
 

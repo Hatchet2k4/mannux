@@ -35,12 +35,12 @@
 			(script 'toDockControl2')
 		)
 		(zone 
-			(label 'toElevator1')
-			(script 'toElevator1')
-		)
-		(zone 
 			(label 'toSecretDuct')
 			(script 'toSecretDuct')
+		)
+		(zone 
+			(label 'toStorage1')
+			(script 'toStorage1')
 		)
 	)
 	(layers 
@@ -133,12 +133,12 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzslk1PE1EUhs8MC0Xiwg9WKvwEWsQYZan+K+tCFhCoCSYCCkRBwcRvF9pJheg0YAIVMcGvrfobdKu8N96Tvr3ToTVhvF30JE/O3K9z397eOXNEOtYxf/YKrLSxfwFegsuByLxHJoOalgpYB2/Ba/AGFDB+I2zMFJgGM+RvpsxtxC0wC+bIzztzrgQ1Lartq9T0j4LbYWPugAWwSP5uytxG3ANLYJn8fTv2E/wCh7F/DuTBIDhtacUeYP1D8Ij847DVGy7yBHOfgmfkn9v1v+H/gBE8X5Wk92kHukQOgm5wDe2iJL1POwJdR8ExMIP2tCS9TzsBXSfBKbCI9oIk/VyQDdedu/0Nd+x7Cj/C9HF9lzX3mHf6E7VLUpujOXMHlMFH6qvYubqu4Ogz+WOHxtVzDPXbILBon+aeql2j7Vjq8yXnJrcvlvp86uqr0Lj6it3znY0ZOfq2iUiS35MJMG59EZzFmW/Y89sEQ2H9+ATlU7axJt8Og/nfthx9gaM17fdnaeZsDWt4/tJEn/7fPvR9xvP7JvrMf1zypE/v8V73z2iLPenTu8/6Igu/g0P/8G3dT416980ZfbD6OM9FnrSxGQ2x/NVj8g7nOd/a1Ewej6W+/jOcaRN9rOm/G2qBoCu78AOInQN52oPruGZ2CHN6MtR3DrHPg2Hag+u4Pc2e3XHQm5HGC4h7EVyi+FzHubZKd1rPrg/0t6gvq/pvv9D8p99drXW4ltExzuNmXlmStaGu0f6Ixty1ZbsXx69Sv4m1CwAA//8='
+				'eJzslstOFEEUhk83CxRlgQobBB9BUAxRluBbgQtdSAQTSRBUiIAIiXKRcOuMGO2JmgAqJCCwVeMj6Fb9K6mT+ae6mxmSaZsFJ/lyum6n/q6uPlUiJ3Zi2dlrsHaM/TJYAd2eyGiGPPAKWvLgA/gI3oJ3oAftg348D8EQGCb/KKFvHI/BEzBCftTpc8sraFFtB1LQfxc89eMZA+NggvyzhL5xTILnYIr8tG37BX6DWszfAlrBFXDVwtbglNVeYPxLMEN+1i9/j8+h7zx4RX7Bjv8D/xfcwfNtiXq2n+VPWRGrrhI5BU6D+yj3S9Rnqa8Ous6B82AY5SGJerazCd83LWuErougCUygPC5RP+Klw4Dzrt+wx74n8MNPbtd/WXOP+ae/UnlVCn00Z+6AHNilurztq+N6HH0mf+xQu3qOoX4LeBat09yzacdoOZTifMm5ya0LpTifuvry1K4+b+f8ZGMGjr4tIpDoedIH7lnfD9qx5ut2/TZAm1/c3kf5lK23xNlhMN/ts6PPc7QmvX+aZtbW8B7P+yX06ffOQt8enr+U0Ge+8WpG+nQfH7b/jLYwI32691lfYOF/sO0IZ2slNereN2u0bfVxngsqrG0RsZbA8hFiGg2h1WPyDue5LNYtzkweD6X4/me4dkz0sab/brgLeFXphb+M2C2glebge1wpq0GfMynqu47YN0AHzcH3uEPNrt0FUJ+Sxk7E7QI3KT7f41x7Q3ta164ZXCpTX1r3v0qh+U/PXb3r8F1G2ziPm345id4NdYzWB9Tmjs3ZuTj+JtWbWP8AAAD//w=='
 			)
 			(obstructions 
 				(style 'tile')
 				(format 'zlib')
-				'eJzck7ESACAIQuX/f7op87wElpZcGnySkUb8ElCxuXLgptPUuLbuym3e5ww2ublt5x2Iu0cux+7t9UT6FceMLDnu9xks4RRgYflvCpMQzZZak+PjPnBqKd092rEAAAD//w=='
+				'eJzckzEOACAIA+X/n3bRhBTasrjI4sBxouJav0S4uFxaovOATbuJJHUFYtr8nDvsiBNtd5eDGrON49S+WC/Urzh2bMgpLGU7LKpG2y5Bn4TZVWemdsjxMRGc+ZNm/mpsAAAA//8='
 			)
 			(entities )
 			(zones 
@@ -150,7 +150,7 @@
 					(height '64')
 				)
 				(zone 
-					(label 'toElevator1')
+					(label 'toStorage1')
 					(x '624')
 					(y '384')
 					(width '16')

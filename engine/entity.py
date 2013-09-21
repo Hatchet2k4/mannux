@@ -12,6 +12,8 @@ class Entity(object):
         self.sprite.isobs = False
         self.x__ = self.sprite.x
         self.y__ = self.sprite.y
+        self.w = self.sprite.hotwidth
+        self.h = self.sprite.hotheight
         self.state__ = None
         self.vx = 0
         self.vy = 0
@@ -27,7 +29,7 @@ class Entity(object):
         self.destroy = False
         self.active = True
         self.platform = False
-        
+
         # Hack so that ika can detect entity collisions for us.
         #ika.Map.entities[id(self.sprite)] = self.sprite
 
@@ -94,29 +96,29 @@ class Entity(object):
                                          x + self.sprite.hotwidth - 1)
         self.floor = self.check_h_line(x, y + self.sprite.hotheight + self.vy,
                                        x + self.sprite.hotwidth - 1)
-                                       
-                                       
-                                               
+
+
+
 
     def detect_collision(self): #entity collisions, not currently used in default entity code
         result = []
-        
+
         for entity in e.engine.entities:
             top = bottom = left = right = False
             etop = entity.y
             ebottom = entity.y + entity.sprite.hotheight
             eleft = entity.x
             eright = entity.x + entity.sprite.hotwidth
-            
+
             if entity is not self and entity.sprite and \
                 ebottom > self.y and etop < self.y + self.sprite.hotheight and \
                 eright > self.x and  eleft < self.x + self.sprite.hotwidth:
-                   #within bounding box. Check if it's the top, bottom, left, or right side being collided with. 
+                   #within bounding box. Check if it's the top, bottom, left, or right side being collided with.
                    if ebottom > self.y and ebottom < self.y + (self.sprite.hotheight/2): top = True #entity touching top side
                    if etop < self.y + self.sprite.hotheight and top > self.y + (self.sprite.hotheight/2): bottom = True
                    if eright > self.x and eright < self.x + (self.sprite.hotwidth/2): left = True
                    if eleft < self.x + self.sprite.hotwidth and eleft < self.x + (self.sprite.hotheight/2): right = True
-               
+
                    result.append((entity, top, bottom, left, right))
         return result
 

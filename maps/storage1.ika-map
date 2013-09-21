@@ -4,9 +4,9 @@
 		(title 'Storage Room 1')
 		(meta 
 			(color 'Blue')
-			(mapx '20')
+			(mapx '23')
 			(mapy '6')
-			(name 'Airlock 3')
+			(name 'Storage Room 1')
 		)
 	)
 	(header 
@@ -19,12 +19,8 @@
 	(waypoints )
 	(zones 
 		(zone 
-			(label 'toDock2')
-			(script 'toDock2')
-		)
-		(zone 
-			(label 'toSupplyBay')
-			(script 'toSupplyBay')
+			(label 'toSupplyBay1')
+			(script 'toSupplyBay1')
 		)
 	)
 	(layers 
@@ -126,16 +122,10 @@
 			)
 			(entities )
 			(zones 
+			
 				(zone 
-					(label 'toDock2')
+					(label 'toSupplyBay1')
 					(x '0')
-					(y '144')
-					(width '16')
-					(height '64')
-				)
-				(zone 
-					(label 'toSupplyBay')
-					(x '304')
 					(y '144')
 					(width '16')
 					(height '64')
