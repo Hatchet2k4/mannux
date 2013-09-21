@@ -57,8 +57,8 @@ class Engine(object):
         self.kill_list = []
         self.addeffect_list = []
         self.killeffect_list = []
-        
-        
+
+
         self.messages = []
 
         # Current layer.
@@ -79,9 +79,9 @@ class Engine(object):
         # DO NOT PUT RUN HERE
         # If run is put here, the engine object is never returned.
 
-    def GetFlag(self, key):        
+    def GetFlag(self, key):
         return self.flags.get(key, False)
-    
+
     def SetFlag(self, key, value):
         self.flags[key] = value
 
@@ -90,33 +90,33 @@ class Engine(object):
         s_layers = [] #secret
         t_layers = [] #terrain
         lname = ''
-        
-        
-        
-        for l in range(ika.Map.layercount):            
+
+
+
+        for l in range(ika.Map.layercount):
             #complex line for grabbing all layers that start with the word secret :)
             lname = ika.Map.GetLayerName(l)
-            if lname[:6].lower() == "secret":            
-                s_layers.append([l, 0, 255]) 
-            elif lname in ("Lava", "Acid", "Water"): #add more later, possibly..                                
+            if lname[:6].lower() == "secret":
+                s_layers.append([l, 0, 255])
+            elif lname in ("Lava", "Acid", "Water"): #add more later, possibly..
                 #get the layer height and scroll through it to find where it starts
-                #terrain layers 
-                #for i in range(ika.Map.GetLayerProperties(l)[2]): 
+                #terrain layers
+                #for i in range(ika.Map.GetLayerProperties(l)[2]):
                 #    if ika.Map.GetTile(0, i, l): #find where the layer actually begins... may need to change later
                 t_layers.append( ( lname, l ) ) #name, layer #
                 print "Terrain Detected. Type: " + lname + "  "+str(l)
                 #break
-                
-           
-            
-            
-                
+
+
+
+
+
         self.secret_layers = s_layers
         self.terrain_layers = t_layers
         self.cur_secret = None
         self.cur_terrain = None
-        
-        
+
+
          #       #Grab terrain layer.
          #      tlayer = ika.Map.layercount - 1
          #       name = ika.Map.GetLayerName(tlayer)
@@ -130,8 +130,8 @@ class Engine(object):
          #           self.cur_terrain = (name, tlayer, ty * 16)
          #       else:
          #   self.cur_terrain = None
-                
-        
+
+
     def initialize(self):
         self.player = Tabby(0, 0)
         self.hud = Hud()
@@ -154,7 +154,8 @@ class Engine(object):
 
 
     def Run(self):
-        self.title.show()
+        #self.title.show()
+        self.newgame() #only comment out if not showing title
         self.hud.resize()
         self.automap.update_room()
         time = ika.GetTime()
@@ -203,15 +204,15 @@ class Engine(object):
         #    ika.Video.Blit(self.background, 0, 0)
         for i in range(ika.Map.layercount):
             ika.Map.Render(i)
-            for ent in self.entities:             
+            for ent in self.entities:
                 if ent.layer == i and ent.visible:
-                    ent.draw() 
-                    #inefficient as it loops through each entity multiple times depending on # of layers, but works for now... 
+                    ent.draw()
+                    #inefficient as it loops through each entity multiple times depending on # of layers, but works for now...
                     #if performance becomes an issue will refactor to multiple lists per layer.
-            for eff in self.effects:        
+            for eff in self.effects:
                 if eff.layer == i and eff.visible:
                     eff.draw() #for special effects, may behave differntly for entities so putting them here instead.
-                    
+
         #video.clear(ika.RGB(0, 255, 0))
         #ika.Map.Render()
         for thing in self.foreground_things:
@@ -260,7 +261,7 @@ class Engine(object):
     #main engine processing
     def tick(self):
         self.UpdateTerrain()
-    
+
         for thing in self.background_things:
             try:
                 thing.update()
@@ -283,7 +284,7 @@ class Engine(object):
         for entity in self.entities:
             if entity.active:
                 entity.update()
-        
+
         for effect in self.effects:
             if effect.active:
                 effect.update()
@@ -324,10 +325,10 @@ class Engine(object):
         for e in self.entities[:]:
             if e is not self.player:
                 e._destroy()
-                
+
         for e in self.effects[:]:
-            e._destroy()                
-                
+            e._destroy()
+
         self.background_things = []
         self.foreground_things = []
         self.player.x = x
@@ -336,18 +337,18 @@ class Engine(object):
         self.automap.update_room()
         self.camera.reset_borders()
         self.camera.update()
-        
-        
+
+
         self.player.layer = ika.Map.FindLayerByName('Walls')
         self.player.sprite.layer = self.player.layer
-        
-        
+
+
         moduleName = m[:m.rfind('.')].replace('/', '.')
         mapModule = __import__(moduleName, globals(), locals(), [''])
         self.readZones(mapModule)
-        
-        self.GetLayers()          
-               
+
+        self.GetLayers()
+
         video.clear()
         if fadein:
             self.FadeIn(16)
@@ -392,36 +393,36 @@ class Engine(object):
         #Updates terrain layer. For water effects, currently
         for l in self.terrain_layers:
             name, layer = l
-            
+
             #going in
-            if ika.Map.GetTile(int(self.player.x+1) / 16, int(self.player.y + 31) / 16, layer):                            
+            if ika.Map.GetTile(int(self.player.x+1) / 16, int(self.player.y + 31) / 16, layer):
                 if self.player.cur_terrain == None:
                     self.AddEntity(Splash(int(self.player.x - 12), int(self.player.y), name.lower(), layer))
                 self.player.cur_terrain = name
-                
-                
+
+
                 #globals()[name + "Terrain"](self, self.player)
             else: #jumping out
                 if self.player.cur_terrain: #should include regular entities too...
                     self.AddEntity(Splash(int(self.player.x - 12), int(self.player.y), name.lower(), layer))
                 self.player.cur_terrain = None
-   
+
     #def UpdateTerrain(self):
-    #    
+    #
     #    if self.cur_terrain:
     #        name, l = self.cur_terrain
-    #                    
+    #
     #        #jumping out
     #        if ika.Map.GetTile(0, int(self.player.y + 31) / 16, layer):
     #            if self.player.cur_terrain == None:
     #                self.AddEntity(Splash(self.player.x, self.player.y, name.lower(), layer=l ))
     #            self.player.cur_terrain = name
-    #            
+    #
     #            #globals()[name + "Terrain"](self, self.player)
     #        else: #going in
     #            if self.player.cur_terrain: #should include regular entities too...
     #                self.AddEntity(Splash(self.player.x+self.player.vx, self.player.y, name.lower()))
-    #            self.player.cur_terrain = None                    
+    #            self.player.cur_terrain = None
 
 
     def text(self, txt):
@@ -518,13 +519,13 @@ class Engine(object):
         if heal:
             self.player.dhp = self.player.maxhp
             self.player.dmp = self.player.maxmp
-        selected = 0      
-        
+        selected = 0
+
         while not controls.confirm.Pressed():
-        
+
             self.player.update()
             self.draw()
-            
+
             Window(150, 0).draw(52, 60)
             print >> fonts.one(68, 80), 'Do you want to save?'
 
@@ -551,11 +552,11 @@ class Engine(object):
                 selected += 1
                 if selected > 1:
                     selected = 0
-                    
+
         #for c in controls.control_list:
         #    c.Release()
-        
-        
+
+
         if selected == 0:
             self.Save()
             return True
@@ -563,7 +564,7 @@ class Engine(object):
         return False
 
 
-        
+
 
 
 
@@ -573,12 +574,12 @@ class Engine(object):
         flagnode = parser.Node('flags')
         for key, value in self.flags.iteritems():
            flagnode.append(parser.Node(key).append(value))
-           
-           
+
+
         #mapnode = parser.Node('amap')
         #for n in self.automap.amap:
         #    mapnode.append(n)
-        
+
         foo = (parser.Node('mannux-save')
                .append(parser.Node('version').append(1))
                .append(parser.Node('map').append(self.curmap))
@@ -586,16 +587,16 @@ class Engine(object):
                .append(parser.Node('maxhp').append(self.player.maxhp))
                .append(parser.Node('mp').append(self.player.maxmp))
                .append(parser.Node('maxmp').append(self.player.maxmp))
-               .append(flagnode)                            
+               .append(flagnode)
                .append(parser.Node('amap1').append(str(self.automap.amap)))
-                                       
-               
-               )                              
-               
-               
+
+
+               )
+
+
         print >> open(filename, 'wt'), foo
-        
-                
+
+
 
         self.messages.append(Message("Game saved", 300))
 
@@ -607,19 +608,19 @@ class Engine(object):
         self.player.hp = int(d['mannux-save'].get('hp'))
         self.player.maxhp = int(d['mannux-save'].get('maxhp'))
         self.player.mp = int(d['mannux-save'].get('mp'))
-        self.player.maxmp = int(d['mannux-save'].get('maxmp'))        
+        self.player.maxmp = int(d['mannux-save'].get('maxmp'))
         self.flags = d['mannux-save']['flags'].todict()
-        
+
         a = d['mannux-save'].get('amap1')
-        
-        
-        print 'testing: ' 
+
+
+        print 'testing: '
         print d['mannux-save'].get('map')
         print d['mannux-save'].get('amap1')
-        
+
         #print a
-        
-        
+
+
         #if 'amap1' in d['mannux-save']:
         #    print 'yes!'
         #    a = d['mannux-save']['amap1']
@@ -632,30 +633,30 @@ class Engine(object):
         #    self.automap.amap = test
         #else:
         #    print 'wtf!'
-            
-        
-        
+
+
+
         #b = d['mannux-save']['amap']
 
-        #self.automap.amap = [] 
-        #i=0                        
+        #self.automap.amap = []
+        #i=0
         #for y in range(50): #need to change so it's not just 50x50...
-        #    for x in range(50):                    
+        #    for x in range(50):
                 #self.automap.amap.append(a[i])
-        
-        #for i in a:      
+
+        #for i in a:
         #    ika.Log('i: '+str(i))
         #        i+=1
 
-            
+
             #for i in d['mannux-save']['amap']:
             #    self.automap.amap.append(i)
-        
-        
+
+
         self.hud.resize()
-        
-        
-        
+
+
+
         #print self.curmap
         self.map_switch(0, 0, self.curmap, fadeout=False)
         self.loading = False

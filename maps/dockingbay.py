@@ -159,10 +159,10 @@ def landing_animation():
 
 def AutoExec():
 
-    if not e.GetFlag('shiplanded'):
-        landing_animation()
-        e.SetFlag('shiplanded', True)
-
+    #if not e.GetFlag('shiplanded'):
+    #    landing_animation()
+    #
+    e.SetFlag('shiplanded', True)
     if not 'DockingBayHealthUp' in e.flags:
         e.AddEntity(Healthup(56 * ika.Map.tilewidth,
                                  8 * ika.Map.tileheight,
