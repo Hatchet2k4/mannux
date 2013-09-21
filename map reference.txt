@@ -1,0 +1,26 @@
+Implemented maps
+
+1 Docking bay 1 (may want to change to 2 for consistent bay ordering)
+2 Airlock 1
+3 Docking Control room
+4 Cargo bay 1
+5 Cargo bay 2 
+6 Save room 1
+7 Secret duct 1
+8 Secret duct 2
+9 Airlock 2
+10 Docking bay 2
+11 Airlock 3
+12 Supply room 1
+13 Storage room 1
+15 Secret duct 3
+
+Maps needing implementation
+
+14 Docking Control room 2
+
+
+
+maps with no number yet
+cave1
+repairbay
