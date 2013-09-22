@@ -194,9 +194,9 @@ def AutoExec():
     if e.loading:
         e.player.position = (25 * ika.Map.tilewidth, 21 * ika.Map.tileheight)
     e.AddEntity(Door(2 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
-                         'door_right'))
+                         'door_right_blue'))
     e.AddEntity(Door(57 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
-                         'door_left', locked=False))
+                         'door_left_blue', locked=False))
     #e.AddEntity(Zombie(40 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     #e.AddEntity(Zombie(30 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     e.AddEntity(DockWindow(9 * ika.Map.tilewidth, 4 * ika.Map.tileheight))

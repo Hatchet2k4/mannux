@@ -10,7 +10,7 @@ from sounds import sound
 
 class Door(Entity):
 
-    def __init__(self, x, y, s, layer=None, locked=False):
+    def __init__(self, x, y, s, layer=None, locked=False, color='blue'):
         super(Door, self).__init__(ika.Entity(x, y,
                                               ika.Map.FindLayerByName('Doors'),
                                               '%s/%s.ika-sprite' %
@@ -19,7 +19,7 @@ class Door(Entity):
             self.layer = ika.Map.FindLayerByName('Doors')
         self.anim.kill = True
         self.locked = locked
-        
+
         # Start door open.
         if abs(self.x - engine.player.x) < 72 and not locked and \
            detect_in_y_coordinates(self) is engine.player:
@@ -62,7 +62,7 @@ class Door(Entity):
                     sound.play('Open')
                 if self.anim.cur_frame < 8:
                     self.anim.cur_frame += 1
-                    if self.anim.cur_frame >= 4: 
+                    if self.anim.cur_frame >= 4:
                         # Not an obstruction at this point.
                         self.sprite.isobs = False
                         for i in range(4):

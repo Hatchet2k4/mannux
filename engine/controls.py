@@ -17,7 +17,7 @@ confirm_key = 'RETURN'
 cancel_key = 'ESCAPE'
 
 
-usejoystick = False
+usejoystick = True
 
 # Analog deadzone.
 deadzone = 0.5
@@ -153,37 +153,80 @@ class Button:
         else:
             self.Release()
 
+class MButton: #button class that supports multiple buttons but acts like a single one.
+    def __init__(self, button=None):
+        self.buttons=[]
+        if button is not None:
+            self.buttons.append(button)
+
+    def AddButton(self, button):
+        self.buttons.append(button)
+
+    def RemoveButton(self, button):
+        self.buttons.remove(button) #may need to tweak later if I ever use this...
+
+    def Set(self, key = None):
+        for b in self.buttons:
+            b.Set(key)
+
+    def Position(self):
+        for b in self.buttons: #return position if it's more than 0.1 in deadzone... though I only use > 0.5 for now..
+            p=b.Position()
+            if abs(p)>0.1:
+                return p
+        return 0
+
+    def Pressed(self):
+        press=False
+        for b in self.buttons:
+            if b.Pressed(): press=True
+        return press
+
+    def Press(self):
+        for b in self.buttons:
+            b.Press()
+
+    def Release(self):
+        for b in self.buttons:
+            b.Release()
+
+    def Update(self):
+        for b in self.buttons:
+            b.Update()
+
+
+up = MButton(Button("key:UP"))
+down = MButton(Button("key:DOWN"))
+left = MButton(Button("key:LEFT"))
+right = MButton(Button("key:RIGHT"))
+attack = MButton(Button("key:X"))
+jump = MButton(Button("key:Z"))
+
+ability = MButton(Button("key:S"))
+
+aim_up = MButton(Button("key:D"))
+aim_down = MButton(Button("key:C"))
+pause = MButton(Button("key:ESCAPE"))
+
+confirm = attack #confirm and attack buttons are the same
+cancel = jump # should be menu?
 
 
 if len(ika.Input.joysticks) > 0 and usejoystick == True:
-    up = Button("joy:0:reverseaxes:1")
-    down = Button("joy:0:axes:1")
-    left = Button("joy:0:reverseaxes:0")
-    right = Button("joy:0:axes:0")
-    attack = Button("joy:0:buttons:0")
-    jump = Button("joy:0:buttons:1")
-    ability = Button("joy:0:buttons:2")
+    up.AddButton(Button("joy:0:reverseaxes:1"))
+    down.AddButton(Button("joy:0:axes:1"))
+    left.AddButton(Button("joy:0:reverseaxes:0"))
+    right.AddButton(Button("joy:0:axes:0"))
+    attack.AddButton(Button("joy:0:buttons:0"))
+    jump.AddButton(Button("joy:0:buttons:1"))
+    ability.AddButton(Button("joy:0:buttons:2"))
 
-    confirm = attack
-    cancel = jump  #should be menu
-    aim_up = Button("joy:0:buttons:4")
-    aim_down = Button("joy:0:buttons:5")
-    pause = Button("joy:0:buttons:9")
-else:
 
-    up = Button("key:UP")
-    down = Button("key:DOWN")
-    left = Button("key:LEFT")
-    right = Button("key:RIGHT")
-    attack = Button("key:X")
-    jump = Button("key:Z")
-    confirm = attack
-    cancel = jump
-    ability = Button("key:S")
 
-    aim_up = Button("key:D")
-    aim_down = Button("key:C")
-    pause = Button("key:ESCAPE")
+    aim_up.AddButton(Button("joy:0:buttons:4"))
+    aim_down.AddButton(Button("joy:0:buttons:5"))
+    pause.AddButton(Button("joy:0:buttons:9"))
+
 
 
 

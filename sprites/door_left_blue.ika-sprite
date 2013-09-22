@@ -1,0 +1,28 @@
+(ika-sprite 
+	(version '1.1')
+	(information 
+		(title 'Untitled')
+		(meta )
+	)
+	(header 
+		(depth '32')
+	)
+	(scripts )
+	(frames 
+		(count '9')
+		(dimensions 
+			(width '17')
+			(height '64')
+		)
+		(hotspot 
+			(x '1')
+			(y '0')
+			(width '16')
+			(height '64')
+		)
+		(data 
+			(format 'zlib')
+			'eJzsm8GNFEEMRQliRQZcWXEiBxBHouBGCMRANpwIAYl8BgbJ6K/l6i5/V/e4q3wowS7jN3+qXbbr73K73V7dOtbT0+tba/XG//j56/bt6/f/69OHz//i73/2vjfDuP/7229///Lxt8l49/x+kyHxsu5fy3vL8jAYHTr+zfMXtw7ch9UY9+9fUYfkyP1rVgeeE1YHnkFGx/1zRPbD2lcPo8XxMvAzSVwPA88uMiR2jyFL65HnIPGy160aJK9DDjK2dAgD3w/rmWZs6dCvlbrK6NhjHK1DcgCfgVcH5iPGFKMYVr2K5lgk13sYZ519rK9eHTreo0PX5FY93arJVizq6O0NEm/Nh94eZfVKmUHYni3x7BwUnR3ktbPMUrPNuFnuDVifj9ahOYwOYUQ+i+a08hT7TYuh66LW0ctAFqujpUmvaPweA193hHexx7D6W8T/EB3MmdO5zvgfmetHZkaWmrxiz76vyAyDnIj/YT2f3rnQ2hes8VsMWZZ30TPjCkd7Doz/0etdXMF3GKGj17vovRNmuSMXoxhbjBG5HjlzUR9mZA3COu/VoeM1Y6sm696g63pPb7BiUUdvj9ryUDz+R8u/KP+j/I/s9wasrVfQoTmjPRTMU+wVFgM5LR09DF0Xo/6HFYurh7HH6Y2N/P5Hy7vweCis/2ExWK+P/f0P68xEdKzG2JphMuvo7dlbjN6evcXo7dkWw+t/tBge/8NiWM+nl2HNp1jj9xiymBkXOThve/0PYUTuHpqh+1rP3cPDOEOH5YF4dej7KaujGMU4izEi1yNnLqpjZA2K1ELtgXhqsu4NWNd7e4OOFR/D26MsD0S0exi6x/X6H1rHqNlBXjvDLIVnZ5YZN8u9gfUdHqlDcyKMrTzF+tpiIMfS0cvAujiD/yHxrP+B73+Eh9KTH5rhzXWMH+HDsGduVcbeDJNVh6dntxient1ieHq2ZjAzjMXw+h+awfgf+tzivmCN72HIYmbcFkueQ6//gYyte1SvDvYuhgx9xhgdW4xeHboGMzq2GB4d2NeKUYwzGWfneoazf49j/A9k4HzoqckjegP2KMb/QIbEe/0PSwfGsz07OjvMNEvh2Z1lxs1ybxjhOzxCB3KijKj/IRxLh4chnPI/Xr7/EYze/NDP1pvrOk8f5cOsyNibYbLq8PZsi+Ht2RbD27ORwfofmsH4H8hg/Q9koH+JNb6XIUsYjP+hWYz/oVnMzL/HKB3jdRSjGEczsuT61XREavKI3oA9ivHokYEeisf/sHR4/Q+tIzo7zDRLzTjjZrk3jPAdHqVDOCMZmKdY11gdHoZwyv84nuHJD3wuTK7jXj7Sh1mN4fkZTiYdTM/WDKZnawbTs3WuR/bD8tgZBut/CCMyW1oMxv+wegHrf2jGVe8eq+goRjGOZmTJ9avpiNbkUb1hRI+y/v8K27MZ/wP3Mzo7zDZLzTbjZrk3jPAMHqlDOKMYes6M6mAZER24t9Y6i4F1cHX/I5uOFRieGSaTDrZnI4Pt2chgezbmenQ/9L4yjIj/oRnMbKkZzIyL+yHPgfU/hHX1u8cqOopRjKMZWXL9ajpG1ORRvWFkj2L8D9wP1v8QxojZYaZZarYZN8u9YYRnkEVH+R8vOa11FgPrYPkfuXSswMhSk1ft2dEZxtpXloGcCIOdLZHBzrjIKP9jHR3FKMbRjCy5fkUdI2ryyN4wokex/ocwyv94yYjOUrPNuFnuDeV/tPMU6xqrg2VEdAintc5iYB0s/yOXjhUYWWryqj07i/+hORFGZLYURmTGFUb5H+voKEYxjmZkyfUZdERq8ojeMKJHlf+Ra5aabcbNcm8o/6Odp7Jm8z/+AAAA//8='
+		)
+	)
+)
