@@ -1,12 +1,12 @@
-(mannux-save 
-	(version 1)
-	(map dockingbay.ika-map)
-	(hp 120)
-	(maxhp 150)
-	(mp 50)
-	(maxmp 75)
-	(flags 
-		(blah 1)
-		(whee 2)
-	)
+(mannux-save
+    (version 1)
+    (map dockingbay.ika-map)
+    (hp 100)
+    (maxhp 100)
+    (mp 75)
+    (maxmp 75)
+    (flags
+        (blah 1)
+        (whee 2)
+    )
 )

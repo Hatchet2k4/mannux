@@ -1,0 +1,245 @@
+(ika-map 
+	(version '1.2')
+	(information 
+		(title 'Airlock 4')
+		(meta 
+			(color 'Blue')
+			(mapx '20')
+			(mapy '6')
+			(name 'Airlock 3')
+		)
+	)
+	(header 
+		(dimensions 
+			(width '640')
+			(height '240')
+		)
+		(tileset 'mannux.vsp')
+	)
+	(waypoints )
+	(zones 
+		(zone 
+			(label 'toDock2')
+			(script 'toDock2')
+		)
+		(zone 
+			(label 'toSupplyBay')
+			(script 'toSupplyBay')
+		)
+	)
+	(layers 
+		(layer 
+			(label 'Space')
+			(type 'tile')
+			(dimensions 
+				(width '40')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzs0jkOgDAQQ9Ehp+LoCXQQOpaO5Ta48QlwYYlE+oqmG41ehPcbUsSIMirJb65oQROaDecdHWhFm+HMe57oQjd6jGbeU+VF7ZD3VHlRO+SeKi9qh9yz7zRe1A65p6s/vubvmz+Vm7/54+/q7wUAAP//'
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo4D6AAAAAP//'
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'Background')
+			(type 'tile')
+			(dimensions 
+				(width '40')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJxiYBgFo2AUkAKSmAbaBfjBYHefL9B9eYPYjeFAt6UMYvcNZreNglEwChAAAAAA//8='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo4D6AAAAAP//'
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'Walls')
+			(type 'tile')
+			(dimensions 
+				(width '40')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzs1DsOgkAYRWEkswhXgS1WGtRCQG3dimvR0s4NUCEm2rAA3Y5nwhAt/v4aw02+gqlOeEXRsGG6PVHjikabYu6GFhVe4hZrh1Fn7DoF6lijcJ+OU+jql3A2wdLp7tUqNCRGQ8rZFHNh3yw0pEZDxtkCubBvHRoyo6HkbIOtsG8XGsqvhiPv4P4Hvw/f5fn/yh0PnLm+xFq+oe+pJE/xv/YGAAD//w=='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBg2gJEgACki0ijaOpVyQLw/CAcLLXwLAAAA//8='
+			)
+			(entities )
+			(zones 
+				(zone 
+					(label 'toDock2')
+					(x '0')
+					(y '144')
+					(width '16')
+					(height '64')
+				)
+				(zone 
+					(label 'toSupplyBay')
+					(x '304')
+					(y '144')
+					(width '16')
+					(height '64')
+				)
+			)
+		)
+		(layer 
+			(label 'Doors')
+			(type 'tile')
+			(dimensions 
+				(width '40')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzszjEOgCAQBdHljigdSqfSidyf6amNm/gnmf6ZKaXUO63BLIWvFXMR08I7F4e+jGnji6tD34Hp5Ie7Q9+NqTl0qX81AAAA//8='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo4D6AAAAAP//'
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'Foreground')
+			(type 'tile')
+			(dimensions 
+				(width '40')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJzsjjEKgDAQBC++zweZVltttdXWfNIErliOuMIVIpKBgWPIQkQajcZfiNnBWGuse7eR/GtUJ7hZY927xWaZ1QVu1lj3brFZVnWDmzXWvVtsll094GaNde8W2x0pexprjXXvNpF/FfpOJDy8eZtQ8Ut8+W+FCwAA//8='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo4D6AAAAAP//'
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'Foreground 2')
+			(type 'tile')
+			(dimensions 
+				(width '40')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJxiYBgFo2AUjIJRMAqGL4hhYmDIB+JcIM5jGmjXIADMTTlAnALEjECxpEHkPpibkHHEIHIfsrvCge6KgobjYAEAAAAA//8='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFo4D6AAAAAP//'
+			)
+			(entities )
+			(zones )
+		)
+	)
+)
