@@ -96,6 +96,8 @@ class Tabby(Entity):
         self.checkslopes = True
         self.was_in_slope = False
         self.wallcounter = 0 #0 if not on a wall, >0 will be number of ticks to remember that she was touching a wall.
+        self.platformcounter = 0 #similar to wall counter
+        self.floorcounter = 0
         self.wallticks = 3 #number of ticks to remember that a wall had been touched, for wall jumping purposes
 
         self.lastpos = (0, 0) #last x,y position
@@ -109,7 +111,7 @@ class Tabby(Entity):
         #extra platform speeds
         self.pvx = 0
         self.pvy = 0
-
+        self.platform
         #self.testimg = ika.Image("sprites/platform.png")
 
     def draw(self):
@@ -312,6 +314,10 @@ class Tabby(Entity):
             elif controls.jump.Pressed() and not self.ceiling:
                 self.jump_count = 1
                 self.state = self.JumpState
+                if self.cur_platform:
+                    self.cur_platform=None
+                    self.pvx=0
+                    self.pvy=0
                 #controls.jump.Unpress()
             yield None
 
@@ -1198,9 +1204,16 @@ class Tabby(Entity):
                 return f #just returns the first activatable found...
 
     def SetPlatform(self, platform):
-        self.cur_platform=platform
-        self.pvy = self.vy
-        self.pvx = self.vx
+        if platform is not None:
+            self.cur_platform=platform
+            self.pvy = platform.vy
+            self.pvx = platform.vx
+            self.platformcounter=2
+        else:
+            self.cur_platform=None
+            self.pvy = 0
+            self.pvx = 0
+
 
 
 
@@ -1299,10 +1312,7 @@ class Tabby(Entity):
             for colliding in results: #returns tuple of (entity, top, bottom, left, right for sides being touched)
                 e,top,bottom,left,right=colliding
                 if e.platform:   # and top: #entity is a platform and touching the top
-                    self.cur_platform=e
-                    self.pvy = e.vy
-                    self.pvx = e.vx
-                    self.floor=True
+                    self.SetPlatform(e)
                     #only one platform at a time right now, first in the list...
         elif self.cur_platform: #currently standing on a platform
             still_touching=False
@@ -1335,7 +1345,8 @@ class Tabby(Entity):
 
 
         if self.cur_platform:
-            self.y=int(self.cur_platform.y-47) #haaaack
+            if self.state__ is not self.JumpState:
+                self.y=int(self.cur_platform.y-47) #haaaack
 
         else:
             self.y += self.vy
@@ -1353,8 +1364,8 @@ class Tabby(Entity):
     def detect_collision(self): #entity collisions, Tabby specific
         result = []
 
-        y=self.y+self.vy#+self.pvy
-        x=self.x+self.vx#+self.pvx
+        y=self.y #+self.vy #+self.pvy
+        x=self.x #+self.vx #+self.pvx
 
         for entity in engine.entities:
         	if entity is not self and entity.sprite: #don't check itself and only if it has a sprite
