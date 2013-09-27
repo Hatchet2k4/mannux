@@ -98,8 +98,8 @@ class Tabby(Entity):
         self.wallcounter = 0 #0 if not on a wall, >0 will be number of ticks to remember that she was touching a wall.
         self.platformcounter = 0 #similar to wall counter
         self.floorcounter = 0
-        self.wallticks = 3 #number of ticks to remember that a wall had been touched, for wall jumping purposes
-
+        #self.wallticks = 3 #number of ticks to remember that a wall had been touched, for wall jumping purposes
+        self.jumpticks = 0 #number of ticks to remember that we just started a jump...
         self.lastpos = (0, 0) #last x,y position
 
         self.phantom = False
@@ -236,8 +236,9 @@ class Tabby(Entity):
 
 
 
-            if controls.up.Position() == 0:
+            if controls.up.Position() < controls.deadzone:
                 upPressed = False
+
             if self.anim.loop:
                 if controls.up.Position() > controls.deadzone:
                     z = self.RunnableZone()
@@ -258,8 +259,9 @@ class Tabby(Entity):
                 else:
                     self.Animate(('stand', self.direction))
             if not self.floor:
-                self.state = self.FallState
-                self.jump_count = 1
+                if self.cur_platform is None:
+                    self.state = self.FallState
+                    self.jump_count = 1
             else:
                 self.vx = vecmath.decrease_magnitude(self.vx,
                                                      self.ground_friction)
@@ -318,6 +320,7 @@ class Tabby(Entity):
                     self.cur_platform=None
                     self.pvx=0
                     self.pvy=0
+                    self.floor=False
                 #controls.jump.Unpress()
             yield None
 
@@ -403,6 +406,7 @@ class Tabby(Entity):
                 sound.play('Step', 0.5)
             if controls.jump.Pressed() and not self.ceiling:
                 self.jump_count = 1
+
                 self.state = self.RunJumpState
                 #controls.jump.unpress()
             yield None
@@ -426,22 +430,20 @@ class Tabby(Entity):
         #     self.Animate(('jump', 'fall',  self.direction), loop=False)
         self.checkslopes = True
         while True:
-            if controls.jump.Pressed() and not self.ceiling and \
-               self.jump_count < self.max_jumps and self.HasAbility('double-jump'):
-                if self.jump_count == 0:
-                    # Fell off something, so you lose a jump.
-                    self.jump_count += 2
-                else:
+            if self.HasAbility('double-jump') and controls.jump.Pressed() \
+                and not self.ceiling and self.jump_count < self.max_jumps:
+                if self.jump_count == 0: # Didn't jump bfore, fell off something, so you only get the one jump.
+                    self.jump_count = 2
+                else: #had jumped at least once before.
                     self.jump_count += 1
                 self.state = self.JumpState
                 self.vy = -self.jump_speed
                 yield None
             if self.ceiling:
                 self.vy = 0
-                self.y += 1
+                self.y += 1 #move down one pixel when hitting a cieling... hack
             if self.floor or self.cur_platform:
                 self.vy = 0
-
 
                 self.Animate(('jump', 'stand', self.direction), delay=6,
                              loop=False)
@@ -542,6 +544,8 @@ class Tabby(Entity):
         yield None
 
     def JumpState(self):
+
+
         """STAND->JUMP"""
         #self.Animate(('stand', 'jump', self.direction), loop=False)
         if controls.aim_up.Position():
@@ -574,7 +578,9 @@ class Tabby(Entity):
             self.Animate(('stand', 'jump',  self.direction), loop=False)
         self.checkslopes = False
         self.vy = -self.jump_speed
+        self.jumpticks=3 #Just started jumping
         self.fired = False
+
         while controls.jump.Position() > controls.deadzone and not self.fired:
             old_direction = self.direction
             if controls.left.Position() > controls.deadzone and \
@@ -661,7 +667,7 @@ class Tabby(Entity):
                 break
             self.vy += self.gravity
             if self.vy >= 0:
-                break
+                break #starting to fall...
             yield None
         # JUMP->FALL
         if self.vy < -1: #bit of a hack, sets vertical speed to be -1 or slower if jump button is released
@@ -705,6 +711,7 @@ class Tabby(Entity):
         self.fired = False
         self.jump_count = self.max_jumps
         walljump = False
+        self.jumpticks=3
         self.Animate(('run', 'flip', self.direction), delay=5, loop=False)
         self.checkslopes = False
         self.vy = -self.jump_speed
@@ -1336,20 +1343,21 @@ class Tabby(Entity):
             e,top,bottom,left,right=colliding
             if bottom: #touching bottom of an entity...
             	self.ceiling=True
-            	self.vy=0
-
-
+            	#self.vy=0 #was causing getting stuck in the platform...
 
         self.vx = vecmath.clamp(self.vx, -self.max_vx, self.max_vx)
         self.vy = vecmath.clamp(self.vy, -self.max_vy, self.max_vy)
 
+        if self.cur_platform and self.jumpticks==0:
+            #if self.state__ is not self.JumpState:
 
-        if self.cur_platform:
-            if self.state__ is not self.JumpState:
-                self.y=int(self.cur_platform.y-47) #haaaack
+                self.y=int(self.cur_platform.y-46) #haaaack
+
 
         else:
             self.y += self.vy
+
+        if self.jumpticks>0: self.jumpticks-=1
 
         self.x += self.vx + self.pvx
 
