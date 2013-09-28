@@ -2,7 +2,7 @@
 
 import ika
 import config
-
+import engine
 
 class Fog(object):
 
@@ -13,7 +13,7 @@ class Fog(object):
         self.y = 0
         self.vx = vx
         self.vy = vy
-        self.opacity = 132
+        self.opacity = 128
 
     def update(self):
         self.x = (self.x + self.vx) % 512
@@ -31,7 +31,11 @@ class Fog(object):
             y += 512
         while y > 512:
             y -= 512
+
+
+        #ika.Video.DrawRect(0,0,319,239, ika.RGB(48,48,32, 64), True, ika.SubtractBlend)
         # Need to change to wrapblit.
+
         ika.Video.TintBlit(self.image, x, y,
                            ika.RGB(255, 255, 255, self.opacity))
         ika.Video.TintBlit(self.image, x - 512, y,
@@ -40,3 +44,29 @@ class Fog(object):
                            ika.RGB(255, 255, 255, self.opacity))
         ika.Video.TintBlit(self.image, x - 512, y - 512,
                            ika.RGB(255, 255, 255, self.opacity))
+
+
+class Darkness(object):
+    def __init__(self):
+        super(Darkness, self).__init__()
+        self.image = ika.Image('%s/circle_gradient.png' % config.image_path)
+
+        self.opacity = 128
+
+    def update(self):
+        pass
+
+    def draw(self):
+        #x=int(engine.player.x)-ika.Map.xwin-160
+        #y=int(engine.player.y)-ika.Map.ywin-160
+        x=0
+        y=0
+
+
+        ika.Video.TintBlit(self.image, x , y, ika.RGB(255, 255, 255, self.opacity), ika.SubtractBlend)
+
+
+
+
+
+

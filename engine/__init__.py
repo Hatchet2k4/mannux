@@ -175,7 +175,7 @@ class Engine(object):
             self.update_time()
             self.camera.update()
             self.draw()
-            print >> fonts.one(0, 40), 'FPS:', ika.GetFrameRate()
+            #print >> fonts.one(0, 40), 'FPS:', ika.GetFrameRate()
 
             #for i, e in enumerate(self.entities):
             #    print >> fonts.one(0, 50 + 10*i), 'sprite', e.sprite

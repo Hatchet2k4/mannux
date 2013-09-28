@@ -8,6 +8,8 @@ from engine.background import Background, GlowBG
 from engine.fade import FadeIn, FadeOut
 from engine.door import Door
 from engine.fog import Fog
+from engine.fog import Darkness
+
 from engine.zombie import Zombie
 from engine.dockwindow import DockWindow
 from engine.turret import Turret
@@ -184,7 +186,7 @@ def AutoExec():
     e.foreground_things.append(Background(ika.Image('images/elevator.png'),
                                           336, 384))
     e.foreground_things.append(Fog())
-
+    e.foreground_things.append(Darkness())
 
 
     #e.foreground_things.append(Fog(-0.2, 0.1))

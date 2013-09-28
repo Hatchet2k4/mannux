@@ -11,9 +11,9 @@ import fonts
 from effects import Shield
 
 class Sentry(Enemy):
-    
-    
-    
+
+
+
     def __init__(self, x, y, sprite='needler.ika-sprite', framecount=3):
         super(Sentry, self).__init__(ika.Entity(x, y, ika.Map.FindLayerByName('Walls'),
                                               '%s/%s' %
@@ -66,13 +66,13 @@ class Sentry(Enemy):
             c3=ika.RGB(50+self.scanwidth*3,50+self.scanwidth*3,0,self.scanwidth)
 
             ika.Video.DrawTriangle( (x1,y1,c1), (x2, y2, c3),(x3, y3, c3) )
-            print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "h:", str(h)
-            print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+50), "w:", str(self.scanwidth)
+            #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "h:", str(h)
+            #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+50), "w:", str(self.scanwidth)
 
 
-            
 
-    def Hurt(self, bullet):    
+
+    def Hurt(self, bullet):
         if self.shields:
               engine.AddEffect(Shield(bullet.x,bullet.y,self.sprite.layer, self))
               #no damage, muahaha...  but will reduce shield strength later, with the right weapon...
@@ -104,7 +104,7 @@ class Sentry(Enemy):
         self.scanning=True
         self.scanwidth=1
 
-        
+
         self.scansound.loop=True
         self.scansound.pitchshift=0.5
         self.scansound.Play()
