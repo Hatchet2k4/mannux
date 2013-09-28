@@ -9,6 +9,8 @@ import controls
 import parser
 import video
 import fonts
+import fog
+
 
 from entity import Entity
 from window import Window
@@ -349,6 +351,8 @@ class Engine(object):
 
         self.GetLayers()
 
+        if True: #check for flag for lighting... eventually..
+            self.foreground_things.append(fog.Darkness())
         video.clear()
         if fadein:
             self.FadeIn(16)

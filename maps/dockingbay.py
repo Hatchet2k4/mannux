@@ -186,7 +186,7 @@ def AutoExec():
     e.foreground_things.append(Background(ika.Image('images/elevator.png'),
                                           336, 384))
     e.foreground_things.append(Fog())
-    e.foreground_things.append(Darkness())
+    #e.foreground_things.append(Darkness())
 
 
     #e.foreground_things.append(Fog(-0.2, 0.1))

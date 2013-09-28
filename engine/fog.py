@@ -3,6 +3,7 @@
 import ika
 import config
 import engine
+import fonts
 
 class Fog(object):
 
@@ -57,10 +58,12 @@ class Darkness(object):
         pass
 
     def draw(self):
-        #x=int(engine.player.x)-ika.Map.xwin-160
-        #y=int(engine.player.y)-ika.Map.ywin-160
-        x=0
-        y=0
+        p=engine.engine.player
+        x=int(p.x + p.width/2 - ika.Map.xwin) - self.image.width/2
+        y=int(p.y + p.height/2 -ika.Map.ywin) - self.image.height/2
+
+        #print >> fonts.tiny(0,80), 'x: '+str(x)
+        #print >> fonts.tiny(0,90), 'y: '+str(y)
 
 
         ika.Video.TintBlit(self.image, x , y, ika.RGB(255, 255, 255, self.opacity), ika.SubtractBlend)
