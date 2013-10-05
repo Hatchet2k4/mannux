@@ -1,0 +1,84 @@
+(ika-map 
+	(version '1.2')
+	(information 
+		(title '')
+		(meta )
+	)
+	(header 
+		(dimensions 
+			(width '320')
+			(height '240')
+		)
+		(tileset 'D:\\Work\\MANNUX\\SVN\\maps\\mannux_cave.vsp')
+	)
+	(waypoints )
+	(zones )
+	(layers 
+		(layer 
+			(label 'New Layer')
+			(type 'tile')
+			(dimensions 
+				(width '20')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJys071rwmAQx3G1RivWYpU6+FIFa6W+FbTQFoJDO7i0S0FwUBwEBye7+Pf3e3CB4yGlMfrAhzuS3C9PSOIl/l+zCMe2WJlznvZJpJDBJbLa53CBtF7nmdkg7+DMy2weVyiihBvtyyjgOuQ+0u/x48zL7DQC9z7Sj/AUcT6KV7ydMe8dH2igrvWUvE98oYsHrY/oHZmzwAbfmOu7tt9SE60Y+1tirRnyLfna36JyYp5d59ifr3sMnvsuRt7O5IX9n8e8mzaGmJh536ly7tnkVlFzah8DzZL1YvJmf/RB7j06TpWcseaM9fpfAAAA//8='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
+			)
+			(entities )
+			(zones )
+		)
+		(layer 
+			(label 'New Layer 2')
+			(type 'tile')
+			(dimensions 
+				(width '20')
+				(height '15')
+			)
+			(position 
+				(x '0')
+				(y '0')
+			)
+			(parallax 
+				(mulx '1')
+				(muly '1')
+				(divx '1')
+				(divy '1')
+			)
+			(wrap 
+				(x 'false')
+				(y 'false')
+			)
+			(data 
+				(format 'zlib')
+				'eJyyY2BgsBvFo3gUDymsDcQ6g8Ad9MYAAAAA//8='
+			)
+			(obstructions 
+				(style 'tile')
+				(format 'zlib')
+				'eJxiYBgFxAIAAAAA//8='
+			)
+			(entities )
+			(zones )
+		)
+	)
+)
