@@ -81,6 +81,14 @@ class Engine(object):
         # DO NOT PUT RUN HERE
         # If run is put here, the engine object is never returned.
 
+        self.lights=True #lights activated
+        self.lightcanvas=ika.Canvas(320,240)
+        self.lightcanvas.Clear(ika.RGB(255,255,255,128))
+        self.circleimage = ika.Image('%s/circle_gradient.png'  % config.image_path)
+        self.bigcircleimage = ika.Image('%s/circle320.png' % config.image_path)
+        self.smallcircle = ika.Image('%s/circle32.png' % config.image_path)
+
+
     def GetFlag(self, key):
         return self.flags.get(key, False)
 
@@ -223,6 +231,25 @@ class Engine(object):
             except AttributeError:
                 # This is retarded.
                 pass
+
+        if self.lights: #lightmap check
+            #self.lightcanvas.Clear(ika.RGB(255,0,255,128))
+            p=self.player
+            x=int(p.x + p.width/2 - ika.Map.xwin) - 320
+            y=int(p.y + p.height/2 - ika.Map.ywin) - 240
+
+            print >> fonts.tiny(0,80), 'x: '+str(x)
+            print >> fonts.tiny(0,90), 'y: '+str(y)
+
+            #self.bigcircleimage.Blit(self.lightcanvas, 0, -40, 4)
+            #self.lightcanvas.Blit(self.image, x , y, ika.RGB(255, 255, 255, self.opacity), ika.SubtractBlend)
+            #img=ika.Image(self.lightcanvas)
+            ika.Video.Blit(self.circleimage, x,y, ika.SubtractBlend)
+            #ika.Video.DrawEllipse(x+160, y+160, 50, 40, ika.RGB(100,100,100,128), 1, ika.AddBlend)
+            #ika.Video.TintBlit(img, 0 , 0, ika.RGB(255, 255, 255, 128))
+
+            #ika.Video.TintBlit(img, 0 , 0)
+
         self.hud.draw()
 
         x = 10
@@ -351,8 +378,8 @@ class Engine(object):
 
         self.GetLayers()
 
-        if True: #check for flag for lighting... eventually..
-            self.foreground_things.append(fog.Darkness())
+        #if True: #check for flag for lighting... eventually..
+         #   self.foreground_things.append(fog.Darkness())
         video.clear()
         if fadein:
             self.FadeIn(16)

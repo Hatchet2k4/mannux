@@ -228,10 +228,14 @@ toAirlock1 = engine.mapscript.Warp(18, 10, 'airlock1.ika-map', Dir.LEFT)
 toAirlock2 = engine.mapscript.Warp(1, 10, 'airlock2.ika-map', Dir.RIGHT)
 secretArea = engine.mapscript.LayerFader('Secret Overlay', 255, 0, 25)
 
-
-
 runSave = engine.mapscript.Save(29*16, 21*16)
+#runSave = ShipSave()
 
+def ShipSave():
+    e.player.visible=False
+
+
+    saved = engine.SavePrompt()
 
 
 

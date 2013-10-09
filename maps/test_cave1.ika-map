@@ -9,7 +9,7 @@
 			(width '320')
 			(height '240')
 		)
-		(tileset 'D:\\Work\\MANNUX\\SVN\\maps\\mannux_cave.vsp')
+		(tileset 'mannux_cave.vsp')
 	)
 	(waypoints )
 	(zones )
