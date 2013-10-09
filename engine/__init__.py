@@ -238,13 +238,13 @@ class Engine(object):
             x=int(p.x + p.width/2 - ika.Map.xwin) - 320
             y=int(p.y + p.height/2 - ika.Map.ywin) - 240
 
-            print >> fonts.tiny(0,80), 'x: '+str(x)
-            print >> fonts.tiny(0,90), 'y: '+str(y)
+            #print >> fonts.tiny(0,80), 'x: '+str(x)
+            #print >> fonts.tiny(0,90), 'y: '+str(y)
 
             #self.bigcircleimage.Blit(self.lightcanvas, 0, -40, 4)
             #self.lightcanvas.Blit(self.image, x , y, ika.RGB(255, 255, 255, self.opacity), ika.SubtractBlend)
             #img=ika.Image(self.lightcanvas)
-            ika.Video.Blit(self.circleimage, x,y, ika.SubtractBlend)
+            ika.Video.TintBlit(self.circleimage, x,y, ika.RGB(255,255,255,192), ika.SubtractBlend)
             #ika.Video.DrawEllipse(x+160, y+160, 50, 40, ika.RGB(100,100,100,128), 1, ika.AddBlend)
             #ika.Video.TintBlit(img, 0 , 0, ika.RGB(255, 255, 255, 128))
 

@@ -22,6 +22,9 @@ class Bullet(Entity):
                                                 '%s/bullet.ika-sprite' %
                                                 config.sprite_path))
         self.vx, self.vy, frame = data[direction]
+
+        self.vx=self.vx*0.75
+        self.vy=self.vy*0.75 #slowing down for now...
         self.set_animation_state(first=frame, last=frame, delay=0, loop=False)
         self.ticks = 0
         self.temp = ika.Random(80, 280)
@@ -60,8 +63,6 @@ class Bullet(Entity):
                door_layer = ika.Map.FindLayerByName('Doors')
 
                if wall_layer and door_layer and ika.Map.GetObs(x, y, door_layer):
-
-
                   ika.Map.SetObs(x, y, door_layer, 0) #hack right now so that obstructions on door layer = destructible block.
                   ika.Map.SetObs(x, y, wall_layer, 0)
                   ika.Map.SetTile(x, y, wall_layer, 0)
