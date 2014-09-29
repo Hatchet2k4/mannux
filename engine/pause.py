@@ -31,7 +31,7 @@ class Pause(object):
         self.mapy = 0
         self.options = ['Map', 'Weapons', 'Skills', 'Config', 'Quit']
         self.enabled = ['Map', 'Config', 'Quit']
-        self.configkeys = ['attack', 'jump', 'aim_up', 'aim_down', 'dash'] #add dash, updownleftright
+        self.configkeys = ['attack', 'jump', 'aim_up', 'aim_down', 'dash', 'confirm'] #add dash, updownleftright
         self.mapname = ''
 
     def menu(self):
@@ -150,10 +150,8 @@ class Pause(object):
             self.draw_options()
 
             #ika.Video.Blit(self.select2, 14, 46 + 12 * optselected) #ugly
-            ika.Video.DrawRect(17, 49 + 12 * optselected, 100, 57+12*optselected, ika.RGB(100,255,100,64),1)
-
+            ika.Video.DrawRect(17, 59 + 12 * optselected, 100, 67+12*optselected, ika.RGB(100,255,100,64),1)
             ika.Video.ShowPage()
-
             ika.Input.Update()
 
             #select up/down
@@ -168,7 +166,9 @@ class Pause(object):
                 ika.Input.keyboard.ClearKeyQueue()
                 done = False
                 #select controls
-                while not done:
+                while not done: #start processing for a new key
+                
+                    #duplicate code, future revision to move into main function
                     t = ika.GetTime()
                     while t > time:
                         time += 1
@@ -180,13 +180,13 @@ class Pause(object):
                     self.draw_options(optselected)
 
                     #ika.Video.Blit(self.select2, 14, 46 + 12 * optselected) #ugly rectangle.
-                    ika.Video.DrawRect(17, 49 + 12 * optselected, 100, 57+12*optselected, ika.RGB(100,255,100,128),1)
+                    ika.Video.DrawRect(17, 59 + 12 * optselected, 100, 67+12*optselected, ika.RGB(100,255,100,128),1)
 
                     ika.Video.ShowPage()
                     ika.Input.Update()
 
 
-                    if len(ika.Input.joysticks) > 0:
+                    if len(ika.Input.joysticks) > 0 and controls.usejoystick==True: #poll for gamepad buttons
                         newKey = None
                         newString = ''
                         for i in range(len(ika.Input.joysticks[0].axes)):
@@ -200,15 +200,25 @@ class Pause(object):
                                 newKey = ika.Input.joysticks[0].buttons[i]
                                 newString = 'JOY%s' % i
                                 break
-                        if newKey:
+                        if newKey: 
                             done = True
                             key = self.configkeys[optselected].replace(' ', '')
                             controls.__dict__[key] = newString
                             engine.player.__dict__[key] = newKey
-                    newKey = ika.Input.keyboard.GetKey()
+                            
+                    
+                    for keyName in controls.controlnames:
+                        k = ika.Input.keyboard[keyName]
+                        if k.Pressed(): #key pressed!
+                        
+                            #so much happening in one line of code! 
+                            controls.control_list[self.configkeys[optselected]].buttons['key'].Set('key:'+keyName)
+                            done=True
+                            #k.Unpress()
+                        
+                    #newKey = ika.Input.keyboard.GetKey()
                     #if newKey:
-
-
+                    #    ika.Log(str(newKey))                        
                         #done = True
                         #key = self.configkeys[optselected].replace(' ', '')
                         #controls.__dict__[key] = newKey.upper()
