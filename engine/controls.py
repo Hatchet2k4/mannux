@@ -10,13 +10,11 @@ left_key = 'LEFT'
 right_key = 'RIGHT'
 attack_key = 'X'
 jump_key = 'Z'
-aim_up_key = 'C'
-aim_down_key = 'LSHIFT'
+aim_up_key = 'D'
+aim_down_key = 'C'
 pause_key = 'ESCAPE'
 confirm_key = 'RETURN'
 cancel_key = 'ESCAPE'
-
-
 usejoystick = True
 
 # Analog deadzone.
@@ -50,7 +48,7 @@ def StringToControl(string):
     base, value = string.split(":", 1)
     #Check for keyboard.
     if base == "key":
-        #Check to see if value is a valid button.
+        #TODO: Check to see if passed value is a valid button.
         if True:
             return ika.Input.keyboard[value.upper()]
     #Must be a joystick button.
@@ -82,12 +80,15 @@ class Button:
         "pressed",          #Integer. Button press state (0 = unpressed, 1 = pressed, 2 = repeating).
         "onpress",          #Function. Called when button is pressed and repeated.
         "onrelease",        #Function. Called when button is released.
-        "time"              #Integer. Ticks at last repeat.
+        "time",             #Integer. Ticks at last repeat.
+        "type",             #String. key or joy
+        "value"             #String. Display value for menu system
         )
 
     def __init__(self, key = None):
         self.key = key
         self.control = None
+        self.type=''
         if key:
             self.Set(key)
         self.first_delay = 25
@@ -95,6 +96,8 @@ class Button:
         self.pressed = 0
         self.onpress = None
         self.onrelease = None
+
+
 
     def Set(self, key = None):
         if self.control:
@@ -107,6 +110,10 @@ class Button:
                 control.onunpress = self.Release
             self.key = key
             self.control = control
+            self.type, self.value = key.split(":", 1) #return joy or key for type, remainder of key for value
+            if self.type=='joy':
+                joystick, attr, self.value = self.value.split(":") #grab just the button index for value for display in controls screen.
+
 
     def Position(self):
         if self.control:
@@ -153,83 +160,96 @@ class Button:
         else:
             self.Release()
 
-class MButton: #button class that supports multiple buttons but acts like a single one.
+class MButton: #multi button class that supports multiple buttons but acts like a single one. Modified to support one keyboard and one gamepad button each.
     def __init__(self, button=None):
-        self.buttons=[]
-        if button is not None:
-            self.buttons.append(button)
+        self.buttons={'key':None,'joy':None}
+        self.AddButton(button)
+
+            #self.buttons.append(button)
 
     def AddButton(self, button):
-        self.buttons.append(button)
+        if button is not None:
+            if button.type=='key':
+                self.buttons['key']=button
+            elif button.type=='joy':
+                self.buttons['joy']=button
+        #self.buttons.append(button)
 
-    def RemoveButton(self, button):
+    def RemoveButton(self, button): #will be broken with dict.. will fix
         self.buttons.remove(button) #may need to tweak later if I ever use this...
 
     def Set(self, key = None):
-        for b in self.buttons:
-            b.Set(key)
+        for b in self.buttons.itervalues():
+            if b: b.Set(key)
 
     def Position(self):
-        for b in self.buttons: #return position if it's more than 0.1 in deadzone... though I only use > 0.5 for now..
-            p=b.Position()
-            if abs(p)>0.1:
-                return p
+        for b in self.buttons.itervalues(): #return position if it's more than 0.1 in deadzone... though I only use > 0.5 for now..
+            if b:
+                p=b.Position()
+                if abs(p)>0.1:
+                    return p
         return 0
+
 
     def Pressed(self):
         press=False
-        for b in self.buttons:
-            if b.Pressed(): press=True
+        for b in self.buttons.itervalues():
+            if b:
+                if b.Pressed(): press=True
         return press
 
     def Press(self):
-        for b in self.buttons:
-            b.Press()
+        for b in self.buttons.itervalues():
+            if b: b.Press()
 
     def Release(self):
-        for b in self.buttons:
-            b.Release()
+        for b in self.buttons.itervalues():
+            if b: b.Release()
 
     def Update(self):
-        for b in self.buttons:
-            b.Update()
+        for b in self.buttons.itervalues():
+            if b: b.Update()
 
-
+#todo: pull values from save file
 up = MButton(Button("key:UP"))
 down = MButton(Button("key:DOWN"))
 left = MButton(Button("key:LEFT"))
 right = MButton(Button("key:RIGHT"))
+
 attack = MButton(Button("key:X"))
 jump = MButton(Button("key:Z"))
-
 ability = MButton(Button("key:S"))
+
+dash = MButton(Button("key:A")) #new buttoin, dashing, if ability is gained!
 
 aim_up = MButton(Button("key:D"))
 aim_down = MButton(Button("key:C"))
+
 pause = MButton(Button("key:ESCAPE"))
 
 confirm = attack #confirm and attack buttons are the same
-cancel = jump # should be menu?
+cancel = pause # should be menu?
 
 
 if len(ika.Input.joysticks) > 0 and usejoystick == True:
-    up.AddButton(Button("joy:0:reverseaxes:1"))
-    down.AddButton(Button("joy:0:axes:1"))
-    left.AddButton(Button("joy:0:reverseaxes:0"))
-    right.AddButton(Button("joy:0:axes:0"))
-    attack.AddButton(Button("joy:0:buttons:0"))
-    jump.AddButton(Button("joy:0:buttons:1"))
-    ability.AddButton(Button("joy:0:buttons:2"))
+    try:
+        #directions
+        up.AddButton(Button("joy:0:reverseaxes:1"))
+        down.AddButton(Button("joy:0:axes:1"))
+        left.AddButton(Button("joy:0:reverseaxes:0"))
+        right.AddButton(Button("joy:0:axes:0"))
+        #buttons
+        attack.AddButton(Button("joy:0:buttons:0"))
+        jump.AddButton(Button("joy:0:buttons:1"))
+        ability.AddButton(Button("joy:0:buttons:2"))
+        aim_up.AddButton(Button("joy:0:buttons:4"))
+        aim_down.AddButton(Button("joy:0:buttons:5"))
+        pause.AddButton(Button("joy:0:buttons:9"))
+        dash.AddButton(Button("joy:0:buttons:3"))
+    except:
+        ika.Log('Warning: Attempt to add gamepad controls failed. Continuing.')
 
-
-
-    aim_up.AddButton(Button("joy:0:buttons:4"))
-    aim_down.AddButton(Button("joy:0:buttons:5"))
-    pause.AddButton(Button("joy:0:buttons:9"))
-
-
-
-
-control_list = [up, down, left, right, attack, jump, confirm, cancel, aim_up, aim_down, pause]
+control_list = {'up':up, 'down':down, 'left':left, 'right':right,
+                'attack':attack, 'jump':jump, 'dash':dash, 'confirm':confirm, 'cancel':cancel, 'aim_up':aim_up, 'aim_down':aim_down, 'pause':pause} #maybe dash/ability button in future update
 
 

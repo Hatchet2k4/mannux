@@ -32,10 +32,13 @@ class Engine(object):
 
     def __init__(self):
         self.music = None
+
         ika.SetCaption('%s - Mannux' % ika.GetCaption())
         video.clear()
         print >> fonts.big.center(), 'Loading . . .'
         ika.Video.ShowPage()
+
+
         self.window = Window()
         self.seconds = 0
         self.minutes = 0
@@ -418,7 +421,7 @@ class Engine(object):
         while self.minutes >= 60:
             self.minutes -= 60
             self.hours += 1
-        self.time = '%03d:%03d:%03d' % (self.hours, self.minutes, self.seconds)
+        self.time = '%01d:%02d:%02d' % (self.hours, self.minutes, self.seconds)
 
     def UpdateTerrain(self):
         #Updates terrain layer. For water effects, currently

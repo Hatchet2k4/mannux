@@ -51,12 +51,13 @@ class Shield(Effect):
         self.angle=int(math.atan2(self.ydiff, self.xdiff) * 180 / math.pi)
 
         self.ticks=0
+        self.lifetime=64 #lasts 64 ticks
 
         sound.play('Boom', 0.2)
 
     def update(self):
         self.ticks+=1
-        if self.ticks>64:
+        if self.ticks>self.lifetime:
             engine.RemoveEffect(self)
 
     def draw(self):
@@ -74,7 +75,7 @@ class Shield(Effect):
         #x3=x1-self.xdiff+8
         #y3=y1-self.ydiff+8
         #c3=ika.RGB(0,250,150,128-self.ticks)
-        ika.Video.DrawArc(x1, y1, 12, 12, 6, 6, self.angle+30, self.angle+90, c1, True)
+        ika.Video.DrawArc(x1, y1, 12, 12, 6, 6, self.angle+90, self.angle+150, c1, True)
         #ika.Video.DrawTriangle((x1, y1, c1), (x2, y2, c2), (x3, y3, c3))
 
 

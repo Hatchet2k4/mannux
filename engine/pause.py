@@ -30,9 +30,8 @@ class Pause(object):
         self.mapx = 0
         self.mapy = 0
         self.options = ['Map', 'Weapons', 'Skills', 'Config', 'Quit']
-        self.enabled = ['Map', 'Quit']
-        self.configkeys = ['attack', 'jump', 'confirm', 'up', 'down', 'left',
-                           'right', 'aim_up', 'aim_down']
+        self.enabled = ['Map', 'Config', 'Quit']
+        self.configkeys = ['attack', 'jump', 'aim_up', 'aim_down', 'dash'] #add dash, updownleftright
         self.mapname = ''
 
     def menu(self):
@@ -97,6 +96,8 @@ class Pause(object):
             engine.automap.draw_automap(self.mapx, self.mapy)
             c1 = ika.RGB(0, 200, 255, 200)
             c2 = ika.RGB(200, 200, 255, 200)
+
+            #scroll triangles
             if self.mapx > 0:
                 ika.Video.DrawTriangle((10, 100, c1), (20, 90, c2),
                                        (20, 110, c2))
@@ -125,27 +126,46 @@ class Pause(object):
                     self.mapy -= 1
                     scrolltime = 5
 
-    def preferences(self):
+    def preferences(self): #control config menu
+
         time = ika.GetTime()
         ika.Input.Unpress()
         ika.Input.Update()
         scroll = True
         optselected = 0
+        selectmode=0 #0=selecting which control, 1=waiting for key to replace
         while not controls.cancel.Pressed():
+             #
+
             t = ika.GetTime()
             while t > time:
                 time += 1
                 engine.ticks += 1
+
+
             engine.update_time()
             self.draw_menu()
             self.draw_options()
-            ika.Video.Blit(self.select2, 14, 46 + 12 * optselected)
+
+            #ika.Video.Blit(self.select2, 14, 46 + 12 * optselected) #ugly
+            ika.Video.DrawRect(17, 49 + 12 * optselected, 100, 57+12*optselected, ika.RGB(100,255,100,64),1)
+
             ika.Video.ShowPage()
+
             ika.Input.Update()
+
+            #select up/down
+            opt = controls.down.Pressed() - controls.up.Pressed()
+            if opt:
+                optselected += opt
+                optselected %= len(self.configkeys)
+                sound.play('Menu')
+
             if controls.confirm.Pressed():
                 ika.Input.Unpress()
                 ika.Input.keyboard.ClearKeyQueue()
                 done = False
+                #select controls
                 while not done:
                     t = ika.GetTime()
                     while t > time:
@@ -153,11 +173,17 @@ class Pause(object):
                         engine.ticks += 1
                     time = ika.GetTime()
                     engine.update_time()
+
                     self.draw_menu()
                     self.draw_options(optselected)
-                    ika.Video.Blit(self.select2, 14, 46 + 12 * optselected)
+
+                    #ika.Video.Blit(self.select2, 14, 46 + 12 * optselected) #ugly rectangle.
+                    ika.Video.DrawRect(17, 49 + 12 * optselected, 100, 57+12*optselected, ika.RGB(100,255,100,128),1)
+
                     ika.Video.ShowPage()
                     ika.Input.Update()
+
+
                     if len(ika.Input.joysticks) > 0:
                         newKey = None
                         newString = ''
@@ -178,19 +204,19 @@ class Pause(object):
                             controls.__dict__[key] = newString
                             engine.player.__dict__[key] = newKey
                     newKey = ika.Input.keyboard.GetKey()
-                    if newKey:
-                        done = True
-                        key = self.configkeys[optselected].replace(' ', '')
-                        controls.__dict__[key] = newKey.upper()
-                        engine.player.__dict__[key] = \
-                            ika.Input.keyboard[newKey.upper()]
-            opt = controls.down.Pressed() - controls.up.Pressed()
-            if opt:
-                optselected += opt
-                optselected %= len(self.configkeys)
-                sound.play('Menu')
+                    #if newKey:
 
-    def draw_menu(self):
+
+                        #done = True
+                        #key = self.configkeys[optselected].replace(' ', '')
+                        #controls.__dict__[key] = newKey.upper()
+                        #engine.player.__dict__[key] = \
+                        #    ika.Input.keyboard[newKey.upper()]
+
+
+
+
+    def draw_menu(self): #main menu draw
         #ika.Video.Blit(self.face, 11, 25)
         ika.Map.Render()
         ika.Video.Blit(self.menu1, 0, 0)
@@ -228,10 +254,20 @@ class Pause(object):
 
     def draw_options(self, selected=-1):
         print >> fonts.three(70, 34), 'CONTROL CONFIGURATION'
+        print >> fonts.three(30, 47), 'ACTION'
+        print >> fonts.three(132, 47), 'KEY'
+        print >> fonts.three(196, 47), 'GAMEPAD'
+
         # x-pos of key name, x-pos of key, y-pos of first, y-inc, space
         # between first and '-'
-        x1, x2, y, h, optlen = 20, 140, 50, 12, 11
+        x1, x2, x3, y, h, optlen = 20, 140, 220, 60, 12, 11
+
+
         for i, option in enumerate(self.configkeys):
-            print >> fonts.one(x1, y + i * h), '%s-' % option.ljust(optlen)
-            f = [fonts.one, fonts.three][selected == i]
-            print >> f(x2, y + i * h), controls.__dict__['%s_key' % option.replace(' ', '')]
+
+            print >> fonts.one(x1, y + i * h), '%s' % option.ljust(optlen)
+            f = [fonts.one, fonts.three][selected == i] #select the item that's been highlighted
+            print >> f(x2, y + i * h),  controls.control_list[option].buttons['key'].value
+            if controls.usejoystick:
+                print >> f(x3, y + i * h),  controls.control_list[option].buttons['joy'].value
+            #print >> f(x2, y + i * h), controls.__dict__['%s_key' % option.replace(' ', '')]
