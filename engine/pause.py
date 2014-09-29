@@ -135,7 +135,7 @@ class Pause(object):
         optselected = 0
         selectmode=0 #0=selecting which control, 1=waiting for key to replace
         while not controls.cancel.Pressed():
-             #
+
 
             t = ika.GetTime()
             while t > time:
@@ -256,7 +256,9 @@ class Pause(object):
         print >> fonts.three(70, 34), 'CONTROL CONFIGURATION'
         print >> fonts.three(30, 47), 'ACTION'
         print >> fonts.three(132, 47), 'KEY'
-        print >> fonts.three(196, 47), 'GAMEPAD'
+
+        f = [fonts.five, fonts.three][controls.usejoystick]
+        print >> f(196, 47), 'GAMEPAD'
 
         # x-pos of key name, x-pos of key, y-pos of first, y-inc, space
         # between first and '-'
