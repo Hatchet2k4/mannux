@@ -49,11 +49,10 @@ class Pause(object):
                 engine.ticks += 1
             engine.update_time()
             self.draw_menu()
-            if self.menuselected == 0:
-                print >> fonts.two(160, 30, align='center'), self.mapname
-                engine.automap.draw_automap(self.mapx, self.mapy)
-            if self.menuselected == 3:
-                self.draw_options()
+
+                
+                
+                
             ika.Video.ShowPage()
             ika.Input.Update()
             if controls.right.Pressed():
@@ -64,6 +63,8 @@ class Pause(object):
                     if self.menuselected > 4:
                         self.menuselected = 0
                 sound.play('Menu')
+                                
+                
             if controls.left.Pressed():
                 i = 0
                 while self.options[self.menuselected] not in self.enabled or i == 0:
@@ -72,13 +73,14 @@ class Pause(object):
                     if self.menuselected < 0:
                         self.menuselected = 4
                 sound.play('Menu')
-            if controls.confirm.Pressed():
-                [self.map, lambda: None, lambda: None, self.preferences,
+                
+            if controls.confirm.Pressed(): #enter actual menu for that screen
+                [self.mapscreen, lambda: None, lambda: None, self.preferences,
                  ika.Exit][self.menuselected]()
                 time = ika.GetTime()
         sound.play('Whoosh2')
 
-    def map(self):
+    def mapscreen(self):
         time = ika.GetTime()
         ika.Input.Unpress()
         ika.Input.Update()
@@ -221,15 +223,19 @@ class Pause(object):
         ika.Map.Render()
         ika.Video.Blit(self.menu1, 0, 0)
         ika.Video.Blit(self.menu3, 0, 190)
-        ika.Video.Blit(self.menu4, 100, 190)
-        if self.menuselected == 0:
-           ika.Video.Blit(self.mapw, 0, 22)
+        ika.Video.Blit(self.menu4, 100, 190)      
+ 
+        if self.menuselected == 0: #map
+           ika.Video.Blit(self.mapw, 0, 22)           
+           print >> fonts.two(160, 30, align='center'), self.mapname
+           engine.automap.draw_automap(self.mapx, self.mapy)           
         else:
            ika.Video.Blit(self.menu2, 0, 22)
-           if self.menuselected == 4:
+           if self.menuselected == 3: #control config
+                self.draw_options()
+           if self.menuselected == 4: #quit 
                print >> fonts.one(50, 100), "Press X to quit the game."
-
-
+               
         x = 10
         y = 10
         for i, option in enumerate(self.options):

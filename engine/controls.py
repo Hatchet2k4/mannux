@@ -15,11 +15,12 @@ aim_down_key = 'C'
 pause_key = 'ESCAPE'
 confirm_key = 'RETURN'
 cancel_key = 'ESCAPE'
-usejoystick = True
 
-# Analog deadzone.
-deadzone = 0.5
 
+
+#global variables for controls
+deadzone = 0.5 # Analog deadzone. 
+usejoystick = True #Gamepad enabled
 
 controlnames = ['BACKSPACE', 'TAB', 'CLEAR', 'RETURN', 'PAUSE', 'ESCAPE',
                 'SPACE', 'EXCLAIM', 'QUOTEDBL', 'HASH', 'DOLLAR', 'AMPERSAND',
@@ -210,7 +211,8 @@ class MButton: #multi button class that supports multiple buttons but acts like 
         for b in self.buttons.itervalues():
             if b: b.Update()
 
-#todo: pull values from save file
+
+#todo: pull values from save file, should run this in a method instead
 up = MButton(Button("key:UP"))
 down = MButton(Button("key:DOWN"))
 left = MButton(Button("key:LEFT"))
@@ -230,8 +232,9 @@ pause = MButton(Button("key:ESCAPE"))
 confirm = attack #confirm and attack buttons are the same
 cancel = pause # should be menu?
 
-
-if len(ika.Input.joysticks) > 0 and usejoystick == True:
+#attempt to add joystick controls
+#TODO-allow switching between different gamepads. 
+if len(ika.Input.joysticks) > 0: #attempt to add gamepad controls if one is available. 
     try:
         #directions
         up.AddButton(Button("joy:0:reverseaxes:1"))
@@ -246,8 +249,11 @@ if len(ika.Input.joysticks) > 0 and usejoystick == True:
         aim_down.AddButton(Button("joy:0:buttons:5"))
         pause.AddButton(Button("joy:0:buttons:9"))
         dash.AddButton(Button("joy:0:buttons:3"))
+        usejoystick = True
     except:
         ika.Log('Warning: Attempt to add gamepad controls failed. Continuing.')
+        usejoystick=False
+else: usejoystick=False
 
 control_list = {'up':up, 'down':down, 'left':left, 'right':right,
                 'attack':attack, 'jump':jump, 'dash':dash, 'confirm':confirm, 'cancel':cancel, 'aim_up':aim_up, 'aim_down':aim_down, 'pause':pause} #maybe dash/ability button in future update
