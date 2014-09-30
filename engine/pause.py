@@ -50,9 +50,9 @@ class Pause(object):
             engine.update_time()
             self.draw_menu()
 
-                
-                
-                
+
+
+
             ika.Video.ShowPage()
             ika.Input.Update()
             if controls.right.Pressed():
@@ -63,8 +63,8 @@ class Pause(object):
                     if self.menuselected > 4:
                         self.menuselected = 0
                 sound.play('Menu')
-                                
-                
+
+
             if controls.left.Pressed():
                 i = 0
                 while self.options[self.menuselected] not in self.enabled or i == 0:
@@ -73,7 +73,7 @@ class Pause(object):
                     if self.menuselected < 0:
                         self.menuselected = 4
                 sound.play('Menu')
-                
+
             if controls.confirm.Pressed(): #enter actual menu for that screen
                 [self.mapscreen, lambda: None, lambda: None, self.preferences,
                  ika.Exit][self.menuselected]()
@@ -167,7 +167,7 @@ class Pause(object):
                 done = False
                 #select controls
                 while not done: #start processing for a new key
-                
+
                     #duplicate code, future revision to move into main function
                     t = ika.GetTime()
                     while t > time:
@@ -189,36 +189,36 @@ class Pause(object):
                     if len(ika.Input.joysticks) > 0 and controls.usejoystick==True: #poll for gamepad buttons
                         newKey = None
                         newString = ''
-                        for i in range(len(ika.Input.joysticks[0].axes)):
-                            if (abs(ika.Input.joysticks[0].axes[i].Position())
-                                > controls.deadzone):
-                                newKey = ika.Input.joysticks[0].axes[i]
-                                newString = 'JOYAXIS%i %s' % (i, '-+'[ika.Input.joysticks[0].axes[i].Position() > 0])
-                                break
+                        #for i in range(len(ika.Input.joysticks[0].axes)):
+                        #    if (abs(ika.Input.joysticks[0].axes[i].Position())
+                        #        > controls.deadzone):
+                        #        newKey = ika.Input.joysticks[0].axes[i]
+                        #        newString = 'JOYAXIS%i %s' % (i, '-+'[ika.Input.joysticks[0].axes[i].Position() > 0])
+                        #        break
                         for i in range(len(ika.Input.joysticks[0].buttons)):
                             if ika.Input.joysticks[0].buttons[i].Pressed():
                                 newKey = ika.Input.joysticks[0].buttons[i]
-                                newString = 'JOY%s' % i
+                                controls.control_list[self.configkeys[optselected]].buttons['joy'].Set('joy:0:buttons:'+str(i))
+                                done=True
                                 break
-                        if newKey: 
-                            done = True
-                            key = self.configkeys[optselected].replace(' ', '')
-                            controls.__dict__[key] = newString
-                            engine.player.__dict__[key] = newKey
-                            
-                    
+
+
+
+
+
+                    #check keyboard buttons
                     for keyName in controls.controlnames:
                         k = ika.Input.keyboard[keyName]
                         if k.Pressed(): #key pressed!
-                        
-                            #so much happening in one line of code! 
+
+                            #so much happening in one line of code!
                             controls.control_list[self.configkeys[optselected]].buttons['key'].Set('key:'+keyName)
                             done=True
                             #k.Unpress()
-                        
+
                     #newKey = ika.Input.keyboard.GetKey()
                     #if newKey:
-                    #    ika.Log(str(newKey))                        
+                    #    ika.Log(str(newKey))
                         #done = True
                         #key = self.configkeys[optselected].replace(' ', '')
                         #controls.__dict__[key] = newKey.upper()
@@ -233,19 +233,19 @@ class Pause(object):
         ika.Map.Render()
         ika.Video.Blit(self.menu1, 0, 0)
         ika.Video.Blit(self.menu3, 0, 190)
-        ika.Video.Blit(self.menu4, 100, 190)      
- 
+        ika.Video.Blit(self.menu4, 100, 190)
+
         if self.menuselected == 0: #map
-           ika.Video.Blit(self.mapw, 0, 22)           
+           ika.Video.Blit(self.mapw, 0, 22)
            print >> fonts.two(160, 30, align='center'), self.mapname
-           engine.automap.draw_automap(self.mapx, self.mapy)           
+           engine.automap.draw_automap(self.mapx, self.mapy)
         else:
            ika.Video.Blit(self.menu2, 0, 22)
            if self.menuselected == 3: #control config
                 self.draw_options()
-           if self.menuselected == 4: #quit 
+           if self.menuselected == 4: #quit
                print >> fonts.one(50, 100), "Press X to quit the game."
-               
+
         x = 10
         y = 10
         for i, option in enumerate(self.options):
