@@ -53,14 +53,14 @@ class Tabby(Entity):
 
 
 
-        self.ground_friction = 0.10
-        self.air_friction = 0.1
+        self.ground_friction = 0.2
+        self.air_friction = 0.125
         self.ground_accel = self.ground_friction * 2
         self.air_accel = 0.0625
-        self.max_vx = 2.0
-        self.max_vy = 8.0
-        self.gravity = 0.1
-        self.jump_speed = 5
+        self.max_vx = 1.5
+        self.max_vy = 6.0
+        self.gravity = 0.125
+        self.jump_speed = 3.5
 
         self.abilities = {'sexy': True, 'wall-jump': True, 'double-jump': False}
 

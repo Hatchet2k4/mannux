@@ -244,7 +244,7 @@ class Pause(object):
            if self.menuselected == 3: #control config
                 self.draw_options()
            if self.menuselected == 4: #quit
-               print >> fonts.one(50, 100), "Press X to quit the game."
+               print >> fonts.one(50, 100), "Press "+controls.confirm.buttons['key'].value+" to quit the game."
 
         x = 10
         y = 10
