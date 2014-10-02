@@ -125,12 +125,12 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzsWrt3lEUU352IPCQvngkBeYgNBDyHA1qqnYqVgJUFlYUVBX8RZCWLh2YXuijaCAeaJGwa82piNBQkmoZow29O5rK/vTsz33wbNgmQe/I7M9/9Zu7c+5vHNzPZ28VC4Seg4jAE3Ha6MvAjcIt0koq+CuAvE9ZWieqVlI0S2S4FdCXnX4X0nGe/fXXLlGdbAh1rRdkfKjbHcRe4R/aHlU5iEZ1+V07kr1ps5KVKPvh8EbCu6tGXI75xGV+/DbvnG8BNjx9lZUf3N/u0bAqFCeAO8uNmFfa55tIJU9f/axr7OoU/7vtlsjeRgfFAPqared498ZS1sWa1z/VrFD/3h8UodPsTMWbqfZJn/kqbtq0HwO/ALx6c7igUBoEzHf73a0WK/ZBvD4E/zWo85WK9T/4BsmTE1R8j/sVOVaWSZz3zZ+XnQJsXENfHwCcd2T61S0K+WVmicdmKzTHTvGbbMexbbyWfh79PwdtnwOeblL+12uT5y2u27zvgW/9j/H0Bzr4EvgIuAl9vEIft5I/HL39fstZ7vVb4fPwGfF0CLgNXgG/fQP56kPa6b8luoDNHvgvojvD3HfjaDuwAdgJXNzl/syg3A0wT7POsqb/7S8V7COmAyx9AejBHvg9pf4S/78FXL7AH2Av8kIM/5j2mS5EQf08dL1OOG70nS5lvJ5F+6PLHkB7PkT+B9IMIf9cQ5wBwGDgCXPfEfR/1fgV+U/WZ95guRXy+We7+No37e9kDj3rKh2yeRfoRcBQ4BZzOkR8EzmR8f1PkMdWdd3OEeY/pWHw69m2e5qRwx2cH+Tb+kREL9/m8G78yxznve5b1gdeD0BhqhT+7H1igOKddrAtqLRKd+Cfl9Nip4LkK3AUWTfO5jfcUQy6dQ7lHZvVcENuT2/3zpGncP4fuBeQdnxdl/xI7f2ThIfmq/akGfKlQ+9rnOU/cEuuiaa4j9yxsI2v8scj+RdbHJ6Z53RxXZWpUNuWsk0eWVHv63Fsz8bN2zJ8l5b9N9fm3mrj+va3C81LOr8KbrIVb/KWLXS+EN1kLt/hLF7sm8v2THYvPtvhLFjt/hTe5t94af+lix5/wVtrA8TfymvbZpKnz9kq+H9jbF1s457fjjmM9ZMzz/ZhbQyy7wN17bbgnafXs327h+89Xsafdh/j2tyHGVs/+7Rber6fICsr9B/wfKP8+4juaM8aXnEfmPp/9Q/Ig0sZoPpfaJh3w/x1gG/CuiqXVOSac++Y+2wzlRRYjbTzP8GG91odO2O8CuoEe1Varc0zGn2/us81QXuqtRNowRb990a3H+nAAtg8CfUA/cEi1lTLHfCLjzzf32WYoL/U6wdE5h/MO8ry76LcvulZ9Z+H7uinTeE8neX2vN61Svu+bUe9nSD+rELKf+uxrm33wtelrV0PXC9mZUfcw/Hsa3hvK70N8v+sRve+3Ify/X9+9m/x/Xd8FcXt8b1dR9dmHjYrjBQAAAP//'
+				'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'
 			)
 			(obstructions 
 				(style 'tile')
 				(format 'zlib')
-				'eJzslEsOgDAIROX+lzapVvk5QsCkC2fhj+GJtbBtq4uYQCikkcTyNS9b2iihkae+sMoz/G6et74fKEEO1SKj485LoBmJ8o7zM48dw1LLO7F3SeQYwS/xDMJH2BvhCQoBc4J3XTdusp+3Pq8yVOI83N+MZ4wlnjt0pIGk07RX6hWs389+UrzXujGPt+t8XuTpOWWWv1e42rx2AAAA//8='
+				'eJzslNEOgCAIReX/f7rNpgleEApbD92H0nE5I0NK+bpokBFyqSYN+ZIXLa2WkMgTX/iUN/Gzeeh8NyhAdtXCo3WHEqhFvLzzrfOGp1vieBv2KomA0fglyMB8ZHs9PEYhwxzg9XVik/2813mkrFXe4uon8UDfYt7UtCtej+O7CDLRpvU+MZ5jLBLiKSNAvZMGTyTv4Rkzw7TekF1tXAcAAAD//w=='
 			)
 			(entities )
 			(zones 
@@ -220,7 +220,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzs2DEKgDAMheF28KIKdVGoi1fzEF7KDnUQIoLQqs//g/DWNrQZ4hwAFYt/+gT1/OmuAM61aRbMqYKRgTlxacg9ikZG+oebuvwP9yylF32joz9mKZNo/wAAAAAAgIa1sQv4OtW9Zi3sNfFmGwAAAP//'
+				'eJzs2EEKgCAQhWFddNEC2xjYpqt1iC6VC1sERhFo8vo/GN5WB53FGANAxWq/PkE9f7orgGt9nAVLLJdJx5y45VOPQiYD/cNLQ/qHR5Yyir7RyZ6zlFm0fwAAAICarXteAACgfap7zVrYa6JlOwAAAP//'
 			)
 			(obstructions 
 				(style 'tile')
@@ -253,7 +253,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzs0KENwDAMAEET779NyxLWrFVzS1FgwB15/hEAAAAAAAAAcIcnI97s5cyoVzN7OfPVq5W9ADs/AAAA//8='
+				'eJzs0yESgEAMBMGY/P834MBxDr7E+ZgUZxDdZvxWbQQAAAAAAAB/s2XEnr1SHXOXM3uluuYuI3uluucuT/ZK5b9r/HeN/wJfvAAAAP//'
 			)
 			(obstructions 
 				(style 'tile')

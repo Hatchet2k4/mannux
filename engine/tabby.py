@@ -13,7 +13,7 @@ from sounds import sound
 from const import Dir
 import fonts
 
-slopeTiles = {Dir.LEFT:  [347, 623, 746, 885, 876],  # /
+slopeTiles = {Dir.LEFT:  [347, 623, 746, 885, 876],  # / #hack! need to make part of tileset metadata..
               Dir.RIGHT: [346, 622, 749, 889, 878]}  # \
 halfSlopeTiles = {(Dir.LEFT,  'top'):    [465, 473],   # /
                   (Dir.LEFT,  'bottom'): [464, 472],   # /
@@ -52,16 +52,7 @@ class Tabby(Entity):
 
 
 
-
-        self.ground_friction = 0.2
-        self.air_friction = 0.125
-        self.ground_accel = self.ground_friction * 2
-        self.air_accel = 0.0625
-        self.max_vx = 1.5
-        self.max_vy = 6.0
-        self.gravity = 0.125
-        self.jump_speed = 3.5
-
+        self.SetPhysics('normal')
         self.abilities = {'sexy': True, 'wall-jump': True, 'double-jump': False}
 
 
@@ -113,6 +104,34 @@ class Tabby(Entity):
         self.pvy = 0
         self.platform
         #self.testimg = ika.Image("sprites/platform.png")
+        self.animspeed=5 #base animation speed
+        self.animspeed_multiplier=1
+
+    def SetPhysics(self, terrain='normal'):
+        if terrain=='normal':
+            self.ground_friction = 0.32
+            self.air_friction = 0.125
+            self.ground_accel = 0.5
+            self.air_accel = 0.0625
+            self.max_vx = 1.6
+            self.max_vy = 6.0
+            self.gravity = 0.1
+            self.jump_speed = 4.8
+            self.animspeed_multiplier=1    
+
+        elif terrain=='water':
+            self.ground_friction = 0.15
+            self.air_friction = 0.20
+            self.ground_accel = 0.20
+            self.air_accel = 0.032
+            self.max_vx = 1.2
+            self.max_vy = 4.0
+            self.gravity = 0.04
+            self.jump_speed = 3.2
+            self.animspeed_multiplier=2
+
+        else:
+            pass #no valid physics set!
 
     def draw(self):
         #print >> fonts.tiny(int(self.x)-ika.Map.xwin, int(self.y)-ika.Map.ywin+40), "x:", str(self.x)
@@ -136,12 +155,15 @@ class Tabby(Entity):
             return self.abilities[name]
         return False
 
-    def Animate(self, strand, delay=10, loop=True, reset=True, reverse=False):
+    def Animate(self, strand, delay=10, loop=True, reset=True, reverse=False, mult=True):
         strand = self.animations[strand]
         if reverse:
             strand = strand[:]
             strand.reverse()
-        self.anim.set_anim(make_anim(strand, delay), loop, reset)
+        if mult: #apply animspeed modifier, water slows you down
+            self.anim.set_anim(make_anim(strand, delay*self.animspeed_multiplier), loop, reset)
+        else:
+            self.anim.set_anim(make_anim(strand, delay), loop, reset)
 
     def Fire(self, direction, offx=0, offy=0):
         if not self.fire_delay:
@@ -155,7 +177,7 @@ class Tabby(Entity):
             self.fire_delay = self.firing_rate
 
     def LadderState(self):
-        self.Animate(('stand', self.direction), delay=5, loop=False)
+        self.Animate(('stand', self.direction), delay=self.animspeed, loop=False)
         on_ladder = True
         self.jump_count = 0
         self.vx = 0
@@ -179,7 +201,7 @@ class Tabby(Entity):
         self.jump_count = 0
         self.vx = 0
         self.vy = 0
-        self.Animate(('crouch', self.direction), delay=5, loop=False)
+        self.Animate(('crouch', self.direction), delay=self.animspeed, loop=False)
         fired = False
         while controls.down.Position() > controls.deadzone:
             if not self.floor:
@@ -218,7 +240,7 @@ class Tabby(Entity):
                     self.Animate(('down', self.direction))
             yield None
         # CROUCH->STAND
-        self.Animate(('crouch', 'stand', self.direction), delay=5, loop=False)
+        self.Animate(('crouch', 'stand', self.direction), delay=self.animspeed, loop=False)
         self.state = self.StandState
         yield None
 
@@ -293,23 +315,23 @@ class Tabby(Entity):
             if controls.left.Position() > controls.deadzone:
                 if not self.left_wall:
                     if self.direction == Dir.LEFT:
-                        self.Animate(('stand', 'run', self.direction), delay=5,
-                                     loop=False)
+                        self.Animate(('stand', 'run', self.direction), delay=self.animspeed,
+                                     loop=False, mult=False)
                     else:
                         self.direction = Dir.LEFT
-                        self.Animate(('stand', 'turn'), delay=5, loop=False,
-                                     reverse=True)
+                        self.Animate(('stand', 'turn'), delay=self.animspeed, loop=False,
+                                     reverse=True, mult=False)
                     self.state = self.WalkState
             elif controls.right.Position() > controls.deadzone and \
                  not self.right_wall:
                 if self.direction == Dir.RIGHT:
-                    self.Animate(('stand', 'run', self.direction), delay=5,
+                    self.Animate(('stand', 'run', self.direction), delay=self.animspeed,
                                  loop=False)
                 else:
                     self.direction = Dir.RIGHT
-                    self.Animate(('stand', 'turn'), delay=5, loop=False)
+                    self.Animate(('stand', 'turn'), delay=self.animspeed, loop=False, mult=False)
                 self.state = self.WalkState
-                #self.Animate(('stand', 'run', self.direction), delay=5,
+                #self.Animate(('stand', 'run', self.direction), delay=self.animspeed,
                 #              loop=False)
             if controls.down.Position() > controls.deadzone:
                 self.state = self.CrouchState
@@ -328,11 +350,11 @@ class Tabby(Entity):
         self.jump_count = 0
         self.checkslopes = True
         if self.anim.loop:
-            self.Animate(('run', self.direction), 7)
+            self.Animate(('run', self.direction), self.animspeed+2)
         fired = False
         while True:
             if self.anim.kill:
-                self.Animate(('run', self.direction), 7)
+                self.Animate(('run', self.direction), self.animspeed+2)
             if not self.floor:
                 self.state = self.FallState
             else:
@@ -365,23 +387,23 @@ class Tabby(Entity):
             if self.anim.loop:
                 if controls.up.Position() > controls.deadzone or \
                    controls.aim_up.Position():
-                    self.Animate(('run', 'aim_dup', self.direction), 7,
+                    self.Animate(('run', 'aim_dup', self.direction), self.animspeed+2,
                                  reset=False)
                 elif controls.down.Position() > controls.deadzone or \
                      controls.aim_down.Position():
-                    self.Animate(('run', 'aim_ddown', self.direction), 7,
+                    self.Animate(('run', 'aim_ddown', self.direction), self.animspeed+2,
                                  reset=False)
                 elif fired:
-                    self.Animate(('run', 'aim', self.direction), 7,
+                    self.Animate(('run', 'aim', self.direction), self.animspeed+2,
                                  reset=False)
                 else:
-                    self.Animate(('run', self.direction), 7, reset=False)
+                    self.Animate(('run', self.direction), self.animspeed+2, reset=False)
             if controls.left.Position() > controls.deadzone:
                 if not self.left_wall:
                     self.vx -= self.ground_accel
                     self.direction = Dir.LEFT
                 else:
-                    self.Animate(('run', 'turn', self.direction), delay=5,
+                    self.Animate(('run', 'turn', self.direction), delay=self.animspeed,
                                  loop=False)
                     self.state = self.StandState
                     sound.play('Step', 0.5)
@@ -390,13 +412,13 @@ class Tabby(Entity):
                     self.vx += self.ground_accel
                     self.direction = Dir.RIGHT
                 else:
-                    self.Animate(('run', 'turn', self.direction), delay=8,
+                    self.Animate(('run', 'turn', self.direction), delay=self.animspeed+2,
                                  loop=False)
                     self.state = self.StandState
                     sound.play('Step', 0.5)
             else:
                 if abs(self.vx) >= 1.8:
-                    self.Animate(('run', 'turn', self.direction), delay=8,
+                    self.Animate(('run', 'turn', self.direction), delay=self.animspeed+2,
                                  loop=False)
                 if self.anim.count == 0:
                     self.state = self.StandState
@@ -445,7 +467,7 @@ class Tabby(Entity):
             if self.floor or self.cur_platform:
                 self.vy = 0
 
-                self.Animate(('jump', 'stand', self.direction), delay=6,
+                self.Animate(('jump', 'stand', self.direction), delay=self.animspeed+1,
                              loop=False)
                 if controls.left.Position() > controls.deadzone or \
                    controls.right.Position() > controls.deadzone:
@@ -712,7 +734,7 @@ class Tabby(Entity):
         self.jump_count = self.max_jumps
         walljump = False
         self.jumpticks=3
-        self.Animate(('run', 'flip', self.direction), delay=5, loop=False)
+        self.Animate(('run', 'flip', self.direction), delay=self.animspeed, loop=False)
         self.checkslopes = False
         self.vy = -self.jump_speed
         #i = self.jump_height
@@ -1231,26 +1253,9 @@ class Tabby(Entity):
 
         #check current terrain to set appropriate terrain speeds, mostly just water for now.
         if self.cur_terrain:
-            self.ground_friction = 0.15
-            self.air_friction = 0.20
-            self.ground_accel = 0.20
-            self.air_accel = 0.032
-            self.max_vx = 1.5
-            self.max_vy = 6.0
-            self.gravity = 0.05
-            self.jump_speed = 3.2
-
-        else: #defaults
-            self.ground_friction = 0.10
-            self.air_friction = 0.10
-            self.ground_accel = self.ground_friction * 2
-            self.air_accel = 0.0625
-            self.max_vx = 2.0
-            self.max_vy = 8.0
-            self.gravity = 0.1
-            self.jump_speed = 5
-
-
+            self.SetPhysics('water')
+        else: #defaults to normal
+            self.SetPhysics('normal') #for efficiency shouldn't run this every frame..
 
 
 
