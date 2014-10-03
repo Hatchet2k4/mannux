@@ -164,6 +164,9 @@ def AutoExec():
     #if not e.GetFlag('shiplanded'):
     #    landing_animation()
     #
+
+
+
     e.SetFlag('shiplanded', True)
     if not 'DockingBayHealthUp' in e.flags:
         e.AddEntity(Healthup(56 * ika.Map.tilewidth,
@@ -219,6 +222,8 @@ def AutoExec():
 
 
     secretArea.activated = False
+    
+    #e.text('Testing textbox 1 2 3')
 
     #ika.Map.SetLayerTint(1, ika.RGB(255,100, 100, 127))
 

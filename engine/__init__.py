@@ -167,7 +167,7 @@ class Engine(object):
 
 
     def Run(self):
-        #self.title.show()
+        self.title.show()
         self.newgame() #only comment out if not showing title
         self.hud.resize()
         self.automap.update_room()
@@ -459,7 +459,7 @@ class Engine(object):
     #            self.player.cur_terrain = None
 
 
-    def text(self, txt):
+    def text(self, txt): #ooold code...
         done = 0
         state = 0
         h = 0
@@ -471,7 +471,8 @@ class Engine(object):
         offset = 0
         t = ika.GetTime()
         while not done:
-            ika.Map.Render()
+            #ika.Map.Render()
+            self.draw()
             while t == ika.GetTime():
                 pass
             for i in range(ika.GetTime() - t):
@@ -488,12 +489,12 @@ class Engine(object):
                 if h >= 40:
                     h = 40
                     state = 1
-                    self.window.resize(h * 8, h, 0)
+                    self.window.resize(h * 8, h)
                 else:
-                    self.window.resize(h * 8, h, 0)
-                    self.window.draw(168 - h * 4, 200 - h / 2, 0)
+                    self.window.resize(h * 8, h)
+                    self.window.draw(168 - h * 4, 200 - h / 2)
             if state == 1:
-                self.window.draw(8, 180, 0)
+                self.window.draw(8, 180)
                 for i in range(len(lines[offset:])):
                     print >> fonts.big(20, 190 + 12 * i), lines[i + offset][:scroll[i + offset]]
                     if scroll[current + offset] >= \
@@ -512,8 +513,8 @@ class Engine(object):
                 if h <= 0:
                     done = True
                 else:
-                    self.window.resize(h * 8, h, 0)
-                    self.window.draw(168 - h * 4, 200 - h / 2, 0)
+                    self.window.resize(h * 8, h)
+                    self.window.draw(168 - h * 4, 200 - h / 2)
             print >> fonts.one(0, 0), 'lines:', '%s'
             ika.Video.ShowPage()
             ika.Input.Update()

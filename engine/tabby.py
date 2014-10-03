@@ -97,8 +97,10 @@ class Tabby(Entity):
         self.fired = False
 
         self.cur_terrain = None
-
         self.cur_platform = None
+        
+        self.ledge=False        
+        
         #extra platform speeds
         self.pvx = 0
         self.pvy = 0
@@ -244,6 +246,15 @@ class Tabby(Entity):
         self.state = self.StandState
         yield None
 
+    def LedgeState(self):
+        self.Animate(('stand','aim_up', self.direction))
+        while True:
+            if self.anim.kill:
+                self.Animate(('stand','aim_up', self.direction))
+            if controls.down.Position() > controls.deadzone:
+                self.state=self.FallState                
+            yield None    
+            
     def StandState(self):
         if self.anim.loop:
             self.Animate(('stand', self.direction))
@@ -452,6 +463,10 @@ class Tabby(Entity):
         #     self.Animate(('jump', 'fall',  self.direction), loop=False)
         self.checkslopes = True
         while True:
+
+                
+            
+            
             if self.HasAbility('double-jump') and controls.jump.Pressed() \
                 and not self.ceiling and self.jump_count < self.max_jumps:
                 if self.jump_count == 0: # Didn't jump bfore, fell off something, so you only get the one jump.
@@ -482,10 +497,16 @@ class Tabby(Entity):
                 if self.vy < 0 and self.ceiling:
                     self.vy = 0
                 self.vy += self.gravity
-                if controls.left.Position() > controls.deadzone and \
-                   not self.left_wall:
-                    self.vx -= self.air_accel
-                    self.direction = Dir.LEFT
+                if controls.left.Position() > controls.deadzone:
+                    if not self.left_wall:
+                        self.vx -= self.air_accel
+                        self.direction = Dir.LEFT
+                    else: #pressing against left wall
+                        if not self.check_v_line(self.x-1, self.y-4, self.y) and self.check_v_line(self.x-1, self.y+1, self.y+6):
+                            sound.play('Land') #connected to left ledge!
+                            self.vy=0
+                            self.state = self.LedgeState
+                            #ika.Log('ledge')
                 if controls.right.Position() > controls.deadzone and \
                    not self.right_wall:
                     self.vx += self.air_accel

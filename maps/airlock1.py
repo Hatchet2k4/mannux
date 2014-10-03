@@ -18,6 +18,7 @@ def AutoExec():
                          'door_right'))
     #e.AddEntity(Turret(8 * ika.Map.tilewidth,
     #                       9 * ika.Map.tileheight))
+    #e.text('Testing Text box 1 2 3. Got a whole lot I wanna say right here, yes sir...')                         
 
 
 toBay1 = engine.mapscript.Warp(77, 25, 'cargobay1.ika-map', Dir.LEFT)

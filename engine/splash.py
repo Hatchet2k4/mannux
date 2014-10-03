@@ -23,12 +23,11 @@ class Splash(Entity):
         self.state = self.SplashState
         self.set_animation_state(0, 6, 8, loop=False)
         self.anim.kill=False
-        print "Splash sprite loaded"
+        #print "Splash sprite loaded"
 
 
     def SplashState(self):
         while not self.anim.kill:
-            print "updating"
             yield None
         # Destroys the sprite when its state is done.
         self.destroy = True
