@@ -76,8 +76,8 @@ class Pause(object):
 
             if controls.confirm.Pressed(): #enter actual menu for that screen
                 [self.mapscreen, lambda: None, lambda: None, self.preferences,
-                 ika.Exit][self.menuselected]()
-                time = ika.GetTime()
+                 ika.Exit][self.menuselected]() #Need to make Quit return to main menu instead of exit entirely. 
+                
         sound.play('Whoosh2')
 
     def mapscreen(self):

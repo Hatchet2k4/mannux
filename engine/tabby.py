@@ -98,9 +98,9 @@ class Tabby(Entity):
 
         self.cur_terrain = None
         self.cur_platform = None
-        
-        self.ledge=False        
-        
+
+        self.ledge=False
+
         #extra platform speeds
         self.pvx = 0
         self.pvy = 0
@@ -119,7 +119,7 @@ class Tabby(Entity):
             self.max_vy = 6.0
             self.gravity = 0.1
             self.jump_speed = 4.8
-            self.animspeed_multiplier=1    
+            self.animspeed_multiplier=1
 
         elif terrain=='water':
             self.ground_friction = 0.15
@@ -178,6 +178,29 @@ class Tabby(Entity):
             engine.AddEntity(Bullet(bullet_x, bullet_y, direction))
             self.fire_delay = self.firing_rate
 
+    def ProcessAirMovement(self):
+        if controls.left.Position() > controls.deadzone:
+            if not self.left_wall:
+                self.vx -= self.air_accel
+                self.direction = Dir.LEFT
+            else: #pressing against left wall
+                if not self.check_v_line(self.x-1, self.y-4, self.y) and self.check_v_line(self.x-1, self.y+1, self.y+6):
+                    sound.play('Land') #connected to left ledge!
+                    self.vy=0
+                    self.state = self.LedgeState
+                    #todo: snap to tile completely
+
+        if controls.right.Position() > controls.deadzone:
+            if not self.right_wall:
+                self.vx += self.air_accel
+                self.direction = Dir.RIGHT
+            else: #pressing against right wall
+                if not self.check_v_line(self.x+self.w+1, self.y-4, self.y) and self.check_v_line(self.x+self.w+1, self.y+1, self.y+6):
+                    sound.play('Land') #connected to right ledge!
+                    self.vy=0
+                    self.state = self.LedgeState
+
+    #not currently used..
     def LadderState(self):
         self.Animate(('stand', self.direction), delay=self.animspeed, loop=False)
         on_ladder = True
@@ -246,15 +269,32 @@ class Tabby(Entity):
         self.state = self.StandState
         yield None
 
+    #TODO: only works with tiles, not platforms or obstructable entities right now
     def LedgeState(self):
         self.Animate(('stand','aim_up', self.direction))
         while True:
             if self.anim.kill:
                 self.Animate(('stand','aim_up', self.direction))
             if controls.down.Position() > controls.deadzone:
-                self.state=self.FallState                
-            yield None    
-            
+                self.state=self.FallState
+
+            if controls.up.Position() > controls.deadzone:
+                #climb state eventually, but for now placing directly on ledge tile. Animate later.
+                #TODO: make sure there is enough room for Tabby before climbing.
+                if self.direction==Dir.LEFT:
+                    tilex=int((self.x-1)/16) #hack, should be tile width
+                    tiley=int(self.y/16)+1
+                    self.x=tilex*16
+                    self.y=tiley*16-self.h
+                else: #right
+                    tilex=int((self.x+self.w+1)/16) #hack, should be tile width
+                    tiley=int(self.y/16)+1
+                    self.x=tilex*16
+                    self.y=tiley*16-self.h
+
+                self.state=self.StandState
+            yield None
+
     def StandState(self):
         if self.anim.loop:
             self.Animate(('stand', self.direction))
@@ -444,6 +484,7 @@ class Tabby(Entity):
                 #controls.jump.unpress()
             yield None
 
+
     def FallState(self):
         #if controls.up.Position() > controls.deadzone:
         #     if controls.right.Position() > controls.deadzone:
@@ -463,10 +504,6 @@ class Tabby(Entity):
         #     self.Animate(('jump', 'fall',  self.direction), loop=False)
         self.checkslopes = True
         while True:
-
-                
-            
-            
             if self.HasAbility('double-jump') and controls.jump.Pressed() \
                 and not self.ceiling and self.jump_count < self.max_jumps:
                 if self.jump_count == 0: # Didn't jump bfore, fell off something, so you only get the one jump.
@@ -497,20 +534,11 @@ class Tabby(Entity):
                 if self.vy < 0 and self.ceiling:
                     self.vy = 0
                 self.vy += self.gravity
-                if controls.left.Position() > controls.deadzone:
-                    if not self.left_wall:
-                        self.vx -= self.air_accel
-                        self.direction = Dir.LEFT
-                    else: #pressing against left wall
-                        if not self.check_v_line(self.x-1, self.y-4, self.y) and self.check_v_line(self.x-1, self.y+1, self.y+6):
-                            sound.play('Land') #connected to left ledge!
-                            self.vy=0
-                            self.state = self.LedgeState
-                            #ika.Log('ledge')
-                if controls.right.Position() > controls.deadzone and \
-                   not self.right_wall:
-                    self.vx += self.air_accel
-                    self.direction = Dir.RIGHT
+
+                #air movement and ledge grabbing
+                self.ProcessAirMovement()
+
+
                 if old_direction != self.direction:
                     self.Animate(('fall', self.direction))
                 if self.anim.loop or self.anim.kill:
@@ -766,14 +794,9 @@ class Tabby(Entity):
             if self.vy >= 0:
                 break
             old_direction = self.direction
-            if controls.left.Position() > controls.deadzone and \
-               not self.left_wall:
-                self.vx -= self.air_accel
-                self.direction = Dir.LEFT
-            elif controls.right.Position() > controls.deadzone and \
-                 not self.right_wall:
-                self.vx += self.air_accel
-                self.direction = Dir.RIGHT
+
+            self.ProcessAirMovement()
+
             if old_direction != self.direction:
                 # If the direction changed, update the animation sequence.
                 self.Animate(('flip', self.direction), delay=4, loop=False,
@@ -872,6 +895,7 @@ class Tabby(Entity):
                     self.direction = Dir.RIGHT
                     walljump = True
                     break
+
             if self.floor:
                 self.vy = 0
                 self.Animate(('flip', 'stand', self.direction), delay=6,
@@ -888,14 +912,10 @@ class Tabby(Entity):
                 if self.vy < 0 and self.ceiling:
                     self.vy = 0
                 self.vy += self.gravity
-                if controls.left.Position() > controls.deadzone and \
-                   not self.left_wall:
-                    self.vx -= self.air_accel
-                    self.direction = Dir.LEFT
-                if controls.right.Position() > controls.deadzone and \
-                   not self.right_wall:
-                    self.vx += self.air_accel
-                    self.direction = Dir.RIGHT
+                self.ProcessAirMovement()
+
+
+
                 if old_direction != self.direction:
                     self.Animate(('flip', self.direction), delay=4)
                 if controls.attack.Pressed():
