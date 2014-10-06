@@ -41,6 +41,8 @@ class Turret(Enemy):
                                  14 + 15 * self.direction, 4)
         engine.AddEntity(Boom(int(self.x - 8), int(self.y - 8),
                              'explode.ika-sprite', 6))
+        engine.AddEntity(Spark(int(self.x +self.w/2), int(self.y)))
+                             
         self.hurtable = False
         self.destroy = True
         while not self.anim.kill:
@@ -80,7 +82,64 @@ class Turret(Enemy):
                 self.ticks = 0
             yield None
 
+#should move to their own files later
+class Spark(Entity):
+    def __init__(self, x, y,numspecks=10):
+        super(Spark, self).__init__(ika.Entity(int(x), int(y),
+                                    ika.Map.FindLayerByName('Walls'),
+                                    '%s/blank.ika-sprite' %
+                                    config.sprite_path))
 
+        self.phantom = True
+        self.check_obs = False
+        self.ticks = 0
+        self.hurtable=False
+        
+        self.specks = [None] * numspecks        
+        self.x=x
+        self.y=y
+        self.visible=True
+        for i in range(len(self.specks)):        
+            self.specks[i]=Speck(x,y)
+    
+        self.state=self.UpdateState
+        
+    def UpdateState(self):
+        while True:
+            for i, s in enumerate(self.specks):
+                s.update()
+                if s.lifetime==0:
+                    self.specks[i]=Speck(self.x,self.y)  
+            yield None                                      
+    
+    def draw(self):
+        for s in self.specks:
+            s.draw()            
+
+class Speck():
+    def __init__(self, x, y):   
+        self.lifetime=50+ika.Random(0, 25)        
+        self.vx=ika.Random(-50, 50)/100.0
+        self.vy=-0.5
+        self.x=x
+        self.y=y
+        #need seperate RGB values later
+        self.color=ika.RGB(0, 200, 100, 200)
+        self.color2=ika.RGB(0, 250, 150, 200)
+    def update(self):
+        self.x += self.vx
+        self.y +=self.vy
+        if self.vy<2:
+            self.vy+=0.1
+        self.lifetime-=1
+        if self.lifetime<50 and self.lifetime>=0:       
+            self.color=ika.RGB(0, 200, 100, self.lifetime*4)
+            self.color2=ika.RGB(0, 250, 150, self.lifetime*4)
+    def draw(self):
+        #ika.Video.DrawPixel(int(self.x)-ika.Map.xwin, int(self.y-ika.Map.ywin), self.color)
+        ika.Video.DrawPixel(int(self.x)-ika.Map.xwin, int(self.y-ika.Map.ywin), self.color)
+        #ika.Video.DrawEllipse(int(self.x)-ika.Map.xwin, int(self.y-ika.Map.ywin),2, 2, self.color, True)
+        
 class Laser(Entity):
 
     def __init__(self, x, y, angle, spawner, damage=8):
