@@ -137,7 +137,7 @@ class Speck():
             self.color2=ika.RGB(0, 250, 150, self.lifetime*4)
     def draw(self):
         #ika.Video.DrawPixel(int(self.x)-ika.Map.xwin, int(self.y-ika.Map.ywin), self.color)
-        ika.Video.DrawPixel(int(self.x)-ika.Map.xwin, int(self.y-ika.Map.ywin), self.color)
+        ika.Video.DrawPixel(int(self.x)-ika.Map.xwin, int(self.y-ika.Map.ywin), self.color, ika.AddBlend)
         #ika.Video.DrawEllipse(int(self.x)-ika.Map.xwin, int(self.y-ika.Map.ywin),2, 2, self.color, True)
         
 class Laser(Entity):

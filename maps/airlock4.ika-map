@@ -51,7 +51,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzs0jkOgDAQQ9Ehp+LoCXQQOpaO5Ta48QlwYYlE+oqmG41ehPcbUsSIMirJb65oQROaDecdHWhFm+HMe57oQjd6jGbeU+VF7ZD3VHlRO+SeKi9qh9yz7zRe1A65p6s/vubvmz+Vm7/54+/q7wUAAP//'
+				'eJzskjkKwDAMBGW9Kk/P0eXocnQ5fhMFvODGlRcUSASDWdws0oi8e0KGWkUaozU69cu5fr39DcZoTOqXn66bMRtL7JvmVX0z9rkbR+x3JflU34x9pvcu8YXtIfbJ8oXtIXqyfGF7iJ5V4PjC9hA9Wd6w/cP8/pX5x/Lma/7hfat/NwAAAP//'
 			)
 			(obstructions 
 				(style 'tile')
@@ -84,7 +84,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJxiYBgFo2AUkAKSmAbaBfjBYHefL9B9eYPYjeFAt6UMYvcNZreNglEwChAAAAAA//8='
+				'eJxiYBiaoIKJgSGPCb+adCT5VCC7AIt6kHgVEFcDcQoB80gFhMwrRJNPp7L9+AA5fkV3LzUBst+T6BgO5IBR91EGfInIuwMJwmlQFlATDGa3DVYgwcLA4AnEdiwD747BCI4xMjAcZxxoVww/AAAAAP//'
 			)
 			(obstructions 
 				(style 'tile')
@@ -117,12 +117,12 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzs1DsOgkAYRWEkswhXgS1WGtRCQG3dimvR0s4NUCEm2rAA3Y5nwhAt/v4aw02+gqlOeEXRsGG6PVHjikabYu6GFhVe4hZrh1Fn7DoF6lijcJ+OU+jql3A2wdLp7tUqNCRGQ8rZFHNh3yw0pEZDxtkCubBvHRoyo6HkbIOtsG8XGsqvhiPv4P4Hvw/f5fn/yh0PnLm+xFq+oe+pJE/xv/YGAAD//w=='
+				'eJzk1LuOQVEUxvG1TzzP0R4VcSnc24mJ9zAF7XgHSp3WrRCXwbiUU9DwLr6VtSWHHAkS1iRW8s+OjeSXFQ7Re43nPP7dmiHa4ez7esVEnNvc7OuRGDdojUbPpd017JvgnJLs7gdtSYxjkveqRksnvg7OLolvRmLlXQ5I9qrtO+2KfX/oy5z3zZ9xdKr7HE17nsYNEYVRMqSzO56UNbgBBg93ERRT9EWtwQswxHGXQBlFX9oa4gGGHO7yqKDoK1pDzmdo4DdYQR+opPjf4LJwfcJQNuLi+LkyRwvUwuu2o9vQiGeP86D4rLs2vzAt0Qqt/6Hvco4AAAD//w=='
 			)
 			(obstructions 
 				(style 'tile')
 				(format 'zlib')
-				'eJxiYBg2gJEgACki0ijaOpVyQLw/CAcLLXwLAAAA//8='
+				'eJxiYBg+gJEggKohwhj6uJh8QJQTET4mGC7UBgAAAAD//w=='
 			)
 			(entities )
 			(zones 
@@ -198,7 +198,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJzsjjEKgDAQBC++zweZVltttdXWfNIErliOuMIVIpKBgWPIQkQajcZfiNnBWGuse7eR/GtUJ7hZY927xWaZ1QVu1lj3brFZVnWDmzXWvVtsll094GaNde8W2x0pexprjXXvNpF/FfpOJDy8eZtQ8Ut8+W+FCwAA//8='
+				'eJzslTEKgDAQBNX3+Q3/oI2Fttpqq615g38zgYDLkSx4Ta5wYOEYWFgsYlXZps7ECrl9Y1Ny1Usndlj7fhK59+cbg08vknLMa7sD2TXFzHAzx7y2i06yxKxwM8e8totOssXscDPHvLaLTnLEnHAzx7y2iy6H87lEUo55bdeRXYG2Kf82O7/hhhGW/70By9sCDwAAAP//'
 			)
 			(obstructions 
 				(style 'tile')
@@ -231,7 +231,7 @@
 			)
 			(data 
 				(format 'zlib')
-				'eJxiYBgFo2AUjIJRMAqGL4hhYmDIB+JcIM5jGmjXIADMTTlAnALEjECxpEHkPpibkHHEIHIfsrvCge6KgobjYAEAAAAA//8='
+				'eJxiYBh6IJWJgSGOaaBdAQF5ONwxWNwHCqsEIE6EYpB78weJ23CB+EHuvsESt9hAOyMDw2qmgcEdjAPt+1EwCrCDGGieTRtkeRdUFucCcQ6UzmXCXafQCyDn6RQgBmVrZBwxiMIQ2V3hQHdFQd08WAAAAAD//w=='
 			)
 			(obstructions 
 				(style 'tile')
