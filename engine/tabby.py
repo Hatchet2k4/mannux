@@ -179,7 +179,7 @@ class Tabby(Entity):
             self.fire_delay = self.firing_rate
 
     def ProcessAirMovement(self):
-        if controls.left.Position() > controls.deadzone:
+        if controls.left.Pos():
             if not self.left_wall:
                 self.vx -= self.air_accel
                 self.direction = Dir.LEFT
@@ -190,7 +190,7 @@ class Tabby(Entity):
                     self.state = self.LedgeState
                     #todo: snap to tile completely
 
-        if controls.right.Position() > controls.deadzone:
+        if controls.right.Pos():
             if not self.right_wall:
                 self.vx += self.air_accel
                 self.direction = Dir.RIGHT
@@ -208,12 +208,12 @@ class Tabby(Entity):
         self.vx = 0
         self.vy = 0
         while on_ladder:
-            if controls.down.Position() > controls.deadzone:
+            if controls.down.Pos():
                 if not self.floor:
                     self.y += 0.50
                 else:
                     self.state = self.StandState
-            if controls.up.Position() > controls.deadzone:
+            if controls.up.Pos():
                 if not self.floor:
                     self.y -= 0.50
                 else:
@@ -229,15 +229,15 @@ class Tabby(Entity):
         self.Animate(('crouch', self.direction), delay=self.animspeed, loop=False)
         fired = False
         while True:
-            if controls.up.Position() > controls.deadzone:            
-                break          
-            
-            
+            if controls.up.Pos():
+                break
+
+
             if not self.floor:
                 self.state = self.FallState
                 yield None
             if self.anim.kill:
-                self.Animate(('down', self.direction))            
+                self.Animate(('down', self.direction))
             if controls.attack.Pressed():
                 fired = True
                 if controls.aim_up.Position():
@@ -254,9 +254,9 @@ class Tabby(Entity):
                     self.Fire(self.direction, offx=-8 + 31, offy=26)
                 else:
                     self.Fire(self.direction, offx=-8, offy=26)
-            if controls.left.Position() > controls.deadzone:
+            if controls.left.Pos():
                 self.direction = Dir.LEFT
-            elif controls.right.Position() > controls.deadzone:
+            elif controls.right.Pos():
                 self.direction = Dir.RIGHT
             if self.anim.loop:
                 if controls.aim_up.Position():
@@ -279,10 +279,10 @@ class Tabby(Entity):
         while True:
             if self.anim.kill:
                 self.Animate(('stand','aim_up', self.direction))
-            if controls.down.Position() > controls.deadzone:
-                self.state=self.FallState
+            if controls.down.Pos():
+                self.state=self.FallState #need to change to aim down later
 
-            if controls.up.Position() > controls.deadzone:
+            if controls.up.Pos():
                 #climb state eventually, but for now placing directly on ledge tile. Animate later.
                 #TODO: make sure there is enough room for Tabby before climbing.
                 if self.direction==Dir.LEFT:
@@ -297,6 +297,19 @@ class Tabby(Entity):
                     self.y=tiley*16-self.h
 
                 self.state=self.StandState
+
+            if controls.jump.Pos():
+                if controls.left.Pos() and self.direction==Dir.RIGHT: #grabbing ledge from left side, jump left
+                    self.vx = -1.5
+                    self.direction=Dir.LEFT #face other direction now
+                    self.state=self.RunJumpState
+
+                elif controls.right.Pos() and self.direction==Dir.LEFT: #grabbing ledge from right side, jump right
+                    self.vx = 1.5
+                    self.direction=Dir.RIGHT
+                    self.state=self.RunJumpState
+                else:   #climb or fall? need to decide what feels best
+                    pass
             yield None
 
     def StandState(self):
@@ -317,7 +330,7 @@ class Tabby(Entity):
                 upPressed = False
 
             if self.anim.loop:
-                if controls.up.Position() > controls.deadzone:
+                if controls.up.Pos():
                     z = self.RunnableZone()
                     if z is not None:
                         if not upPressed:
@@ -346,7 +359,7 @@ class Tabby(Entity):
             # in every state.
             if controls.attack.Pressed():
                 fired = True
-                if controls.up.Position() > controls.deadzone:
+                if controls.up.Pos():
                     if self.direction == Dir.RIGHT:
                         self.Fire(Dir.UP, offx=3, offy=-8)
                     else:
@@ -367,7 +380,7 @@ class Tabby(Entity):
                     else:
                         self.Fire(self.direction, offx=-10, offy=10)
                     self.Animate(('stand', 'aim', self.direction))
-            if controls.left.Position() > controls.deadzone:
+            if controls.left.Pos():
                 if not self.left_wall:
                     if self.direction == Dir.LEFT:
                         self.Animate(('stand', 'run', self.direction), delay=self.animspeed,
@@ -388,7 +401,7 @@ class Tabby(Entity):
                 self.state = self.WalkState
                 #self.Animate(('stand', 'run', self.direction), delay=self.animspeed,
                 #              loop=False)
-            if controls.down.Position() > controls.deadzone:
+            if controls.down.Pos():
                 self.state = self.CrouchState
             elif controls.jump.Pressed() and not self.ceiling:
                 self.jump_count = 1
@@ -453,7 +466,7 @@ class Tabby(Entity):
                                  reset=False)
                 else:
                     self.Animate(('run', self.direction), self.animspeed+2, reset=False)
-            if controls.left.Position() > controls.deadzone:
+            if controls.left.Pos():
                 if not self.left_wall:
                     self.vx -= self.ground_accel
                     self.direction = Dir.LEFT
@@ -462,7 +475,7 @@ class Tabby(Entity):
                                  loop=False)
                     self.state = self.StandState
                     sound.play('Step', 0.5)
-            elif controls.right.Position() > controls.deadzone:
+            elif controls.right.Pos():
                 if not self.right_wall:
                     self.vx += self.ground_accel
                     self.direction = Dir.RIGHT
@@ -490,17 +503,17 @@ class Tabby(Entity):
 
 
     def FallState(self):
-        #if controls.up.Position() > controls.deadzone:
-        #     if controls.right.Position() > controls.deadzone:
+        #if controls.up.Pos():
+        #     if controls.right.Pos():
         #        self.Animate(('jump', 'fall', 'aim_dup', Dir.RIGHT), loop=False)
-        #     elif controls.left.Position() > controls.deadzone:
+        #     elif controls.left.Pos():
         #        self.Animate(('jump', 'fall', 'aim_dup', Dir.LEFT), loop=False)
         #     else:
         #        self.Animate(('jump', 'fall', 'aim_up', self.direction), loop=False)
-        #elif controls.down.Position() > controls.deadzone:
-        #     if controls.right.Position() > controls.deadzone:
+        #elif controls.down.Pos():
+        #     if controls.right.Pos():
         #        self.Animate(('jump', 'fall', 'aim_ddown', Dir.RIGHT), loop=False)
-        #     elif controls.left.Position() > controls.deadzone:
+        #     elif controls.left.Pos():
         #        self.Animate(('jump', 'fall', 'aim_ddown', Dir.LEFT), loop=False)
         #     else:
         #        self.Animate(('jump', 'fall', 'aim_down', self.direction), loop=False)
@@ -526,7 +539,7 @@ class Tabby(Entity):
                 self.Animate(('jump', 'stand', self.direction), delay=self.animspeed+1,
                              loop=False)
                 if controls.left.Position() > controls.deadzone or \
-                   controls.right.Position() > controls.deadzone:
+                   controls.right.Pos():
                     self.state = self.WalkState
                 else:
                     self.state = self.StandState
@@ -553,21 +566,21 @@ class Tabby(Entity):
                     elif controls.aim_down.Position():
                         self.Animate(('fall', 'aim_ddown', self.direction),
                                      reset=False)
-                    elif controls.up.Position() > controls.deadzone:
-                        if controls.right.Position() > controls.deadzone:
+                    elif controls.up.Pos():
+                        if controls.right.Pos():
                             self.Animate(('fall', 'aim_dup', Dir.RIGHT),
                                          reset=False)
-                        elif controls.left.Position() > controls.deadzone:
+                        elif controls.left.Pos():
                             self.Animate(('fall', 'aim_dup', Dir.LEFT),
                                          reset=False)
                         else:
                             self.Animate(('fall', 'aim_up', self.direction),
                                          reset=False)
-                    elif controls.down.Position() > controls.deadzone:
-                        if controls.right.Position() > controls.deadzone:
+                    elif controls.down.Pos():
+                        if controls.right.Pos():
                             self.Animate(('fall', 'aim_ddown', Dir.RIGHT),
                                          reset=False)
-                        elif controls.left.Position() > controls.deadzone:
+                        elif controls.left.Pos():
                             self.Animate(('fall', 'aim_ddown', Dir.LEFT),
                                          reset=False)
                         else:
@@ -589,19 +602,19 @@ class Tabby(Entity):
                             self.Fire(Dir.DOWNLEFT, offx=-10, offy=20)
                         else:
                             self.Fire(Dir.DOWNRIGHT, offx=21, offy=20)
-                    if controls.up.Position() > controls.deadzone:
-                        if controls.right.Position() > controls.deadzone:
+                    if controls.up.Pos():
+                        if controls.right.Pos():
                             self.Fire(Dir.UPRIGHT, offx=21, offy=-2)
-                        elif controls.left.Position() > controls.deadzone:
+                        elif controls.left.Pos():
                             self.Fire(Dir.UPLEFT, offx=-10, offy=-2)
                         elif self.direction == Dir.RIGHT:
                             self.Fire(Dir.UP, offx=9 - 6, offy=-10)
                         else:
                             self.Fire(Dir.UP, offx=9, offy=-10)
-                    elif controls.down.Position() > controls.deadzone:
-                        if controls.right.Position() > controls.deadzone:
+                    elif controls.down.Pos():
+                        if controls.right.Pos():
                             self.Fire(Dir.DOWNRIGHT, offx=28, offy=20)
-                        elif controls.left.Position() > controls.deadzone:
+                        elif controls.left.Pos():
                             self.Fire(Dir.DOWNLEFT, offx=-10, offy=20)
                         elif self.direction == Dir.RIGHT:
                             self.Fire(Dir.DOWN, offx=19, offy=15)
@@ -629,21 +642,21 @@ class Tabby(Entity):
         elif controls.aim_down.Position():
             self.Animate(('stand', 'jump', 'aim_ddown', self.direction),
                          loop=False)
-        elif controls.up.Position() > controls.deadzone:
-            if controls.right.Position() > controls.deadzone:
+        elif controls.up.Pos():
+            if controls.right.Pos():
                 self.Animate(('stand', 'jump', 'aim_dup', Dir.RIGHT),
                              loop=False)
-            elif controls.left.Position() > controls.deadzone:
+            elif controls.left.Pos():
                 self.Animate(('stand', 'jump', 'aim_dup', Dir.LEFT),
                              loop=False)
             else:
                 self.Animate(('stand', 'jump', 'aim_up', self.direction),
                              loop=False)
-        elif controls.down.Position() > controls.deadzone:
-            if controls.right.Position() > controls.deadzone:
+        elif controls.down.Pos():
+            if controls.right.Pos():
                 self.Animate(('stand', 'jump', 'aim_ddown', Dir.RIGHT),
                              loop=False)
-            elif controls.left.Position() > controls.deadzone:
+            elif controls.left.Pos():
                 self.Animate(('stand', 'jump', 'aim_ddown', Dir.LEFT),
                              loop=False)
             else:
@@ -677,21 +690,21 @@ class Tabby(Entity):
                 elif controls.aim_down.Position():
                     self.Animate(('stand', 'jump', 'aim_ddown',
                                  self.direction), reset=False)
-                elif controls.up.Position() > controls.deadzone:
-                    if controls.right.Position() > controls.deadzone:
+                elif controls.up.Pos():
+                    if controls.right.Pos():
                         self.Animate(('jump', 'aim_dup', Dir.RIGHT),
                                      reset=False)
-                    elif controls.left.Position() > controls.deadzone:
+                    elif controls.left.Pos():
                         self.Animate(('jump', 'aim_dup', Dir.LEFT),
                                      reset=False)
                     else:
                         self.Animate(('jump', 'aim_up', self.direction),
                                      reset=False)
-                elif controls.down.Position() > controls.deadzone:
-                    if controls.right.Position() > controls.deadzone:
+                elif controls.down.Pos():
+                    if controls.right.Pos():
                         self.Animate(('jump', 'aim_ddown', Dir.RIGHT),
                                      reset=False)
-                    elif controls.left.Position() > controls.deadzone:
+                    elif controls.left.Pos():
                         self.Animate(('jump', 'aim_ddown', Dir.LEFT),
                                      reset=False)
                     else:
@@ -712,19 +725,19 @@ class Tabby(Entity):
                        self.Fire(Dir.DOWNLEFT, offx=-10, offy=20)
                     else:
                        self.Fire(Dir.DOWNRIGHT, offx=28, offy=20)
-                elif controls.up.Position() > controls.deadzone:
-                    if controls.right.Position() > controls.deadzone:
+                elif controls.up.Pos():
+                    if controls.right.Pos():
                         self.Fire(Dir.UPRIGHT, offx=30, offy=-2)
-                    elif controls.left.Position() > controls.deadzone:
+                    elif controls.left.Pos():
                         self.Fire(Dir.UPLEFT, offx=-10, offy=-2)
                     elif self.direction == Dir.RIGHT:
                         self.Fire(Dir.UP, offx=9 - 6, offy=-10)
                     else:
                         self.Fire(Dir.UP, offx=9 + 0, offy=-10)
-                elif controls.down.Position() > controls.deadzone:
-                    if controls.right.Position() > controls.deadzone:
+                elif controls.down.Pos():
+                    if controls.right.Pos():
                         self.Fire(Dir.DOWNRIGHT, offx=28, offy=20)
-                    elif controls.left.Position() > controls.deadzone:
+                    elif controls.left.Pos():
                         self.Fire(Dir.DOWNLEFT, offx=-10, offy=20)
                     elif self.direction == Dir.RIGHT:
                         self.Fire(Dir.DOWN, offx=19, offy=15)
@@ -755,20 +768,20 @@ class Tabby(Entity):
         elif controls.aim_down.Position():
             self.Animate(('jump', 'fall', 'aim_ddown', self.direction),
                          loop=False)
-        elif controls.up.Position() > controls.deadzone:
-            if controls.right.Position() > controls.deadzone:
+        elif controls.up.Pos():
+            if controls.right.Pos():
                 self.Animate(('jump', 'fall', 'aim_dup', Dir.RIGHT),
                              loop=False)
-            elif controls.left.Position() > controls.deadzone:
+            elif controls.left.Pos():
                 self.Animate(('jump', 'fall', 'aim_dup', Dir.LEFT), loop=False)
             else:
                 self.Animate(('jump', 'fall', 'aim_up', self.direction),
                              loop=False)
-        elif controls.down.Position() > controls.deadzone:
-            if controls.right.Position() > controls.deadzone:
+        elif controls.down.Pos():
+            if controls.right.Pos():
                 self.Animate(('jump', 'fall', 'aim_ddown', Dir.RIGHT),
                              loop=False)
-            elif controls.left.Position() > controls.deadzone:
+            elif controls.left.Pos():
                 self.Animate(('jump', 'fall', 'aim_ddown', Dir.LEFT),
                              loop=False)
             else:
@@ -791,7 +804,7 @@ class Tabby(Entity):
         self.checkslopes = False
         self.vy = -self.jump_speed
         #i = self.jump_height
-        while controls.jump.Position() > controls.deadzone:
+        while controls.jump.Pos():
             if self.anim.kill:
                 self.Animate(('flip', self.direction), delay=4, loop=False)
             self.vy += self.gravity
@@ -817,17 +830,17 @@ class Tabby(Entity):
                        self.Fire(Dir.DOWNLEFT, offx=-10, offy=20)
                     else:
                        self.Fire(Dir.DOWNRIGHT, offx=28, offy=20)
-                elif controls.up.Position() > controls.deadzone:
-                    if controls.right.Position() > controls.deadzone:
+                elif controls.up.Pos():
+                    if controls.right.Pos():
                         self.Fire(Dir.UPRIGHT, offx=30, offy=-2)
-                    elif controls.left.Position() > controls.deadzone:
+                    elif controls.left.Pos():
                         self.Fire(Dir.UPLEFT, offx=-10, offy=-2)
                     else:
                         self.Fire(Dir.UP, offx=-10, offy=-2)
-                elif controls.down.Position() > controls.deadzone:
-                    if controls.right.Position() > controls.deadzone:
+                elif controls.down.Pos():
+                    if controls.right.Pos():
                         self.Fire(Dir.DOWNRIGHT, offx=28, offy=20)
-                    elif controls.left.Position() > controls.deadzone:
+                    elif controls.left.Pos():
                         self.Fire(Dir.DOWNLEFT, offx=-10, offy=20)
                     else:
                         self.Fire(Dir.DOWN, offx=-10, offy=20)
@@ -852,21 +865,21 @@ class Tabby(Entity):
             elif controls.aim_down.Position():
                 self.Animate(('jump', 'fall', 'aim_ddown', self.direction),
                              loop=False)
-            elif controls.up.Position() > controls.deadzone:
-                if controls.right.Position() > controls.deadzone:
+            elif controls.up.Pos():
+                if controls.right.Pos():
                     self.Animate(('jump', 'fall', 'aim_dup', Dir.RIGHT),
                                  loop=False)
-                elif controls.left.Position() > controls.deadzone:
+                elif controls.left.Pos():
                     self.Animate(('jump', 'fall', 'aim_dup', Dir.LEFT),
                                  loop=False)
                 else:
                     self.Animate(('jump', 'fall', 'aim_up', self.direction),
                                  loop=False)
-            elif controls.down.Position() > controls.deadzone:
-                if controls.right.Position() > controls.deadzone:
+            elif controls.down.Pos():
+                if controls.right.Pos():
                     self.Animate(('jump', 'fall', 'aim_ddown', Dir.RIGHT),
                                  loop=False)
-                elif controls.left.Position() > controls.deadzone:
+                elif controls.left.Pos():
                     self.Animate(('jump', 'fall', 'aim_ddown', Dir.LEFT),
                                  loop=False)
                 else:
@@ -887,14 +900,14 @@ class Tabby(Entity):
             if controls.jump.Pressed() and self.HasAbility('wall-jump'):  #and (self.right_wall or self.left_wall)
                 if self.check_v_line(self.x + self.vx + self.width + 2,
                                      self.y + 1, self.y + self.height - 1) and \
-                   controls.left.Position() > controls.deadzone:
+                   controls.left.Pos():
                     self.vx = -1.5
                     self.direction = Dir.LEFT
                     walljump = True
                     break
                 if self.check_v_line(self.x + self.vx - 2, self.y + 1,
                                      self.y + self.height - 1) and \
-                   controls.right.Position() > controls.deadzone:
+                   controls.right.Pos():
                     self.vx = 1.5
                     self.direction = Dir.RIGHT
                     walljump = True
@@ -905,7 +918,7 @@ class Tabby(Entity):
                 self.Animate(('flip', 'stand', self.direction), delay=6,
                              loop=False)
                 if controls.left.Position() > controls.deadzone or \
-                   controls.right.Position() > controls.deadzone:
+                   controls.right.Pos():
                     self.state = self.WalkState
                 else:
                     self.state = self.StandState
@@ -934,17 +947,17 @@ class Tabby(Entity):
                             self.Fire(Dir.DOWNLEFT, offx=-10, offy=20)
                         else:
                             self.Fire(Dir.DOWNRIGHT, offx=28, offy=20)
-                    elif controls.up.Position() > controls.deadzone:
-                        if controls.right.Position() > controls.deadzone:
+                    elif controls.up.Pos():
+                        if controls.right.Pos():
                             self.Fire(Dir.UPRIGHT, offx=30, offy=-2)
-                        elif controls.left.Position() > controls.deadzone:
+                        elif controls.left.Pos():
                             self.Fire(Dir.UPLEFT, offx=-10, offy=-2)
                         else:
                             self.Fire(Dir.UP, offx=-10, offy=-2)
-                    elif controls.down.Position() > controls.deadzone:
-                        if controls.right.Position() > controls.deadzone:
+                    elif controls.down.Pos():
+                        if controls.right.Pos():
                             self.Fire(Dir.DOWNRIGHT, offx=28, offy=20)
-                        elif controls.left.Position() > controls.deadzone:
+                        elif controls.left.Pos():
                             self.Fire(Dir.DOWNLEFT, offx=-10, offy=20)
                         else:
                             self.Fire(Dir.DOWN, offx=-10, offy=20)
@@ -966,21 +979,21 @@ class Tabby(Entity):
             elif controls.aim_down.Position():
                 self.Animate(('jump', 'fall', 'aim_ddown', self.direction),
                              loop=False)
-            elif controls.up.Position() > controls.deadzone:
-                if controls.right.Position() > controls.deadzone:
+            elif controls.up.Pos():
+                if controls.right.Pos():
                     self.Animate(('jump', 'fall', 'aim_dup', Dir.RIGHT),
                                  loop=False)
-                elif controls.left.Position() > controls.deadzone:
+                elif controls.left.Pos():
                     self.Animate(('jump', 'fall', 'aim_dup', Dir.LEFT),
                                  loop=False)
                 else:
                     self.Animate(('jump', 'fall', 'aim_up', self.direction),
                                  loop=False)
-            elif controls.down.Position() > controls.deadzone:
-                if controls.right.Position() > controls.deadzone:
+            elif controls.down.Pos():
+                if controls.right.Pos():
                     self.Animate(('jump', 'fall', 'aim_ddown', Dir.RIGHT),
                                  loop=False)
-                elif controls.left.Position() > controls.deadzone:
+                elif controls.left.Pos():
                     self.Animate(('jump', 'fall', 'aim_ddown', Dir.LEFT),
                                  loop=False)
                 else:

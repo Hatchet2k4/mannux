@@ -19,8 +19,8 @@ cancel_key = 'ESCAPE'
 
 
 #global variables for controls
-deadzone = 0.5 # Analog deadzone. 
-usejoystick = True #Gamepad enabled. Todo, make this an editable preference. 
+deadzone = 0.5 # Analog deadzone.
+usejoystick = True #Gamepad enabled. Todo, make this an editable preference.
 
 controlnames = ['BACKSPACE', 'TAB', 'CLEAR', 'RETURN', 'PAUSE', 'ESCAPE',
                 'SPACE', 'EXCLAIM', 'QUOTEDBL', 'HASH', 'DOLLAR', 'AMPERSAND',
@@ -122,6 +122,12 @@ class Button:
         else:
             return 0
 
+    def Pos(self):
+        if self.control:
+            return self.control.Position() >= deadzone
+        else:
+            return 0
+
     def Pressed(self):
         p = self.Position()
         if self.pressed:
@@ -191,6 +197,13 @@ class MButton: #multi button class that supports multiple buttons but acts like 
                     return p
         return 0
 
+    def Pos(self): #same as Position, but true/false
+
+        for b in self.buttons.itervalues():
+            if b:
+                if b.Pos(): return True
+        return False
+
 
     def Pressed(self):
         press=False
@@ -230,11 +243,11 @@ aim_down = MButton(Button("key:C"))
 pause = MButton(Button("key:ESCAPE"))
 
 confirm = MButton(Button("key:RETURN")) #confirm and attack buttons are no longer the same
-cancel = pause # should be menu? same as pause for now. 
+cancel = pause # should be menu? same as pause for now.
 
 #attempt to add joystick controls
-#TODO-allow switching between different gamepads. 
-if len(ika.Input.joysticks) > 0: #attempt to add gamepad controls if one is available. 
+#TODO-allow switching between different gamepads.
+if len(ika.Input.joysticks) > 0: #attempt to add gamepad controls if one is available.
     try:
         #directions
         up.AddButton(Button("joy:0:reverseaxes:1"))
@@ -250,7 +263,7 @@ if len(ika.Input.joysticks) > 0: #attempt to add gamepad controls if one is avai
         pause.AddButton(Button("joy:0:buttons:9"))
         dash.AddButton(Button("joy:0:buttons:3"))
         confirm.AddButton(Button("joy:0:buttons:0")) #same as attack button to confirm
-        
+
         usejoystick = True
     except:
         ika.Log('Warning: Attempt to add gamepad controls failed. Continuing.')
