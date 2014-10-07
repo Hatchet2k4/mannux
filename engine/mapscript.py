@@ -91,9 +91,9 @@ def _Save(x, y, reposition=True):
             engine.draw()    
             engine.hud.draw()
 
-            saveflash[int(ticks/12)].TintBlit(x - ika.Map.xwin, y - ika.Map.ywin, ika.RGB(255,255,255,128))
+            saveflash[int(ticks/12)].TintBlit(x - ika.Map.xwin, y - ika.Map.ywin, ika.RGB(128,128,128,64), ika.AddBlend)
             
-            savelight[int(ticks/12)].TintBlit(x - ika.Map.xwin+1, y - ika.Map.ywin+26, ika.RGB(255,255,255,128))
+            savelight[int(ticks/12)].TintBlit(x - ika.Map.xwin+1, y - ika.Map.ywin+26, ika.RGB(128,128,128,64), ika.AddBlend)
             
             
             ika.Video.ShowPage()

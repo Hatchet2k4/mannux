@@ -228,12 +228,16 @@ class Tabby(Entity):
         self.vy = 0
         self.Animate(('crouch', self.direction), delay=self.animspeed, loop=False)
         fired = False
-        while controls.down.Position() > controls.deadzone:
+        while True:
+            if controls.up.Position() > controls.deadzone:            
+                break          
+            
+            
             if not self.floor:
                 self.state = self.FallState
                 yield None
             if self.anim.kill:
-                self.Animate(('down', self.direction))
+                self.Animate(('down', self.direction))            
             if controls.attack.Pressed():
                 fired = True
                 if controls.aim_up.Position():
