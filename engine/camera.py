@@ -17,8 +17,8 @@ class Camera(object):
 
     def update(self):
         if self.target is not None:
-            y = self.target.y - ika.Video.yres / 2 + self.yoffset
-            x = self.target.x - ika.Video.xres / 2 + self.xoffset
+            y = int(self.target.y - ika.Video.yres / 2 + self.yoffset)
+            x = int(self.target.x - ika.Video.xres / 2 + self.xoffset)
             #self.drift = (ika.Map.ywin != y or ika.Map.xwin != x)
             if self.drift:
                 d = 0

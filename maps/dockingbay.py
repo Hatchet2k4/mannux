@@ -210,7 +210,7 @@ def AutoExec():
     #entities.append(Turret(9 * ika.Map.tilewidth, 12 * ika.Map.tileheight,
     #                       Dir.LEFT))
 
-    e.AddEntity(Platform(20 * ika.Map.tilewidth, 20 * ika.Map.tileheight))
+    e.AddEntity(Platform(20 * ika.Map.tilewidth, 20 * ika.Map.tileheight, 0.5,-0.1))
 
 
     e.AddEntity(Box(14 * ika.Map.tilewidth, 15 * ika.Map.tileheight))
@@ -222,7 +222,7 @@ def AutoExec():
 
 
     secretArea.activated = False
-    
+
     #e.text('Testing textbox 1 2 3')
 
     #ika.Map.SetLayerTint(1, ika.RGB(255,100, 100, 127))

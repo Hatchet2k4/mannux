@@ -7,7 +7,7 @@ import fonts
 from sprite import Sprite
 
 class Platform(Entity):
-    def __init__(self, x, y, vx=.25, vy=-.25, duration=200, delay=50):
+    def __init__(self, x, y, vx=0.2, vy=-0.2, duration=200, delay=50,loop=True):
         super(Platform, self).__init__(ika.Entity(int(x), int(y),
                                                 ika.Map.FindLayerByName('Walls'), 'sprites/platform.ika-sprite'
                                                 ))
@@ -25,6 +25,8 @@ class Platform(Entity):
         self.delduration = delay #how long to wait after hitting the apex to change direction again. Will ned to make this more flexible...
         self.duration = duration #need to change to be more of a pattern eventually...
         self.touchable = True
+        self.loop=loop
+
         self.set_animation_state(0, 0, delay=5, loop=True)
 
 
@@ -39,12 +41,12 @@ class Platform(Entity):
         pass
         #print >> fonts.tiny(200, 50), "x:", str(self.x)
 
-        #x=int(self.x)-ika.Map.xwin
-        #y=int(self.y)-ika.Map.ywin
+        x=int(self.x)-ika.Map.xwin
+        y=int(self.y)-ika.Map.ywin
 
         #print >> fonts.tiny(x, y), "vy:", str(self.vy)
         #print >> fonts.tiny(x, y+10), "ticks:", str(self.ticks)
-        #ika.Video.DrawRect(x, y, x+48, y+16, ika.RGB(255, 0, 0, 128), True)
+        ika.Video.DrawRect(x, y, x+48, y+16, ika.RGB(255, 0, 0, 128), True)
 
 
     def touch(self, ent):

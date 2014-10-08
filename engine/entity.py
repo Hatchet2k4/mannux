@@ -5,7 +5,7 @@ from anim import Anim, make_anim
 import engine as e
 
 class Entity(object):
-
+    #sprite is an ika Sprite
     def __init__(self, sprite):
         super(Entity, self).__init__()
         self.sprite = sprite
@@ -84,8 +84,8 @@ class Entity(object):
         e.engine.RemoveEntity(self)
 
     def check_obstructions(self):
-        x = round(self.x)
-        y = round(self.y)
+        x = int(self.x)
+        y = int(self.y)
         layer = 1
         self.left_wall = self.check_v_line(x + self.vx - 2, y,
                                            y + self.sprite.hotheight - 2)

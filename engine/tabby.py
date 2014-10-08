@@ -275,6 +275,7 @@ class Tabby(Entity):
 
     #TODO: only works with tiles, not platforms or obstructable entities right now
     def LedgeState(self):
+        self.checkslopes=False
         self.Animate(('stand','aim_up', self.direction))
         while True:
             if self.anim.kill:
@@ -420,6 +421,7 @@ class Tabby(Entity):
         if self.anim.loop:
             self.Animate(('run', self.direction), self.animspeed+2)
         fired = False
+        self.checkslopes=True
         while True:
             if self.anim.kill:
                 self.Animate(('run', self.direction), self.animspeed+2)
@@ -519,7 +521,8 @@ class Tabby(Entity):
         #        self.Animate(('jump', 'fall', 'aim_down', self.direction), loop=False)
         #else:
         #     self.Animate(('jump', 'fall',  self.direction), loop=False)
-        self.checkslopes = True
+
+        self.checkslopes=True
         while True:
             if self.HasAbility('double-jump') and controls.jump.Pressed() \
                 and not self.ceiling and self.jump_count < self.max_jumps:
@@ -632,6 +635,12 @@ class Tabby(Entity):
         yield None
 
     def JumpState(self):
+        self.checkslopes = False
+        self.vy = -self.jump_speed
+        self.jumpticks=3 #Just started jumping
+        self.fired = False
+        jumplength=5 #must jump for at least 5 ticks
+
 
 
         """STAND->JUMP"""
@@ -664,12 +673,20 @@ class Tabby(Entity):
                              loop=False)
         else:
             self.Animate(('stand', 'jump',  self.direction), loop=False)
-        self.checkslopes = False
-        self.vy = -self.jump_speed
-        self.jumpticks=3 #Just started jumping
-        self.fired = False
 
-        while controls.jump.Position() > controls.deadzone and not self.fired:
+
+
+        looping=True
+        while looping:
+
+            if jumplength>0: jumplength-=1
+            elif not controls.jump.Pos():
+                    looping=False
+
+            if self.fired: looping=False #can still break out of jump early by firing
+
+
+
             old_direction = self.direction
             if controls.left.Position() > controls.deadzone and \
                not self.left_wall:
@@ -1085,19 +1102,20 @@ class Tabby(Entity):
         tx = x / ika.Map.tilewidth
         ty = y / ika.Map.tileheight
         tile = ika.Map.GetTile(tx, ty, self.layer)
-        a = (ty + 1) * ika.Map.tileheight
-        b = x % ika.Map.tileheight
+        a = (ty + 1) * ika.Map.tileheight #tile underneath tabby
+        b = x % ika.Map.tileheight #how far into the tile
+
         if tile in slopeTiles[Dir.RIGHT]:  # \
             if reposition:
                 if self.vx > 0 and self.vy == 0:
-                    self.y = a + b - self.sprite.hotheight - ika.Map.tileheight + 1
+                    self.y = a + b - self.sprite.hotheight - ika.Map.tileheight + self.vx
                 else:
                     self.y = a + b - self.sprite.hotheight - ika.Map.tileheight
             return True
         elif tile in slopeTiles[Dir.LEFT]:  # /
             if reposition:
                 if self.vx < 0 and self.vy == 0:
-                    self.y = a - b - self.sprite.hotheight
+                    self.y = a - b - self.sprite.hotheight + self.vy
                 else:
                     self.y = a - b - self.sprite.hotheight - 1
             return True
@@ -1300,6 +1318,7 @@ class Tabby(Entity):
             self.cur_platform=None
             self.pvy = 0
             self.pvx = 0
+            self.vy=0
 
 
 
@@ -1382,8 +1401,13 @@ class Tabby(Entity):
             for colliding in results: #returns tuple of (entity, top, bottom, left, right for sides being touched)
                 e,top,bottom,left,right=colliding
                 if e.platform:   # and top: #entity is a platform and touching the top
-                    self.SetPlatform(e)
+                    if e.y >= self.y:
+                        self.SetPlatform(e)
+                    elif e.y+e.h <= self.y:
+                        self.ceiling=True
+                        self.state=self.FallState #hack
                     #only one platform at a time right now, first in the list...
+                    #needs logic for not cliping through the bottom
         elif self.cur_platform: #currently standing on a platform
             still_touching=False
             for colliding in results: #returns tuple of (entity, top, bottom, left, right for sides being touched)
@@ -1435,8 +1459,8 @@ class Tabby(Entity):
     def detect_collision(self): #entity collisions, Tabby specific
         result = []
 
-        y=self.y #+self.vy #+self.pvy
-        x=self.x #+self.vx #+self.pvx
+        y=self.y + self.vy #+self.pvy
+        x=self.x + self.vx #+self.pvx
 
         for entity in engine.entities:
         	if entity is not self and entity.sprite: #don't check itself and only if it has a sprite
@@ -1446,7 +1470,7 @@ class Tabby(Entity):
 				eleft = entity.x
 				eright = entity.x + entity.sprite.hotwidth
 
-				if self.check_rectangles(eleft, etop, eright, ebottom, self.x, self.y, self.x+self.sprite.hotwidth, self.y+self.sprite.hotheight): #within bounding box. Check if it's the top, bottom, left, or right side being collided with.
+				if self.check_rectangles(eleft, etop, eright, ebottom, self.x, self.y, self.x+self.sprite.hotwidth, self.y+self.sprite.hotheight + 1): #within bounding box. Check if it's the top, bottom, left, or right side being collided with.
 
 					#ebottom > y and etop < y + self.sprite.hotheight and \
 					#eright > x and eleft < x + self.sprite.hotwidth: #within bounding box. Check if it's the top, bottom, left, or right side being collided with.

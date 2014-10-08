@@ -424,7 +424,7 @@ class Engine(object):
         self.time = '%01d:%02d:%02d' % (self.hours, self.minutes, self.seconds)
 
     def UpdateTerrain(self):
-        #Updates terrain layer. For water effects, currently
+        #Updates terrain layer. For water effects, currently. should be part of Tabby herself...
         for l in self.terrain_layers:
             name, layer = l
 

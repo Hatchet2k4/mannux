@@ -1,0 +1,46 @@
+h1, h2, h3, h4 {font-weight: normal}
+
+:link, :visited {color: blue}
+:link:hover, :visited:hover {color: red}
+
+body {
+	font: 1em sans-serif;
+	color: black;
+	background: #008;
+	margin: 0 0 50px 0;
+}
+
+h1 {
+	color: white;
+	background: black;
+	font-size: 2em;
+	margin: 0 0 1em 0;
+	padding: 1em 10% 1em 10%
+}
+
+h2 {
+	font-size: 1.8em;
+	margin: 1em 0 1em -6%;
+}
+
+h3 {
+	font-size: 1.6em;
+	margin: 1em 0 0 -4%
+}
+
+h4 {
+	color: #008;
+	font-size: 1.2em;
+	margin: 1em 0 .2em -3%;
+}
+
+#main {
+	border: 5px solid black;
+	background: #BCD;
+	margin: 0 10% 0 10%;
+	padding: 0 5% 0 5%;
+}
+
+.entry {
+	margin: 0 0 1em 0;
+}
