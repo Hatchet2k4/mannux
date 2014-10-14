@@ -205,10 +205,8 @@ def AutoExec():
     #e.AddEntity(Zombie(40 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     #e.AddEntity(Zombie(30 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     e.AddEntity(DockWindow(9 * ika.Map.tilewidth, 4 * ika.Map.tileheight))
-    #e.AddEntity(Turret(9 * ika.Map.tilewidth, 15 * ika.Map.tileheight,
-    #                       Dir.LEFT))
-    #entities.append(Turret(9 * ika.Map.tilewidth, 12 * ika.Map.tileheight,
-    #                       Dir.LEFT))
+    e.AddEntity(Turret(9 * ika.Map.tilewidth, 15 * ika.Map.tileheight, Dir.LEFT))
+
 
     e.AddEntity(Platform(20 * ika.Map.tilewidth, 20 * ika.Map.tileheight, 0.5,-0.1))
 

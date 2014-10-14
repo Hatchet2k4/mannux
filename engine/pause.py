@@ -31,7 +31,7 @@ class Pause(object):
         self.mapy = 0
         self.options = ['Map', 'Weapons', 'Skills', 'Config', 'Quit']
         self.enabled = ['Map', 'Config', 'Quit']
-        self.configkeys = ['attack', 'jump', 'aim_up', 'aim_down', 'dash', 'confirm'] #add dash, updownleftright
+        self.configkeys = ['attack', 'jump', 'dash', 'aim_up', 'aim_down', 'weap_next', 'weap_prev', 'confirm', 'pause'] #add dash, updownleftright
         self.mapname = ''
 
     def menu(self):

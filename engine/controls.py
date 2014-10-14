@@ -3,21 +3,6 @@
 import ika
 
 
-# Just display strings now.
-up_key = 'UP'
-down_key = 'DOWN'
-left_key = 'LEFT'
-right_key = 'RIGHT'
-attack_key = 'X'
-jump_key = 'Z'
-aim_up_key = 'D'
-aim_down_key = 'C'
-pause_key = 'ESCAPE'
-confirm_key = 'RETURN'
-cancel_key = 'ESCAPE'
-
-
-
 #global variables for controls
 deadzone = 0.5 # Analog deadzone.
 usejoystick = True #Gamepad enabled. Todo, make this an editable preference.
@@ -40,6 +25,8 @@ controlnames = ['BACKSPACE', 'TAB', 'CLEAR', 'RETURN', 'PAUSE', 'ESCAPE',
                 'F15', 'NUMLOCK', 'CAPSLOCK', 'SCROLLOCK', 'RSHIFT', 'LSHIFT',
                 'RCTRL', 'LCTRL', 'RALT', 'LALT', 'RMETA', 'LMETA', 'LSUPER',
                 'RSUPER', 'MODE']
+
+    
 
 def StringToControl(string):
     """Returns a control object based on the passed control string."""
@@ -235,7 +222,7 @@ attack = MButton(Button("key:X"))
 jump = MButton(Button("key:Z"))
 ability = MButton(Button("key:S"))
 
-dash = MButton(Button("key:A")) #new buttoin, dashing, if ability is gained!
+dash = MButton(Button("key:A")) #new button, dashing, if ability is gained!
 
 aim_up = MButton(Button("key:D"))
 aim_down = MButton(Button("key:C"))
@@ -243,7 +230,10 @@ aim_down = MButton(Button("key:C"))
 pause = MButton(Button("key:ESCAPE"))
 
 confirm = MButton(Button("key:RETURN")) #confirm and attack buttons are no longer the same
-cancel = pause # should be menu? same as pause for now.
+cancel = pause # should be menu? same as pause for now. potential bug if they are connected.
+
+weap_prev = MButton(Button("key:Q"))
+weap_next = MButton(Button("key:W"))
 
 #attempt to add joystick controls
 #TODO-allow switching between different gamepads.
@@ -263,7 +253,9 @@ if len(ika.Input.joysticks) > 0: #attempt to add gamepad controls if one is avai
         pause.AddButton(Button("joy:0:buttons:9"))
         dash.AddButton(Button("joy:0:buttons:3"))
         confirm.AddButton(Button("joy:0:buttons:0")) #same as attack button to confirm
-
+        weap_prev.AddButton(Button("joy:0:buttons:6"))
+        weap_next.AddButton(Button("joy:0:buttons:7"))
+        
         usejoystick = True
     except:
         ika.Log('Warning: Attempt to add gamepad controls failed. Continuing.')
@@ -271,6 +263,6 @@ if len(ika.Input.joysticks) > 0: #attempt to add gamepad controls if one is avai
 else: usejoystick=False
 
 control_list = {'up':up, 'down':down, 'left':left, 'right':right,
-                'attack':attack, 'jump':jump, 'dash':dash, 'confirm':confirm, 'cancel':cancel, 'aim_up':aim_up, 'aim_down':aim_down, 'pause':pause} #maybe dash/ability button in future update
-
+                'attack':attack, 'jump':jump, 'dash':dash, 'confirm':confirm, 'cancel':cancel, 
+                'aim_up':aim_up, 'aim_down':aim_down, 'pause':pause, 'weap_next':weap_next, 'weap_prev':weap_prev} #maybe dash/ability button in future update
 

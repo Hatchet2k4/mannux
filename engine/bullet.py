@@ -78,3 +78,31 @@ class Bullet(Entity):
         y=self.y-12-ika.Map.ywin
         #ika.Video.DrawEllipse(self.x+4-ika.Map.xwin, self.y+4-ika.Map.ywin, 8, 8, ika.RGB(100,100,60,80), 1, ika.AddBlend)
         ika.Video.TintBlit(engine.smallcircle, x,y, ika.RGB(64,92,64,128), ika.AddBlend)
+        
+        
+class Beam(Entity):
+    def __init__(self, x, y, direction):
+        super(Beam, self).__init__(ika.Entity(int(x), int(y),
+                                                engine.player.layer,
+                                                '%s/blank.ika-sprite' %
+                                                config.sprite_path))   
+        self.ticks = 0
+        self.temp = ika.Random(80, 280)
+        sound.play('Beam', 0.2)
+        self.damage = 20 
+        self.x=x
+        self.y=y
+        
+
+    def update(self):
+        super(Beam, self).update()
+        self.ticks += 1
+        if self.ticks > 80:
+            self._destroy()
+            
+    def draw(self):
+        #lighting
+        x=self.x-12-ika.Map.xwin
+        y=self.y-12-ika.Map.ywin
+        #ika.Video.DrawEllipse(self.x+4-ika.Map.xwin, self.y+4-ika.Map.ywin, 8, 8, ika.RGB(100,100,60,80), 1, ika.AddBlend)
+        ika.Video.TintBlit(engine.smallcircle, x,y, ika.RGB(64,92,64,128), ika.AddBlend)        

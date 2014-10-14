@@ -19,7 +19,7 @@ def AutoExec():
     #                     'door_right'))
     #entities.append(Door(2 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
     #                     'door_right', locked=True))
-    e.AddEntity(Platform(20 * ika.Map.tilewidth, 6 * ika.Map.tileheight,vx=0,vy=0.25))
+    e.AddEntity(Platform(20 * ika.Map.tilewidth, 6 * ika.Map.tileheight-2,vx=0,vy=0.25))
 
 #toBay1upper = engine.mapscript.Warp(1, 6, 'cargobay1.ika-map', Dir.LEFT)
 #toBay1lower = engine.mapscript.Warp(1, 25, 'cargobay1.ika-map', Dir.LEFT)

@@ -26,7 +26,13 @@ class Sounds(object):
                                                  config.sound_path),
 
                        'Scan': ika.Sound('%s/XRay.mp3' %
-                                                 config.sound_path)}
+                                                 config.sound_path),
+                       'Beam': ika.Sound('%s/beam.wav' %
+                                                 config.sound_path)}                                                 
+                                                 
+                                                 
+                                                 
+                                                 
 
     def play(self, sound, volume=1.0):
         sound = self.sounds[sound]

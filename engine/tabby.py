@@ -7,7 +7,7 @@ import controls
 import parser
 from entity import Entity
 from engine import engine
-from bullet import Bullet
+from bullet import Bullet, Beam
 from anim import make_anim
 from sounds import sound
 from const import Dir
@@ -54,7 +54,8 @@ class Tabby(Entity):
 
         self.SetPhysics('normal')
         self.abilities = {'sexy': True, 'wall-jump': True, 'double-jump': False}
-
+        self.weapons = ['Bullet', 'Beam']
+        self.curweapon = 'Beam'
 
         self.fire_delay = 0
         self.firing_rate = 8
@@ -168,15 +169,23 @@ class Tabby(Entity):
             self.anim.set_anim(make_anim(strand, delay), loop, reset)
 
     def Fire(self, direction, offx=0, offy=0):
-        if not self.fire_delay:
-            bullet_x = self.x + offx
-            bullet_y = self.y + offy
-            #if self.direction == Dir.RIGHT:
-            #    bullet_x += self.sprite.hotwidth + 2
-            #if self.direction == Dir.LEFT:
-            #    bullet_x -= 10
-            engine.AddEntity(Bullet(bullet_x, bullet_y, direction))
-            self.fire_delay = self.firing_rate
+        if self.curweapon=='Bullet':
+            if not self.fire_delay:
+                bullet_x = self.x + offx
+                bullet_y = self.y + offy
+                #if self.direction == Dir.RIGHT:
+                #    bullet_x += self.sprite.hotwidth + 2
+                #if self.direction == Dir.LEFT:
+                #    bullet_x -= 10
+                engine.AddEntity(Bullet(bullet_x, bullet_y, direction))
+                self.fire_delay = self.firing_rate
+        elif self.curweapon=='Beam':
+            if not self.fire_delay:
+                bullet_x = self.x + offx
+                bullet_y = self.y + offy
+                engine.AddEntity(Beam(bullet_x, bullet_y, direction))
+                self.fire_delay = self.firing_rate    
+            
 
     def ProcessAirMovement(self):
         if controls.left.Pos():
@@ -1334,7 +1343,11 @@ class Tabby(Entity):
         else: #defaults to normal
             self.SetPhysics('normal') #for efficiency shouldn't run this every frame..
 
-
+        if controls.weap_next.Pressed() or controls.weap_prev.Pressed():
+            if self.curweapon=='Beam':
+                self.curweapon='Bullet'
+            else:
+                self.curweapon='Beam'
 
         ### hack hack hack ###
         if self.hurt_count > 0:
