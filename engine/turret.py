@@ -30,7 +30,11 @@ class Turret(Enemy):
             other.Hurt(self.damage)
 
     def Hurt(self, bullet):
-        self.hp -= bullet.damage
+        try:
+            self.hp -= bullet.damage
+        except:
+            self.hp -= bullet #haaaack..
+
         if self.hp <= 0:
             self.state = self.death_state
         else:
@@ -42,7 +46,7 @@ class Turret(Enemy):
         engine.AddEntity(Boom(int(self.x - 8), int(self.y - 8),
                              'explode.ika-sprite', 6))
         engine.AddEntity(Spark(int(self.x +self.w/2), int(self.y)))
-                             
+
         self.hurtable = False
         self.destroy = True
         while not self.anim.kill:
@@ -94,35 +98,36 @@ class Spark(Entity):
         self.check_obs = False
         self.ticks = 0
         self.hurtable=False
-        
-        self.specks = [None] * numspecks        
+
+        self.specks = [None] * numspecks
         self.x=x
         self.y=y
         self.visible=True
-        for i in range(len(self.specks)):        
+        for i in range(len(self.specks)):
             self.specks[i]=Speck(x,y)
-    
+
         self.state=self.UpdateState
-        
+
     def UpdateState(self):
         while True:
             for i, s in enumerate(self.specks):
                 s.update()
                 if s.lifetime==0:
-                    self.specks[i]=Speck(self.x,self.y)  
-            yield None                                      
-    
+                    self.specks[i]=Speck(self.x,self.y)
+            yield None
+
     def draw(self):
         for s in self.specks:
-            s.draw()            
+            s.draw()
 
 class Speck():
-    def __init__(self, x, y):   
-        self.lifetime=50+ika.Random(0, 25)        
+    def __init__(self, x, y):
+        self.lifetime=50+ika.Random(0, 25)
         self.vx=ika.Random(-50, 50)/100.0
         self.vy=-0.5
         self.x=x
         self.y=y
+
         #need seperate RGB values later
         self.color=ika.RGB(0, 200, 100, 200)
         self.color2=ika.RGB(0, 250, 150, 200)
@@ -132,14 +137,14 @@ class Speck():
         if self.vy<2:
             self.vy+=0.1
         self.lifetime-=1
-        if self.lifetime<50 and self.lifetime>=0:       
+        if self.lifetime<50 and self.lifetime>=0:
             self.color=ika.RGB(0, 200, 100, self.lifetime*4)
             self.color2=ika.RGB(0, 250, 150, self.lifetime*4)
     def draw(self):
         #ika.Video.DrawPixel(int(self.x)-ika.Map.xwin, int(self.y-ika.Map.ywin), self.color)
         ika.Video.DrawPixel(int(self.x)-ika.Map.xwin, int(self.y-ika.Map.ywin), self.color, ika.AddBlend)
         #ika.Video.DrawEllipse(int(self.x)-ika.Map.xwin, int(self.y-ika.Map.ywin),2, 2, self.color, True)
-        
+
 class Laser(Entity):
 
     def __init__(self, x, y, angle, spawner, damage=8):
@@ -151,7 +156,6 @@ class Laser(Entity):
         self.check_obs = False
         self.ticks = 0
         self.angle = angle
-        sound.play('Shoot', 0.2)
         self.set_animation_state(first=0, last=0, delay=1)
         self.state = self.fly_state
         self.damage = damage
@@ -159,6 +163,9 @@ class Laser(Entity):
         self.length = 16
         self.a = 255
         self.d = -1
+        self.hurtable=False
+
+        sound.play('Shoot', 0.2)
 
     def draw(self):
         x1 = int(self.x - ika.Map.xwin)
@@ -200,7 +207,7 @@ class Laser(Entity):
             hitent = False
             #ent = engine.player
             for ent in engine.entities:
-                if ent.hurtable and ent not in [self, self.spawner]:
+                if ent.hurtable and ent not in [self, self.spawner] and ent is not Turret:
                     for x, y in [(self.x, self.y),
                                  (self.x + self.length * math.cos(self.angle),
                                   self.y + self.length *

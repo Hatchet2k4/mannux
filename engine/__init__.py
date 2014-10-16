@@ -85,11 +85,12 @@ class Engine(object):
         # If run is put here, the engine object is never returned.
 
         self.lights=True #lights activated
-        self.lightcanvas=ika.Canvas(320,240)
-        self.lightcanvas.Clear(ika.RGB(255,255,255,128))
+        self.lightcanvas=ika.Canvas(320,240) #should use xres and yres
+        self.lightcanvas.Clear(ika.RGB(255,255,255,255))
         self.circleimage = ika.Image('%s/circle_gradient.png'  % config.image_path)
-        self.bigcircleimage = ika.Image('%s/circle320.png' % config.image_path)
-        self.smallcircle = ika.Image('%s/circle32.png' % config.image_path)
+        self.circle = ika.Canvas('%s/circle_gradient.png'  % config.image_path)
+        self.bigcircle = ika.Canvas('%s/circle320.png' % config.image_path)
+        self.smallcircle = ika.Canvas('%s/circle32.png' % config.image_path)
 
 
     def GetFlag(self, key):
@@ -236,18 +237,27 @@ class Engine(object):
                 pass
 
         if self.lights: #lightmap check
-            #self.lightcanvas.Clear(ika.RGB(255,0,255,128))
+            #self.lightcanvas.Clear()
+
             p=self.player
-            x=int(p.x + p.width/2 - ika.Map.xwin) - 320
-            y=int(p.y + p.height/2 - ika.Map.ywin) - 240
+            x=int(p.x + p.width/2 - ika.Map.xwin)# - 320
+            y=int(p.y + p.height/2 - ika.Map.ywin)# - 240
 
             #print >> fonts.tiny(0,80), 'x: '+str(x)
             #print >> fonts.tiny(0,90), 'y: '+str(y)
 
-            #self.bigcircleimage.Blit(self.lightcanvas, 0, -40, 4)
+            #self.bigcircle.Blit(self.lightcanvas, 0, 0, ika.AddBlend)
+            #self.smallcircle.Blit(self.lightcanvas, x-10, y-80, ika.AddBlend)
+            #if controls.confirm.Pressed():
+            #    self.lightcanvas.Save("test.png")
+
             #self.lightcanvas.Blit(self.image, x , y, ika.RGB(255, 255, 255, self.opacity), ika.SubtractBlend)
             #img=ika.Image(self.lightcanvas)
-            ika.Video.TintBlit(self.circleimage, x,y, ika.RGB(255,255,255,192), ika.SubtractBlend)
+
+
+            #ika.Video.DrawRect(0,0,319,219,ika.RGB(0,0,64,128), ika.SubtractBlend)
+            #ika.Video.TintBlit(img, 0,0, ika.RGB(255,255,255,128), ika.AddBlend) #the one that always works
+
             #ika.Video.DrawEllipse(x+160, y+160, 50, 40, ika.RGB(100,100,100,128), 1, ika.AddBlend)
             #ika.Video.TintBlit(img, 0 , 0, ika.RGB(255, 255, 255, 128))
 
