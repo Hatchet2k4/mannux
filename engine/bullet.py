@@ -138,10 +138,10 @@ class Beam(Entity):
         x=self.x-12-ika.Map.xwin
         y=self.y-12-ika.Map.ywin
         
-        x1=self.x-ika.Map.xwin
-        y1=self.y-ika.Map.ywin
-        x2=self.endx-ika.Map.xwin
-        y2=self.endy-ika.Map.ywin
+        x1=self.x-ika.Map.xwin+5
+        y1=self.y-ika.Map.ywin+3
+        x2=self.endx-ika.Map.xwin+5
+        y2=self.endy-ika.Map.ywin+3
         c=ika.RGB(255,255,255,128-4*self.ticks)
         #ika.Video.DrawEllipse(self.x+4-ika.Map.xwin, self.y+4-ika.Map.ywin, 8, 8, ika.RGB(100,100,60,80), 1, ika.AddBlend)
         #ika.Video.TintBlit(engine.smallcircle, x,y, ika.RGB(64,92,64,128), ika.AddBlend)        
