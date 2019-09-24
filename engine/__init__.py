@@ -22,6 +22,85 @@ from field import Field
 
 from splash import Splash #should move later...
 
+import sys
+
+try:
+    import os
+except ImportError:
+    # No python installed.  Try to figure out what the builtin
+    # module is, and (evil hack) import that in its place
+    for m in ('posix', 'nt', 'os2', 'mac', 'ce', 'riscos'):
+        if m in sys.builtin_module_names:
+            os = __import__(m)
+            break
+
+def rip_tiles(image, width, height, span, tilecount):
+    """This is a simple function that takes any image that is formatted
+    like a tileset and rips the tiles into a list which is then
+    returned.
+
+    image - path of image to rip from
+    width/height - width and height of a single tile
+    span - how many tiles per row
+    tilecount - number of tiles to rip
+    """
+    tiles = []
+    big_image = ika.Canvas(image)
+    for i in range(tilecount):
+        tile = ika.Canvas(width, height)
+        big_image.Blit(tile, -1 - (i % span * (width + 1)),
+                       -1 - (i / span * (height + 1)), ika.Opaque)
+        #tiles.append(ika.Image(tile))
+        tiles.append(tile)
+    return tiles        
+    
+def saveallmaps():
+    savemaps=[]
+  
+    try:
+        raw_names = os.listdir('.\\maps')
+        savemaps = []
+        for f in raw_names:
+            if f.endswith('ika-map'):
+                savemaps.append(f)
+        
+        ika.Log( str(savemaps) )
+    except: 
+        #ika.Log(str(e))
+        return None
+  
+    ika.Log('maps: ' + str(savemaps))
+    
+    #mantiles={'mannux.vsp': rip_tiles('mannuxvsp.png', 16, 16, 10, 1645) }
+    tiles = rip_tiles('mannuxvsp.png', 16, 16, 10, 1645)
+    
+
+    
+    for m in savemaps:
+            Map2Img(m, tiles)  
+
+
+
+
+def Map2Img(mapName, tileset):        
+
+    ika.Log('Saving map ' + mapName)
+    ika.Map.Switch('maps/' + mapName)
+    
+    canvas = ika.Canvas(ika.Map.width, ika.Map.height) 
+    
+    
+            
+    for y in range(int(ika.Map.height/16)):
+        for x in range(int(ika.Map.width/16)):
+            for l in range(ika.Map.layercount):
+                t=ika.Map.GetTile(x,y,l)
+                tileset[t].Blit(canvas, x*16, y*16, ika.AlphaBlend)
+                
+    canvas.Save('map2img/' +  mapName + '.png')
+
+
+
 
 class Message(object):
     def __init__(self, text, duration):
@@ -91,6 +170,9 @@ class Engine(object):
         self.circle = ika.Canvas('%s/circle_gradient.png'  % config.image_path)
         self.bigcircle = ika.Canvas('%s/circle320.png' % config.image_path)
         self.smallcircle = ika.Canvas('%s/circle32.png' % config.image_path)
+        
+        
+        
 
 
     def GetFlag(self, key):
@@ -169,6 +251,7 @@ class Engine(object):
 
     def Run(self):
         self.title.show()
+        saveallmaps()
         self.newgame() #only comment out if not showing title
         self.hud.resize()
         self.automap.update_room()
