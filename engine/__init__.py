@@ -251,7 +251,7 @@ class Engine(object):
 
     def Run(self):
         self.title.show()
-        saveallmaps()
+        #saveallmaps()
         self.newgame() #only comment out if not showing title
         self.hud.resize()
         self.automap.update_room()
