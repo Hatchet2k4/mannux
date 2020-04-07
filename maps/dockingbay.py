@@ -220,6 +220,7 @@ def AutoExec():
 
 
     secretArea.activated = False
+    #ika.Video.ClipScreen(40, 40, 320, 220) #testing some screen clipping for fun, ignore :P
 
     #e.text('Testing textbox 1 2 3')
 
