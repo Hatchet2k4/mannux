@@ -13,7 +13,7 @@ from engine.fog import Darkness
 from engine.zombie import Zombie
 from engine.dockwindow import DockWindow
 from engine.turret import Turret
-#from globalvars import font
+
 from engine.const import Dir
 from engine.platform import Platform
 from engine.box import Box
@@ -161,9 +161,14 @@ def landing_animation():
 
 def AutoExec():
 
-    #if not e.GetFlag('shiplanded'):
-    #    landing_animation()
-    #
+    if not e.GetFlag('shiplanded'):
+    
+    #    ika.Log('Ship landing!' + str(e.GetFlag('shiplanded')))
+    
+        e.SetFlag('shiplanded', True)
+    #if not 'shiplanded' in e.flags:
+        landing_animation()
+    
 
 
 
@@ -205,18 +210,18 @@ def AutoExec():
     #e.AddEntity(Zombie(40 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     #e.AddEntity(Zombie(30 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
     e.AddEntity(DockWindow(9 * ika.Map.tilewidth, 4 * ika.Map.tileheight))
-    e.AddEntity(Turret(9 * ika.Map.tilewidth, 15 * ika.Map.tileheight, Dir.LEFT))
+    #e.AddEntity(Turret(9 * ika.Map.tilewidth, 15 * ika.Map.tileheight, Dir.LEFT))
 
 
-    e.AddEntity(Platform(20 * ika.Map.tilewidth, 20 * ika.Map.tileheight, 0.5,-0.1))
+    #e.AddEntity(Platform(20 * ika.Map.tilewidth, 20 * ika.Map.tileheight, 0.5,-0.1))
 
 
-    e.AddEntity(Box(14 * ika.Map.tilewidth, 15 * ika.Map.tileheight))
+    #e.AddEntity(Box(14 * ika.Map.tilewidth, 15 * ika.Map.tileheight))
 
 
     #e.AddEntity(Box(34 * ika.Map.tilewidth, 21 * ika.Map.tileheight))
 
-    e.AddEntity(Sentry(35 * ika.Map.tilewidth, 17 * ika.Map.tileheight))
+    #e.AddEntity(Sentry(35 * ika.Map.tilewidth, 17 * ika.Map.tileheight))
 
 
     secretArea.activated = False

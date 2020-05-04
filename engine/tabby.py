@@ -55,7 +55,7 @@ class Tabby(Entity):
         self.SetPhysics('normal')
         self.abilities = {'sexy': True, 'wall-jump': True, 'double-jump': False}
         self.weapons = ['Bullet', 'Beam']
-        self.curweapon = 'Beam'
+        self.curweapon = 'Bullet'
 
         self.fire_delay = 0
         self.firing_rate = 8
@@ -192,22 +192,23 @@ class Tabby(Entity):
             if not self.left_wall:
                 self.vx -= self.air_accel
                 self.direction = Dir.LEFT
-            else: #pressing against left wall
-                if not self.check_v_line(self.x-1, self.y-4, self.y) and self.check_v_line(self.x-1, self.y+1, self.y+6):
-                    sound.play('Land') #connected to left ledge!
-                    self.vy=0
-                    self.state = self.LedgeState
+                
+            #else: #pressing against left wall
+            #    if not self.check_v_line(self.x-1, self.y-4, self.y) and self.check_v_line(self.x-1, self.y+1, self.y+6):
+            #        sound.play('Land') #connected to left ledge!
+            #        self.vy=0
+            #        self.state = self.LedgeState
                     #todo: snap to tile completely
 
         if controls.right.Pos():
             if not self.right_wall:
                 self.vx += self.air_accel
                 self.direction = Dir.RIGHT
-            else: #pressing against right wall
-                if not self.check_v_line(self.x+self.w+1, self.y-4, self.y) and self.check_v_line(self.x+self.w+1, self.y+1, self.y+6):
-                    sound.play('Land') #connected to right ledge!
-                    self.vy=0
-                    self.state = self.LedgeState
+            #else: #pressing against right wall
+            #    if not self.check_v_line(self.x+self.w+1, self.y-4, self.y) and self.check_v_line(self.x+self.w+1, self.y+1, self.y+6):
+            #        sound.play('Land') #connected to right ledge!
+            #        self.vy=0
+            #        self.state = self.LedgeState
 
     #not currently used..
     def LadderState(self):

@@ -80,7 +80,7 @@ class Bullet(Entity):
         x=self.x-12-ika.Map.xwin
         y=self.y-12-ika.Map.ywin
         #ika.Video.DrawEllipse(self.x+4-ika.Map.xwin, self.y+4-ika.Map.ywin, 8, 8, ika.RGB(100,100,60,80), 1, ika.AddBlend)
-        ika.Video.TintBlit(engine.smallcircle, x,y, ika.RGB(64,92,64,128), ika.AddBlend)
+        #ika.Video.TintBlit(engine.smallcircle, x,y, ika.RGB(64,92,64,128), ika.AddBlend)
         
         
 class Beam(Entity):

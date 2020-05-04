@@ -185,6 +185,7 @@ class Engine(object):
         self.ticks = 0
         self.time = ''
         self.flags = {'notloaded': True, 'shiplanded': False}
+        self.landed = False
         self.curmap = ''
         # Not loading a map at this time.
         self.loading = False
@@ -311,8 +312,8 @@ class Engine(object):
 
     def Run(self):
         self.title.show()
-        saveallmapsTMX()
-        self.newgame() #only comment out if not showing title
+        #saveallmapsTMX()
+        #self.newgame() #only comment out if not showing title
         self.hud.resize()
         self.automap.update_room()
         time = ika.GetTime()
@@ -332,7 +333,7 @@ class Engine(object):
             self.update_time()
             self.camera.update()
             self.draw()
-            print >> fonts.one(0, 40), 'FPS:', ika.GetFrameRate()
+            #print >> fonts.one(0, 40), 'FPS:', ika.GetFrameRate()
 
             #for i, e in enumerate(self.entities):
             #    print >> fonts.one(0, 50 + 10*i), 'sprite', e.sprite

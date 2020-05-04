@@ -5,7 +5,7 @@ import engine.mapscript
 from engine import engine as e
 from engine.const import Dir
 from engine.door import Door
-from engine.fog import Fog
+from engine.fog import Fog, Darkness
 from engine.turret import Turret
 
 from engine.splash import Splash
@@ -24,6 +24,7 @@ def AutoExec():
     e.AddEntity(Turret(52 * ika.Map.tilewidth, 15 * ika.Map.tileheight))
 
     #e.AddEntity(Splash(74 * ika.Map.tilewidth, 20 * ika.Map.tileheight, "water"))
+    e.foreground_things.append(Darkness())
 
 
 toDockControl = engine.mapscript.Warp(1, 6, 'dockingcontrolroom.ika-map', Dir.LEFT)

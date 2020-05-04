@@ -5,7 +5,7 @@ import engine.mapscript
 from engine import engine as e
 from engine.const import Dir
 from engine.door import Door
-from engine.fog import Fog
+from engine.fog import Fog, Darkness
 
 
 def AutoExec():
@@ -19,6 +19,7 @@ def AutoExec():
                          'door_right'))
     #e.AddEntity(Door(2 * ika.Map.tilewidth, 24 * ika.Map.tileheight,
     #                     'door_right', locked=True))
+    e.foreground_things.append(Darkness())
 
 
 toBay1upper = engine.mapscript.Warp(1, 6, 'cargobay1.ika-map', Dir.LEFT)
