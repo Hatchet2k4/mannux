@@ -1241,6 +1241,12 @@ class Tabby(Entity):
             self.x = tilex * ika.Map.tilewidth - self.width
             self.vx = min(0, self.vx)
 
+        
+        for ents in self.detect_collision():
+            entity = ents[0]
+            if entity is not None:
+                if not entity.destroy and entity.touchable:
+                    entity.touch(self)
 
         """
         on_platform=False

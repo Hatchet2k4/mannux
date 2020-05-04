@@ -18,7 +18,7 @@ class Healthup(Entity):
 
     def touch(self, entity):
         if entity is engine.player:
-            #entity.maxhp += 50
+            entity.maxhp += 50
             entity.givehp += 50
             #engine.hud.resize()
             if self.flag is not None:
