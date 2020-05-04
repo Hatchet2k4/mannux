@@ -9,7 +9,8 @@ from entity import Entity
 class Healthup(Entity):
 
     def __init__(self, x, y, flag=None):
-        super(Healthup, self).__init__(ika.Entity(x, y, engine.player.layer,
+        
+        super(Healthup, self).__init__(ika.Entity(x, y, ika.Map.FindLayerByName('Walls'),
                                                   '%s/healthup.ika-sprite' %
                                                   config.sprite_path))
         self.flag = flag

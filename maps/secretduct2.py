@@ -5,13 +5,14 @@ import engine.mapscript
 from engine import engine as e
 from engine.const import Dir
 from engine.door import Door
-from engine.fog import Fog
+from engine.fog import Fog, Darkness
 from engine.healthup import Healthup
 
 
 def AutoExec():
     e.camera.reset_borders()
     e.foreground_things.append(Fog(-0.6, 0.2))
+    e.foreground_things.append(Darkness())
     e.AddEntity(Door(37 * ika.Map.tilewidth, 2 * ika.Map.tileheight,
                          'door_left'))
     if not 'SecretDuctHealthUp' in e.flags:

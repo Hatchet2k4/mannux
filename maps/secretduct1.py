@@ -5,12 +5,13 @@ import engine.mapscript
 from engine import engine as e
 from engine.const import Dir
 from engine.door import Door
-from engine.fog import Fog
+from engine.fog import Fog, Darkness
 from engine.platform import Platform
 
 def AutoExec():
     e.camera.reset_borders()
     e.foreground_things.append(Fog(-0.1, 0.4))
+    e.foreground_things.append(Darkness())
     e.AddEntity(Door(2 * ika.Map.tilewidth, 2 * ika.Map.tileheight,
                          'door_right'))
     #entities.append(Door(77 * ika.Map.tilewidth,
